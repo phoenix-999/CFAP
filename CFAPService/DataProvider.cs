@@ -8,6 +8,7 @@ using CFAPDataModel;
 using System.ServiceModel;
 using CFAPService.Faults;
 using NLog;
+using System.Transactions;
 
 
 namespace CFAPService
@@ -21,6 +22,7 @@ namespace CFAPService
             return CheckUser(user);
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
         public void AddNewUser(User newUser, User owner)
         {
             AddUser(newUser, owner);
@@ -72,6 +74,7 @@ namespace CFAPService
                 {
                     ctx.Users.Attach(newUser);
                     ctx.Entry<User>(newUser).State = System.Data.Entity.EntityState.Added;
+                    ctx.SaveChanges();
                 }
                 catch (Exception ex)
                 {
