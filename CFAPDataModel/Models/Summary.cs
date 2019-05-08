@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 
 namespace CFAPDataModel.Models
 {
+    [DataContract]
     public class Summary
     {
+        
         public Summary()
         {
             this.Projects = new HashSet<Project>();
@@ -54,24 +57,37 @@ namespace CFAPDataModel.Models
         }
 
         #region Properies
+        [DataMember]
         public int Id { get; set; }
 
+        [DataMember]
         public double SummaGrn { get; set; }
 
+        [DataMember]
         public double SummaDolar{ get; set; }
 
+        [DataMember]
         public bool CashFlowType { get; set; }
 
+        [DataMember]
         public DateTime ActionDate { get; set; }
 
+        [DataMember]
+        public bool ReadOnly { get; set; }
+
+        [DataMember]
         public virtual ICollection<Project> Projects { get; set; }
 
+        [DataMember]
         public virtual ICollection<BudgetItem> BudgetItems { get; set; }
 
+        [DataMember]
         public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
+        [DataMember]
         public virtual ICollection<Accountable> Accountables { get; set; }
 
+        [DataMember]
         public virtual ICollection<User> Users { get; set; }
 
         //public virtual Rate Rate { get; set; }

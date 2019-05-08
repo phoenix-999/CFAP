@@ -17,5 +17,7 @@ namespace CFAPDataModel.Models
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        public bool ReadOnly { get; set; }
     }
 }
