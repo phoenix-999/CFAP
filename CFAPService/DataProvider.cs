@@ -18,6 +18,7 @@ namespace CFAPService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class DataProvider : IDataProvider
     {
+        #region IDataProvider
         public User AuthentificateUser(User user)
         {
             return CheckUser(user);
@@ -37,7 +38,9 @@ namespace CFAPService
         {
             return ValidateData(user);
         }
+        #endregion
 
+        
         private IDictionary<string, string> ValidateData(User user)
         {
             IDictionary<string, string> result = new Dictionary<string, string>();
