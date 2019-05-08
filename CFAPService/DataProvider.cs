@@ -9,6 +9,7 @@ using System.ServiceModel;
 using CFAPService.Faults;
 using NLog;
 using System.Transactions;
+using System.Data.Entity.Validation;
 
 
 namespace CFAPService
@@ -25,7 +26,45 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AddNewUser(User newUser, User owner)
         {
+            if (!ValidateData(newUser))
+            {
+                throw new FaultException<DataNotValidException>(new DataNotValidException());
+            }
             AddUser(newUser, owner);
+        }
+
+        public IDictionary<string, string> Validate(User user)
+        {
+            return ValidateData(user);
+        }
+
+        private IDictionary<string, string> ValidateData(User user)
+        {
+            IDictionary<string, string> result = new Dictionary<string, string>();
+
+            DbEntityValidationResult validateResult;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                try
+                {
+                    validateResult = ctx.Entry<User>(user).GetValidationResult();
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            if (!validateResult.IsValid)
+            {
+                foreach (var error in validateResult.ValidationErrors)
+                {
+                    result[error.PropertyName] = error.ErrorMessage;
+                }
+            }
+
+            return result;
         }
 
         private User CheckUser(User user)
@@ -59,11 +98,9 @@ namespace CFAPService
 
         private void AddUser(User newUser, User owner)
         {
-            bool isAdmin = CheckUser(owner).IsAdmin;
-
-            if (!isAdmin)
+            if (!owner.IsAdmin)
             {
-                new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
+                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
 
             newUser.EnriptPassword(); 
