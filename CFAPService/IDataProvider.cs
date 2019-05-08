@@ -17,7 +17,7 @@ namespace CFAPService
         [OperationContract]
         [FaultContract(typeof(AutenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        User AuthentificateUser(User user);
+        User Authenticate(User user);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]

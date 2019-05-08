@@ -11,5 +11,13 @@ namespace CFAPService.Faults
     [DataContract]
     class DataNotValidException : Exception
     {
+
+        public DataNotValidException(IDictionary<string, string> validationErrors)
+        {
+            this.ValidationErrors = validationErrors;
+        }
+
+        [DataMember]
+        public IDictionary<string, string> ValidationErrors { get; private set; }
     }
 }

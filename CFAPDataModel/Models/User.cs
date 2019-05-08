@@ -57,7 +57,7 @@ namespace CFAPDataModel.Models
         public virtual ICollection<Summary> Summaries { get; set; }
 
 
-        public void EnriptPassword()
+        public void EncriptPassword()
         {
             HashAlgorithm mhash = new SHA1CryptoServiceProvider();
             byte[] bytValue = Encoding.UTF8.GetBytes(this.Password);

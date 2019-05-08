@@ -19,17 +19,18 @@ namespace CFAPService
     public class DataProvider : IDataProvider
     {
         #region IDataProvider
-        public User AuthentificateUser(User user)
+        public User Authenticate(User user)
         {
-            return CheckUser(user);
+            return AuthenticateUser(user, false);
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AddNewUser(User newUser, User owner)
         {
-            if (!ValidateData(newUser))
+            IDictionary<string, string> validationErrors = ValidateData(newUser);
+            if (validationErrors.Count > 0)
             {
-                throw new FaultException<DataNotValidException>(new DataNotValidException());
+                throw new FaultException<DataNotValidException>(new DataNotValidException(validationErrors));
             }
             AddUser(newUser, owner);
         }
@@ -70,10 +71,12 @@ namespace CFAPService
             return result;
         }
 
-        private User CheckUser(User user)
+        private User AuthenticateUser(User user, bool hasEncriptedPassword = true)
         {
             User result = null;
-            user.EnriptPassword();
+
+            if (!hasEncriptedPassword)
+                user.EncriptPassword();
 
             using (CFAPContext ctx = new CFAPContext())
             {
@@ -106,7 +109,7 @@ namespace CFAPService
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
 
-            newUser.EnriptPassword(); 
+            newUser.EncriptPassword(); 
 
             using (CFAPContext ctx = new CFAPContext())
             {
