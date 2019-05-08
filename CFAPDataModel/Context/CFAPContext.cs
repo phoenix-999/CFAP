@@ -15,7 +15,7 @@
         static CFAPContext()
         {
             DbInterception.Add(new NLogCommandInterceptor());
-            Database.SetInitializer<CFAPContext>(new DropCreateDatabaseAlways<CFAPContext>());
+            //Database.SetInitializer<CFAPContext>(new DropCreateDatabaseAlways<CFAPContext>());
         }
         public CFAPContext()
             : base("name=CFAPContext")

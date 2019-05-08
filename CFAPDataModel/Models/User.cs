@@ -39,9 +39,6 @@ namespace CFAPDataModel.Models
         public byte[] RowVersion { get; set; }
 
         [DataMember]
-        public bool ReadOnly { get; set; }
-
-        [DataMember]
         public virtual ICollection<Project> Projects { get; set; }
 
         [DataMember]

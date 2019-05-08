@@ -34,11 +34,13 @@ namespace CFAPDataModel.Models
         {
             try
             {
-                this.SummaDolar = this.SummaGrn / GetRate();
+                double rate = GetRate();
+                if (rate > 0)
+                    this.SummaDolar = this.SummaGrn / rate;
             }
-            catch (DivideByZeroException ex)
+            catch (DivideByZeroException)
             {
-                this.SummaDolar = 0;
+                this.SummaDolar = 0.0;
             }
         }
 
