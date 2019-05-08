@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 
 namespace CFAPDataModel.Models
 {
@@ -54,5 +55,15 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public virtual ICollection<Summary> Summaries { get; set; }
+
+
+        public void EnriptPassword()
+        {
+            HashAlgorithm mhash = new SHA1CryptoServiceProvider();
+            byte[] bytValue = Encoding.UTF8.GetBytes(this.Password);
+            byte[] bytHash = mhash.ComputeHash(bytValue);
+            mhash.Clear();
+            this.Password =  Convert.ToBase64String(bytHash);
+        }
     }
 }
