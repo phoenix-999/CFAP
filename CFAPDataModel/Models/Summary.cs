@@ -32,7 +32,14 @@ namespace CFAPDataModel.Models
 
         public void SetSummaDollar()
         {
-            this.SummaDolar = this.SummaGrn * GetRate();
+            try
+            {
+                this.SummaDolar = this.SummaGrn / GetRate();
+            }
+            catch (DivideByZeroException ex)
+            {
+                this.SummaDolar = 0;
+            }
         }
 
         [Timestamp]
