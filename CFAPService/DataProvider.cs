@@ -99,7 +99,8 @@ namespace CFAPService
 
             if (result == null)
             {
-                throw new FaultException<AutenticateFaultException>(new AutenticateFaultException(user));
+                FaultException<AutenticateFaultException> fault = new FaultException<AutenticateFaultException>(new AutenticateFaultException(user));
+                throw fault;
             }
 
             return result;

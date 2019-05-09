@@ -38,9 +38,15 @@ namespace CFAPDataModel.Models
                 if (rate > 0)
                     this.SummaDolar = this.SummaGrn / rate;
             }
-            catch (DivideByZeroException)
+            catch (DivideByZeroException) 
             {
-                this.SummaDolar = 0.0;
+                //Возникновения исключения маловероятно по причине неточности обработки чисел с плавающей точкой.
+                //Более вероятно ошибка переполнения из-за слишком маленького значения.
+                this.SummaDolar = double.Epsilon;
+            }
+            catch (OverflowException)
+            {
+                this.SummaDolar = double.Epsilon;
             }
         }
 

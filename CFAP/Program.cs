@@ -15,9 +15,10 @@ namespace CFAP
         static DataProviderClient DataProviderProxy = new DataProviderClient();
         static void Main(string[] args)
         {
+            //AddStartData();
             Authenticate();
-            //AddUser();
-            //Validate();
+            AddUser();
+            Validate();
         }
 
         static void AddStartData()
