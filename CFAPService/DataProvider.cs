@@ -21,7 +21,8 @@ namespace CFAPService
         #region IDataProvider
         public User Authenticate(User user)
         {
-            return AuthenticateUser(user, false);
+            User result = AuthenticateUser(user, false);
+            return result;
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
@@ -86,7 +87,7 @@ namespace CFAPService
 
                 try
                 {
-                    result = query.FirstOrDefault();
+                    result = query.FirstOrDefault<User>();
                 }
                 catch(Exception ex)
                 {

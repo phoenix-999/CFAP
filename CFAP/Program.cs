@@ -71,7 +71,7 @@ namespace CFAP
 
             if (receivedUser != null)
             {
-                Console.WriteLine("!!!Аутентификация прошла успешно");
+                Console.WriteLine("!!!Аутентификация прошла успешно. Пользователь {0}", receivedUser.UserName);
             }
         }
 
