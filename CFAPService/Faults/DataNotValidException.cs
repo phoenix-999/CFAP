@@ -9,8 +9,9 @@ using NLog;
 namespace CFAPService.Faults
 {
     [DataContract]
-    class DataNotValidException : Exception
+    class DataNotValidException
     {
+        //Логирование не производится умышленно по причине низкой важности информации исключения.
 
         public DataNotValidException(IDictionary<string, string> validationErrors)
         {

@@ -9,17 +9,18 @@ using NLog;
 namespace CFAPService.Faults
 {
     [DataContract]
-    class DbException : Exception
+    class DbException
     {
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
         public DbException(Exception ex)
         {
             Log.Error(ex.ToString());
         }
+
         [DataMember]
-        public override string Message
+        public virtual string Message
         {
-            get { return "Data base connection error";  }
+            get { return "Ошибка соединения с базой данных. Обратитесь к администратору."; }
         }
     }
 }

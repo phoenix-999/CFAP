@@ -61,24 +61,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\DataProviderService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\DataProviderService\configuration91.svcinfo" />
+    <None Include="Connected Services\DataProviderService\configuration.svcinfo" />
+    <None Include="Connected Services\DataProviderService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Connected Services\DataProviderService\DataProvider.wsdl" />
+    <None Include="Connected Services\DataProviderService\mex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderService\mex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderService\mex2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderService\mex3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderService\mex4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CFAPDataModel.Models.User.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Specification.txt" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DataProviderService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

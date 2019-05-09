@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAP", "CFAP\CFAP.csproj", "{88D78ACB-61F7-44C9-8BE8-33870116408F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{843B8625-833A-435A-9EFD-779B7FE839D7} = {843B8625-833A-435A-9EFD-779B7FE839D7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAPDataModel", "CFAPDataModel\CFAPDataModel.csproj", "{846426E1-5678-44C2-BDA7-5744E1EF1C44}"
 EndProject
