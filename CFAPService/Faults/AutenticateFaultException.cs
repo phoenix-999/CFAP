@@ -16,6 +16,7 @@ namespace CFAPService.Faults
     {
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+        public AutenticateFaultException() { }
         public AutenticateFaultException(User user)
         {
             Log.Error(string.Format("Ошибка аутентификации для пользователя {0}", user.UserName) );
@@ -24,7 +25,8 @@ namespace CFAPService.Faults
         [DataMember]
         public virtual string Message
         {
-            get { return "Ошибка аутетификации. Пользователь не найден."; }
+            get { return "Ошибка аутентификации. Пользователь не найден."; }
+            set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
 
     }

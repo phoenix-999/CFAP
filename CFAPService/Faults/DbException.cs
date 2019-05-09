@@ -12,6 +12,8 @@ namespace CFAPService.Faults
     class DbException
     {
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        public DbException() { }
         public DbException(Exception ex)
         {
             Log.Error(ex.ToString());
@@ -21,6 +23,7 @@ namespace CFAPService.Faults
         public virtual string Message
         {
             get { return "Ошибка соединения с базой данных. Обратитесь к администратору."; }
+            set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
     }
 }

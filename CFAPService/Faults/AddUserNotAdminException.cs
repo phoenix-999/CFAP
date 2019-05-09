@@ -14,6 +14,8 @@ namespace CFAPService.Faults
     {
 
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        public AddUserNotAdminException() { }
         public AddUserNotAdminException(User user)
         {
             this.UserId = user.Id;
@@ -31,6 +33,7 @@ namespace CFAPService.Faults
         public virtual string Message
         {
             get { return string.Format("Пользователь {0} не обладает необходимыми правами для добавления новых пользователей.", UserName); }
+            set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
     }
 }

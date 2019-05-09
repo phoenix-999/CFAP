@@ -12,7 +12,7 @@ namespace CFAPService.Faults
     class DataNotValidException
     {
         //Логирование не производится умышленно по причине низкой важности информации исключения.
-
+        public DataNotValidException() { }
         public DataNotValidException(IDictionary<string, string> validationErrors)
         {
             this.ValidationErrors = validationErrors;

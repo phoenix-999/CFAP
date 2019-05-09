@@ -15,7 +15,7 @@ namespace CFAP
         static DataProviderClient DataProviderProxy = new DataProviderClient();
         static void Main(string[] args)
         {
-            //AddStartData();
+            AddStartData();
             Authenticate();
             AddUser();
             Validate();
@@ -32,13 +32,16 @@ namespace CFAP
 
 
             User user1 = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
+            user1.EncriptPassword();
             Summary summary1 = new Summary() { SummaGrn = 54 };
+            Summary summary2 = new Summary() { SummaGrn = 0 };
             summary1.SetSummaDollar();
 
             using (CFAPContext ctx = new CFAPContext())
             {
                 ctx.Users.Add(user1);
                 ctx.Summaries.Add(summary1);
+                ctx.Summaries.Add(summary2);
                 ctx.SaveChanges();
 
                 User user = (from u in ctx.Users
@@ -78,9 +81,9 @@ namespace CFAP
 
         static void AddUser()
         {
-            User ovner = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
+            User owner = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
             User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false };
-            DataProviderProxy.AddNewUser(user, ovner);
+            DataProviderProxy.AddNewUser(user, owner);
         }
 
         static void Validate()
