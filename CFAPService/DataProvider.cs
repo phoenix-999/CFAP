@@ -21,7 +21,7 @@ namespace CFAPService
         #region IDataProvider
         public User Authenticate(User user)
         {
-            User result = AuthenticateUser(user, false);
+            User result = (User)AuthenticateUser(user, false);
             return result;
         }
 
@@ -81,6 +81,8 @@ namespace CFAPService
 
             using (CFAPContext ctx = new CFAPContext())
             {
+                //Отключение создания прокси-классов наследников для сущностей. Позволяет использовать DataContractAttribute для класса сущности.
+                ctx.Configuration.ProxyCreationEnabled = false;
                 var query = from u in ctx.Users
                             where u.Password == user.Password && u.UserName == user.UserName
                             select u;
