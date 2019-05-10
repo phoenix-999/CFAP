@@ -138,8 +138,30 @@ namespace CFAPService
         private User GetFilteredData(User user, Filter filter)
         {
             User result = user;
+            user.Summaries = GetSummaries(filter.DateStart, filter.DateEnd, user);
+            return result;
+        }
 
+        private ICollection<Summary> GetSummaries(DateTime? startDate, DateTime? endDate, User user)
+        {
+            ICollection<Summary> result = null;
 
+            if (startDate == null) startDate = DateTime.MinValue;
+            if (endDate == null) endDate = DateTime.MaxValue;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                //Отключение создания прокси-классов наследников для сущностей. Позволяет использовать DataContractAttribute для класса сущности.
+                ctx.Configuration.ProxyCreationEnabled = false;
+                var query = from s in ctx.Summaries
+                            where
+                                s.ActionDate >= startDate
+                                && s.ActionDate <= endDate
+                                && s.Users.Where(u=>u.Id == user.Id).Count() > 0
+                            select s;
+                result = query.ToList();
+
+            }
 
             return result;
         }

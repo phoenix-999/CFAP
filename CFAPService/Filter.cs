@@ -12,10 +12,10 @@ namespace CFAPService
     public class Filter
     {
         [DataMember]
-        public DateTime DateStart { get; set; }
+        public DateTime? DateStart { get; set; }
 
         [DataMember]
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
 
         [DataMember]
         public ICollection<Project> Projects { get; set; }
