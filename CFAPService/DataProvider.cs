@@ -40,9 +40,14 @@ namespace CFAPService
         {
             return ValidateData(user);
         }
+
+        public User GetData(User user, Filter filter)
+        {
+            return GetFilteredData(user, filter);
+        }
         #endregion
 
-        
+
         private IDictionary<string, string> ValidateData(User user)
         {
             IDictionary<string, string> result = new Dictionary<string, string>();
@@ -128,6 +133,15 @@ namespace CFAPService
                     throw new FaultException<DbException>(new DbException(ex));
                 }
             }
+        }
+
+        private User GetFilteredData(User user, Filter filter)
+        {
+            User result = user;
+
+
+
+            return result;
         }
     }
 }

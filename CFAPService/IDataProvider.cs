@@ -30,5 +30,9 @@ namespace CFAPService
         [OperationContract]
         [FaultContract(typeof(DbException))]
         IDictionary<string, string> Validate(User user);
+
+        [OperationContract]
+        [FaultContract(typeof(DbException))]
+        User GetData(User user, Filter filter);
     }
 }
