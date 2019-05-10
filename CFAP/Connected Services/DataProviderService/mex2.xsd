@@ -7,6 +7,7 @@
       <xs:element minOccurs="0" name="Descriptions" nillable="true" type="tns:ArrayOfDescriptionItem" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Owners" nillable="true" type="tns:ArrayOfUser" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
       <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />

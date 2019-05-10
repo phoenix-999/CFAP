@@ -36,6 +36,7 @@
         public virtual DbSet<Summary> Summaries { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
+
         private void CalculateSummary()
         {
             foreach (var summary in Summaries.Local)

@@ -13,46 +13,16 @@ namespace CFAP
         static DataProviderClient DataProviderProxy = new DataProviderClient();
         static void Main(string[] args)
         {
-            //AddStartData();
-            Authenticate();
             AddUser();
+            Authenticate();
             Validate();
         }
 
-        //static void AddStartData()
-        //{
-        //    Rate rate1 = new Rate() { DateRate = DateTime.Now, Dolar = 27.0 };
-        //    using (CFAPContext ctx = new CFAPContext())
-        //    {
-        //        ctx.Rates.Add(rate1);
-        //        ctx.SaveChanges();
-        //    }
-
-
-        //    User user1 = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
-        //    user1.EncriptPassword();
-        //    Summary summary1 = new Summary() { SummaGrn = 54 };
-        //    Summary summary2 = new Summary() { SummaGrn = 0 };
-        //    summary1.SetSummaDollar();
-
-        //    using (CFAPContext ctx = new CFAPContext())
-        //    {
-        //        ctx.Users.Add(user1);
-        //        ctx.Summaries.Add(summary1);
-        //        ctx.Summaries.Add(summary2);
-        //        ctx.SaveChanges();
-
-        //        User user = (from u in ctx.Users
-        //                     where u.Id == 1
-        //                     select u).FirstOrDefault();
-
-        //        user.UserName = "Admin";
-        //    }
-        //}
+        
 
         static void Authenticate()
         {
-            User user = new User() { UserName = "yurii", Password = "1"};
+            User user = new User() { UserName = "Liubov", Password = "2"};
             User receivedUser = null;
             try
             {
@@ -75,13 +45,32 @@ namespace CFAP
             {
                 Console.WriteLine("!!!Аутентификация прошла успешно. Пользователь {0}", receivedUser.UserName);
             }
+
+            Console.WriteLine("User {0} owners:", user.UserName);
+
+            if (receivedUser.Owners != null)
+            {
+                foreach (var userOwner in receivedUser.Owners)
+                {
+                    Console.WriteLine(userOwner.UserName);
+                }
+            }
         }
 
         static void AddUser()
         {
             User owner = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
             User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false };
-            DataProviderProxy.AddNewUser(user, owner);
+            try
+            {
+                owner = DataProviderProxy.Authenticate(owner);
+                if (owner != null)
+                    DataProviderProxy.AddNewUser(user, owner);
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
         }
 
         static void Validate()

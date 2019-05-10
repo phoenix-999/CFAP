@@ -19,6 +19,7 @@ namespace CFAPDataModel.Models
             this.Accountables = new HashSet<Accountable>();
             this.Descriptions = new HashSet<DescriptionItem>();
             this.BudgetItems = new HashSet<BudgetItem>();
+            this.Owners = new HashSet<User>();
         }
 
         [DataMember]
@@ -52,6 +53,9 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public virtual ICollection<Summary> Summaries { get; set; }
+
+        [DataMember]
+        public virtual ICollection<User> Owners { get; set; }
 
 
         public void EncriptPassword()

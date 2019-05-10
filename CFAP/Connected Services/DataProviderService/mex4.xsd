@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
   <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
   <xs:element name="Authenticate">
     <xs:complexType>
       <xs:sequence>
@@ -40,6 +41,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ValidateResult" nillable="true" type="q6:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q7:User" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q8:Filter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetDataResult" nillable="true" type="q9:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

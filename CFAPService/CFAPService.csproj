@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
     <Compile Include="Faults\AddUserNotAdminException.cs" />
+    <Compile Include="Faults\AddUserNotOwnersException.cs" />
     <Compile Include="Faults\AutenticateFaultException.cs" />
     <Compile Include="Faults\DataNotValidException.cs" />
     <Compile Include="Faults\DbException.cs" />

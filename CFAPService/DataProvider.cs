@@ -113,10 +113,17 @@ namespace CFAPService
 
         private void AddUser(User newUser, User owner)
         {
+            AuthenticateUser(owner);
+
             if (!owner.IsAdmin)
             {
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
+
+            newUser.Owners = GetOwners(owner);
+            newUser.Owners = new List<User>();
+            newUser.Owners.Add(owner);
+            
 
             newUser.EncriptPassword(); 
 
@@ -133,6 +140,35 @@ namespace CFAPService
                     throw new FaultException<DbException>(new DbException(ex));
                 }
             }
+        }
+
+        private ICollection<User> GetOwners(User user)
+        {
+            List<User> result = new List<User>();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                var userDb = ctx.Users.Find(user.Id);
+                var owners = user.Owners.ToArray();
+                result.AddRange(owners);
+
+                if (user.Owners.Count() > 0)
+                {
+                    result.AddRange(user.Owners);
+
+                    foreach (var u in user.Owners)
+                    {
+                        result.AddRange(GetOwners(u));
+
+                    }
+                }
+            }
+
+                
+
+            return result;
         }
 
         private User GetFilteredData(User user, Filter filter)
