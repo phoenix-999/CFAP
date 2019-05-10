@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CFAPDataModel;
-using CFAPDataModel.Models;
 using CFAP.DataProviderService;
 using System.ServiceModel;
 
@@ -15,42 +13,42 @@ namespace CFAP
         static DataProviderClient DataProviderProxy = new DataProviderClient();
         static void Main(string[] args)
         {
-            AddStartData();
+            //AddStartData();
             Authenticate();
             AddUser();
             Validate();
         }
 
-        static void AddStartData()
-        {
-            Rate rate1 = new Rate() { DateRate = DateTime.Now, Dolar = 27.0 };
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                ctx.Rates.Add(rate1);
-                ctx.SaveChanges();
-            }
+        //static void AddStartData()
+        //{
+        //    Rate rate1 = new Rate() { DateRate = DateTime.Now, Dolar = 27.0 };
+        //    using (CFAPContext ctx = new CFAPContext())
+        //    {
+        //        ctx.Rates.Add(rate1);
+        //        ctx.SaveChanges();
+        //    }
 
 
-            User user1 = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
-            user1.EncriptPassword();
-            Summary summary1 = new Summary() { SummaGrn = 54 };
-            Summary summary2 = new Summary() { SummaGrn = 0 };
-            summary1.SetSummaDollar();
+        //    User user1 = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
+        //    user1.EncriptPassword();
+        //    Summary summary1 = new Summary() { SummaGrn = 54 };
+        //    Summary summary2 = new Summary() { SummaGrn = 0 };
+        //    summary1.SetSummaDollar();
 
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                ctx.Users.Add(user1);
-                ctx.Summaries.Add(summary1);
-                ctx.Summaries.Add(summary2);
-                ctx.SaveChanges();
+        //    using (CFAPContext ctx = new CFAPContext())
+        //    {
+        //        ctx.Users.Add(user1);
+        //        ctx.Summaries.Add(summary1);
+        //        ctx.Summaries.Add(summary2);
+        //        ctx.SaveChanges();
 
-                User user = (from u in ctx.Users
-                             where u.Id == 1
-                             select u).FirstOrDefault();
+        //        User user = (from u in ctx.Users
+        //                     where u.Id == 1
+        //                     select u).FirstOrDefault();
 
-                user.UserName = "Admin";
-            }
-        }
+        //        user.UserName = "Admin";
+        //    }
+        //}
 
         static void Authenticate()
         {
@@ -89,7 +87,7 @@ namespace CFAP
         static void Validate()
         {
             User user = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
-            Summary summary = new Summary() {SummaGrn = 27, Users = new List<User>() {user} };
+            Summary summary = new Summary() {SummaGrn = 27, Users = new User[]{user} };
             IDictionary<string, string> validationErrors = DataProviderProxy.Validate(user);
             Console.WriteLine("Ошибки валидации:");
             if (validationErrors.Count == 0)
