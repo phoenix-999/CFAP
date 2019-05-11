@@ -29,8 +29,8 @@ namespace TestData
 
             User user1 = new User() { UserName = "yurii", Password = "1", CanAddNewUsers = true, UserGroups = new UserGroup[] { userGroup, userGroup1} }; // NWoZK3kTsExUV00Ywo1G5jlUKKs=
             user1.EncriptPassword();
-            Summary summary1 = new Summary() { SummaGrn = 54, UserGroups = new UserGroup[] { userGroup} };
-            Summary summary2 = new Summary() { SummaGrn = 0 };
+            Summary summary1 = new Summary() { SummaGrn = 54, UserGroups = new UserGroup[] { userGroup}, Project = new Project() { ProjectName = "Project1"} };
+            Summary summary2 = new Summary() { SummaGrn = 0, UserGroups = new UserGroup[] { userGroup, userGroup1 } };
             summary1.SetSummaDollar();
 
             using (CFAPContext ctx = new CFAPContext())

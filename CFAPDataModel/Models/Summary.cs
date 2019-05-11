@@ -15,12 +15,7 @@ namespace CFAPDataModel.Models
         
         public Summary()
         {
-            this.Projects = new HashSet<Project>();
             this.UserGroups = new HashSet<UserGroup>();
-            this.Accountables = new HashSet<Accountable>();
-            this.Descriptions = new HashSet<DescriptionItem>();
-            this.BudgetItems = new HashSet<BudgetItem>();
-
             this.SetDefaultValues();   
         }
 
@@ -91,21 +86,20 @@ namespace CFAPDataModel.Models
         public bool ReadOnly { get; set; }
 
         [DataMember]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual Project Project { get; set; }
 
         [DataMember]
-        public virtual ICollection<BudgetItem> BudgetItems { get; set; }
+        public virtual BudgetItem BudgetItem { get; set; }
 
         [DataMember]
-        public virtual ICollection<DescriptionItem> Descriptions { get; set; }
+        public virtual DescriptionItem Description { get; set; }
 
         [DataMember]
-        public virtual ICollection<Accountable> Accountables { get; set; }
+        public virtual Accountable Accountable { get; set; }
 
         [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
-        //public virtual Rate Rate { get; set; }
         #endregion
     }
 }

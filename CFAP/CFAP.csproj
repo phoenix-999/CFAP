@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\DataProviderService\CFAP.DataProviderService.Summary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DataProviderService\CFAP.DataProviderService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

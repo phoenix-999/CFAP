@@ -23,10 +23,10 @@ namespace CFAP.DataProviderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private bool CanAddNewUsersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsAdminField;
+        private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
@@ -48,6 +48,19 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanAddNewUsers {
+            get {
+                return this.CanAddNewUsersField;
+            }
+            set {
+                if ((this.CanAddNewUsersField.Equals(value) != true)) {
+                    this.CanAddNewUsersField = value;
+                    this.RaisePropertyChanged("CanAddNewUsers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -56,19 +69,6 @@ namespace CFAP.DataProviderService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsAdmin {
-            get {
-                return this.IsAdminField;
-            }
-            set {
-                if ((this.IsAdminField.Equals(value) != true)) {
-                    this.IsAdminField = value;
-                    this.RaisePropertyChanged("IsAdmin");
                 }
             }
         }
@@ -917,25 +917,25 @@ namespace CFAP.DataProviderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Accountable[] AccountablesField;
+        private CFAP.DataProviderService.Accountable AccountableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ActionDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.BudgetItem[] BudgetItemsField;
+        private CFAP.DataProviderService.BudgetItem BudgetItemField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CashFlowTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.DescriptionItem[] DescriptionsField;
+        private CFAP.DataProviderService.DescriptionItem DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Project[] ProjectsField;
+        private CFAP.DataProviderService.Project ProjectField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
@@ -960,14 +960,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Accountable[] Accountables {
+        public CFAP.DataProviderService.Accountable Accountable {
             get {
-                return this.AccountablesField;
+                return this.AccountableField;
             }
             set {
-                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
-                    this.AccountablesField = value;
-                    this.RaisePropertyChanged("Accountables");
+                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
+                    this.AccountableField = value;
+                    this.RaisePropertyChanged("Accountable");
                 }
             }
         }
@@ -986,14 +986,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.BudgetItem[] BudgetItems {
+        public CFAP.DataProviderService.BudgetItem BudgetItem {
             get {
-                return this.BudgetItemsField;
+                return this.BudgetItemField;
             }
             set {
-                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
-                    this.BudgetItemsField = value;
-                    this.RaisePropertyChanged("BudgetItems");
+                if ((object.ReferenceEquals(this.BudgetItemField, value) != true)) {
+                    this.BudgetItemField = value;
+                    this.RaisePropertyChanged("BudgetItem");
                 }
             }
         }
@@ -1012,14 +1012,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.DescriptionItem[] Descriptions {
+        public CFAP.DataProviderService.DescriptionItem Description {
             get {
-                return this.DescriptionsField;
+                return this.DescriptionField;
             }
             set {
-                if ((object.ReferenceEquals(this.DescriptionsField, value) != true)) {
-                    this.DescriptionsField = value;
-                    this.RaisePropertyChanged("Descriptions");
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
                 }
             }
         }
@@ -1038,14 +1038,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Project[] Projects {
+        public CFAP.DataProviderService.Project Project {
             get {
-                return this.ProjectsField;
+                return this.ProjectField;
             }
             set {
-                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
-                    this.ProjectsField = value;
-                    this.RaisePropertyChanged("Projects");
+                if ((object.ReferenceEquals(this.ProjectField, value) != true)) {
+                    this.ProjectField = value;
+                    this.RaisePropertyChanged("Project");
                 }
             }
         }
@@ -1463,12 +1463,12 @@ namespace CFAP.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Validate", ReplyAction="http://tempuri.org/IDataProvider/ValidateResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> ValidateAsync(CFAP.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetData", ReplyAction="http://tempuri.org/IDataProvider/GetDataResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetDataDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        CFAP.DataProviderService.User GetData(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetData", ReplyAction="http://tempuri.org/IDataProvider/GetDataResponse")]
-        System.Threading.Tasks.Task<CFAP.DataProviderService.User> GetDataAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        System.Threading.Tasks.Task<CFAP.DataProviderService.Summary[]> GetSummaryAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1522,12 +1522,12 @@ namespace CFAP.DataProviderService {
             return base.Channel.ValidateAsync(user);
         }
         
-        public CFAP.DataProviderService.User GetData(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
-            return base.Channel.GetData(user, filter);
+        public CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
+            return base.Channel.GetSummary(user, filter);
         }
         
-        public System.Threading.Tasks.Task<CFAP.DataProviderService.User> GetDataAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
-            return base.Channel.GetDataAsync(user, filter);
+        public System.Threading.Tasks.Task<CFAP.DataProviderService.Summary[]> GetSummaryAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
+            return base.Channel.GetSummaryAsync(user, filter);
         }
     }
 }

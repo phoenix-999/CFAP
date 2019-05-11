@@ -41,18 +41,19 @@ namespace CFAPService
             return ValidateData(user);
         }
 
-        public User GetData(User user, Filter filter)
+        public List<Summary> GetSummary(User user, Filter filter)
         {
-            User result;
+            List<Summary> result = new List<Summary>();
+
             try
             {
-                result = GetFilteredData(user, filter);
+                result = GetFilteredSummary(user, filter);
             }
             catch (Exception ex)
             {
                 throw new FaultException<DbException>(new DbException(ex));
             }
-            return GetFilteredData(user, filter);
+            return result;            
         }
         #endregion
 
@@ -149,47 +150,64 @@ namespace CFAPService
             }
         }
 
-        private User GetFilteredData(User user, Filter filter)
-        {
-            User result = user;
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                var userGroups = new List<UserGroup>(user.UserGroups);
-                for (int groupIndex = 0; groupIndex < userGroups.Count; groupIndex++)
-                {
-                    userGroups[groupIndex] = GetSummaryByGroup(
-                                               userGroups[groupIndex],
-                                               filter,
-                                               ctx
-                                             );
-                }
-            }
-
-            return result;
-        }
-
-        private UserGroup GetSummaryByGroup(UserGroup userGroup, Filter filter, CFAPContext ctx)
-        {
-            UserGroup result = userGroup;
-
-            if (ctx.Configuration.ProxyCreationEnabled)
-                ctx.Configuration.ProxyCreationEnabled = false;
-
+       private List<Summary> GetFilteredSummary(User user, Filter filter)
+       {
+            List<Summary> result = new List<Summary>();
 
             DateTime? dateStart = filter.DateStart != null ? filter.DateStart : DateTime.MinValue;
             DateTime? dateEnd = filter.DateEnd != null ? filter.DateEnd : DateTime.MaxValue;
 
-            var summaries = from s in ctx.Summaries
-                            from g in s.UserGroups
-                            where s.ActionDate >= dateStart && s.ActionDate <= dateEnd
-                            && userGroup.Id == g.Id
-                            select s;
 
-            result.Summaries = summaries.ToList();
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                var userGroupsId = user.GetUserGroupsId();
+
+                if (filter == null)
+                {
+                    result = (from s in ctx.Summaries
+                              from g in s.UserGroups
+                              where userGroupsId.Contains(g.Id)
+                              select s).ToList().Distinct().ToList();
+
+                    return result;
+                }
+
+                var summaries = from s in ctx.Summaries
+                                from g in s.UserGroups
+                                where
+                                    s.ActionDate >= dateStart && s.ActionDate <= dateEnd
+                                    && userGroupsId.Contains(g.Id)
+                                select s;
+
+                if (filter.Projects != null && filter.Projects.Count > 0)
+                {
+                    summaries = from s in summaries
+                                where filter.Projects.Contains(s.Project)
+                                select s;
+                }
+
+                if (filter.Accountables != null && filter.Accountables.Count > 0)
+                {
+                    summaries = from s in summaries
+                                where filter.Accountables.Contains(s.Accountable)
+                                select s;
+                }
+
+                if (filter.BudgetItems != null && filter.BudgetItems.Count > 0)
+                {
+                    summaries = from s in summaries
+                                where filter.BudgetItems.Contains(s.BudgetItem)
+                                select s;
+                }
+
+                result = summaries.ToList();
+            }
 
             return result;
-        }
+       }
+
+        
 
     }
 }

@@ -16,7 +16,7 @@ namespace CFAP
         {
             mainUser = Authenticate();
             //AddUser();
-            //Validate();
+            Validate();
             GetData();
         }
 
@@ -56,7 +56,7 @@ namespace CFAP
         static void AddUser()
         {
 
-            User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false, UserGroups = mainUser.UserGroups };
+            User user = new User() { UserName = "Liubov", Password = "2", CanAddNewUsers = false, UserGroups = mainUser.UserGroups };
             try
             {
                  DataProviderProxy.AddNewUser(user, mainUser);
@@ -88,17 +88,19 @@ namespace CFAP
 
         static void GetData()
         {
+            Filter filter = new Filter()
+            {
+                Projects = new Project[] { new Project() { Id = 1 } }
+            };
+
             try
             {
-                mainUser = DataProviderProxy.GetData(mainUser, new Filter());
+                List<Summary> summaries = DataProviderProxy.GetSummary(mainUser, new Filter()).ToList();
 
                 Console.WriteLine("Полученные данные:");
-                foreach(var group in mainUser.UserGroups)
+                foreach (var s in summaries)
                 {
-                    foreach (var summary in group.Summaries)
-                    {
-                        Console.WriteLine(summary.Id);
-                    }
+                    Console.WriteLine(s.Id);
                 }
             }
             catch(FaultException<DbException> ex)

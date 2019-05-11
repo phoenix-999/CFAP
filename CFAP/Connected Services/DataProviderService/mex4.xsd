@@ -44,7 +44,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetData">
+  <xs:element name="GetSummary">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q7:User" />
@@ -52,10 +52,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDataResponse">
+  <xs:element name="GetSummaryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetDataResult" nillable="true" type="q9:User" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetSummaryResult" nillable="true" type="q9:ArrayOfSummary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -47,5 +47,24 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<Summary> Summaries { get; set; }
 
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+
+            Project otherProject = obj as Project;
+
+            if (otherProject == null)
+                return false;
+
+            result = this.Id == otherProject.Id;
+
+            return result;
+        }
+
     }
 }

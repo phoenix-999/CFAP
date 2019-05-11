@@ -498,7 +498,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetData_Input_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetSummary_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -528,7 +528,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetData_output_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetSummary_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -558,7 +558,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetData_DbExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetSummary_DbExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -637,13 +637,13 @@
   <wsdl:message name="IDataProvider_Validate_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q7:DbException" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
+  <wsdl:message name="IDataProvider_GetSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummary" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  <wsdl:message name="IDataProvider_GetSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_GetData_DbExceptionFault_FaultMessage">
+  <wsdl:message name="IDataProvider_GetSummary_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:DbException" />
   </wsdl:message>
   <wsdl:portType name="IDataProvider">
@@ -666,10 +666,10 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/ValidateResponse" message="tns:IDataProvider_Validate_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ValidateDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_Validate_DbExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetData" message="tns:IDataProvider_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/GetDataResponse" message="tns:IDataProvider_GetData_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetDataDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_GetData_DbExceptionFault_FaultMessage" />
+    <wsdl:operation name="GetSummary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetSummary" message="tns:IDataProvider_GetSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/GetSummaryResponse" message="tns:IDataProvider_GetSummary_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_GetSummary_DbExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDataProvider" type="tns:IDataProvider">
@@ -737,18 +737,18 @@
         <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <soap12:operation soapAction="http://tempuri.org/IDataProvider/GetData" style="document" />
+    <wsdl:operation name="GetSummary">
+      <soap12:operation soapAction="http://tempuri.org/IDataProvider/GetSummary" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetData_Input_policy" />
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetSummary_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetData_output_policy" />
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetSummary_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="DbExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetData_DbExceptionFault_Fault" />
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetSummary_DbExceptionFault_Fault" />
         <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
