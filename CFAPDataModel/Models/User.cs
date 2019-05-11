@@ -14,12 +14,8 @@ namespace CFAPDataModel.Models
     {
         public User()
         {
-            this.Projects = new HashSet<Project>();
-            this.Summaries = new HashSet<Summary>();
-            this.Accountables = new HashSet<Accountable>();
-            this.Descriptions = new HashSet<DescriptionItem>();
-            this.BudgetItems = new HashSet<BudgetItem>();
-            this.Owners = new HashSet<User>();
+            this.UserGroups = new HashSet<UserGroup>();
+            
         }
 
         [DataMember]
@@ -40,22 +36,8 @@ namespace CFAPDataModel.Models
         public byte[] RowVersion { get; set; }
 
         [DataMember]
-        public virtual ICollection<Project> Projects { get; set; }
-
-        [DataMember]
-        public virtual ICollection<BudgetItem> BudgetItems { get; set; }
-
-        [DataMember]
-        public virtual ICollection<DescriptionItem> Descriptions { get; set; }
-
-        [DataMember]
-        public virtual ICollection<Accountable> Accountables { get; set; }
-
-        [DataMember]
-        public virtual ICollection<Summary> Summaries { get; set; }
-
-        [DataMember]
-        public virtual ICollection<User> Owners { get; set; }
+        [Required]
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
 
 
         public void EncriptPassword()

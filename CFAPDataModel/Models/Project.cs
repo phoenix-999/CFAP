@@ -13,7 +13,7 @@ namespace CFAPDataModel.Models
     {
         public Project()
         {
-            this.Users = new HashSet<User>();
+            this.UserGroups = new HashSet<UserGroup>();
             this.Accountables = new HashSet<Accountable>();
             this.Descriptions = new HashSet<DescriptionItem>();
             this.BudgetItems = new HashSet<BudgetItem>();
@@ -33,7 +33,7 @@ namespace CFAPDataModel.Models
         public bool ReadOnly { get; set; }
 
         [DataMember]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         [DataMember]
         public virtual ICollection<Accountable> Accountables { get; set; }

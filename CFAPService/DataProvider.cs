@@ -90,11 +90,14 @@ namespace CFAPService
                 ctx.Configuration.ProxyCreationEnabled = false;
                 var query = from u in ctx.Users
                             where u.Password == user.Password && u.UserName == user.UserName
-                            select u;
+                            select new { User = u, UserGoup = u.UserGroups};
 
                 try
                 {
-                    result = query.FirstOrDefault<User>();
+                    result = query.FirstOrDefault().User;
+                    //var groups = ctx.UserGroups.Include("Users").ToList(); //В этом случае ProxyCreationEnabled = true
+                    var groups = query.FirstOrDefault().UserGoup;
+                    result.UserGroups = groups.ToList();
                 }
                 catch(Exception ex)
                 {
@@ -120,19 +123,26 @@ namespace CFAPService
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
 
-            newUser.Owners = GetOwners(owner);
-            newUser.Owners = new List<User>();
-            newUser.Owners.Add(owner);
-            
-
             newUser.EncriptPassword(); 
 
             using (CFAPContext ctx = new CFAPContext())
             {
                 try
                 {
-                    ctx.Users.Attach(newUser);
-                    ctx.Entry<User>(newUser).State = System.Data.Entity.EntityState.Added;
+                    //Поучение данных о связанных сущностя необходимо для корректного добавления сущности User
+                    //В случае обычного ctx.Users.Add(newUser); без выборки связанных существующих данных
+                    //получим исключение "Не удаеться добавить сущности в коллекцию UserGroup.Users по причине невозможности удаления из Array фиксированной длинны типа"
+                    //Суть ошибки состоит в том, что при вызове метода ctx.Users.Add(newUser); все поля экземпляра помеаються как Added
+                    //Возникает конфликт первычных ключей в БД
+                    var groupsId = (from g in newUser.UserGroups
+                                    select g.Id).ToList();
+                    var groups = (from g in ctx.UserGroups
+                                  where groupsId.Contains(g.Id)
+                                  select g).ToList();
+
+
+                    newUser.UserGroups = groups;
+                    ctx.Users.Add(newUser);
                     ctx.SaveChanges();
                 }
                 catch (Exception ex)
@@ -142,64 +152,12 @@ namespace CFAPService
             }
         }
 
-        private ICollection<User> GetOwners(User user)
-        {
-            List<User> result = new List<User>();
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                ctx.Configuration.ProxyCreationEnabled = false;
-
-                var userDb = ctx.Users.Find(user.Id);
-                var owners = user.Owners.ToArray();
-                result.AddRange(owners);
-
-                if (user.Owners.Count() > 0)
-                {
-                    result.AddRange(user.Owners);
-
-                    foreach (var u in user.Owners)
-                    {
-                        result.AddRange(GetOwners(u));
-
-                    }
-                }
-            }
-
-                
-
-            return result;
-        }
-
         private User GetFilteredData(User user, Filter filter)
         {
             User result = user;
-            user.Summaries = GetSummaries(filter.DateStart, filter.DateEnd, user);
+            
             return result;
         }
 
-        private ICollection<Summary> GetSummaries(DateTime? startDate, DateTime? endDate, User user)
-        {
-            ICollection<Summary> result = null;
-
-            if (startDate == null) startDate = DateTime.MinValue;
-            if (endDate == null) endDate = DateTime.MaxValue;
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                //Отключение создания прокси-классов наследников для сущностей. Позволяет использовать DataContractAttribute для класса сущности.
-                ctx.Configuration.ProxyCreationEnabled = false;
-                var query = from s in ctx.Summaries
-                            where
-                                s.ActionDate >= startDate
-                                && s.ActionDate <= endDate
-                                && s.Users.Where(u=>u.Id == user.Id).Count() > 0
-                            select s;
-                result = query.ToList();
-
-            }
-
-            return result;
-        }
     }
 }

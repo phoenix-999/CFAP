@@ -23,6 +23,115 @@ namespace CFAP.DataProviderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsAdminField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsAdmin {
+            get {
+                return this.IsAdminField;
+            }
+            set {
+                if ((this.IsAdminField.Equals(value) != true)) {
+                    this.IsAdminField = value;
+                    this.RaisePropertyChanged("IsAdmin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
+            get {
+                return this.UserGroupsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserGroup", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class UserGroup : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.Accountable[] AccountablesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -32,16 +141,10 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.DescriptionItem[] DescriptionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsAdminField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] OwnersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.Project[] ProjectsField;
@@ -50,7 +153,7 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserNameField;
+        private CFAP.DataProviderService.User[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -102,6 +205,19 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupName {
+            get {
+                return this.GroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupNameField, value) != true)) {
+                    this.GroupNameField = value;
+                    this.RaisePropertyChanged("GroupName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -110,45 +226,6 @@ namespace CFAP.DataProviderService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsAdmin {
-            get {
-                return this.IsAdminField;
-            }
-            set {
-                if ((this.IsAdminField.Equals(value) != true)) {
-                    this.IsAdminField = value;
-                    this.RaisePropertyChanged("IsAdmin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Owners {
-            get {
-                return this.OwnersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OwnersField, value) != true)) {
-                    this.OwnersField = value;
-                    this.RaisePropertyChanged("Owners");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -180,14 +257,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserName {
+        public CFAP.DataProviderService.User[] Users {
             get {
-                return this.UserNameField;
+                return this.UsersField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
-                    this.UserNameField = value;
-                    this.RaisePropertyChanged("UserName");
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
                 }
             }
         }
@@ -233,7 +310,7 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] UsersField;
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -337,14 +414,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Users {
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
-                return this.UsersField;
+                return this.UserGroupsField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -390,7 +467,7 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] UsersField;
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -494,14 +571,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Users {
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
-                return this.UsersField;
+                return this.UserGroupsField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -547,7 +624,7 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] UsersField;
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -651,14 +728,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Users {
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
-                return this.UsersField;
+                return this.UserGroupsField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -704,7 +781,7 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] UsersField;
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -808,14 +885,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Users {
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
-                return this.UsersField;
+                return this.UserGroupsField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -870,7 +947,7 @@ namespace CFAP.DataProviderService {
         private double SummaGrnField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.User[] UsersField;
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1013,14 +1090,14 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.User[] Users {
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
-                return this.UsersField;
+                return this.UserGroupsField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }

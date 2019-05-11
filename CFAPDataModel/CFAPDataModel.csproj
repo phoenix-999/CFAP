@@ -66,6 +66,7 @@
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Summary.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveChangesOptions.cs" />
   </ItemGroup>

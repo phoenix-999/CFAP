@@ -35,6 +35,7 @@
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Summary> Summaries { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
 
 
         private void CalculateSummary()

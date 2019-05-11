@@ -17,7 +17,7 @@ namespace CFAPDataModel.Models
             this.Projects = new HashSet<Project>();
             this.BudgetItems = new HashSet<BudgetItem>();
             this.Descriptions = new HashSet<DescriptionItem>();
-            this.Users = new HashSet<User>();
+            this.UserGroups = new HashSet<UserGroup>();
             this.Summaries = new HashSet<Summary>();
         }
 
@@ -44,7 +44,7 @@ namespace CFAPDataModel.Models
         public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
         [DataMember]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         [DataMember]
         public virtual ICollection<Summary> Summaries { get; set; }

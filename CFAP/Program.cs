@@ -11,18 +11,19 @@ namespace CFAP
     class Program
     {
         static DataProviderClient DataProviderProxy = new DataProviderClient();
+        static User mainUser;
         static void Main(string[] args)
         {
+            mainUser = Authenticate();
             AddUser();
-            Authenticate();
             Validate();
         }
 
         
 
-        static void Authenticate()
+        static User Authenticate()
         {
-            User user = new User() { UserName = "Liubov", Password = "2"};
+            User user = new User() { UserName = "yurii", Password = "1"};
             User receivedUser = null;
             try
             {
@@ -46,28 +47,26 @@ namespace CFAP
                 Console.WriteLine("!!!Аутентификация прошла успешно. Пользователь {0}", receivedUser.UserName);
             }
 
-            Console.WriteLine("User {0} owners:", user.UserName);
+            return receivedUser;
 
-            if (receivedUser.Owners != null)
-            {
-                foreach (var userOwner in receivedUser.Owners)
-                {
-                    Console.WriteLine(userOwner.UserName);
-                }
-            }
+            
         }
 
         static void AddUser()
         {
-            User owner = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
-            User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false };
+            UserGroup userGroup = new UserGroup() { GroupName = "MainOffice" };
+            UserGroup userGroup1 = new UserGroup() { GroupName = "Office1" };
+
+            User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false, UserGroups = mainUser.UserGroups };
             try
             {
-                owner = DataProviderProxy.Authenticate(owner);
-                if (owner != null)
-                    DataProviderProxy.AddNewUser(user, owner);
+                 DataProviderProxy.AddNewUser(user, mainUser);
             }
             catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch(FaultException<DbException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }
@@ -75,9 +74,8 @@ namespace CFAP
 
         static void Validate()
         {
-            User user = new User() { UserName = "yurii", Password = "1", IsAdmin = true };
-            Summary summary = new Summary() {SummaGrn = 27, Users = new User[]{user} };
-            IDictionary<string, string> validationErrors = DataProviderProxy.Validate(user);
+            Summary summary = new Summary() {SummaGrn = 27, UserGroups = mainUser.UserGroups };
+            IDictionary<string, string> validationErrors = DataProviderProxy.Validate(mainUser);
             Console.WriteLine("Ошибки валидации:");
             if (validationErrors.Count == 0)
                 Console.WriteLine("Валидация прошла успешно.");
