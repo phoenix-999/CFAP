@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFAPDataModel.Models
 {
@@ -14,7 +15,7 @@ namespace CFAPDataModel.Models
     {
         public User()
         {
-            this.UserGroups = new HashSet<UserGroup>();
+            this.UserGroups = new List<UserGroup>();
             
         }
 
@@ -23,6 +24,7 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [Required, MaxLength(70)]
+        [Index(IsUnique = true)]
         public string UserName { get; set; }
 
         [DataMember]
@@ -30,7 +32,7 @@ namespace CFAPDataModel.Models
         public string Password { get; set; }
 
         [DataMember]
-        public bool IsAdmin { get; set; }
+        public bool CanAddNewUsers { get; set; }
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
@@ -47,6 +49,35 @@ namespace CFAPDataModel.Models
             byte[] bytHash = mhash.ComputeHash(bytValue);
             mhash.Clear();
             this.Password =  Convert.ToBase64String(bytHash);
+        }
+
+
+        public ICollection<int> GetUserGroupsId()
+        {
+            var groupsId = (from g in this.UserGroups
+                            select g.Id).ToList();
+
+            return groupsId;
+        }
+        public void LoadUserGroups(CFAPContext ctx)
+        {
+            //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+            //Поучение данных о связанных сущностя необходимо для корректного добавления сущности User
+            //В случае обычного ctx.Users.Add(newUser); без выборки связанных существующих данных
+            //получим исключение "Не удаеться добавить сущности в коллекцию UserGroup.Users по причине невозможности удаления из Array фиксированной длинны типа"
+            //Суть ошибки состоит в том, что при вызове метода ctx.Users.Add(newUser); все поля экземпляра помеаються как Added
+            //Возникает конфликт первычных ключей в БД
+
+            var goupsId = this.GetUserGroupsId();
+
+            //LINQ to Entities не умеет вызывать методы
+            var groups = (from g in ctx.UserGroups
+                          where goupsId.Contains(g.Id)
+                          select g).ToList();
+
+            this.UserGroups = groups;
         }
     }
 }

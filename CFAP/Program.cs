@@ -15,8 +15,9 @@ namespace CFAP
         static void Main(string[] args)
         {
             mainUser = Authenticate();
-            AddUser();
-            Validate();
+            //AddUser();
+            //Validate();
+            GetData();
         }
 
         
@@ -54,13 +55,12 @@ namespace CFAP
 
         static void AddUser()
         {
-            UserGroup userGroup = new UserGroup() { GroupName = "MainOffice" };
-            UserGroup userGroup1 = new UserGroup() { GroupName = "Office1" };
 
             User user = new User() { UserName = "Liubov", Password = "2", IsAdmin = false, UserGroups = mainUser.UserGroups };
             try
             {
                  DataProviderProxy.AddNewUser(user, mainUser);
+                 Console.WriteLine("Пользователь {0} добавлен.", user.UserName);
             }
             catch (FaultException<AutenticateFaultException> ex)
             {
@@ -70,6 +70,7 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Detail.Message);
             }
+            
         }
 
         static void Validate()
@@ -82,6 +83,27 @@ namespace CFAP
             foreach(var error in validationErrors)
             {
                 Console.WriteLine("Property = {0} --- value={1}", error.Key, error.Value);
+            }
+        }
+
+        static void GetData()
+        {
+            try
+            {
+                mainUser = DataProviderProxy.GetData(mainUser, new Filter());
+
+                Console.WriteLine("Полученные данные:");
+                foreach(var group in mainUser.UserGroups)
+                {
+                    foreach (var summary in group.Summaries)
+                    {
+                        Console.WriteLine(summary.Id);
+                    }
+                }
+            }
+            catch(FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
             }
         }
     }

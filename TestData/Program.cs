@@ -27,9 +27,9 @@ namespace TestData
             UserGroup userGroup = new UserGroup() { GroupName = "MainOffice" };
             UserGroup userGroup1 = new UserGroup() { GroupName = "Office1" };
 
-            User user1 = new User() { UserName = "yurii", Password = "1", IsAdmin = true, UserGroups = new UserGroup[] { userGroup, userGroup1} }; // NWoZK3kTsExUV00Ywo1G5jlUKKs=
+            User user1 = new User() { UserName = "yurii", Password = "1", CanAddNewUsers = true, UserGroups = new UserGroup[] { userGroup, userGroup1} }; // NWoZK3kTsExUV00Ywo1G5jlUKKs=
             user1.EncriptPassword();
-            Summary summary1 = new Summary() { SummaGrn = 54 };
+            Summary summary1 = new Summary() { SummaGrn = 54, UserGroups = new UserGroup[] { userGroup} };
             Summary summary2 = new Summary() { SummaGrn = 0 };
             summary1.SetSummaDollar();
 

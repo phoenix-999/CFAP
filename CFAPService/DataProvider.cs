@@ -43,6 +43,15 @@ namespace CFAPService
 
         public User GetData(User user, Filter filter)
         {
+            User result;
+            try
+            {
+                result = GetFilteredData(user, filter);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<DbException>(new DbException(ex));
+            }
             return GetFilteredData(user, filter);
         }
         #endregion
@@ -118,7 +127,7 @@ namespace CFAPService
         {
             AuthenticateUser(owner);
 
-            if (!owner.IsAdmin)
+            if (!owner.CanAddNewUsers)
             {
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
@@ -129,19 +138,7 @@ namespace CFAPService
             {
                 try
                 {
-                    //Поучение данных о связанных сущностя необходимо для корректного добавления сущности User
-                    //В случае обычного ctx.Users.Add(newUser); без выборки связанных существующих данных
-                    //получим исключение "Не удаеться добавить сущности в коллекцию UserGroup.Users по причине невозможности удаления из Array фиксированной длинны типа"
-                    //Суть ошибки состоит в том, что при вызове метода ctx.Users.Add(newUser); все поля экземпляра помеаються как Added
-                    //Возникает конфликт первычных ключей в БД
-                    var groupsId = (from g in newUser.UserGroups
-                                    select g.Id).ToList();
-                    var groups = (from g in ctx.UserGroups
-                                  where groupsId.Contains(g.Id)
-                                  select g).ToList();
-
-
-                    newUser.UserGroups = groups;
+                    newUser.LoadUserGroups(ctx);
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges();
                 }
@@ -155,7 +152,42 @@ namespace CFAPService
         private User GetFilteredData(User user, Filter filter)
         {
             User result = user;
-            
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userGroups = new List<UserGroup>(user.UserGroups);
+                for (int groupIndex = 0; groupIndex < userGroups.Count; groupIndex++)
+                {
+                    userGroups[groupIndex] = GetSummaryByGroup(
+                                               userGroups[groupIndex],
+                                               filter,
+                                               ctx
+                                             );
+                }
+            }
+
+            return result;
+        }
+
+        private UserGroup GetSummaryByGroup(UserGroup userGroup, Filter filter, CFAPContext ctx)
+        {
+            UserGroup result = userGroup;
+
+            if (ctx.Configuration.ProxyCreationEnabled)
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+
+            DateTime? dateStart = filter.DateStart != null ? filter.DateStart : DateTime.MinValue;
+            DateTime? dateEnd = filter.DateEnd != null ? filter.DateEnd : DateTime.MaxValue;
+
+            var summaries = from s in ctx.Summaries
+                            from g in s.UserGroups
+                            where s.ActionDate >= dateStart && s.ActionDate <= dateEnd
+                            && userGroup.Id == g.Id
+                            select s;
+
+            result.Summaries = summaries.ToList();
+
             return result;
         }
 
