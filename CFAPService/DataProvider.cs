@@ -11,6 +11,7 @@ using NLog;
 using System.Transactions;
 using System.Data.Entity.Validation;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 
 namespace CFAPService
@@ -216,7 +217,7 @@ namespace CFAPService
                      .Include(s=> s.Accountable)
                      .Include(s => s.Description)
                      .Include(s => s.BudgetItem).Load();
-                
+               
 
                 result = new HashSet<Summary>(summaries.ToArray());
             }
