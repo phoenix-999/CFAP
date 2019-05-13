@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace CFAPDataModel.Models
 {
     [DataContract]
-    public class Project
+    public class Project : IEqualityComparer<Project>
     {
         public Project()
         {
@@ -66,5 +66,21 @@ namespace CFAPDataModel.Models
             return result;
         }
 
+        bool IEqualityComparer<Project>.Equals(Project x, Project y)
+        {
+            bool result = false;
+
+            if (x == null || y == null)
+                return false;
+
+            result = x.Id == y.Id;
+
+            return result;
+        }
+
+        int IEqualityComparer<Project>.GetHashCode(Project obj)
+        {
+            return obj.Id.GetHashCode();
+        }
     }
 }

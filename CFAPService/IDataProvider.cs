@@ -33,6 +33,6 @@ namespace CFAPService
 
         [OperationContract]
         [FaultContract(typeof(DbException))]
-        List<Summary> GetSummary(User user, Filter filter);
+        HashSet<Summary> GetSummary(User user, Filter filter);
     }
 }

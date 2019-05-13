@@ -41,9 +41,9 @@ namespace CFAPService
             return ValidateData(user);
         }
 
-        public List<Summary> GetSummary(User user, Filter filter)
+        public HashSet<Summary> GetSummary(User user, Filter filter)
         {
-            List<Summary> result = new List<Summary>();
+            HashSet<Summary> result = new HashSet<Summary>();
 
             try
             {
@@ -150,9 +150,9 @@ namespace CFAPService
             }
         }
 
-       private List<Summary> GetFilteredSummary(User user, Filter filter)
+       private HashSet<Summary> GetFilteredSummary(User user, Filter filter)
        {
-            List<Summary> result = new List<Summary>();
+            HashSet<Summary> result = new HashSet<Summary>();
 
             DateTime? dateStart = filter.DateStart != null ? filter.DateStart : DateTime.MinValue;
             DateTime? dateEnd = filter.DateEnd != null ? filter.DateEnd : DateTime.MaxValue;
@@ -165,10 +165,12 @@ namespace CFAPService
 
                 if (filter == null)
                 {
-                    result = (from s in ctx.Summaries
+                    var query = (from s in ctx.Summaries
                               from g in s.UserGroups
                               where userGroupsId.Contains(g.Id)
-                              select s).ToList().Distinct().ToList();
+                              select  s).ToArray(); //Distinct() не аожходит для удаления дубликатов по переопределенным GetHashCode и Equals
+
+                    result = new HashSet<Summary>(query);
 
                     return result;
                 }
@@ -182,26 +184,32 @@ namespace CFAPService
 
                 if (filter.Projects != null && filter.Projects.Count > 0)
                 {
+                    var projectsId = filter.GetProjectsId();
+
                     summaries = from s in summaries
-                                where filter.Projects.Contains(s.Project)
+                                where projectsId.Contains(s.Project.Id) //В выражении LINQ To Entyties для сравнения экзмпляров можно использовать только примитивные типы или перечисления
                                 select s;
                 }
 
                 if (filter.Accountables != null && filter.Accountables.Count > 0)
                 {
+                    var AccountableId = filter.GetAccountableId();
+
                     summaries = from s in summaries
-                                where filter.Accountables.Contains(s.Accountable)
+                                where AccountableId.Contains(s.Accountable.Id)
                                 select s;
                 }
 
                 if (filter.BudgetItems != null && filter.BudgetItems.Count > 0)
                 {
+                    var BudgetItemId = filter.GetBudgetItemsId();
+
                     summaries = from s in summaries
-                                where filter.BudgetItems.Contains(s.BudgetItem)
+                                where BudgetItemId.Contains(s.BudgetItem.Id)
                                 select s;
                 }
 
-                result = summaries.ToList();
+                result = new HashSet<Summary>(summaries.ToArray());
             }
 
             return result;

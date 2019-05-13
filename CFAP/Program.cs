@@ -16,7 +16,7 @@ namespace CFAP
         {
             mainUser = Authenticate();
             //AddUser();
-            Validate();
+            //Validate();
             GetData();
         }
 
@@ -95,7 +95,7 @@ namespace CFAP
 
             try
             {
-                List<Summary> summaries = DataProviderProxy.GetSummary(mainUser, new Filter()).ToList();
+                List<Summary> summaries = DataProviderProxy.GetSummary(mainUser, filter).ToList();
 
                 Console.WriteLine("Полученные данные:");
                 foreach (var s in summaries)

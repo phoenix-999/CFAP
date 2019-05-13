@@ -66,6 +66,25 @@ namespace CFAPDataModel.Models
             return result;
         }
 
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+
+            Summary otherProject = obj as Summary;
+
+            if (otherProject == null)
+                return false;
+
+            result = this.Id == otherProject.Id;
+
+            return result;
+        }
+
         #region Properies
         [DataMember]
         public int Id { get; set; }
