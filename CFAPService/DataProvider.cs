@@ -10,6 +10,7 @@ using CFAPService.Faults;
 using NLog;
 using System.Transactions;
 using System.Data.Entity.Validation;
+using System.Data.Entity;
 
 
 namespace CFAPService
@@ -161,6 +162,7 @@ namespace CFAPService
             using (CFAPContext ctx = new CFAPContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
+
                 var userGroupsId = user.GetUserGroupsId();
 
                 if (filter == null)
@@ -208,6 +210,13 @@ namespace CFAPService
                                 where BudgetItemId.Contains(s.BudgetItem.Id)
                                 select s;
                 }
+
+                ctx.Summaries
+                     .Include(s => s.Project)
+                     .Include(s=> s.Accountable)
+                     .Include(s => s.Description)
+                     .Include(s => s.BudgetItem).Load();
+                
 
                 result = new HashSet<Summary>(summaries.ToArray());
             }

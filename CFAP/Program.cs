@@ -90,7 +90,8 @@ namespace CFAP
         {
             Filter filter = new Filter()
             {
-                Projects = new Project[] { new Project() { Id = 1 } }
+                Projects = new Project[] { new Project() { Id = 1 } },
+                Accountables = new Accountable[] { new Accountable() { Id = 3} }
             };
 
             try
@@ -100,7 +101,11 @@ namespace CFAP
                 Console.WriteLine("Полученные данные:");
                 foreach (var s in summaries)
                 {
-                    Console.WriteLine(s.Id);
+                    Console.WriteLine("Poject {0}", s.Project.ProjectName);
+                    Console.WriteLine("BudgetItem {0}", s.BudgetItem.ItemName);
+                    Console.WriteLine("Accountable {0}", s.Accountable.AccountableName);
+                    Console.WriteLine("Descriptin {0}", s.Description.Description);
+                    Console.WriteLine();
                 }
             }
             catch(FaultException<DbException> ex)

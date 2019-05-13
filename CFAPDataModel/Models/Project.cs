@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace CFAPDataModel.Models
 {
     [DataContract]
-    public class Project : IEqualityComparer<Project>
+    public class Project
     {
         public Project()
         {
@@ -44,7 +44,7 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<BudgetItem> BudgetItems { get; set; }
 
-        [DataMember]
+        //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }
 
         public override int GetHashCode()
@@ -64,23 +64,6 @@ namespace CFAPDataModel.Models
             result = this.Id == otherProject.Id;
 
             return result;
-        }
-
-        bool IEqualityComparer<Project>.Equals(Project x, Project y)
-        {
-            bool result = false;
-
-            if (x == null || y == null)
-                return false;
-
-            result = x.Id == y.Id;
-
-            return result;
-        }
-
-        int IEqualityComparer<Project>.GetHashCode(Project obj)
-        {
-            return obj.Id.GetHashCode();
         }
     }
 }

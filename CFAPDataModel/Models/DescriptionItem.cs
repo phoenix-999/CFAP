@@ -45,7 +45,7 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<Accountable> Accountables { get; set; }
 
-        [DataMember]
+        //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }
     }
 }

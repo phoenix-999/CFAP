@@ -46,7 +46,7 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
-        [DataMember]
+        //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }
 
         public override int GetHashCode()
