@@ -24,7 +24,6 @@
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
-      <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />
       <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
     </xs:sequence>
   </xs:complexType>
@@ -43,7 +42,6 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
@@ -62,7 +60,6 @@
       <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
@@ -81,7 +78,6 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
@@ -100,11 +96,16 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Summaries" nillable="true" type="tns:ArrayOfSummary" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Project" nillable="true" type="tns:Project" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
   <xs:complexType name="ArrayOfSummary">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Summary" nillable="true" type="tns:Summary" />
@@ -127,10 +128,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Summary" nillable="true" type="tns:Summary" />
-  <xs:complexType name="ArrayOfUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
 </xs:schema>

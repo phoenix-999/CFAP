@@ -150,9 +150,6 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.Project[] ProjectsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Summary[] SummariesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.User[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -244,19 +241,6 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Summary[] Summaries {
-            get {
-                return this.SummariesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SummariesField, value) != true)) {
-                    this.SummariesField = value;
-                    this.RaisePropertyChanged("Summaries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.User[] Users {
             get {
                 return this.UsersField;
@@ -305,9 +289,6 @@ namespace CFAP.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.UserGroup[] UserGroupsField;
@@ -401,19 +382,6 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Summary[] Summaries {
-            get {
-                return this.SummariesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SummariesField, value) != true)) {
-                    this.SummariesField = value;
-                    this.RaisePropertyChanged("Summaries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -462,9 +430,6 @@ namespace CFAP.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.UserGroup[] UserGroupsField;
@@ -558,19 +523,6 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Summary[] Summaries {
-            get {
-                return this.SummariesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SummariesField, value) != true)) {
-                    this.SummariesField = value;
-                    this.RaisePropertyChanged("Summaries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -619,9 +571,6 @@ namespace CFAP.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.UserGroup[] UserGroupsField;
@@ -715,19 +664,6 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Summary[] Summaries {
-            get {
-                return this.SummariesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SummariesField, value) != true)) {
-                    this.SummariesField = value;
-                    this.RaisePropertyChanged("Summaries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -776,9 +712,6 @@ namespace CFAP.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Summary[] SummariesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.UserGroup[] UserGroupsField;
@@ -867,224 +800,6 @@ namespace CFAP.DataProviderService {
                 if ((this.ReadOnlyField.Equals(value) != true)) {
                     this.ReadOnlyField = value;
                     this.RaisePropertyChanged("ReadOnly");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Summary[] Summaries {
-            get {
-                return this.SummariesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SummariesField, value) != true)) {
-                    this.SummariesField = value;
-                    this.RaisePropertyChanged("Summaries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
-    [System.SerializableAttribute()]
-    public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Accountable AccountableField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ActionDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.BudgetItem BudgetItemField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CashFlowTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.DescriptionItem DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Project ProjectField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double SummaDolarField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double SummaGrnField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Accountable Accountable {
-            get {
-                return this.AccountableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
-                    this.AccountableField = value;
-                    this.RaisePropertyChanged("Accountable");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ActionDate {
-            get {
-                return this.ActionDateField;
-            }
-            set {
-                if ((this.ActionDateField.Equals(value) != true)) {
-                    this.ActionDateField = value;
-                    this.RaisePropertyChanged("ActionDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.BudgetItem BudgetItem {
-            get {
-                return this.BudgetItemField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BudgetItemField, value) != true)) {
-                    this.BudgetItemField = value;
-                    this.RaisePropertyChanged("BudgetItem");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CashFlowType {
-            get {
-                return this.CashFlowTypeField;
-            }
-            set {
-                if ((this.CashFlowTypeField.Equals(value) != true)) {
-                    this.CashFlowTypeField = value;
-                    this.RaisePropertyChanged("CashFlowType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.DescriptionItem Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Project Project {
-            get {
-                return this.ProjectField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProjectField, value) != true)) {
-                    this.ProjectField = value;
-                    this.RaisePropertyChanged("Project");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ReadOnly {
-            get {
-                return this.ReadOnlyField;
-            }
-            set {
-                if ((this.ReadOnlyField.Equals(value) != true)) {
-                    this.ReadOnlyField = value;
-                    this.RaisePropertyChanged("ReadOnly");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double SummaDolar {
-            get {
-                return this.SummaDolarField;
-            }
-            set {
-                if ((this.SummaDolarField.Equals(value) != true)) {
-                    this.SummaDolarField = value;
-                    this.RaisePropertyChanged("SummaDolar");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double SummaGrn {
-            get {
-                return this.SummaGrnField;
-            }
-            set {
-                if ((this.SummaGrnField.Equals(value) != true)) {
-                    this.SummaGrnField = value;
-                    this.RaisePropertyChanged("SummaGrn");
                 }
             }
         }
@@ -1419,6 +1134,211 @@ namespace CFAP.DataProviderService {
                 if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
                     this.ProjectsField = value;
                     this.RaisePropertyChanged("Projects");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.Accountable AccountableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ActionDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.BudgetItem BudgetItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CashFlowTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.DescriptionItem DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.Project ProjectField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaDolarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaGrnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.UserGroup[] UserGroupsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.Accountable Accountable {
+            get {
+                return this.AccountableField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
+                    this.AccountableField = value;
+                    this.RaisePropertyChanged("Accountable");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ActionDate {
+            get {
+                return this.ActionDateField;
+            }
+            set {
+                if ((this.ActionDateField.Equals(value) != true)) {
+                    this.ActionDateField = value;
+                    this.RaisePropertyChanged("ActionDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.BudgetItem BudgetItem {
+            get {
+                return this.BudgetItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BudgetItemField, value) != true)) {
+                    this.BudgetItemField = value;
+                    this.RaisePropertyChanged("BudgetItem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CashFlowType {
+            get {
+                return this.CashFlowTypeField;
+            }
+            set {
+                if ((this.CashFlowTypeField.Equals(value) != true)) {
+                    this.CashFlowTypeField = value;
+                    this.RaisePropertyChanged("CashFlowType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.DescriptionItem Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.Project Project {
+            get {
+                return this.ProjectField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectField, value) != true)) {
+                    this.ProjectField = value;
+                    this.RaisePropertyChanged("Project");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadOnly {
+            get {
+                return this.ReadOnlyField;
+            }
+            set {
+                if ((this.ReadOnlyField.Equals(value) != true)) {
+                    this.ReadOnlyField = value;
+                    this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaDolar {
+            get {
+                return this.SummaDolarField;
+            }
+            set {
+                if ((this.SummaDolarField.Equals(value) != true)) {
+                    this.SummaDolarField = value;
+                    this.RaisePropertyChanged("SummaDolar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaGrn {
+            get {
+                return this.SummaGrnField;
+            }
+            set {
+                if ((this.SummaGrnField.Equals(value) != true)) {
+                    this.SummaGrnField = value;
+                    this.RaisePropertyChanged("SummaGrn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.UserGroup[] UserGroups {
+            get {
+                return this.UserGroupsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
