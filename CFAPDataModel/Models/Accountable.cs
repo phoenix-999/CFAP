@@ -67,6 +67,5 @@ namespace CFAPDataModel.Models
 
             return result;
         }
-
     }
 }

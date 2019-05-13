@@ -17,7 +17,11 @@ namespace CFAP
             mainUser = Authenticate();
             //AddUser();
             //Validate();
-            GetData();
+            List<Summary> summaries = GetSummary();
+
+            AddSummary(summaries.FirstOrDefault());
+
+            UpdateSummary(summaries.FirstOrDefault(), new Accountable() { Id = 1, AccountableName = "Accountable1"});
         }
 
         
@@ -86,8 +90,10 @@ namespace CFAP
             }
         }
 
-        static void GetData()
+        static List<Summary> GetSummary()
         {
+            List<Summary> summaries = null;
+
             Filter filter = new Filter()
             {
                 Projects = new Project[] { new Project() { Id = 1 } },
@@ -96,7 +102,7 @@ namespace CFAP
 
             try
             {
-                List<Summary> summaries = DataProviderProxy.GetSummary(mainUser, filter).ToList();
+                summaries = DataProviderProxy.GetSummary(mainUser, filter).ToList();
 
                 Console.WriteLine("Полученные данные:");
                 foreach (var s in summaries)
@@ -112,6 +118,63 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Detail.Message);
             }
+
+            return summaries;
+        }
+
+        static void AddSummary(Summary summary)
+        {
+            Summary newSummary = new Summary()
+            {
+                Accountable = summary.Accountable,
+                Project = summary.Project,
+                BudgetItem = summary.BudgetItem,
+                SummaGrn = 200
+            };
+
+            try
+            {
+                DataProviderProxy.AddOrUpdateSummary(new Summary[] { newSummary }, mainUser);
+                Console.WriteLine("Summary добавлена успешно!");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+        }
+
+        static void UpdateSummary(Summary summary, Accountable accountable)
+        {
+            summary.SummaGrn = 1000;
+            summary.Accountable = accountable;
+
+            try
+            {
+                DataProviderProxy.AddOrUpdateSummary(new Summary[] { summary }, mainUser);
+                Console.WriteLine("Summary обновлена успешно!");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации при добавлении сущностией:");
+                foreach (var err in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine("Свойство {0} - {1}", err.Key, err.Value);
+                }
+            }
+
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+
         }
     }
 }

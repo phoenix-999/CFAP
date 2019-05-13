@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFAPDataModel.Models
 {
@@ -66,6 +66,12 @@ namespace CFAPDataModel.Models
             return result;
         }
 
+
+        public void ChangeForeignKey()
+        {
+            this.Accountable_Id = this.Accountable.Id;
+        }
+
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
@@ -99,6 +105,7 @@ namespace CFAPDataModel.Models
         public bool CashFlowType { get; set; }
 
         [DataMember]
+        [Column(TypeName = "datetime2")]
         public DateTime ActionDate { get; set; }
 
         [DataMember]
@@ -113,7 +120,10 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual DescriptionItem Description { get; set; }
 
+        public int Accountable_Id { get; set; }
+
         [DataMember]
+        [ForeignKey("Accountable_Id")]
         public virtual Accountable Accountable { get; set; }
 
         [DataMember]

@@ -57,7 +57,48 @@ namespace CFAPService
             }
             return result;            
         }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public void AddOrUpdateSummary(HashSet<Summary> summary, User user)
+        {
+            UpdateSummary(summary, user);
+        }
         #endregion
+
+        private void UpdateSummary(HashSet<Summary> summary, User user)
+        {
+            AuthenticateUser(user);
+
+            
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                foreach (var s in summary)
+                {
+                    s.UserGroups = user.UserGroups;
+
+                    ctx.Entry(s.Project).State = EntityState.Unchanged;
+                    ctx.Entry(s.Accountable).State = EntityState.Unchanged;
+                    ctx.Entry(s.BudgetItem).State = EntityState.Unchanged;
+
+                    s.ChangeForeignKey();
+                }
+
+                try
+                {
+                    ctx.Summaries.AddOrUpdate<Summary>(summary.ToArray());
+                    ctx.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+        }
 
 
         private IDictionary<string, string> ValidateData(User user)
