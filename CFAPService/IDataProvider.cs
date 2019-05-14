@@ -38,12 +38,5 @@ namespace CFAPService
         [OperationContract]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
-
-        [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(AutenticateFaultException))]
-        [FaultContract(typeof(DataNotValidException))]
-        void AddOrUpdateSummary(HashSet<Summary> summary, User user);
     }
 }

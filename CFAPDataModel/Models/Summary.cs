@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace CFAPDataModel.Models
 {
@@ -74,7 +75,7 @@ namespace CFAPDataModel.Models
             return groupsId;
         }
 
-        public void LoadUserGroups(CFAPContext ctx)
+        private void LoadUserGroups(CFAPContext ctx)
         {
             //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
             ctx.Configuration.ProxyCreationEnabled = false;
@@ -89,8 +90,18 @@ namespace CFAPDataModel.Models
             
         }
 
+        public void SetStateProperties(CFAPContext ctx)
+        {
+            ctx.Entry(this.Project).State = EntityState.Unchanged;
+            ctx.Entry(this.Accountable).State = EntityState.Unchanged;
+            ctx.Entry(this.BudgetItem).State = EntityState.Unchanged;
+            ctx.Entry(this.Description).State = EntityState.Unchanged;
 
-        public void ModifyForeignKey()
+            this.LoadUserGroups(ctx);
+            this.ModifyForeignKey();
+        }
+
+        private void ModifyForeignKey()
         {
             this.Accountable_Id = this.Accountable.Id;
             this.Project_Id = this.Project.Id;

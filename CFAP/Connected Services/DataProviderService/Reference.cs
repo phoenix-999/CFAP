@@ -1201,17 +1201,6 @@ namespace CFAP.DataProviderService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderService.Summary[]> GetSummaryAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddOrUpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/AddOrUpdateSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddOrUpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AddOrUpdateSummaryAutenticateFaultExceptionFault" +
-            "", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddOrUpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        void AddOrUpdateSummary(CFAP.DataProviderService.Summary[] summary, CFAP.DataProviderService.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddOrUpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/AddOrUpdateSummaryResponse")]
-        System.Threading.Tasks.Task AddOrUpdateSummaryAsync(CFAP.DataProviderService.Summary[] summary, CFAP.DataProviderService.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1271,14 +1260,6 @@ namespace CFAP.DataProviderService {
         
         public System.Threading.Tasks.Task<CFAP.DataProviderService.Summary[]> GetSummaryAsync(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
             return base.Channel.GetSummaryAsync(user, filter);
-        }
-        
-        public void AddOrUpdateSummary(CFAP.DataProviderService.Summary[] summary, CFAP.DataProviderService.User user) {
-            base.Channel.AddOrUpdateSummary(summary, user);
-        }
-        
-        public System.Threading.Tasks.Task AddOrUpdateSummaryAsync(CFAP.DataProviderService.Summary[] summary, CFAP.DataProviderService.User user) {
-            return base.Channel.AddOrUpdateSummaryAsync(summary, user);
         }
     }
 }

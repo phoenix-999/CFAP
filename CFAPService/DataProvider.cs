@@ -20,7 +20,6 @@ namespace CFAPService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class DataProvider : IDataProvider
     {
-        #region IDataProvider
         public User Authenticate(User user)
         {
             User result = (User)AuthenticateUser(user, false);
@@ -61,50 +60,7 @@ namespace CFAPService
                 throw new FaultException<DbException>(new DbException(ex));
             }
             return result;            
-        }
-
-        [OperationBehavior(TransactionScopeRequired = true)]
-        public void AddOrUpdateSummary(HashSet<Summary> summary, User user)
-        {
-            UpdateSummary(summary, user);
-        }
-        #endregion
-
-        private void UpdateSummary(HashSet<Summary> summary, User user)
-        {
-            AuthenticateUser(user);
-
-            
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                foreach (var s in summary)
-                {
-                    ctx.Entry(s.Project).State = EntityState.Unchanged;
-                    ctx.Entry(s.Accountable).State = EntityState.Unchanged;
-                    ctx.Entry(s.BudgetItem).State = EntityState.Unchanged;
-                    ctx.Entry(s.Description).State = EntityState.Unchanged;
-
-                    s.LoadUserGroups(ctx);
-                    s.ModifyForeignKey();
-                }
-
-                try
-                {
-                    ctx.Summaries.AddOrUpdate<Summary>(summary.ToArray());
-                    ctx.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
-                }
-                catch (Exception ex)
-                {
-                    throw new FaultException<DbException>(new DbException(ex));
-                }
-            }
-        }
-
+        }   
 
         private User AuthenticateUser(User user, bool hasEncriptedPassword = true)
         {

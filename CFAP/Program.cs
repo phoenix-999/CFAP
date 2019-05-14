@@ -17,21 +17,6 @@ namespace CFAP
             mainUser = Authenticate();
             //AddUser();
             List<Summary> summaries = GetSummary();
-
-            //AddSummary(summaries.FirstOrDefault());
-
-            UpdateSummary(
-                    summaries.FirstOrDefault(),
-                    new Accountable()
-                        {
-                            Id = 2,
-                            AccountableName = "Accountable2"
-                        },
-                    new UserGroup[]
-                        {
-                            new UserGroup() { Id = 1, GroupName = "MainOffice"},
-                            new UserGroup() { Id = 2, GroupName = "Office1"}
-                        });
         }
 
         
@@ -119,61 +104,6 @@ namespace CFAP
             return summaries;
         }
 
-        static void AddSummary(Summary summary)
-        {
-            Summary newSummary = new Summary()
-            {
-                Accountable = summary.Accountable,
-                Project = summary.Project,
-                BudgetItem = summary.BudgetItem,
-                Description = summary.Description,
-                SummaGrn = 200
-            };
-
-            try
-            {
-                DataProviderProxy.AddOrUpdateSummary(new Summary[] { newSummary }, mainUser);
-                Console.WriteLine("Summary добавлена успешно!");
-            }
-            catch (FaultException<AutenticateFaultException> ex)
-            {
-                Console.WriteLine(ex.Detail.Message);
-            }
-            catch (FaultException<DbException> ex)
-            {
-                Console.WriteLine(ex.Detail.Message);
-            }
-        }
-
-        static void UpdateSummary(Summary summary, Accountable accountable, UserGroup[] userGroups)
-        {
-            summary.SummaGrn = 1000;
-            summary.Accountable = accountable;
-            summary.UserGroups = userGroups;
-
-            try
-            {
-                DataProviderProxy.AddOrUpdateSummary(new Summary[] { summary }, mainUser);
-                Console.WriteLine("Summary обновлена успешно!");
-            }
-            catch (FaultException<AutenticateFaultException> ex)
-            {
-                Console.WriteLine(ex.Detail.Message);
-            }
-            catch (FaultException<DataNotValidException> ex)
-            {
-                Console.WriteLine("Ошибки валидации при добавлении сущностией:");
-                foreach (var err in ex.Detail.ValidationErrors)
-                {
-                    Console.WriteLine("Свойство {0} - {1}", err.Key, err.Value);
-                }
-            }
-
-            catch (FaultException<DbException> ex)
-            {
-                Console.WriteLine(ex.Detail.Message);
-            }
-
-        }
+        
     }
 }
