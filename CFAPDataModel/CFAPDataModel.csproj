@@ -59,19 +59,6 @@
   <ItemGroup>
     <Compile Include="Context\CFAPContext.cs" />
     <Compile Include="Context\NLogCommandInterceptor.cs" />
-    <Compile Include="Migrations\201905130753474_InitialCreate.cs" />
-    <Compile Include="Migrations\201905130753474_InitialCreate.Designer.cs">
-      <DependentUpon>201905130753474_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905131533262_Change type Summary.ActionDate.cs" />
-    <Compile Include="Migrations\201905131533262_Change type Summary.ActionDate.Designer.cs">
-      <DependentUpon>201905131533262_Change type Summary.ActionDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905131647049_Add Accountable_Id in Summary.cs" />
-    <Compile Include="Migrations\201905131647049_Add Accountable_Id in Summary.Designer.cs">
-      <DependentUpon>201905131647049_Add Accountable_Id in Summary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
     <Compile Include="Models\DescriptionItem.cs" />
@@ -92,17 +79,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905130753474_InitialCreate.resx">
-      <DependentUpon>201905130753474_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905131533262_Change type Summary.ActionDate.resx">
-      <DependentUpon>201905131533262_Change type Summary.ActionDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905131647049_Add Accountable_Id in Summary.resx">
-      <DependentUpon>201905131647049_Add Accountable_Id in Summary.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

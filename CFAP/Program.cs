@@ -16,12 +16,22 @@ namespace CFAP
         {
             mainUser = Authenticate();
             //AddUser();
-            //Validate();
             List<Summary> summaries = GetSummary();
 
-            AddSummary(summaries.FirstOrDefault());
+            //AddSummary(summaries.FirstOrDefault());
 
-            UpdateSummary(summaries.FirstOrDefault(), new Accountable() { Id = 1, AccountableName = "Accountable1"});
+            UpdateSummary(
+                    summaries.FirstOrDefault(),
+                    new Accountable()
+                        {
+                            Id = 2,
+                            AccountableName = "Accountable2"
+                        },
+                    new UserGroup[]
+                        {
+                            new UserGroup() { Id = 1, GroupName = "MainOffice"},
+                            new UserGroup() { Id = 2, GroupName = "Office1"}
+                        });
         }
 
         
@@ -77,19 +87,6 @@ namespace CFAP
             
         }
 
-        static void Validate()
-        {
-            Summary summary = new Summary() {SummaGrn = 27, UserGroups = mainUser.UserGroups };
-            IDictionary<string, string> validationErrors = DataProviderProxy.Validate(mainUser);
-            Console.WriteLine("Ошибки валидации:");
-            if (validationErrors.Count == 0)
-                Console.WriteLine("Валидация прошла успешно.");
-            foreach(var error in validationErrors)
-            {
-                Console.WriteLine("Property = {0} --- value={1}", error.Key, error.Value);
-            }
-        }
-
         static List<Summary> GetSummary()
         {
             List<Summary> summaries = null;
@@ -102,7 +99,7 @@ namespace CFAP
 
             try
             {
-                summaries = DataProviderProxy.GetSummary(mainUser, filter).ToList();
+                summaries = DataProviderProxy.GetSummary(mainUser, new Filter()).ToList();
 
                 Console.WriteLine("Полученные данные:");
                 foreach (var s in summaries)
@@ -129,6 +126,7 @@ namespace CFAP
                 Accountable = summary.Accountable,
                 Project = summary.Project,
                 BudgetItem = summary.BudgetItem,
+                Description = summary.Description,
                 SummaGrn = 200
             };
 
@@ -147,10 +145,11 @@ namespace CFAP
             }
         }
 
-        static void UpdateSummary(Summary summary, Accountable accountable)
+        static void UpdateSummary(Summary summary, Accountable accountable, UserGroup[] userGroups)
         {
             summary.SummaGrn = 1000;
             summary.Accountable = accountable;
+            summary.UserGroups = userGroups;
 
             try
             {

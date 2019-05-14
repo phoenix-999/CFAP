@@ -14,9 +14,6 @@ namespace CFAPDataModel.Models
 
         public Accountable()
         {
-            this.Projects = new HashSet<Project>();
-            this.BudgetItems = new HashSet<BudgetItem>();
-            this.Descriptions = new HashSet<DescriptionItem>();
             this.UserGroups = new HashSet<UserGroup>();
             this.Summaries = new HashSet<Summary>();
         }
@@ -33,15 +30,6 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public bool ReadOnly { get; set; }
-
-        [DataMember]
-        public virtual ICollection<Project> Projects { get; set; }
-
-        [DataMember]
-        public virtual ICollection<BudgetItem> BudgetItems { get; set; }
-
-        [DataMember]
-        public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
         [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }

@@ -66,10 +66,36 @@ namespace CFAPDataModel.Models
             return result;
         }
 
+        public ICollection<int> GetUserGroupsId()
+        {
+            var groupsId = (from g in this.UserGroups
+                            select g.Id).ToList();
+
+            return groupsId;
+        }
+
+        public void LoadUserGroups(CFAPContext ctx)
+        {
+            //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
+            ctx.Configuration.ProxyCreationEnabled = false;
+
+            var goupsId = this.GetUserGroupsId();
+
+            //LINQ to Entities не умеет вызывать методы
+            var groups = (from g in ctx.UserGroups
+                          where goupsId.Contains(g.Id)
+                          select g).ToList();
+
+            this.UserGroups = groups;
+        }
+
 
         public void ChangeForeignKey()
         {
             this.Accountable_Id = this.Accountable.Id;
+            this.Project_Id = this.Project.Id;
+            this.BudgetItem_Id = this.BudgetItem.Id;
+            this.DescriptionItem_Id = this.Description.Id;
         }
 
         public override int GetHashCode()
@@ -111,13 +137,22 @@ namespace CFAPDataModel.Models
         [DataMember]
         public bool ReadOnly { get; set; }
 
+        public int Project_Id { get; set; }
+
         [DataMember]
+        [ForeignKey("Project_Id")]
         public virtual Project Project { get; set; }
 
-        [DataMember]
-        public virtual BudgetItem BudgetItem { get; set; }
+        public int BudgetItem_Id { get; set; }
 
         [DataMember]
+        [ForeignKey("BudgetItem_Id")]
+        public virtual BudgetItem BudgetItem { get; set; }
+
+        public int DescriptionItem_Id { get; set; }
+
+        [DataMember]
+        [ForeignKey("DescriptionItem_Id")]
         public virtual DescriptionItem Description { get; set; }
 
         public int Accountable_Id { get; set; }

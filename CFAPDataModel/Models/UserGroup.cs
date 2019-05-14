@@ -13,11 +13,7 @@ namespace CFAPDataModel.Models
     {
         public UserGroup()
         {
-            this.Accountables = new HashSet<Accountable>();
             this.Users = new HashSet<User>();
-            this.Projects = new HashSet<Project>();
-            this.BudgetItems = new HashSet<BudgetItem>();
-            this.Descriptions = new HashSet<DescriptionItem>();
             this.Summaries = new HashSet<Summary>();
         }
         [DataMember]
@@ -31,6 +27,9 @@ namespace CFAPDataModel.Models
         public virtual ICollection<User> Users { get; set; }
 
         [DataMember]
+        public virtual ICollection<Accountable> Accountables { get; set; }
+
+        [DataMember]
         public virtual ICollection<Project> Projects { get; set; }
 
         [DataMember]
@@ -38,9 +37,6 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public virtual ICollection<DescriptionItem> Descriptions { get; set; }
-
-        [DataMember]
-        public virtual ICollection<Accountable> Accountables { get; set; }
 
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }

@@ -14,10 +14,7 @@ namespace CFAPDataModel.Models
 
         public BudgetItem()
         {
-            this.Projects = new HashSet<Project>();
             this.UserGroups = new HashSet<UserGroup>();
-            this.Accountables = new HashSet<Accountable>();
-            this.Descriptions = new HashSet<DescriptionItem>();
             this.Summaries = new HashSet<Summary>();
         }
 
@@ -35,16 +32,8 @@ namespace CFAPDataModel.Models
         public bool ReadOnly { get; set; }
 
         [DataMember]
-        public virtual ICollection<Project> Projects { get; set; }
-
-        [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
-        [DataMember]
-        public virtual ICollection<Accountable> Accountables { get; set; }
-
-        [DataMember]
-        public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }

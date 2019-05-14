@@ -29,10 +29,6 @@ namespace CFAPService
 
         [OperationContract]
         [FaultContract(typeof(DbException))]
-        IDictionary<string, string> Validate(User user);
-
-        [OperationContract]
-        [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
 
         [OperationContract]

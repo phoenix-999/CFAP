@@ -30,18 +30,16 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AddNewUser(User newUser, User owner)
         {
-            IDictionary<string, string> validationErrors = ValidateData(newUser);
-            if (validationErrors.Count > 0)
+            try
             {
-                throw new FaultException<DataNotValidException>(new DataNotValidException(validationErrors));
+                AddUser(newUser, owner);
             }
-            AddUser(newUser, owner);
+            catch (DbEntityValidationException ex)
+            {
+                throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+            }
         }
 
-        public IDictionary<string, string> Validate(User user)
-        {
-            return ValidateData(user);
-        }
 
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
@@ -75,11 +73,16 @@ namespace CFAPService
             {
                 foreach (var s in summary)
                 {
-                    s.UserGroups = user.UserGroups;
-
                     ctx.Entry(s.Project).State = EntityState.Unchanged;
                     ctx.Entry(s.Accountable).State = EntityState.Unchanged;
                     ctx.Entry(s.BudgetItem).State = EntityState.Unchanged;
+                    ctx.Entry(s.Description).State = EntityState.Unchanged;
+
+                    s.LoadUserGroups(ctx);
+
+                    //TODO реализовать обновлениясвязей групп
+
+                    ctx.Entry(s).Entity.UserGroups = s.UserGroups;
 
                     s.ChangeForeignKey();
                 }
@@ -100,35 +103,6 @@ namespace CFAPService
             }
         }
 
-
-        private IDictionary<string, string> ValidateData(User user)
-        {
-            IDictionary<string, string> result = new Dictionary<string, string>();
-
-            DbEntityValidationResult validateResult;
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                try
-                {
-                    validateResult = ctx.Entry<User>(user).GetValidationResult();
-                }
-                catch (Exception ex)
-                {
-                    throw new FaultException<DbException>(new DbException(ex));
-                }
-            }
-
-            if (!validateResult.IsValid)
-            {
-                foreach (var error in validateResult.ValidationErrors)
-                {
-                    result[error.PropertyName] = error.ErrorMessage;
-                }
-            }
-
-            return result;
-        }
 
         private User AuthenticateUser(User user, bool hasEncriptedPassword = true)
         {
