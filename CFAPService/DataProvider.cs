@@ -79,12 +79,7 @@ namespace CFAPService
                     ctx.Entry(s.Description).State = EntityState.Unchanged;
 
                     s.LoadUserGroups(ctx);
-
-                    //TODO реализовать обновлениясвязей групп
-
-                    ctx.Entry(s).Entity.UserGroups = s.UserGroups;
-
-                    s.ChangeForeignKey();
+                    s.ModifyForeignKey();
                 }
 
                 try

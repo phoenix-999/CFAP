@@ -86,11 +86,11 @@ namespace CFAPDataModel.Models
                           where goupsId.Contains(g.Id)
                           select g).ToList();
 
-            this.UserGroups = groups;
+            
         }
 
 
-        public void ChangeForeignKey()
+        public void ModifyForeignKey()
         {
             this.Accountable_Id = this.Accountable.Id;
             this.Project_Id = this.Project.Id;
