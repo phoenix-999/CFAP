@@ -40,6 +40,13 @@ namespace CFAPService
             }
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public void UpdateUser(User userForUpdate, User owner)
+        {
+            
+            //TODO Реализовать метод изменения данных пользователя
+
+        }
 
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {

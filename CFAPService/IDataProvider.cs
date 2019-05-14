@@ -28,6 +28,14 @@ namespace CFAPService
         void AddNewUser(User newUser, User owner);
 
         [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(AddUserNotAdminException))]
+        [FaultContract(typeof(DataNotValidException))]
+        void UpdateUser(User userForUpdate, User owner);
+
+        [OperationContract]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
 

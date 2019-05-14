@@ -1184,6 +1184,17 @@ namespace CFAP.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
         System.Threading.Tasks.Task AddNewUserAsync(CFAP.DataProviderService.User newUser, CFAP.DataProviderService.User owner);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/UpdateUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void UpdateUser(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
@@ -1244,6 +1255,14 @@ namespace CFAP.DataProviderService {
         
         public System.Threading.Tasks.Task AddNewUserAsync(CFAP.DataProviderService.User newUser, CFAP.DataProviderService.User owner) {
             return base.Channel.AddNewUserAsync(newUser, owner);
+        }
+        
+        public void UpdateUser(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner) {
+            base.Channel.UpdateUser(userForUpdate, owner);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner) {
+            return base.Channel.UpdateUserAsync(userForUpdate, owner);
         }
         
         public CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
