@@ -48,7 +48,7 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void ChangeSummaries(List<Summary> summaries, User user)
+        public void AlterSummaries(List<Summary> summaries, User user)
         {
             AddOrUpdateSummaries(summaries, user);
         }

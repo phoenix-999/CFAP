@@ -128,7 +128,7 @@ namespace CFAP
 
             try
             {
-                DataProviderProxy.ChangeSummaries(new Summary[] { s1, s2}, mainUser);
+                DataProviderProxy.AlterSummaries(new Summary[] { s1, s2}, mainUser);
                 Console.WriteLine("Summaries добавлены");
             }
             catch (FaultException<AutenticateFaultException> ex)
@@ -163,7 +163,7 @@ namespace CFAP
 
             try
             {
-                DataProviderProxy.ChangeSummaries(summaries, mainUser);
+                DataProviderProxy.AlterSummaries(summaries, mainUser);
                 Console.WriteLine("Summaries обновлены");
             }
             catch (FaultException<AutenticateFaultException> ex)

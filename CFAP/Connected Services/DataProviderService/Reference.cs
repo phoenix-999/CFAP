@@ -1272,17 +1272,17 @@ namespace CFAP.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaries", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummariesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/ChangeSummariesAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/ChangeSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/ChangeSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/ChangeSummariesTryChangeReadOnlyFiledExceptionFa" +
-            "ult", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AlterSummariesAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AlterSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AlterSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AlterSummariesTryChangeReadOnlyFiledExceptionFau" +
+            "lt", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        void ChangeSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
+        void AlterSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaries", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummariesResponse")]
-        System.Threading.Tasks.Task ChangeSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        System.Threading.Tasks.Task AlterSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1343,12 +1343,12 @@ namespace CFAP.DataProviderService {
             return base.Channel.UpdateUserAsync(userForUpdate, owner);
         }
         
-        public void ChangeSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
-            base.Channel.ChangeSummaries(summaries, user);
+        public void AlterSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
+            base.Channel.AlterSummaries(summaries, user);
         }
         
-        public System.Threading.Tasks.Task ChangeSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
-            return base.Channel.ChangeSummariesAsync(summaries, user);
+        public System.Threading.Tasks.Task AlterSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
+            return base.Channel.AlterSummariesAsync(summaries, user);
         }
         
         public CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {

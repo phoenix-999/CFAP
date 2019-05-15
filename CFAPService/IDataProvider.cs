@@ -41,7 +41,7 @@ namespace CFAPService
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
-        void ChangeSummaries(List<Summary> summaries, User user);
+        void AlterSummaries(List<Summary> summaries, User user);
 
         [OperationContract]
         [FaultContract(typeof(DbException))]
