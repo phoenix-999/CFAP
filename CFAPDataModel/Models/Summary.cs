@@ -86,19 +86,21 @@ namespace CFAPDataModel.Models
             var groups = (from g in ctx.UserGroups
                           where goupsId.Contains(g.Id)
                           select g).ToList();
-
-            
+            this.UserGroups = groups;
         }
 
         public void SetStateProperties(CFAPContext ctx)
         {
-            ctx.Entry(this.Project).State = EntityState.Unchanged;
-            ctx.Entry(this.Accountable).State = EntityState.Unchanged;
-            ctx.Entry(this.BudgetItem).State = EntityState.Unchanged;
-            ctx.Entry(this.Description).State = EntityState.Unchanged;
+            //ctx.Configuration.ProxyCreationEnabled = false;
+            
+            this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First();
+            this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();
+            this.BudgetItem = (from i in ctx.BudgetItems where i.Id == this.BudgetItem.Id select i).First();
+            this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
 
-            this.LoadUserGroups(ctx);
             this.ModifyForeignKey();
+            this.LoadUserGroups(ctx);
+            
         }
 
         private void ModifyForeignKey()

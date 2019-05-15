@@ -36,6 +36,13 @@ namespace CFAPService
         void UpdateUser(User userForUpdate, User owner);
 
         [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        void ChangeSummaries(List<Summary> summaries, User user);
+
+        [OperationContract]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
     }

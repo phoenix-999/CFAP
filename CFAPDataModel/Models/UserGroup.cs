@@ -14,7 +14,7 @@ namespace CFAPDataModel.Models
         public UserGroup()
         {
             this.Users = new HashSet<User>();
-            this.Summaries = new HashSet<Summary>();
+            this.Summaries = new List<Summary>();
         }
         [DataMember]
         public int Id { get; set; }

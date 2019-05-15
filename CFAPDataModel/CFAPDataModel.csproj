@@ -44,6 +44,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -59,6 +60,31 @@
   <ItemGroup>
     <Compile Include="Context\CFAPContext.cs" />
     <Compile Include="Context\NLogCommandInterceptor.cs" />
+    <Compile Include="Migrations\201905140758105_InitialCreate.cs" />
+    <Compile Include="Migrations\201905140758105_InitialCreate.Designer.cs">
+      <DependentUpon>201905140758105_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905150901346_a.cs" />
+    <Compile Include="Migrations\201905150901346_a.Designer.cs">
+      <DependentUpon>201905150901346_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905150903241_back-up a.cs" />
+    <Compile Include="Migrations\201905150903241_back-up a.Designer.cs">
+      <DependentUpon>201905150903241_back-up a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151031028_b.cs" />
+    <Compile Include="Migrations\201905151031028_b.Designer.cs">
+      <DependentUpon>201905151031028_b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151034404_b2.cs" />
+    <Compile Include="Migrations\201905151034404_b2.Designer.cs">
+      <DependentUpon>201905151034404_b2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151036210_backup b, b2.cs" />
+    <Compile Include="Migrations\201905151036210_backup b, b2.Designer.cs">
+      <DependentUpon>201905151036210_backup b, b2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
     <Compile Include="Models\DescriptionItem.cs" />
@@ -79,6 +105,26 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905140758105_InitialCreate.resx">
+      <DependentUpon>201905140758105_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905150901346_a.resx">
+      <DependentUpon>201905150901346_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905150903241_back-up a.resx">
+      <DependentUpon>201905150903241_back-up a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151031028_b.resx">
+      <DependentUpon>201905151031028_b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151034404_b2.resx">
+      <DependentUpon>201905151034404_b2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151036210_backup b, b2.resx">
+      <DependentUpon>201905151036210_backup b, b2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

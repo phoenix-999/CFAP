@@ -40,13 +40,17 @@
 
         private void CalculateSummary()
         {
+            var s = Summaries.Local;
+
             foreach (var summary in Summaries.Local)
             {
+              
                 if (this.Entry<Summary>(summary).State == EntityState.Added
                     || this.Entry<Summary>(summary).State == EntityState.Modified)
                 {
                     summary.SetSummaDollar();
                 }
+
             }
         }
 

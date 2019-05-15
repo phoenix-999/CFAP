@@ -15,7 +15,7 @@ namespace CFAPDataModel.Models
         public Accountable()
         {
             this.UserGroups = new HashSet<UserGroup>();
-            this.Summaries = new HashSet<Summary>();
+            this.Summaries = new List<Summary>();
         }
 
         [DataMember]

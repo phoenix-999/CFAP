@@ -849,115 +849,6 @@ namespace CFAP.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
-    [System.SerializableAttribute()]
-    public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Accountable[] AccountablesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.BudgetItem[] BudgetItemsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateEndField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateStartField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderService.Project[] ProjectsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Accountable[] Accountables {
-            get {
-                return this.AccountablesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
-                    this.AccountablesField = value;
-                    this.RaisePropertyChanged("Accountables");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.BudgetItem[] BudgetItems {
-            get {
-                return this.BudgetItemsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
-                    this.BudgetItemsField = value;
-                    this.RaisePropertyChanged("BudgetItems");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateEnd {
-            get {
-                return this.DateEndField;
-            }
-            set {
-                if ((this.DateEndField.Equals(value) != true)) {
-                    this.DateEndField = value;
-                    this.RaisePropertyChanged("DateEnd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateStart {
-            get {
-                return this.DateStartField;
-            }
-            set {
-                if ((this.DateStartField.Equals(value) != true)) {
-                    this.DateStartField = value;
-                    this.RaisePropertyChanged("DateStart");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderService.Project[] Projects {
-            get {
-                return this.ProjectsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
-                    this.ProjectsField = value;
-                    this.RaisePropertyChanged("Projects");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
     [System.SerializableAttribute()]
     public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1161,6 +1052,115 @@ namespace CFAP.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.SerializableAttribute()]
+    public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.Accountable[] AccountablesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.BudgetItem[] BudgetItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateEndField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateStartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.Project[] ProjectsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.Accountable[] Accountables {
+            get {
+                return this.AccountablesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
+                    this.AccountablesField = value;
+                    this.RaisePropertyChanged("Accountables");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.BudgetItem[] BudgetItems {
+            get {
+                return this.BudgetItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
+                    this.BudgetItemsField = value;
+                    this.RaisePropertyChanged("BudgetItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateEnd {
+            get {
+                return this.DateEndField;
+            }
+            set {
+                if ((this.DateEndField.Equals(value) != true)) {
+                    this.DateEndField = value;
+                    this.RaisePropertyChanged("DateEnd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.DateStartField;
+            }
+            set {
+                if ((this.DateStartField.Equals(value) != true)) {
+                    this.DateStartField = value;
+                    this.RaisePropertyChanged("DateStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.Project[] Projects {
+            get {
+                return this.ProjectsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
+                    this.ProjectsField = value;
+                    this.RaisePropertyChanged("Projects");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1194,6 +1194,17 @@ namespace CFAP.DataProviderService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaries", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummariesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/ChangeSummariesAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/ChangeSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/ChangeSummariesAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/ChangeSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void ChangeSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaries", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummariesResponse")]
+        System.Threading.Tasks.Task ChangeSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1252,6 +1263,14 @@ namespace CFAP.DataProviderService {
         
         public System.Threading.Tasks.Task UpdateUserAsync(CFAP.DataProviderService.User userForUpdate, CFAP.DataProviderService.User owner) {
             return base.Channel.UpdateUserAsync(userForUpdate, owner);
+        }
+        
+        public void ChangeSummaries(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
+            base.Channel.ChangeSummaries(summaries, user);
+        }
+        
+        public System.Threading.Tasks.Task ChangeSummariesAsync(CFAP.DataProviderService.Summary[] summaries, CFAP.DataProviderService.User user) {
+            return base.Channel.ChangeSummariesAsync(summaries, user);
         }
         
         public CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {
