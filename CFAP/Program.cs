@@ -18,6 +18,7 @@ namespace CFAP
             //AddUser();
             List<Summary> summaries = GetSummary();
             //AddSummaries(summaries.FirstOrDefault(), mainUser);
+            UpdateSummary(summaries.ToArray(), mainUser);
         }
 
         
@@ -149,5 +150,39 @@ namespace CFAP
             }
         }
         
+
+        static void UpdateSummary(Summary[] summaries, User user)
+        {
+            Console.WriteLine("Обновление summary");
+
+            summaries[0].SummaGrn = 1000;
+            summaries[0].Project = new Project() { Id=36, ProjectName="Project3" };
+
+            summaries[1].SummaGrn = 2000;
+            summaries[1].Project = new Project() { Id = 37, ProjectName = "Project2" };
+
+            try
+            {
+                DataProviderProxy.ChangeSummaries(summaries, mainUser);
+                Console.WriteLine("Summaries обновлены");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine("Ошибка аутентификации");
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации:");
+                foreach (var e in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine(e.Key + " => " + e.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+        }
     }
 }
