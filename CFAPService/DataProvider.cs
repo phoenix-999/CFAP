@@ -70,6 +70,11 @@ namespace CFAPService
                     }
 
                     s.SetStateProperties(ctx);
+
+                    if (s.ReadOnly)
+                    {
+                        throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(s.GetType(), s.Id, null, user));
+                    }
                 }
 
                 //Добавление полученого списка в БД

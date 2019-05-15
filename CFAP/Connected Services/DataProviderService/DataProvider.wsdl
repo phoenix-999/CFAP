@@ -722,7 +722,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_ChangeSummaries_AddUserNotAdminExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_ChangeSummaries_DataNotValidExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -752,7 +752,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_ChangeSummaries_DataNotValidExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_ChangeSummaries_TryChangeReadOnlyFiledExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -942,11 +942,11 @@
   <wsdl:message name="IDataProvider_ChangeSummaries_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:DbException" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_ChangeSummaries_AddUserNotAdminExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:AddUserNotAdminException" />
-  </wsdl:message>
   <wsdl:message name="IDataProvider_ChangeSummaries_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q14:DataNotValidException" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:DataNotValidException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_ChangeSummaries_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q14:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSummary" />
@@ -985,8 +985,8 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesResponse" message="tns:IDataProvider_ChangeSummaries_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_ChangeSummaries_AutenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_ChangeSummaries_DbExceptionFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesAddUserNotAdminExceptionFault" name="AddUserNotAdminExceptionFault" message="tns:IDataProvider_ChangeSummaries_AddUserNotAdminExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_ChangeSummaries_DataNotValidExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/ChangeSummariesTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_ChangeSummaries_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSummary">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetSummary" message="tns:IDataProvider_GetSummary_InputMessage" />
@@ -1091,13 +1091,13 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_ChangeSummaries_DbExceptionFault_Fault" />
         <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="AddUserNotAdminExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_ChangeSummaries_AddUserNotAdminExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AddUserNotAdminExceptionFault" namespace="" />
-      </wsdl:fault>
       <wsdl:fault name="DataNotValidExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_ChangeSummaries_DataNotValidExceptionFault_Fault" />
         <soap12:fault use="literal" name="DataNotValidExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="TryChangeReadOnlyFiledExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_ChangeSummaries_TryChangeReadOnlyFiledExceptionFault_Fault" />
+        <soap12:fault use="literal" name="TryChangeReadOnlyFiledExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSummary">

@@ -183,6 +183,11 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Detail.Message);
             }
+            catch (FaultException<TryChangeReadOnlyFiledException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+
         }
     }
 }
