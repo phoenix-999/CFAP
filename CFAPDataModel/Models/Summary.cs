@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.ComponentModel;
 
 namespace CFAPDataModel.Models
 {
@@ -87,6 +88,29 @@ namespace CFAPDataModel.Models
                           where goupsId.Contains(g.Id)
                           select g).ToList();
             this.UserGroups = groups;
+
+            var groupsCanUseAllData = (from g in ctx.UserGroups
+                                       where g.CanUserAllData == true
+                                       select g).ToList();
+            foreach (var currentGroup in this.UserGroups)
+            {
+                for (int groupIndex = 0; groupIndex < groupsCanUseAllData.Count; groupIndex++)
+                {
+                    if (groupsCanUseAllData[groupIndex].Id == currentGroup.Id)
+                    {
+                        groupsCanUseAllData.RemoveAt(groupIndex);
+                    }
+                }
+            }
+
+            if (groupsCanUseAllData.Count > 0)
+            {
+                foreach (var group in groupsCanUseAllData)
+                {
+                    this.UserGroups.Add(group);
+                }
+            }
+
         }
 
         public void SetStateProperties(CFAPContext ctx)
@@ -97,6 +121,7 @@ namespace CFAPDataModel.Models
             this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();
             this.BudgetItem = (from i in ctx.BudgetItems where i.Id == this.BudgetItem.Id select i).First();
             this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
+            this.UserLastChanged = (from u in ctx.Users where u.Id == this.UserLastChanged.Id select u).First();
 
             this.ModifyForeignKey();
             this.LoadUserGroups(ctx);
@@ -109,6 +134,7 @@ namespace CFAPDataModel.Models
             this.Project_Id = this.Project.Id;
             this.BudgetItem_Id = this.BudgetItem.Id;
             this.DescriptionItem_Id = this.Description.Id;
+            this.UserLastChangedId = this.UserLastChanged.Id;
         }
 
         public override int GetHashCode()
@@ -133,6 +159,16 @@ namespace CFAPDataModel.Models
         #region Properies
         [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
+        [Column(TypeName = "datetime2")]
+        public DateTime SummaryDate { get; set; }
+
+        public int? UserLastChangedId { get; set; }
+
+        [DataMember]
+        [ForeignKey("UserLastChangedId")]
+        public User UserLastChanged { get; set; }
 
         [DataMember]
         public double SummaGrn { get; set; }
@@ -176,6 +212,10 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }
+
+        [DataMember]
+        [NotMapped]
+        public bool IsModified { get; set; }
 
         #endregion
     }

@@ -38,6 +38,9 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
+        [DataMember]
+        public bool CanUserAllData { get; set; }
+
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }
     }

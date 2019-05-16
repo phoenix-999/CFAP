@@ -138,6 +138,9 @@ namespace CFAP.DataProviderService {
         private CFAP.DataProviderService.BudgetItem[] BudgetItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanUserAllDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.DescriptionItem[] DescriptionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -184,6 +187,19 @@ namespace CFAP.DataProviderService {
                 if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
                     this.BudgetItemsField = value;
                     this.RaisePropertyChanged("BudgetItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanUserAllData {
+            get {
+                return this.CanUserAllDataField;
+            }
+            set {
+                if ((this.CanUserAllDataField.Equals(value) != true)) {
+                    this.CanUserAllDataField = value;
+                    this.RaisePropertyChanged("CanUserAllData");
                 }
             }
         }
@@ -875,6 +891,9 @@ namespace CFAP.DataProviderService {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.Project ProjectField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -887,7 +906,13 @@ namespace CFAP.DataProviderService {
         private double SummaGrnField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SummaryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderService.UserGroup[] UserGroupsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderService.User UserLastChangedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -978,6 +1003,19 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsModified {
+            get {
+                return this.IsModifiedField;
+            }
+            set {
+                if ((this.IsModifiedField.Equals(value) != true)) {
+                    this.IsModifiedField = value;
+                    this.RaisePropertyChanged("IsModified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.Project Project {
             get {
                 return this.ProjectField;
@@ -1030,6 +1068,19 @@ namespace CFAP.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime SummaryDate {
+            get {
+                return this.SummaryDateField;
+            }
+            set {
+                if ((this.SummaryDateField.Equals(value) != true)) {
+                    this.SummaryDateField = value;
+                    this.RaisePropertyChanged("SummaryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderService.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -1038,6 +1089,19 @@ namespace CFAP.DataProviderService {
                 if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
                     this.UserGroupsField = value;
                     this.RaisePropertyChanged("UserGroups");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderService.User UserLastChanged {
+            get {
+                return this.UserLastChangedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserLastChangedField, value) != true)) {
+                    this.UserLastChangedField = value;
+                    this.RaisePropertyChanged("UserLastChanged");
                 }
             }
         }

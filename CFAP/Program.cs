@@ -18,6 +18,7 @@ namespace CFAP
             //AddUser();
             List<Summary> summaries = GetSummary();
             //AddSummaries(summaries.FirstOrDefault(), mainUser);
+            summaries = GetSummary();
             UpdateSummary(summaries.ToArray(), mainUser);
         }
 
@@ -115,7 +116,10 @@ namespace CFAP
                 Project = summary.Project,
                 BudgetItem = summary.BudgetItem,
                 Description = summary.Description,
-                SummaGrn = 100                
+                SummaGrn = 100,
+                UserGroups = new UserGroup[] { user.UserGroups[1] },
+                IsModified = true
+                ,SummaryDate = DateTime.Now                
             };
             Summary s2 = new Summary()
             {
@@ -123,7 +127,9 @@ namespace CFAP
                 Project = summary.Project,
                 BudgetItem = summary.BudgetItem,
                 Description = summary.Description,
-                SummaGrn = 300
+                SummaGrn = 300,
+                IsModified = true
+                ,SummaryDate = DateTime.Now
             };
 
             try
@@ -157,9 +163,13 @@ namespace CFAP
 
             summaries[0].SummaGrn = 1000;
             summaries[0].Project = new Project() { Id=36, ProjectName="Project3" };
+            summaries[0].IsModified = true;
+            summaries[0].SummaryDate = DateTime.Now.AddDays(1);
+            summaries[0].UserLastChanged = new User() { Id = 2, UserName = "Liubov", Password = "2kuSN7rMzfGcB2DKt67EqDWQELA=" };
 
             summaries[1].SummaGrn = 2000;
             summaries[1].Project = new Project() { Id = 37, ProjectName = "Project2" };
+            summaries[1].IsModified = true;
 
             try
             {

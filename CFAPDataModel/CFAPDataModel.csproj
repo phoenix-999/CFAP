@@ -84,6 +84,14 @@
     <Compile Include="Migrations\201905151036210_backup b, b2.Designer.cs">
       <DependentUpon>201905151036210_backup b, b2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905160643294_Add UserGroup.CanUseAllData.cs" />
+    <Compile Include="Migrations\201905160643294_Add UserGroup.CanUseAllData.Designer.cs">
+      <DependentUpon>201905160643294_Add UserGroup.CanUseAllData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905160716240_Change Summary.cs" />
+    <Compile Include="Migrations\201905160716240_Change Summary.Designer.cs">
+      <DependentUpon>201905160716240_Change Summary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -124,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905151036210_backup b, b2.resx">
       <DependentUpon>201905151036210_backup b, b2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905160643294_Add UserGroup.CanUseAllData.resx">
+      <DependentUpon>201905160643294_Add UserGroup.CanUseAllData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905160716240_Change Summary.resx">
+      <DependentUpon>201905160716240_Change Summary.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

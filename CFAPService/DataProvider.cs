@@ -61,12 +61,20 @@ namespace CFAPService
 
             using (CFAPContext ctx = new CFAPContext())
             {
-                //Перебор все summary и установка состояния свойств
-                foreach (var s in summaries)
+                var modifiedSummary = (from s in summaries
+                                      where s.IsModified == true
+                                      select s).ToList();
+                //Перебор измененных или добавленных все summary и установка состояния свойств
+                foreach (var s in modifiedSummary)
                 {
                     if (s.UserGroups == null || s.UserGroups.Count == 0)
                     {
                         s.UserGroups = user.UserGroups;
+                    }
+
+                    if (s.UserLastChanged == null || s.UserLastChanged.Id != user.Id)
+                    {
+                        s.UserLastChanged = user;
                     }
 
                     s.SetStateProperties(ctx);
@@ -80,7 +88,7 @@ namespace CFAPService
                 //Добавление полученого списка в БД
                 try
                 {
-                    ctx.Summaries.AddOrUpdate<Summary>(summaries.ToArray());
+                    ctx.Summaries.AddOrUpdate<Summary>(modifiedSummary.ToArray());
                     ctx.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
