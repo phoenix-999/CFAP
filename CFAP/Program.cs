@@ -18,11 +18,82 @@ namespace CFAP
             //AddUser();
             List<Summary> summaries = GetSummary();
             //AddSummaries(summaries.FirstOrDefault(), mainUser);
-            summaries = GetSummary();
-            UpdateSummary(summaries.ToArray(), mainUser);
+            //summaries = GetSummary();
+            //UpdateSummaries(summaries.ToArray(), mainUser);
+
+            //AddSummary(summaries[0], mainUser);
+            UpdateSummary(summaries[1], mainUser);
         }
 
+        static void UpdateSummary(Summary oldSummary, User user)
+        {
+            oldSummary.SummaGrn = 5000;
+            oldSummary.Project = new Project() { Id = 36, ProjectName = "Project3" };
+            oldSummary.SummaryDate = DateTime.Now.AddDays(1);
+            oldSummary.IsModified = true;
+
+            try
+            {
+                DataProviderProxy.AlterSummary(oldSummary, mainUser);
+                Console.WriteLine("Summary добавлена");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine("Ошибка аутентификации");
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации:");
+                foreach (var e in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine(e.Key + " => " + e.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+        }
         
+        static void AddSummary(Summary anySummary, User user)
+        {
+            Console.WriteLine("Добавление одной summary");
+            Summary s1 = new Summary()
+            {
+                Accountable = anySummary.Accountable,
+                Project = anySummary.Project,
+                BudgetItem = anySummary.BudgetItem,
+                Description = anySummary.Description,
+                SummaGrn = 400,
+                UserGroups = new UserGroup[] { user.UserGroups[1] },
+                IsModified = true,
+                SummaryDate = DateTime.Now
+            };
+
+            try
+            {
+                DataProviderProxy.AlterSummary(s1, mainUser);
+                Console.WriteLine("Summary добавлена");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine("Ошибка аутентификации");
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации:");
+                foreach (var e in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine(e.Key + " => " + e.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+        }
 
         static User Authenticate()
         {
@@ -157,7 +228,7 @@ namespace CFAP
         }
         
 
-        static void UpdateSummary(Summary[] summaries, User user)
+        static void UpdateSummaries(Summary[] summaries, User user)
         {
             Console.WriteLine("Обновление summary");
 

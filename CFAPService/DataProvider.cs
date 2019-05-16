@@ -53,6 +53,21 @@ namespace CFAPService
             AddOrUpdateSummaries(summaries, user);
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public void AlterSummary(Summary summary, User user)
+        {
+            ///<summary>
+            ///Метод добавляет или обновляет одну сущность
+            ///</summary>
+
+            //Имитация коллекции для передачи одной сущности в метод обновления или добавления
+            //Позволяет избежать доблирования кода
+            List<Summary> summaries = new List<Summary>();
+            summaries.Add(summary);
+
+            AddOrUpdateSummaries(summaries, user);
+        }
+
         private void AddOrUpdateSummaries(List<Summary> summaries, User user)
         {
             //Провести атунтификацию пользователя с шифрованным паролем

@@ -55,18 +55,31 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AlterSummary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="summary" nillable="true" type="q9:Summary" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q10:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlterSummaryResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSummary">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q9:User" />
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q10:Filter" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q11:User" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q12:Filter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSummaryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetSummaryResult" nillable="true" type="q11:ArrayOfSummary" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetSummaryResult" nillable="true" type="q13:ArrayOfSummary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

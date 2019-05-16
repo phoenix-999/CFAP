@@ -44,6 +44,14 @@ namespace CFAPService
         void AlterSummaries(List<Summary> summaries, User user);
 
         [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        void AlterSummary(Summary summary, User user);
+
+        [OperationContract]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
     }
