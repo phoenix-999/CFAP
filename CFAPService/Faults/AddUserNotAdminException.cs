@@ -14,13 +14,11 @@ namespace CFAPService.Faults
     {
 
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-        public AddUserNotAdminException() { }
         public AddUserNotAdminException(User user)
         {
             this.UserId = user.Id;
             this.UserName = user.UserName;
-            Log.Error(string.Format("Попытка добавить нового пользователя не админом для пользователя {0}", user.UserName));
+            Log.Error(string.Format("Попытка добавить нового или изменить данные существующего пользователя не админом. Для пользователя {0}", user.UserName));
         }
 
         [DataMember]
@@ -32,7 +30,7 @@ namespace CFAPService.Faults
         [DataMember]
         public virtual string Message
         {
-            get { return string.Format("Пользователь {0} не обладает необходимыми правами для добавления новых пользователей.", UserName); }
+            get { return string.Format("Пользователь {0} не обладает необходимыми правами для добавления новых или изменение данных существующих пользователей.", UserName); }
             set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
     }

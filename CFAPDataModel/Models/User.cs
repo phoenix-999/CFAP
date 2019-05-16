@@ -32,6 +32,9 @@ namespace CFAPDataModel.Models
         public string Password { get; set; }
 
         [DataMember]
+        public bool IsAdmin { get; set; }
+
+        [DataMember]
         public bool CanAddNewUsers { get; set; }
 
         [Timestamp]

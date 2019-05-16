@@ -12,9 +12,11 @@ namespace CFAP
     {
         static DataProviderClient DataProviderProxy = new DataProviderClient();
         static User mainUser;
+        static User secondUser;
         static void Main(string[] args)
         {
-            mainUser = Authenticate();
+            mainUser = Authenticate("yurii", "1");
+            secondUser = Authenticate("Liubov", "2"); //2kuSN7rMzfGcB2DKt67EqDWQELA=
             //AddUser();
             List<Summary> summaries = GetSummary();
             //AddSummaries(summaries.FirstOrDefault(), mainUser);
@@ -22,7 +24,42 @@ namespace CFAP
             //UpdateSummaries(summaries.ToArray(), mainUser);
 
             //AddSummary(summaries[0], mainUser);
-            UpdateSummary(summaries[1], mainUser);
+            //UpdateSummary(summaries[1], mainUser);
+
+            
+
+            //UpdateUser(secondUser, mainUser);
+        }
+
+        static void UpdateUser(User user, User owner)
+        {
+            user.IsAdmin = true;
+            var userGroup1 = new UserGroup() { Id = 2, GroupName = "Office1" };
+            user.UserGroups = new UserGroup[] { userGroup1 };
+            user.Password = "2";
+
+            try
+            {
+                DataProviderProxy.UpdateUser(user, mainUser);
+                Console.WriteLine("Пользователь {0} обновлен.", user.UserName);
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации:");
+                foreach (var e in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine(e.Key + " => " + e.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+
         }
 
         static void UpdateSummary(Summary oldSummary, User user)
@@ -95,9 +132,11 @@ namespace CFAP
             }
         }
 
-        static User Authenticate()
+        static User Authenticate(string userName, string password)
         {
-            User user = new User() { UserName = "yurii", Password = "1"};
+            Console.WriteLine("Аутентификация пользователя {0}", userName);
+
+            User user = new User() { UserName = userName, Password = password };
             User receivedUser = null;
             try
             {
@@ -107,7 +146,15 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Detail.Message);
             }
-            catch(FaultException<DbException> ex)
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибка валидации:");
+                foreach (var err in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine("{0} => {1}", err.Key, err.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }
@@ -139,7 +186,15 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Detail.Message);
             }
-            catch(FaultException<DbException> ex)
+            catch (FaultException<DataNotValidException> ex)
+            {
+                Console.WriteLine("Ошибки валидации:");
+                foreach (var e in ex.Detail.ValidationErrors)
+                {
+                    Console.WriteLine(e.Key + " => " + e.Value);
+                }
+            }
+            catch (FaultException<DbException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }

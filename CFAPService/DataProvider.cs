@@ -42,8 +42,66 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void UpdateUser(User userForUpdate, User owner)
         {
-            
-            //TODO Реализовать метод изменения данных пользователя
+            //Аутентификация пользователя-владельца
+            AuthenticateUser(owner);
+
+            //Проверка - иммеет ли право владелец добавлять или изменять данные пользователей (User.CanAddNewUser)
+            if (owner.CanAddNewUsers == false)
+            {
+                //Если ложь - сбой
+                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
+            }
+
+            //Создание экземпляра контекста
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                //Загрузка в контекст данных о группах пользователя
+                userForUpdate.LoadUserGroups(ctx);
+
+                //Отмена изменения пароля
+
+                userForUpdate.Password = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
+
+                //Обновление данных о пользователе путем удаление старого пользователя и добавления нового.
+                //При обчном изменении данных не меняються ссылочные коллеции
+                using (var transaction = ctx.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        //Удаление старых данных пользователя
+                        var oldUser = (from u in ctx.Users where u.Id == userForUpdate.Id select u).Single();
+
+                        //Сохранение старого идентификатора
+                        int id = oldUser.Id;
+                        userForUpdate.Id = id;
+
+                        ctx.Users.Remove(oldUser);
+                        ctx.SaveChanges();
+
+                        //Добавление новых данных о пользователе
+                        //Меняеться идентификатор
+                        ctx.Users.Add(userForUpdate);
+                        ctx.SaveChanges();
+
+
+                        //Подтверждение завершения транзакции
+                        transaction.Commit();
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        transaction.Rollback();
+                        throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new FaultException<DbException>(new DbException(ex));
+                    }
+                }
+            }
+
+
+
 
         }
 
@@ -130,7 +188,6 @@ namespace CFAPService
 
         }
 
-
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
             HashSet<Summary> result = new HashSet<Summary>();
@@ -201,6 +258,10 @@ namespace CFAPService
                     newUser.LoadUserGroups(ctx);
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
                 }
                 catch (Exception ex)
                 {

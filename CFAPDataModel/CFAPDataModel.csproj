@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201905160716240_Change Summary.Designer.cs">
       <DependentUpon>201905160716240_Change Summary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905161052482_Add filed User.IsAdmin.cs" />
+    <Compile Include="Migrations\201905161052482_Add filed User.IsAdmin.Designer.cs">
+      <DependentUpon>201905161052482_Add filed User.IsAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -138,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905160716240_Change Summary.resx">
       <DependentUpon>201905160716240_Change Summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161052482_Add filed User.IsAdmin.resx">
+      <DependentUpon>201905161052482_Add filed User.IsAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
