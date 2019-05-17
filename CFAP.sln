@@ -12,7 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAPDataModel", "CFAPDataMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAPService", "CFAPService\CFAPService.csproj", "{843B8625-833A-435A-9EFD-779B7FE839D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData", "TestData\TestData.csproj", "{89BBACF7-8893-4E46-90BC-1B920019EA4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{C74C5703-2C29-43AF-B8C2-E6C939317729}"
+	ProjectSection(ProjectDependencies) = postProject
+		{843B8625-833A-435A-9EFD-779B7FE839D7} = {843B8625-833A-435A-9EFD-779B7FE839D7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +35,10 @@ Global
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89BBACF7-8893-4E46-90BC-1B920019EA4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89BBACF7-8893-4E46-90BC-1B920019EA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89BBACF7-8893-4E46-90BC-1B920019EA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89BBACF7-8893-4E46-90BC-1B920019EA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
