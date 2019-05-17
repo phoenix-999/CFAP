@@ -22,6 +22,17 @@ namespace CFAPService
     {
         public User Authenticate(User user)
         {
+            if (
+                    user == null
+                    || user.UserName == null
+                    || user.Password == null
+                    || user.UserName.Length == 0
+                    || user.Password.Length == 0
+               )
+            {
+                throw new FaultException<ArgumentNullException>(new ArgumentNullException("Не введен логин или пароль."));
+            }
+
             User result = (User)AuthenticateUser(user, false);
             return result;
         }
@@ -205,6 +216,8 @@ namespace CFAPService
 
         private User AuthenticateUser(User user, bool hasEncriptedPassword = true)
         {
+            
+
             User result = null;
 
             if (!hasEncriptedPassword)

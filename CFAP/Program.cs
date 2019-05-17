@@ -142,6 +142,10 @@ namespace CFAP
             {
                 receivedUser = DataProviderProxy.Authenticate(user);
             }
+            catch (FaultException<ArgumentNullException> ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             catch(FaultException<AutenticateFaultException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);

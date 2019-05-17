@@ -14,8 +14,9 @@ namespace UnitTest
 
         DataProviderClient DataProviderProxy = new DataProviderClient();
 
+        #region Authenticate
         [TestMethod]
-        void Authenticate()
+        public void Authenticate()
         {
             User user = new User() { UserName = "yurii", Password = "1" };
             MainUser = DataProviderProxy.Authenticate(user);
@@ -36,7 +37,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        void AuthenticateUserGroups()
+        public void AuthenticateUserGroups()
         {
             User user = new User() { UserName = "yurii", Password = "1" };
             MainUser = DataProviderProxy.Authenticate(user);
@@ -65,5 +66,13 @@ namespace UnitTest
 
         }
 
+        [TestMethod]
+        public void AuthenticateArgumentNullExceptions()
+        {
+            User user = new User();
+
+            Assert.ThrowsException<FaultException<ArgumentNullException>>(()=> { DataProviderProxy.Authenticate(user); });
+        }
+        #endregion
     }
 }

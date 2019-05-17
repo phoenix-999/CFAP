@@ -82,6 +82,9 @@
     <None Include="Connected Services\DataProviderService\mex5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\DataProviderService\mex6.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Summary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

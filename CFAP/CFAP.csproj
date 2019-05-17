@@ -80,6 +80,9 @@
     <None Include="Connected Services\DataProviderService\mex5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\DataProviderService\mex6.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\DataProviderService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

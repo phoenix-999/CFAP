@@ -17,6 +17,7 @@ namespace CFAPService
         [OperationContract]
         [FaultContract(typeof(AutenticateFaultException))]
         [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(ArgumentNullException))]
         User Authenticate(User user);
 
         [OperationContract]

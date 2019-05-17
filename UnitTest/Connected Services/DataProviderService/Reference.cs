@@ -1325,6 +1325,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AuthenticateAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ArgumentNullException), Action="http://tempuri.org/IDataProvider/AuthenticateArgumentNullExceptionFault", Name="ArgumentNullException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
