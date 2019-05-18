@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Context\CFAPContext.cs" />
     <Compile Include="Context\NLogCommandInterceptor.cs" />
+    <Compile Include="Context\DbConcurrencyUpdateOptions.cs" />
     <Compile Include="Migrations\201905140758105_InitialCreate.cs" />
     <Compile Include="Migrations\201905140758105_InitialCreate.Designer.cs">
       <DependentUpon>201905140758105_InitialCreate.cs</DependentUpon>
@@ -106,7 +107,6 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveChangesOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

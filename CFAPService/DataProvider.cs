@@ -13,6 +13,7 @@ using System.Data.Entity.Validation;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace CFAPService
 {
@@ -87,12 +88,12 @@ namespace CFAPService
                         userForUpdate.Id = id;
 
                         ctx.Users.Remove(oldUser);
-                        ctx.SaveChanges();
+                        ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
 
                         //Добавление новых данных о пользователе
                         //Меняеться идентификатор
                         ctx.Users.Add(userForUpdate);
-                        ctx.SaveChanges();
+                        ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
 
 
                         //Подтверждение завершения транзакции
@@ -119,11 +120,11 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AlterSummaries(List<Summary> summaries, User user)
         {
-            AddOrUpdateSummaries(summaries, user);
+            AddOrUpdateSummaries(summaries, user, DbConcurencyUpdateOptions.ClientPriority);
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void AlterSummary(Summary summary, User user)
+        public void AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption = DbConcurencyUpdateOptions.None)
         {
             ///<summary>
             ///Метод добавляет или обновляет одну сущность
@@ -134,10 +135,10 @@ namespace CFAPService
             List<Summary> summaries = new List<Summary>();
             summaries.Add(summary);
 
-            AddOrUpdateSummaries(summaries, user);
+            AddOrUpdateSummaries(summaries, user, concurencyUpdateOption);
         }
 
-        private void AddOrUpdateSummaries(List<Summary> summaries, User user)
+        private void AddOrUpdateSummaries(List<Summary> summaries, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             //Провести атунтификацию пользователя с шифрованным паролем
             //В случае отсутсвия пользователя - сбой аутентификации
@@ -173,7 +174,11 @@ namespace CFAPService
                 try
                 {
                     ctx.Summaries.AddOrUpdate<Summary>(modifiedSummary.ToArray());
-                    ctx.SaveChanges();
+                    ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    throw new FaultException<DbUpdateConcurrencyException>(ex);
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -270,7 +275,7 @@ namespace CFAPService
                 {
                     newUser.LoadUserGroups(ctx);
                     ctx.Users.Add(newUser);
-                    ctx.SaveChanges();
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
                 }
                 catch (DbEntityValidationException ex)
                 {

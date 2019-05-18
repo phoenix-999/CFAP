@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CFAPDataModel
 {
-    public enum SaveChangesOptions
+    public enum DbConcurencyUpdateOptions
     {
-        DbPriority,
-        ClientPriority
+        None,
+        ClientPriority,
+        DatabasePriority
     }
 }

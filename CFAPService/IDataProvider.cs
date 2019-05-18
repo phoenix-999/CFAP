@@ -7,7 +7,8 @@ using System.ServiceModel;
 using CFAPDataModel.Models;
 using CFAPService.Faults;
 using System.Data.Entity.Validation;
-
+using System.Data.Entity.Infrastructure;
+using CFAPDataModel;
 
 namespace CFAPService
 {
@@ -50,7 +51,8 @@ namespace CFAPService
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
-        void AlterSummary(Summary summary, User user);
+        [FaultContract(typeof(DbUpdateConcurrencyException))]
+        void AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions = DbConcurencyUpdateOptions.None);
 
         [OperationContract]
         [FaultContract(typeof(DbException))]

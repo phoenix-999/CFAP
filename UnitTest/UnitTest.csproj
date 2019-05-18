@@ -85,11 +85,14 @@
     <None Include="Connected Services\DataProviderService\mex6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Summary.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Connected Services\DataProviderService\mex7.xsd">
+      <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Connected Services\DataProviderService\mex71.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderService\mex72.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CFAPDataModel.Models.Summary.datasource" />

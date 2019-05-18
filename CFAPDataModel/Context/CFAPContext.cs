@@ -54,7 +54,7 @@
             }
         }
 
-        private int SaveChangesFullData()
+        private int SaveChangesFullData(DbConcurencyUpdateOptions concurrencyOption)
         {
             CalculateSummary();
 
@@ -70,20 +70,37 @@
                 catch (DbUpdateConcurrencyException ex)
                 {
                     saveFailed = true;
-                    var entry = ex.Entries.Single(); //Перезагрузка исходного значения свойства сущности с БД для решения проблемы оптимистичного параллелизма.
-                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                    //entry.CurrentValues.SetValues(entry.GetDatabaseValues());//Приоритет БД
+                    var entry = ex.Entries.Single();//Перезагрузка исходного значения свойства сущности с БД для решения проблемы оптимистичного параллелизма.
+
+                    switch (concurrencyOption)
+                    {
+                        case DbConcurencyUpdateOptions.None:
+                            throw ex;
+                            break;
+                        case DbConcurencyUpdateOptions.ClientPriority:
+                            entry.OriginalValues.SetValues(entry.GetDatabaseValues());//Приоритет клиента
+                            break;
+                        case DbConcurencyUpdateOptions.DatabasePriority:
+                            entry.CurrentValues.SetValues(entry.GetDatabaseValues());//Приоритет БД
+                            break;
+                    }
                 }
             } while (saveFailed);
 
             return result;
         }
 
+        //Метод переопределен для действия по умоланию с учетом дополнений внесенных в классе
         public override int SaveChanges()
+        {
+            return this.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+        }
+
+        public int SaveChanges(DbConcurencyUpdateOptions concurrencyOption)
         {
             int result = 0;
 
-            result = SaveChangesFullData();
+            result = SaveChangesFullData(concurrencyOption);
 
             return result;
         }
