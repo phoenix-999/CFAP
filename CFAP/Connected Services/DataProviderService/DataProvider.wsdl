@@ -999,7 +999,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AlterSummary_DbUpdateConcurrencyExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AlterSummary_ConcurrencyExceptionOf_SummaryFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1127,10 +1127,8 @@
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System.Data.Entity.Infrastructure" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDataProvider_Authenticate_InputMessage">
@@ -1220,8 +1218,8 @@
   <wsdl:message name="IDataProvider_AlterSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
     <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q19:TryChangeReadOnlyFiledException" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_AlterSummary_DbUpdateConcurrencyExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/System.Data.Entity.Infrastructure" name="detail" element="q20:DbUpdateConcurrencyException" />
+  <wsdl:message name="IDataProvider_AlterSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q20:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSummary" />
@@ -1271,7 +1269,7 @@
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_AlterSummary_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaryDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AlterSummary_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaryTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_AlterSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaryDbUpdateConcurrencyExceptionFault" name="DbUpdateConcurrencyExceptionFault" message="tns:IDataProvider_AlterSummary_DbUpdateConcurrencyExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaryConcurrencyExceptionOf_SummaryFault" name="ConcurrencyExceptionOf_SummaryFault" message="tns:IDataProvider_AlterSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSummary">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetSummary" message="tns:IDataProvider_GetSummary_InputMessage" />
@@ -1416,9 +1414,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummary_TryChangeReadOnlyFiledExceptionFault_Fault" />
         <soap12:fault use="literal" name="TryChangeReadOnlyFiledExceptionFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="DbUpdateConcurrencyExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummary_DbUpdateConcurrencyExceptionFault_Fault" />
-        <soap12:fault use="literal" name="DbUpdateConcurrencyExceptionFault" namespace="" />
+      <wsdl:fault name="ConcurrencyExceptionOf_SummaryFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummary_ConcurrencyExceptionOf_SummaryFault_Fault" />
+        <soap12:fault use="literal" name="ConcurrencyExceptionOf_SummaryFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSummary">

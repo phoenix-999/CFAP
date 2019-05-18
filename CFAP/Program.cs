@@ -19,16 +19,16 @@ namespace CFAP
             secondUser = Authenticate("Liubov", "2"); //2kuSN7rMzfGcB2DKt67EqDWQELA=
             //AddUser();
             List<Summary> summaries = GetSummary();
-            AddSummaries(summaries.FirstOrDefault(), mainUser);
+            //AddSummaries(summaries.FirstOrDefault(), mainUser);
             summaries = GetSummary();
-            UpdateSummaries(summaries.ToArray(), mainUser);
+            //UpdateSummaries(summaries.ToArray(), mainUser);
 
-            AddSummary(summaries[0], mainUser);
+            //AddSummary(summaries[0], mainUser);
             UpdateSummary(summaries[1], mainUser);
 
             
 
-            UpdateUser(secondUser, mainUser);
+            //UpdateUser(secondUser, mainUser);
         }
 
         static void UpdateUser(User user, User owner)
@@ -71,7 +71,7 @@ namespace CFAP
 
             try
             {
-                DataProviderProxy.AlterSummary(oldSummary, mainUser,DbConcurencyUpdateOptions.None);
+                DataProviderProxy.AlterSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
                 Console.WriteLine("Summary добавлена");
             }
             catch (FaultException<AutenticateFaultException> ex)
@@ -86,6 +86,12 @@ namespace CFAP
                 {
                     Console.WriteLine(e.Key + " => " + e.Value);
                 }
+            }
+            catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> ex)
+            {
+                Console.WriteLine("Ошибка оптимистичного парралелизма:");
+                Console.WriteLine("Значение сейчас: ", ex.Detail.CurrentValue.Id);
+                Console.WriteLine("Значение в БД: ", ex.Detail.DatabaseValue.Id);
             }
             catch (FaultException<DbException> ex)
             {

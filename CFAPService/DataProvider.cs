@@ -124,7 +124,7 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption = DbConcurencyUpdateOptions.None)
+        public void AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             ///<summary>
             ///Метод добавляет или обновляет одну сущность
@@ -178,7 +178,8 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    throw new FaultException<DbUpdateConcurrencyException>(ex);
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
                 {

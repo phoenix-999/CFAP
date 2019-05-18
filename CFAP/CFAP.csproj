@@ -83,12 +83,6 @@
     <None Include="Connected Services\DataProviderService\mex6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataProviderService\mex7.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\DataProviderService\mex71.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\DataProviderService\mex72.xsd">
       <SubType>Designer</SubType>
     </None>

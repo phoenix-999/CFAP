@@ -76,7 +76,7 @@
                     {
                         case DbConcurencyUpdateOptions.None:
                             throw ex;
-                            break;
+                            //break;
                         case DbConcurencyUpdateOptions.ClientPriority:
                             entry.OriginalValues.SetValues(entry.GetDatabaseValues());//Приоритет клиента
                             break;
