@@ -72,7 +72,7 @@ namespace CFAP
             try
             {
                 DataProviderProxy.AlterSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
-                Console.WriteLine("Summary добавлена");
+                Console.WriteLine("Summary обновлена");
             }
             catch (FaultException<AutenticateFaultException> ex)
             {
