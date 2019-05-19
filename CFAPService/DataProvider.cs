@@ -124,22 +124,70 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        public Summary AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             ///<summary>
-            ///Метод добавляет или обновляет одну сущность
+            ///Метод добавляет или обновляет одну сущность  и возвращает ее в обновленном виде
             ///</summary>
 
-            //Имитация коллекции для передачи одной сущности в метод обновления или добавления
-            //Позволяет избежать доблирования кода
-            List<Summary> summaries = new List<Summary>();
-            summaries.Add(summary);
+            AuthenticateUser(user);
 
-            AddOrUpdateSummaries(summaries, user, concurencyUpdateOption);
+            if (summary.UserGroups == null || summary.UserGroups.Count == 0)
+            {
+                summary.UserGroups = user.UserGroups;
+            }
+
+            if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
+            {
+                summary.UserLastChanged = user;
+            }
+
+            Summary result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                summary.SetStateProperties(ctx);
+
+                if (summary.ReadOnly)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
+                }
+
+                try
+                {
+                    ctx.Summaries.AddOrUpdate<Summary>(summary);
+                    ctx.SaveChanges(concurencyUpdateOption);
+
+                    result = (from s in ctx.Summaries where s.Id == summary.Id select s).Single();
+
+                    result.IsModified = false;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return result;
         }
 
         private void AddOrUpdateSummaries(List<Summary> summaries, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
+
+            ///<summary>
+            ///Обрабаиывает обьекты помечены IsModified
+            /// </summary>
             //Провести атунтификацию пользователя с шифрованным паролем
             //В случае отсутсвия пользователя - сбой аутентификации
             AuthenticateUser(user);

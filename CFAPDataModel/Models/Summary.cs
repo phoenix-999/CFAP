@@ -47,6 +47,7 @@ namespace CFAPDataModel.Models
             }
         }
 
+        [DataMember]
         [Timestamp]
         public byte[] RowVersion { get; set; }
 

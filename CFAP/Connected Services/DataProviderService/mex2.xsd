@@ -113,6 +113,7 @@
       <xs:element minOccurs="0" name="IsModified" type="xs:boolean" />
       <xs:element minOccurs="0" name="Project" nillable="true" type="tns:Project" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="SummaDolar" type="xs:double" />
       <xs:element minOccurs="0" name="SummaGrn" type="xs:double" />
       <xs:element minOccurs="0" name="SummaryDate" type="xs:dateTime" />
