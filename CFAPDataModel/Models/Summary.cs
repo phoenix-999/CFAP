@@ -112,7 +112,7 @@ namespace CFAPDataModel.Models
 
         public void SetStateProperties(CFAPContext ctx)
         {
-            //ctx.Configuration.ProxyCreationEnabled = false;
+            ctx.Configuration.ProxyCreationEnabled = false;
             
             this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First();
             this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();

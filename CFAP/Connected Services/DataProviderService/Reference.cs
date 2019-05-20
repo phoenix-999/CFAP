@@ -1498,6 +1498,19 @@ namespace CFAP.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderService.Summary> UpdateSummaryAsync(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/RemoveSummaryAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/RemoveSummaryTryChangeReadOnlyFiledExceptionFaul" +
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" +
+            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        int RemoveSummary(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
+        System.Threading.Tasks.Task<int> RemoveSummaryAsync(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter);
@@ -1579,6 +1592,14 @@ namespace CFAP.DataProviderService {
         
         public System.Threading.Tasks.Task<CFAP.DataProviderService.Summary> UpdateSummaryAsync(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.UpdateSummaryAsync(summary, user, concurencyUpdateOptions);
+        }
+        
+        public int RemoveSummary(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.RemoveSummary(summary, user, concurencyUpdateOptions);
+        }
+        
+        public System.Threading.Tasks.Task<int> RemoveSummaryAsync(CFAP.DataProviderService.Summary summary, CFAP.DataProviderService.User user, CFAP.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.RemoveSummaryAsync(summary, user, concurencyUpdateOptions);
         }
         
         public CFAP.DataProviderService.Summary[] GetSummary(CFAP.DataProviderService.User user, CFAP.DataProviderService.Filter filter) {

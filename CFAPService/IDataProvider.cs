@@ -64,6 +64,14 @@ namespace CFAPService
         Summary UpdateSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        [FaultContract(typeof(ConcurrencyException<Summary>))]
+        int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
+
+        [OperationContract]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
     }

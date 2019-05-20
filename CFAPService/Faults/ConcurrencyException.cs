@@ -24,7 +24,8 @@ namespace CFAPService.Faults
         {
             var entry =  ex.Entries.Single();
 
-            this.CurrentValue = (T)entry.CurrentValues.ToObject();
+            if (entry.State != System.Data.Entity.EntityState.Deleted)
+                this.CurrentValue = (T)entry.CurrentValues.ToObject();
 
             this.DatabaseValue = (T)entry.GetDatabaseValues().ToObject();
 

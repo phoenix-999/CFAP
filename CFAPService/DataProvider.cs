@@ -208,7 +208,7 @@ namespace CFAPService
 
                 try
                 {
-                    //В данном случае AddOrUpdate не сработат. Он перезагружет сущности в контекс и формирует уже актуальное поле RowVersion
+                    //В данном случае AddOrUpdate не сработает в выдаче исключения оптимистичного паралелизма. Он перезагружет сущности в контекс и формирует уже актуальное поле RowVersion
                     ctx.Summaries.Attach(summary);
 
                     ctx.Entry(summary).State = EntityState.Modified;
@@ -234,6 +234,51 @@ namespace CFAPService
                 }
             }
 
+
+            return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            int result = 0;
+
+            
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
+                {
+                    summary.UserLastChanged = user;
+                }
+
+                summary.SetStateProperties(ctx);
+
+                if (summary.ReadOnly)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
+                }
+
+                try
+                {
+                    ctx.Summaries.Attach(summary);
+
+                    ctx.Entry(summary).State = EntityState.Deleted;
+
+                    result = ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+
+            }
 
             return result;
         }

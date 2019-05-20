@@ -87,18 +87,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RemoveSummary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="summary" nillable="true" type="q16:Summary" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q17:User" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="concurencyUpdateOptions" type="q18:DbConcurencyUpdateOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveSummaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveSummaryResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSummary">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q16:User" />
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q17:Filter" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q19:User" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q20:Filter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSummaryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetSummaryResult" nillable="true" type="q18:ArrayOfSummary" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetSummaryResult" nillable="true" type="q21:ArrayOfSummary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

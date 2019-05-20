@@ -23,10 +23,11 @@ namespace CFAP
             summaries = GetSummary();
             //UpdateSummaries(summaries.ToArray(), mainUser);
 
-            AddSummary(summaries[0], mainUser);
+            //AddSummary(summaries[0], mainUser);
             //UpdateSummary(summaries[1], mainUser);
+            DeleteSummary(summaries[1], mainUser);
 
-            
+
 
             //UpdateUser(secondUser, mainUser);
         }
@@ -75,7 +76,7 @@ namespace CFAP
 
                 oldSummary.SummaGrn = 10000;
                 //oldSummary.RowVersion = result.RowVersion;
-                DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.DatabasePriority);
+                DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
 
                 Console.WriteLine("Summary обновлена");
             }
@@ -103,7 +104,36 @@ namespace CFAP
                 Console.WriteLine(ex.Detail.Message);
             }
         }
-        
+
+        static void DeleteSummary(Summary oldSummary, User user)
+        {
+            try
+            {
+                var result = DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
+
+                DataProviderProxy.RemoveSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
+
+                Console.WriteLine("Summary удалена");
+            }
+            catch (FaultException<AutenticateFaultException> ex)
+            {
+                Console.WriteLine("Ошибка аутентификации");
+                Console.WriteLine(ex.Detail.Message);
+            }
+            catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> ex)
+            {
+                Console.WriteLine("Ошибка оптимистичного парралелизма:");
+                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaGrn);
+
+                if (ex.Detail.CurrentValue != null)
+                    Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaGrn);
+            }
+            catch (FaultException<DbException> ex)
+            {
+                Console.WriteLine(ex.Detail.Message);
+            }
+        }
+
         static void AddSummary(Summary anySummary, User user)
         {
             Console.WriteLine("Добавление одной summary");
