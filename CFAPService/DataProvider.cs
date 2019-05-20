@@ -390,16 +390,22 @@ namespace CFAPService
             {
                 //Отключение создания прокси-классов наследников для сущностей. Позволяет использовать DataContractAttribute для класса сущности.
                 ctx.Configuration.ProxyCreationEnabled = false;
+
                 var query = from u in ctx.Users
                             where u.Password == user.Password && u.UserName == user.UserName
-                            select new { User = u, UserGoup = u.UserGroups};
+                            select new { User = u, UserGroup = u.UserGroups};
 
                 try
                 {
-                    result = query.FirstOrDefault().User;
+                    var resultQuery = query.Single();
+                    result = resultQuery.User;
                     //var groups = ctx.UserGroups.Include("Users").ToList(); //В этом случае ProxyCreationEnabled = true
-                    var groups = query.FirstOrDefault().UserGoup;
+                    var groups = resultQuery.UserGroup;
                     result.UserGroups = groups.ToList();
+                }
+                catch(InvalidOperationException ex) //На случай если query.Single(); ничего не вернет или врнет больше одного результата
+                {
+                    throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
                 }
                 catch(Exception ex)
                 {
@@ -409,7 +415,7 @@ namespace CFAPService
 
             if (result == null)
             {
-                FaultException<AutenticateFaultException> fault = new FaultException<AutenticateFaultException>(new AutenticateFaultException(user));
+                FaultException<AuthenticateFaultException> fault = new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
                 throw fault;
             }
 

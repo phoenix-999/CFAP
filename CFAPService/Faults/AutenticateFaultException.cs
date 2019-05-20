@@ -12,12 +12,12 @@ using NLog;
 namespace CFAPService.Faults
 {
     [DataContract]
-    public class AutenticateFaultException
+    public class AuthenticateFaultException
     {
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        public AutenticateFaultException() { }
-        public AutenticateFaultException(User user)
+        public AuthenticateFaultException() { }
+        public AuthenticateFaultException(User user)
         {
             Log.Error(string.Format("Ошибка аутентификации для пользователя {0}", user.UserName) );
         }

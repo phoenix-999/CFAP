@@ -15,7 +15,7 @@ namespace CFAP
         static User secondUser;
         static void Main(string[] args)
         {
-            mainUser = Authenticate("yurii", "1");
+            mainUser = Authenticate("yurii", "2");
             secondUser = Authenticate("Liubov", "2"); //2kuSN7rMzfGcB2DKt67EqDWQELA=
             //AddUser();
             List<Summary> summaries = GetSummary();
@@ -25,7 +25,7 @@ namespace CFAP
 
             //AddSummary(summaries[0], mainUser);
             //UpdateSummary(summaries[1], mainUser);
-            DeleteSummary(summaries[1], mainUser);
+            //DeleteSummary(summaries[1], mainUser);
 
 
 
@@ -44,7 +44,7 @@ namespace CFAP
                 DataProviderProxy.UpdateUser(user, mainUser);
                 Console.WriteLine("Пользователь {0} обновлен.", user.UserName);
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }
@@ -80,7 +80,7 @@ namespace CFAP
 
                 Console.WriteLine("Summary обновлена");
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine("Ошибка аутентификации");
                 Console.WriteLine(ex.Detail.Message);
@@ -115,7 +115,7 @@ namespace CFAP
 
                 Console.WriteLine("Summary удалена");
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine("Ошибка аутентификации");
                 Console.WriteLine(ex.Detail.Message);
@@ -154,7 +154,7 @@ namespace CFAP
                 var receivedSummary = DataProviderProxy.AddSummary(s1, mainUser);
                 Console.WriteLine("Summary {0} добавлена", receivedSummary.Id);
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine("Ошибка аутентификации");
                 Console.WriteLine(ex.Detail.Message);
@@ -187,7 +187,7 @@ namespace CFAP
             {
                 Console.WriteLine(ex.Message);
             }
-            catch(FaultException<AutenticateFaultException> ex)
+            catch(FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }
@@ -227,7 +227,7 @@ namespace CFAP
                  DataProviderProxy.AddNewUser(user, mainUser);
                  Console.WriteLine("Пользователь {0} добавлен.", user.UserName);
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine(ex.Detail.Message);
             }
@@ -308,7 +308,7 @@ namespace CFAP
                 DataProviderProxy.AlterSummaries(new Summary[] { s1, s2}, mainUser);
                 Console.WriteLine("Summaries добавлены");
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine("Ошибка аутентификации");
                 Console.WriteLine(ex.Detail.Message);
@@ -347,7 +347,7 @@ namespace CFAP
                 DataProviderProxy.AlterSummaries(summaries, mainUser);
                 Console.WriteLine("Summaries обновлены");
             }
-            catch (FaultException<AutenticateFaultException> ex)
+            catch (FaultException<AuthenticateFaultException> ex)
             {
                 Console.WriteLine("Ошибка аутентификации");
                 Console.WriteLine(ex.Detail.Message);

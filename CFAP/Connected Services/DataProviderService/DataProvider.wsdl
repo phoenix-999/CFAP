@@ -161,7 +161,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_Authenticate_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_Authenticate_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -318,7 +318,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddNewUser_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -505,7 +505,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateUser_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -692,7 +692,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AlterSummaries_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -879,7 +879,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddSummary_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddSummary_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1096,7 +1096,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateSummary_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1313,7 +1313,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_RemoveSummary_AutenticateFaultExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1541,8 +1541,8 @@
   <wsdl:message name="IDataProvider_Authenticate_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_Authenticate_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q1:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_Authenticate_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q1:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q2:DbException" />
@@ -1556,8 +1556,8 @@
   <wsdl:message name="IDataProvider_AddNewUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddNewUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_AddNewUser_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q4:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q4:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q5:DbException" />
@@ -1574,8 +1574,8 @@
   <wsdl:message name="IDataProvider_UpdateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_UpdateUser_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q9:DbException" />
@@ -1592,8 +1592,8 @@
   <wsdl:message name="IDataProvider_AlterSummaries_OutputMessage">
     <wsdl:part name="parameters" element="tns:AlterSummariesResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_AlterSummaries_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:DbException" />
@@ -1610,8 +1610,8 @@
   <wsdl:message name="IDataProvider_AddSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddSummaryResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_AddSummary_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q16:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_AddSummary_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q16:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q17:DbException" />
@@ -1631,8 +1631,8 @@
   <wsdl:message name="IDataProvider_UpdateSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSummaryResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_UpdateSummary_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q21:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q21:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q22:DbException" />
@@ -1652,8 +1652,8 @@
   <wsdl:message name="IDataProvider_RemoveSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveSummaryResponse" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_RemoveSummary_AutenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:AutenticateFaultException" />
+  <wsdl:message name="IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q27:DbException" />
@@ -1677,14 +1677,14 @@
     <wsdl:operation name="Authenticate">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/Authenticate" message="tns:IDataProvider_Authenticate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateResponse" message="tns:IDataProvider_Authenticate_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_Authenticate_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_Authenticate_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_Authenticate_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:IDataProvider_Authenticate_ArgumentNullExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddNewUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/AddNewUser" message="tns:IDataProvider_AddNewUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserResponse" message="tns:IDataProvider_AddNewUser_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_AddNewUser_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_AddNewUser_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserAddUserNotAdminExceptionFault" name="AddUserNotAdminExceptionFault" message="tns:IDataProvider_AddNewUser_AddUserNotAdminExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage" />
@@ -1692,7 +1692,7 @@
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/UpdateUser" message="tns:IDataProvider_UpdateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserResponse" message="tns:IDataProvider_UpdateUser_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_UpdateUser_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_UpdateUser_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserAddUserNotAdminExceptionFault" name="AddUserNotAdminExceptionFault" message="tns:IDataProvider_UpdateUser_AddUserNotAdminExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_UpdateUser_DataNotValidExceptionFault_FaultMessage" />
@@ -1700,7 +1700,7 @@
     <wsdl:operation name="AlterSummaries">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaries" message="tns:IDataProvider_AlterSummaries_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesResponse" message="tns:IDataProvider_AlterSummaries_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_AlterSummaries_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_AlterSummaries_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AlterSummaries_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AlterSummariesTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_AlterSummaries_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
@@ -1708,7 +1708,7 @@
     <wsdl:operation name="AddSummary">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/AddSummary" message="tns:IDataProvider_AddSummary_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryResponse" message="tns:IDataProvider_AddSummary_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_AddSummary_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_AddSummary_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_AddSummary_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AddSummary_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddSummaryTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_AddSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
@@ -1717,7 +1717,7 @@
     <wsdl:operation name="UpdateSummary">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummary" message="tns:IDataProvider_UpdateSummary_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryResponse" message="tns:IDataProvider_UpdateSummary_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_UpdateSummary_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_UpdateSummary_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_UpdateSummary_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateSummaryTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_UpdateSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
@@ -1726,7 +1726,7 @@
     <wsdl:operation name="RemoveSummary">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummary" message="tns:IDataProvider_RemoveSummary_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryResponse" message="tns:IDataProvider_RemoveSummary_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryAutenticateFaultExceptionFault" name="AutenticateFaultExceptionFault" message="tns:IDataProvider_RemoveSummary_AutenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_RemoveSummary_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_RemoveSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" name="ConcurrencyExceptionOf_SummaryFault" message="tns:IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage" />
@@ -1750,9 +1750,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_Authenticate_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_Authenticate_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_Authenticate_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_Authenticate_DbExceptionFault_Fault" />
@@ -1774,9 +1774,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_DbExceptionFault_Fault" />
@@ -1802,9 +1802,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_DbExceptionFault_Fault" />
@@ -1830,9 +1830,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummaries_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummaries_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AlterSummaries_DbExceptionFault_Fault" />
@@ -1858,9 +1858,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddSummary_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddSummary_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddSummary_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddSummary_DbExceptionFault_Fault" />
@@ -1890,9 +1890,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateSummary_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateSummary_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateSummary_DbExceptionFault_Fault" />
@@ -1922,9 +1922,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AutenticateFaultExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_AutenticateFaultExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AutenticateFaultExceptionFault" namespace="" />
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DbExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_DbExceptionFault_Fault" />

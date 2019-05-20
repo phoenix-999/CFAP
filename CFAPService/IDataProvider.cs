@@ -16,14 +16,14 @@ namespace CFAPService
     interface IDataProvider
     {
         [OperationContract]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(ArgumentNullException))]
         User Authenticate(User user);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(AddUserNotAdminException))]
         [FaultContract(typeof(DataNotValidException))]
@@ -31,7 +31,7 @@ namespace CFAPService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(AddUserNotAdminException))]
         [FaultContract(typeof(DataNotValidException))]
@@ -39,7 +39,7 @@ namespace CFAPService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
@@ -47,7 +47,7 @@ namespace CFAPService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
@@ -56,7 +56,7 @@ namespace CFAPService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
@@ -65,7 +65,7 @@ namespace CFAPService
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Summary>))]
