@@ -158,6 +158,8 @@ namespace CFAPService
 
                     ctx.SaveChanges(DbConcurencyUpdateOptions.None);
 
+                    summary.IsModified = false;
+
                     result = summary;
                 }
                 catch (DbUpdateConcurrencyException ex)
