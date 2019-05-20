@@ -52,7 +52,16 @@ namespace CFAPService
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Summary>))]
-        Summary AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
+        Summary AddSummary(Summary summary, User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AutenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        [FaultContract(typeof(ConcurrencyException<Summary>))]
+        Summary UpdateSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]
         [FaultContract(typeof(DbException))]

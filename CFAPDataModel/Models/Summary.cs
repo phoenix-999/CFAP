@@ -47,10 +47,6 @@ namespace CFAPDataModel.Models
             }
         }
 
-        [DataMember]
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
-
         private double GetRate()
         {
             double result = 0;
@@ -160,6 +156,10 @@ namespace CFAPDataModel.Models
         #region Properies
         [DataMember]
         public int Id { get; set; }
+
+        [Timestamp]
+        [DataMember]
+        public byte[] RowVersion { get; set; }
 
         [DataMember]
         [Column(TypeName = "datetime2")]

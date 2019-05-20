@@ -21,6 +21,7 @@ namespace CFAPService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class DataProvider : IDataProvider
     {
+        #region Котракт службы
         public User Authenticate(User user)
         {
             if (
@@ -124,12 +125,8 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public Summary AlterSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        public Summary AddSummary(Summary summary, User user)
         {
-            ///<summary>
-            ///Метод добавляет или обновляет одну сущность  и возвращает ее в обновленном виде
-            ///</summary>
-
             AuthenticateUser(user);
 
             if (summary.UserGroups == null || summary.UserGroups.Count == 0)
@@ -157,7 +154,65 @@ namespace CFAPService
 
                 try
                 {
-                    ctx.Summaries.AddOrUpdate<Summary>(summary);
+                    ctx.Summaries.Add(summary);
+
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.None);
+
+                    result = summary;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Summary UpdateSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            if (summary.UserGroups == null || summary.UserGroups.Count == 0)
+            {
+                summary.UserGroups = user.UserGroups;
+            }
+
+            if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
+            {
+                summary.UserLastChanged = user;
+            }
+
+            Summary result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                summary.SetStateProperties(ctx);
+
+                if (summary.ReadOnly)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
+                }
+
+                try
+                {
+                    //В данном случае AddOrUpdate не сработат. Он перезагружет сущности в контекс и формирует уже актуальное поле RowVersion
+                    ctx.Summaries.Attach(summary);
+
+                    ctx.Entry(summary).State = EntityState.Modified;
+
                     ctx.SaveChanges(concurencyUpdateOption);
 
                     result = (from s in ctx.Summaries where s.Id == summary.Id select s).Single();
@@ -179,8 +234,11 @@ namespace CFAPService
                 }
             }
 
+
             return result;
         }
+        #endregion
+
 
         private void AddOrUpdateSummaries(List<Summary> summaries, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {

@@ -65,26 +65,12 @@
                 saveFailed = false;
                 try
                 {
-                    //Добавления логикик обнаружения исключений оптимистического парралелизма
-                    //Без ручного обнаружения исключения не возникает. Выяснить причину
-                    try
-                    {
-                        var changed = this.ChangeTracker.Entries()
-                            .Any(x => !x.CurrentValues.GetValue<byte[]>("RowVersion")
-                            .SequenceEqual(x.OriginalValues.GetValue<byte[]>("RowVersion")));
-                        var ex = new DbUpdateConcurrencyException();
-
-                        if (changed) throw ex;
-                    }
-                    //Контсрукиця скрывает исключения если в сущности отсутствует поле RowVersion
-                    catch (ArgumentException) {  }
-
                     result = base.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
                     saveFailed = true;
-                    //TODO: Добавить логику формирования Entries
+
                     var entry = ex.Entries.Single();//Перезагрузка исходного значения свойства сущности с БД для решения проблемы оптимистичного параллелизма.
 
                     switch (concurrencyOption)
@@ -96,7 +82,7 @@
                             entry.OriginalValues.SetValues(entry.GetDatabaseValues());//Приоритет клиента
                             break;
                         case DbConcurencyUpdateOptions.DatabasePriority:
-                            entry.CurrentValues.SetValues(entry.GetDatabaseValues());//Приоритет БД
+                            entry.Reload();//Приоритет БД
                             break;
                     }
                 }

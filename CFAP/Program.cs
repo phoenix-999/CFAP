@@ -23,8 +23,8 @@ namespace CFAP
             summaries = GetSummary();
             //UpdateSummaries(summaries.ToArray(), mainUser);
 
-            //AddSummary(summaries[0], mainUser);
-            UpdateSummary(summaries[1], mainUser);
+            AddSummary(summaries[0], mainUser);
+            //UpdateSummary(summaries[1], mainUser);
 
             
 
@@ -71,10 +71,11 @@ namespace CFAP
 
             try
             {
-                var result = DataProviderProxy.AlterSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
+                var result = DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
 
                 oldSummary.SummaGrn = 10000;
-                DataProviderProxy.AlterSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
+                //oldSummary.RowVersion = result.RowVersion;
+                DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.DatabasePriority);
 
                 Console.WriteLine("Summary обновлена");
             }
@@ -94,8 +95,8 @@ namespace CFAP
             catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> ex)
             {
                 Console.WriteLine("Ошибка оптимистичного парралелизма:");
-                Console.WriteLine("Значение сейчас: ", ex.Detail.CurrentValue.Id);
-                Console.WriteLine("Значение в БД: ", ex.Detail.DatabaseValue.Id);
+                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaGrn);
+                Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaGrn);
             }
             catch (FaultException<DbException> ex)
             {
@@ -120,8 +121,8 @@ namespace CFAP
 
             try
             {
-                DataProviderProxy.AlterSummary(s1, mainUser, DbConcurencyUpdateOptions.None);
-                Console.WriteLine("Summary добавлена");
+                var receivedSummary = DataProviderProxy.AddSummary(s1, mainUser);
+                Console.WriteLine("Summary {0} добавлена", receivedSummary.Id);
             }
             catch (FaultException<AutenticateFaultException> ex)
             {
