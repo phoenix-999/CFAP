@@ -759,6 +759,855 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    public class DataException {
+    [System.Runtime.Serialization.DataContractAttribute(Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class AddUserNotAdminException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class DataNotValidException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<string, string> ValidationErrorsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, string> ValidationErrors {
+            get {
+                return this.ValidationErrorsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationErrorsField, value) != true)) {
+                    this.ValidationErrorsField = value;
+                    this.RaisePropertyChanged("ValidationErrors");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable AccountableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ActionDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.BudgetItem BudgetItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CashFlowTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.DescriptionItem DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Project ProjectField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaDolarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaGrnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SummaryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.UserGroup[] UserGroupsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.User UserLastChangedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable Accountable {
+            get {
+                return this.AccountableField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
+                    this.AccountableField = value;
+                    this.RaisePropertyChanged("Accountable");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ActionDate {
+            get {
+                return this.ActionDateField;
+            }
+            set {
+                if ((this.ActionDateField.Equals(value) != true)) {
+                    this.ActionDateField = value;
+                    this.RaisePropertyChanged("ActionDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.BudgetItem BudgetItem {
+            get {
+                return this.BudgetItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BudgetItemField, value) != true)) {
+                    this.BudgetItemField = value;
+                    this.RaisePropertyChanged("BudgetItem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CashFlowType {
+            get {
+                return this.CashFlowTypeField;
+            }
+            set {
+                if ((this.CashFlowTypeField.Equals(value) != true)) {
+                    this.CashFlowTypeField = value;
+                    this.RaisePropertyChanged("CashFlowType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.DescriptionItem Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsModified {
+            get {
+                return this.IsModifiedField;
+            }
+            set {
+                if ((this.IsModifiedField.Equals(value) != true)) {
+                    this.IsModifiedField = value;
+                    this.RaisePropertyChanged("IsModified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Project Project {
+            get {
+                return this.ProjectField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectField, value) != true)) {
+                    this.ProjectField = value;
+                    this.RaisePropertyChanged("Project");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadOnly {
+            get {
+                return this.ReadOnlyField;
+            }
+            set {
+                if ((this.ReadOnlyField.Equals(value) != true)) {
+                    this.ReadOnlyField = value;
+                    this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaDolar {
+            get {
+                return this.SummaDolarField;
+            }
+            set {
+                if ((this.SummaDolarField.Equals(value) != true)) {
+                    this.SummaDolarField = value;
+                    this.RaisePropertyChanged("SummaDolar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaGrn {
+            get {
+                return this.SummaGrnField;
+            }
+            set {
+                if ((this.SummaGrnField.Equals(value) != true)) {
+                    this.SummaGrnField = value;
+                    this.RaisePropertyChanged("SummaGrn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime SummaryDate {
+            get {
+                return this.SummaryDateField;
+            }
+            set {
+                if ((this.SummaryDateField.Equals(value) != true)) {
+                    this.SummaryDateField = value;
+                    this.RaisePropertyChanged("SummaryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.UserGroup[] UserGroups {
+            get {
+                return this.UserGroupsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.User UserLastChanged {
+            get {
+                return this.UserLastChangedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserLastChangedField, value) != true)) {
+                    this.UserLastChangedField = value;
+                    this.RaisePropertyChanged("UserLastChanged");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class TryChangeReadOnlyFiledException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FieldIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FieldNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FieldId {
+            get {
+                return this.FieldIdField;
+            }
+            set {
+                if ((this.FieldIdField.Equals(value) != true)) {
+                    this.FieldIdField = value;
+                    this.RaisePropertyChanged("FieldId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FieldName {
+            get {
+                return this.FieldNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FieldNameField, value) != true)) {
+                    this.FieldNameField = value;
+                    this.RaisePropertyChanged("FieldName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class ConcurrencyExceptionOfSummarydxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Summary CurrentValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Summary DatabaseValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Summary CurrentValue {
+            get {
+                return this.CurrentValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentValueField, value) != true)) {
+                    this.CurrentValueField = value;
+                    this.RaisePropertyChanged("CurrentValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Summary DatabaseValue {
+            get {
+                return this.DatabaseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatabaseValueField, value) != true)) {
+                    this.DatabaseValueField = value;
+                    this.RaisePropertyChanged("DatabaseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DbConcurencyUpdateOptions", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
+    public enum DbConcurencyUpdateOptions : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        None = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ClientPriority = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DatabasePriority = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.SerializableAttribute()]
+    public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable[] AccountablesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.BudgetItem[] BudgetItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateEndField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateStartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Project[] ProjectsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable[] Accountables {
+            get {
+                return this.AccountablesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
+                    this.AccountablesField = value;
+                    this.RaisePropertyChanged("Accountables");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.BudgetItem[] BudgetItems {
+            get {
+                return this.BudgetItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
+                    this.BudgetItemsField = value;
+                    this.RaisePropertyChanged("BudgetItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateEnd {
+            get {
+                return this.DateEndField;
+            }
+            set {
+                if ((this.DateEndField.Equals(value) != true)) {
+                    this.DateEndField = value;
+                    this.RaisePropertyChanged("DateEnd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.DateStartField;
+            }
+            set {
+                if ((this.DateStartField.Equals(value) != true)) {
+                    this.DateStartField = value;
+                    this.RaisePropertyChanged("DateStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Project[] Projects {
+            get {
+                return this.ProjectsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
+                    this.ProjectsField = value;
+                    this.RaisePropertyChanged("Projects");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
+    public interface IDataProvider {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AuthenticateAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ArgumentNullException), Action="http://tempuri.org/IDataProvider/AuthenticateArgumentNullExceptionFault", Name="ArgumentNullException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
+        System.Threading.Tasks.Task<UnitTest.DataProviderService.User> AuthenticateAsync(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/AddNewUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
+        System.Threading.Tasks.Task AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/UpdateUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AlterSummariesAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AlterSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AlterSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AlterSummariesTryChangeReadOnlyFiledExceptionFau" +
+            "lt", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        System.Threading.Tasks.Task AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AddSummaryTryChangeReadOnlyFiledExceptionFault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/AddSummaryConcurrencyExceptionOf_SummaryFault", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
+        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateSummaryTryChangeReadOnlyFiledExceptionFaul" +
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
+            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
+        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AutenticateFaultException), Action="http://tempuri.org/IDataProvider/RemoveSummaryAutenticateFaultExceptionFault", Name="AutenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/RemoveSummaryTryChangeReadOnlyFiledExceptionFaul" +
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" +
+            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
+        System.Threading.Tasks.Task<int> RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary[]> GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDataProviderChannel : UnitTest.DataProviderService.IDataProvider, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
+        
+        public DataProviderClient() {
+        }
+        
+        public DataProviderClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public DataProviderClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DataProviderClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DataProviderClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user) {
+            return base.Channel.Authenticate(user);
+        }
+        
+        public System.Threading.Tasks.Task<UnitTest.DataProviderService.User> AuthenticateAsync(UnitTest.DataProviderService.User user) {
+            return base.Channel.AuthenticateAsync(user);
+        }
+        
+        public void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
+            base.Channel.AddNewUser(newUser, owner);
+        }
+        
+        public System.Threading.Tasks.Task AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
+            return base.Channel.AddNewUserAsync(newUser, owner);
+        }
+        
+        public void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
+            base.Channel.UpdateUser(userForUpdate, owner);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
+            return base.Channel.UpdateUserAsync(userForUpdate, owner);
+        }
+        
+        public void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
+            base.Channel.AlterSummaries(summaries, user);
+        }
+        
+        public System.Threading.Tasks.Task AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
+            return base.Channel.AlterSummariesAsync(summaries, user);
+        }
+        
+        public UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddSummary(summary, user);
+        }
+        
+        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddSummaryAsync(summary, user);
+        }
+        
+        public UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.UpdateSummary(summary, user, concurencyUpdateOptions);
+        }
+        
+        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.UpdateSummaryAsync(summary, user, concurencyUpdateOptions);
+        }
+        
+        public int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.RemoveSummary(summary, user, concurencyUpdateOptions);
+        }
+        
+        public System.Threading.Tasks.Task<int> RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            return base.Channel.RemoveSummaryAsync(summary, user, concurencyUpdateOptions);
+        }
+        
+        public UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            return base.Channel.GetSummary(user, filter);
+        }
+        
+        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary[]> GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            return base.Channel.GetSummaryAsync(user, filter);
+        }
     }
 }

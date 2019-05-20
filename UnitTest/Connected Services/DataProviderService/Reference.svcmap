@@ -22,8 +22,6 @@
     <MetadataSource Address="http://localhost/CFAPService/mex" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="mex7.xsd" MetadataType="Schema" ID="2d981218-6823-4711-b550-78dc09e56e04" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd9" />
-    <MetadataFile FileName="mex71.xsd" MetadataType="Schema" ID="dc2b089a-9d01-4343-b0ba-a417aa149d58" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd8" />
     <MetadataFile FileName="mex72.xsd" MetadataType="Schema" ID="e5ace18a-5ef4-4c9f-bea3-fd51d00cad5e" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd7" />
     <MetadataFile FileName="mex6.xsd" MetadataType="Schema" ID="1eadf56c-6a83-4a6c-8525-122566949923" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd6" />
     <MetadataFile FileName="mex.xsd" MetadataType="Schema" ID="f83ae1b9-0bec-456a-8916-443079a78284" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd5" />
