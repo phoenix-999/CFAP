@@ -185,11 +185,15 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
+
+            //Группы пользователей уже существуют в сущности
             if (summary.UserGroups == null || summary.UserGroups.Count == 0)
             {
                 summary.UserGroups = user.UserGroups;
             }
 
+
+            //Пользователь который изменил данные устанавливается по факту
             if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
             {
                 summary.UserLastChanged = user;
