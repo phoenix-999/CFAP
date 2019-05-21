@@ -158,6 +158,30 @@ namespace UnitTest
             Assert.ThrowsException<FaultException<AuthenticateFaultException>>(()=> { DataProviderProxy.AddNewUser(newUser, owner); });
         }
 
+        [TestMethod]
+        public void AddNewUser_UserHasNotGroupsException()
+        {
+            User owner = new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD };
+            owner = DataProviderProxy.Authenticate(owner);
+
+            User newUser = new User()
+            {
+                UserName = TEST_USER_NAME,
+                Password = TEST_USER_PASSWORD
+            };
+
+            Assert.ThrowsException<FaultException<UserHasNotGroupsException>>(() => { DataProviderProxy.AddNewUser(newUser, owner); });
+        }
+
+        [TestMethod]
+        public void AddNewUser_Duplicate()
+        {
+            User owner = new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD };
+            owner = DataProviderProxy.Authenticate(owner);
+
+            Assert.ThrowsException<FaultException<DbException>>(() => { DataProviderProxy.AddNewUser(owner, owner); });
+        }
+
         #endregion
     }
 }

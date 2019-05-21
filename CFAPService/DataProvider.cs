@@ -431,6 +431,11 @@ namespace CFAPService
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
 
+            if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
+            {
+                throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(newUser));
+            }
+
             newUser.EncriptPassword(); 
 
             using (CFAPContext ctx = new CFAPContext())

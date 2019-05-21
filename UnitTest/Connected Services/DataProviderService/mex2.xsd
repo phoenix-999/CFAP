@@ -28,6 +28,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DataNotValidException" nillable="true" type="tns:DataNotValidException" />
+  <xs:complexType name="UserHasNotGroupsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="User" nillable="true" type="q2:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserHasNotGroupsException" nillable="true" type="tns:UserHasNotGroupsException" />
   <xs:complexType name="TryChangeReadOnlyFiledException">
     <xs:sequence>
       <xs:element minOccurs="0" name="FieldId" type="xs:int" />
@@ -45,8 +52,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="CurrentValue" nillable="true" type="q2:Summary" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="DatabaseValue" nillable="true" type="q3:Summary" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="CurrentValue" nillable="true" type="q3:Summary" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="DatabaseValue" nillable="true" type="q4:Summary" />
       <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

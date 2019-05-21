@@ -881,6 +881,67 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class UserHasNotGroupsException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
     [System.SerializableAttribute()]
     public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1435,19 +1496,24 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(System.ArgumentNullException), Action="http://tempuri.org/IDataProvider/AuthenticateArgumentNullExceptionFault", Name="ArgumentNullException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
-        System.Threading.Tasks.Task<UnitTest.DataProviderService.User> AuthenticateAsync(UnitTest.DataProviderService.User user);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
+        System.IAsyncResult BeginAuthenticate(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.User EndAuthenticate(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/AddNewUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
-        System.Threading.Tasks.Task AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
+        System.IAsyncResult BeginAddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddNewUser(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1457,8 +1523,10 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
-        System.Threading.Tasks.Task UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
+        System.IAsyncResult BeginUpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
+        
+        void EndUpdateUser(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AlterSummariesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1469,8 +1537,10 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
-        System.Threading.Tasks.Task AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        void EndAlterSummaries(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1481,8 +1551,10 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
-        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
+        System.IAsyncResult BeginAddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Summary EndAddSummary(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1495,8 +1567,10 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
-        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
+        System.IAsyncResult BeginUpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Summary EndUpdateSummary(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/RemoveSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1508,15 +1582,19 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
-        System.Threading.Tasks.Task<int> RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
+        System.IAsyncResult BeginRemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, System.AsyncCallback callback, object asyncState);
+        
+        int EndRemoveSummary(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
-        System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary[]> GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1525,7 +1603,150 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AuthenticateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AuthenticateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.User Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Summary Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Summary)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Summary Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Summary)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RemoveSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RemoveSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Summary[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Summary[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
+        
+        private BeginOperationDelegate onBeginAuthenticateDelegate;
+        
+        private EndOperationDelegate onEndAuthenticateDelegate;
+        
+        private System.Threading.SendOrPostCallback onAuthenticateCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddNewUserDelegate;
+        
+        private EndOperationDelegate onEndAddNewUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddNewUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateUserDelegate;
+        
+        private EndOperationDelegate onEndUpdateUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAlterSummariesDelegate;
+        
+        private EndOperationDelegate onEndAlterSummariesDelegate;
+        
+        private System.Threading.SendOrPostCallback onAlterSummariesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddSummaryDelegate;
+        
+        private EndOperationDelegate onEndAddSummaryDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddSummaryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateSummaryDelegate;
+        
+        private EndOperationDelegate onEndUpdateSummaryDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateSummaryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginRemoveSummaryDelegate;
+        
+        private EndOperationDelegate onEndRemoveSummaryDelegate;
+        
+        private System.Threading.SendOrPostCallback onRemoveSummaryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSummaryDelegate;
+        
+        private EndOperationDelegate onEndGetSummaryDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSummaryCompletedDelegate;
         
         public DataProviderClient() {
         }
@@ -1546,68 +1767,435 @@ namespace UnitTest.DataProviderService {
                 base(binding, remoteAddress) {
         }
         
+        public event System.EventHandler<AuthenticateCompletedEventArgs> AuthenticateCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddNewUserCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateUserCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AlterSummariesCompleted;
+        
+        public event System.EventHandler<AddSummaryCompletedEventArgs> AddSummaryCompleted;
+        
+        public event System.EventHandler<UpdateSummaryCompletedEventArgs> UpdateSummaryCompleted;
+        
+        public event System.EventHandler<RemoveSummaryCompletedEventArgs> RemoveSummaryCompleted;
+        
+        public event System.EventHandler<GetSummaryCompletedEventArgs> GetSummaryCompleted;
+        
         public UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user) {
             return base.Channel.Authenticate(user);
         }
         
-        public System.Threading.Tasks.Task<UnitTest.DataProviderService.User> AuthenticateAsync(UnitTest.DataProviderService.User user) {
-            return base.Channel.AuthenticateAsync(user);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAuthenticate(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAuthenticate(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.User EndAuthenticate(System.IAsyncResult result) {
+            return base.Channel.EndAuthenticate(result);
+        }
+        
+        private System.IAsyncResult OnBeginAuthenticate(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginAuthenticate(user, callback, asyncState);
+        }
+        
+        private object[] OnEndAuthenticate(System.IAsyncResult result) {
+            UnitTest.DataProviderService.User retVal = this.EndAuthenticate(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAuthenticateCompleted(object state) {
+            if ((this.AuthenticateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AuthenticateCompleted(this, new AuthenticateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AuthenticateAsync(UnitTest.DataProviderService.User user) {
+            this.AuthenticateAsync(user, null);
+        }
+        
+        public void AuthenticateAsync(UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAuthenticateDelegate == null)) {
+                this.onBeginAuthenticateDelegate = new BeginOperationDelegate(this.OnBeginAuthenticate);
+            }
+            if ((this.onEndAuthenticateDelegate == null)) {
+                this.onEndAuthenticateDelegate = new EndOperationDelegate(this.OnEndAuthenticate);
+            }
+            if ((this.onAuthenticateCompletedDelegate == null)) {
+                this.onAuthenticateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAuthenticateCompleted);
+            }
+            base.InvokeAsync(this.onBeginAuthenticateDelegate, new object[] {
+                        user}, this.onEndAuthenticateDelegate, this.onAuthenticateCompletedDelegate, userState);
         }
         
         public void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
             base.Channel.AddNewUser(newUser, owner);
         }
         
-        public System.Threading.Tasks.Task AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
-            return base.Channel.AddNewUserAsync(newUser, owner);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddNewUser(newUser, owner, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAddNewUser(System.IAsyncResult result) {
+            base.Channel.EndAddNewUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddNewUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User newUser = ((UnitTest.DataProviderService.User)(inValues[0]));
+            UnitTest.DataProviderService.User owner = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddNewUser(newUser, owner, callback, asyncState);
+        }
+        
+        private object[] OnEndAddNewUser(System.IAsyncResult result) {
+            this.EndAddNewUser(result);
+            return null;
+        }
+        
+        private void OnAddNewUserCompleted(object state) {
+            if ((this.AddNewUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddNewUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
+            this.AddNewUserAsync(newUser, owner, null);
+        }
+        
+        public void AddNewUserAsync(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner, object userState) {
+            if ((this.onBeginAddNewUserDelegate == null)) {
+                this.onBeginAddNewUserDelegate = new BeginOperationDelegate(this.OnBeginAddNewUser);
+            }
+            if ((this.onEndAddNewUserDelegate == null)) {
+                this.onEndAddNewUserDelegate = new EndOperationDelegate(this.OnEndAddNewUser);
+            }
+            if ((this.onAddNewUserCompletedDelegate == null)) {
+                this.onAddNewUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddNewUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddNewUserDelegate, new object[] {
+                        newUser,
+                        owner}, this.onEndAddNewUserDelegate, this.onAddNewUserCompletedDelegate, userState);
         }
         
         public void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
             base.Channel.UpdateUser(userForUpdate, owner);
         }
         
-        public System.Threading.Tasks.Task UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
-            return base.Channel.UpdateUserAsync(userForUpdate, owner);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateUser(userForUpdate, owner, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndUpdateUser(System.IAsyncResult result) {
+            base.Channel.EndUpdateUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User userForUpdate = ((UnitTest.DataProviderService.User)(inValues[0]));
+            UnitTest.DataProviderService.User owner = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginUpdateUser(userForUpdate, owner, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateUser(System.IAsyncResult result) {
+            this.EndUpdateUser(result);
+            return null;
+        }
+        
+        private void OnUpdateUserCompleted(object state) {
+            if ((this.UpdateUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
+            this.UpdateUserAsync(userForUpdate, owner, null);
+        }
+        
+        public void UpdateUserAsync(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner, object userState) {
+            if ((this.onBeginUpdateUserDelegate == null)) {
+                this.onBeginUpdateUserDelegate = new BeginOperationDelegate(this.OnBeginUpdateUser);
+            }
+            if ((this.onEndUpdateUserDelegate == null)) {
+                this.onEndUpdateUserDelegate = new EndOperationDelegate(this.OnEndUpdateUser);
+            }
+            if ((this.onUpdateUserCompletedDelegate == null)) {
+                this.onUpdateUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateUserDelegate, new object[] {
+                        userForUpdate,
+                        owner}, this.onEndUpdateUserDelegate, this.onUpdateUserCompletedDelegate, userState);
         }
         
         public void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
             base.Channel.AlterSummaries(summaries, user);
         }
         
-        public System.Threading.Tasks.Task AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
-            return base.Channel.AlterSummariesAsync(summaries, user);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAlterSummaries(summaries, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndAlterSummaries(System.IAsyncResult result) {
+            base.Channel.EndAlterSummaries(result);
+        }
+        
+        private System.IAsyncResult OnBeginAlterSummaries(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Summary[] summaries = ((UnitTest.DataProviderService.Summary[])(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAlterSummaries(summaries, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAlterSummaries(System.IAsyncResult result) {
+            this.EndAlterSummaries(result);
+            return null;
+        }
+        
+        private void OnAlterSummariesCompleted(object state) {
+            if ((this.AlterSummariesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AlterSummariesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
+            this.AlterSummariesAsync(summaries, user, null);
+        }
+        
+        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAlterSummariesDelegate == null)) {
+                this.onBeginAlterSummariesDelegate = new BeginOperationDelegate(this.OnBeginAlterSummaries);
+            }
+            if ((this.onEndAlterSummariesDelegate == null)) {
+                this.onEndAlterSummariesDelegate = new EndOperationDelegate(this.OnEndAlterSummaries);
+            }
+            if ((this.onAlterSummariesCompletedDelegate == null)) {
+                this.onAlterSummariesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAlterSummariesCompleted);
+            }
+            base.InvokeAsync(this.onBeginAlterSummariesDelegate, new object[] {
+                        summaries,
+                        user}, this.onEndAlterSummariesDelegate, this.onAlterSummariesCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
             return base.Channel.AddSummary(summary, user);
         }
         
-        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
-            return base.Channel.AddSummaryAsync(summary, user);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddSummary(summary, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Summary EndAddSummary(System.IAsyncResult result) {
+            return base.Channel.EndAddSummary(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Summary summary = ((UnitTest.DataProviderService.Summary)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddSummary(summary, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddSummary(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Summary retVal = this.EndAddSummary(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddSummaryCompleted(object state) {
+            if ((this.AddSummaryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddSummaryCompleted(this, new AddSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
+            this.AddSummaryAsync(summary, user, null);
+        }
+        
+        public void AddSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAddSummaryDelegate == null)) {
+                this.onBeginAddSummaryDelegate = new BeginOperationDelegate(this.OnBeginAddSummary);
+            }
+            if ((this.onEndAddSummaryDelegate == null)) {
+                this.onEndAddSummaryDelegate = new EndOperationDelegate(this.OnEndAddSummary);
+            }
+            if ((this.onAddSummaryCompletedDelegate == null)) {
+                this.onAddSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddSummaryCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddSummaryDelegate, new object[] {
+                        summary,
+                        user}, this.onEndAddSummaryDelegate, this.onAddSummaryCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.UpdateSummary(summary, user, concurencyUpdateOptions);
         }
         
-        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary> UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
-            return base.Channel.UpdateSummaryAsync(summary, user, concurencyUpdateOptions);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateSummary(summary, user, concurencyUpdateOptions, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Summary EndUpdateSummary(System.IAsyncResult result) {
+            return base.Channel.EndUpdateSummary(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Summary summary = ((UnitTest.DataProviderService.Summary)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginUpdateSummary(summary, user, concurencyUpdateOptions, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateSummary(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Summary retVal = this.EndUpdateSummary(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateSummaryCompleted(object state) {
+            if ((this.UpdateSummaryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateSummaryCompleted(this, new UpdateSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            this.UpdateSummaryAsync(summary, user, concurencyUpdateOptions, null);
+        }
+        
+        public void UpdateSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, object userState) {
+            if ((this.onBeginUpdateSummaryDelegate == null)) {
+                this.onBeginUpdateSummaryDelegate = new BeginOperationDelegate(this.OnBeginUpdateSummary);
+            }
+            if ((this.onEndUpdateSummaryDelegate == null)) {
+                this.onEndUpdateSummaryDelegate = new EndOperationDelegate(this.OnEndUpdateSummary);
+            }
+            if ((this.onUpdateSummaryCompletedDelegate == null)) {
+                this.onUpdateSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateSummaryCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateSummaryDelegate, new object[] {
+                        summary,
+                        user,
+                        concurencyUpdateOptions}, this.onEndUpdateSummaryDelegate, this.onUpdateSummaryCompletedDelegate, userState);
         }
         
         public int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.RemoveSummary(summary, user, concurencyUpdateOptions);
         }
         
-        public System.Threading.Tasks.Task<int> RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
-            return base.Channel.RemoveSummaryAsync(summary, user, concurencyUpdateOptions);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginRemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRemoveSummary(summary, user, concurencyUpdateOptions, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public int EndRemoveSummary(System.IAsyncResult result) {
+            return base.Channel.EndRemoveSummary(result);
+        }
+        
+        private System.IAsyncResult OnBeginRemoveSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Summary summary = ((UnitTest.DataProviderService.Summary)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginRemoveSummary(summary, user, concurencyUpdateOptions, callback, asyncState);
+        }
+        
+        private object[] OnEndRemoveSummary(System.IAsyncResult result) {
+            int retVal = this.EndRemoveSummary(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnRemoveSummaryCompleted(object state) {
+            if ((this.RemoveSummaryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RemoveSummaryCompleted(this, new RemoveSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+            this.RemoveSummaryAsync(summary, user, concurencyUpdateOptions, null);
+        }
+        
+        public void RemoveSummaryAsync(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, object userState) {
+            if ((this.onBeginRemoveSummaryDelegate == null)) {
+                this.onBeginRemoveSummaryDelegate = new BeginOperationDelegate(this.OnBeginRemoveSummary);
+            }
+            if ((this.onEndRemoveSummaryDelegate == null)) {
+                this.onEndRemoveSummaryDelegate = new EndOperationDelegate(this.OnEndRemoveSummary);
+            }
+            if ((this.onRemoveSummaryCompletedDelegate == null)) {
+                this.onRemoveSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRemoveSummaryCompleted);
+            }
+            base.InvokeAsync(this.onBeginRemoveSummaryDelegate, new object[] {
+                        summary,
+                        user,
+                        concurencyUpdateOptions}, this.onEndRemoveSummaryDelegate, this.onRemoveSummaryCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
             return base.Channel.GetSummary(user, filter);
         }
         
-        public System.Threading.Tasks.Task<UnitTest.DataProviderService.Summary[]> GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
-            return base.Channel.GetSummaryAsync(user, filter);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSummary(user, filter, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result) {
+            return base.Channel.EndGetSummary(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[1]));
+            return this.BeginGetSummary(user, filter, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSummary(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Summary[] retVal = this.EndGetSummary(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSummaryCompleted(object state) {
+            if ((this.GetSummaryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSummaryCompleted(this, new GetSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            this.GetSummaryAsync(user, filter, null);
+        }
+        
+        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, object userState) {
+            if ((this.onBeginGetSummaryDelegate == null)) {
+                this.onBeginGetSummaryDelegate = new BeginOperationDelegate(this.OnBeginGetSummary);
+            }
+            if ((this.onEndGetSummaryDelegate == null)) {
+                this.onEndGetSummaryDelegate = new EndOperationDelegate(this.OnEndGetSummary);
+            }
+            if ((this.onGetSummaryCompletedDelegate == null)) {
+                this.onGetSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSummaryCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSummaryDelegate, new object[] {
+                        user,
+                        filter}, this.onEndGetSummaryDelegate, this.onGetSummaryCompletedDelegate, userState);
         }
     }
 }

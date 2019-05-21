@@ -27,6 +27,7 @@ namespace CFAPService
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(AddUserNotAdminException))]
         [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(UserHasNotGroupsException))]
         void AddNewUser(User newUser, User owner);
 
         [OperationContract]
