@@ -30,6 +30,9 @@ namespace UnitTest
         const int OFFICE1_ID = 2;
         const string OFFICE1 = "Office1";
 
+        const int OFFICE2_ID = 45;
+        const string OFFICE2 = "Office2";
+
         #endregion
 
         #region Authenticate
@@ -245,6 +248,64 @@ namespace UnitTest
 
                 Assert.AreEqual(user, null);
             }
+        }
+
+        #endregion
+
+        #region UpdateUser
+
+        [TestMethod]
+        public void UpdateUser()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD } );
+            User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+
+            var oldUserName = userForUpdate.UserName;
+            userForUpdate.UserName = "updateUser";
+            var oldPassword = userForUpdate.Password;
+            userForUpdate.Password = null;
+            var oldIsAdmin = userForUpdate.IsAdmin;
+            userForUpdate.IsAdmin = true;
+            UserGroup[] oldGroups = (from g in userForUpdate.UserGroups where g.CanUserAllData == false select g).ToArray();
+            userForUpdate.UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID } };
+
+            DataProviderProxy.UpdateUser(userForUpdate, owner);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+
+                var updatedUser = (from user in ctx.Users where user.UserName == userForUpdate.UserName select user).Single();
+                ctx.Users.Include("UserGroups");
+
+                Assert.AreEqual(updatedUser.IsAdmin, userForUpdate.IsAdmin);
+                Assert.AreEqual(updatedUser.UserName, userForUpdate.UserName);
+                Assert.AreEqual(updatedUser.Password, oldPassword);
+                Assert.AreEqual(updatedUser.CanAddNewUsers, userForUpdate.CanAddNewUsers);
+
+                foreach (var newGroup in userForUpdate.UserGroups)
+                {
+                    var correctGroup = (from g in updatedUser.UserGroups where g.Id == newGroup.Id select g).FirstOrDefault();
+                    Assert.AreNotEqual(correctGroup, null);
+                }
+
+                var canUseAllDataGroups = (from g in ctx.UserGroups where g.CanUserAllData == true select g).ToArray();
+                
+                foreach (var groupCanUseAllData in canUseAllDataGroups)
+                {
+                    var correctGroup = (from g in updatedUser.UserGroups where g.Id == groupCanUseAllData.Id select g).FirstOrDefault();
+                    Assert.AreNotEqual(correctGroup, null);
+                }
+
+                //Изменение Id обновленного пользователя, так как при изменении данных пользователя Id меняется
+                userForUpdate.Id = updatedUser.Id;
+            }
+
+            userForUpdate.UserName = oldUserName;
+            userForUpdate.Password = oldPassword;
+            userForUpdate.IsAdmin = oldIsAdmin;
+            userForUpdate.UserGroups = oldGroups;
+
+            DataProviderProxy.UpdateUser(userForUpdate, owner);
         }
 
         #endregion

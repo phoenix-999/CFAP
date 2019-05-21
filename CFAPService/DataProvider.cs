@@ -42,13 +42,43 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AddNewUser(User newUser, User owner)
         {
-            try
+            AuthenticateUser(owner);
+
+            if (!owner.CanAddNewUsers)
             {
-                AddUser(newUser, owner);
+                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
             }
-            catch (DbEntityValidationException ex)
+
+            if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
             {
-                throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(newUser));
+            }
+
+            if (newUser.Password == null || newUser.Password.Length == 0)
+            {
+                Dictionary<string, string> errors = new Dictionary<string, string>();
+                errors.Add("Password", "Не указан пароль.");
+                throw new FaultException<DataNotValidException>(new DataNotValidException(errors));
+            }
+
+            newUser.EncriptPassword();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                try
+                {
+                    newUser.LoadUserGroups(ctx);
+                    ctx.Users.Add(newUser);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
             }
         }
 
@@ -63,6 +93,11 @@ namespace CFAPService
             {
                 //Если ложь - сбой
                 throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
+            }
+
+            if (userForUpdate.UserGroups == null || userForUpdate.UserGroups.Count == 0)
+            {
+                throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(userForUpdate));
             }
 
             //Создание экземпляра контекста
@@ -420,48 +455,6 @@ namespace CFAPService
             }
 
             return result;
-        }
-
-        private void AddUser(User newUser, User owner)
-        {
-            AuthenticateUser(owner);
-
-            if (!owner.CanAddNewUsers)
-            {
-                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
-            }
-
-            if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
-            {
-                throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(newUser));
-            }
-            
-            if (newUser.Password == null || newUser.Password.Length == 0)
-            {
-                Dictionary<string, string> errors = new Dictionary<string, string>();
-                errors.Add("Password", "Не указан пароль.");
-                throw new FaultException<DataNotValidException>(new DataNotValidException(errors));
-            }
-
-            newUser.EncriptPassword(); 
-
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                try
-                {
-                    newUser.LoadUserGroups(ctx);
-                    ctx.Users.Add(newUser);
-                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
-                }
-                catch (Exception ex)
-                {
-                    throw new FaultException<DbException>(new DbException(ex));
-                }
-            }
         }
 
        private HashSet<Summary> GetFilteredSummary(User user, Filter filter)

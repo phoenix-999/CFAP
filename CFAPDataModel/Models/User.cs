@@ -77,7 +77,7 @@ namespace CFAPDataModel.Models
 
             //LINQ to Entities не умеет вызывать методы
             var groups = (from g in ctx.UserGroups
-                          where goupsId.Contains(g.Id)
+                          where goupsId.Contains(g.Id) || g.CanUserAllData == true
                           select g).ToList();
 
             this.UserGroups = groups;
