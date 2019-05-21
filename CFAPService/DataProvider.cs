@@ -435,6 +435,13 @@ namespace CFAPService
             {
                 throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(newUser));
             }
+            
+            if (newUser.Password == null || newUser.Password.Length == 0)
+            {
+                Dictionary<string, string> errors = new Dictionary<string, string>();
+                errors.Add("Password", "Не указан пароль.");
+                throw new FaultException<DataNotValidException>(new DataNotValidException(errors));
+            }
 
             newUser.EncriptPassword(); 
 

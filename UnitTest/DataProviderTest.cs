@@ -18,6 +18,9 @@ namespace UnitTest
         const string ADMIN_USER_NAME = "yurii";
         const string ADMIN_USER_PASSWORD = "1";
 
+        const string USER_NOT_ADMIN_NAME = "Liubov";
+        const string USER_NOT_ADMIN_PASSWORD = "2";
+
         const string TEST_USER_NAME = "TestUserName";
         const string TEST_USER_PASSWORD = "TestUserPassword";
 
@@ -156,6 +159,13 @@ namespace UnitTest
             };
 
             Assert.ThrowsException<FaultException<AuthenticateFaultException>>(()=> { DataProviderProxy.AddNewUser(newUser, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var user = (from u in ctx.Users where u.UserName == newUser.UserName select u).FirstOrDefault();
+
+                Assert.AreEqual(user, null);
+            }
         }
 
         [TestMethod]
@@ -171,6 +181,13 @@ namespace UnitTest
             };
 
             Assert.ThrowsException<FaultException<UserHasNotGroupsException>>(() => { DataProviderProxy.AddNewUser(newUser, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var user = (from u in ctx.Users where u.UserName == newUser.UserName select u).FirstOrDefault();
+
+                Assert.AreEqual(user, null);
+            }
         }
 
         [TestMethod]
@@ -180,6 +197,52 @@ namespace UnitTest
             owner = DataProviderProxy.Authenticate(owner);
 
             Assert.ThrowsException<FaultException<DbException>>(() => { DataProviderProxy.AddNewUser(owner, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var users = (from u in ctx.Users where u.UserName == owner.UserName select u).ToArray();
+
+                Assert.AreEqual(users.Length, 1);
+            }
+        }
+
+        [TestMethod]
+        public void AddNewUser_UserNotAdminException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Assert.AreEqual(owner.CanAddNewUsers, false);
+
+            User testUser = new User() { UserName = TEST_USER_NAME, Password = TEST_USER_PASSWORD, UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
+
+            Assert.ThrowsException<FaultException<AddUserNotAdminException>>(()=> { DataProviderProxy.AddNewUser(testUser, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var user = (from u in ctx.Users where u.UserName == testUser.UserName select u).FirstOrDefault();
+
+                Assert.AreEqual(user, null);
+            }
+        }
+
+        [TestMethod]
+        public void AddNewUser_DataNotValidException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Assert.AreEqual(owner.CanAddNewUsers, true);
+
+            User testUser = new User() { Password = TEST_USER_PASSWORD,  UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
+
+            var errors = Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddNewUser(testUser, owner); });
+            
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var user = (from u in ctx.Users where u.UserName == testUser.UserName select u).FirstOrDefault();
+
+                Assert.AreEqual(user, null);
+            }
         }
 
         #endregion
