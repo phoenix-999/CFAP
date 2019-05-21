@@ -254,6 +254,7 @@ namespace UnitTest
 
         #region UpdateUser
 
+        //TODO реализовать проверку удаленных групп
         [TestMethod]
         public void UpdateUser()
         {
