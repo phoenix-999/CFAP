@@ -14,7 +14,7 @@ namespace UnitTest
         User MainUser;
 
         DataProviderClient DataProviderProxy = new DataProviderClient();
-
+        #region CONSTANTS
         const string ADMIN_USER_NAME = "yurii";
         const string ADMIN_USER_PASSWORD = "1";
 
@@ -29,6 +29,8 @@ namespace UnitTest
 
         const int OFFICE1_ID = 2;
         const string OFFICE1 = "Office1";
+
+        #endregion
 
         #region Authenticate
         [TestMethod]
