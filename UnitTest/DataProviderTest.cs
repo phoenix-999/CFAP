@@ -28,10 +28,10 @@ namespace UnitTest
         const string MAIN_OFFICE = "MainOffice";
 
         const int OFFICE1_ID = 2;
-        const string OFFICE1 = "Office1";
+        const string OFFICE1 = "Office1"; //Удаляемая группа
 
         const int OFFICE2_ID = 45;
-        const string OFFICE2 = "Office2";
+        const string OFFICE2 = "Office2"; //Добавляемая группа
 
         #endregion
 
@@ -253,8 +253,6 @@ namespace UnitTest
         #endregion
 
         #region UpdateUser
-
-        //TODO реализовать проверку удаленных групп
         [TestMethod]
         public void UpdateUser()
         {
@@ -283,14 +281,18 @@ namespace UnitTest
                 Assert.AreEqual(updatedUser.Password, oldPassword);
                 Assert.AreEqual(updatedUser.CanAddNewUsers, userForUpdate.CanAddNewUsers);
 
+                //Проверка добавления новых групп
                 foreach (var newGroup in userForUpdate.UserGroups)
                 {
                     var correctGroup = (from g in updatedUser.UserGroups where g.Id == newGroup.Id select g).FirstOrDefault();
                     Assert.AreNotEqual(correctGroup, null);
+                    //Проверка удаления старой группы
+                    Assert.AreNotEqual(correctGroup.Id, OFFICE1_ID);
                 }
 
                 var canUseAllDataGroups = (from g in ctx.UserGroups where g.CanUserAllData == true select g).ToArray();
                 
+                //Проверка добавления обязательных групп
                 foreach (var groupCanUseAllData in canUseAllDataGroups)
                 {
                     var correctGroup = (from g in updatedUser.UserGroups where g.Id == groupCanUseAllData.Id select g).FirstOrDefault();
