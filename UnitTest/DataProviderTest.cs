@@ -311,6 +311,43 @@ namespace UnitTest
             DataProviderProxy.UpdateUser(userForUpdate, owner);
         }
 
+        [TestMethod]
+        public void UpdateUser_AddUserNotAdminException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+            User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Assert.ThrowsException<FaultException<AddUserNotAdminException>>(()=> { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+        }
+
+        [TestMethod]
+        public void UpdateUser_UserHasNotGroupException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+            userForUpdate.UserGroups = null;
+
+            Assert.ThrowsException<FaultException<UserHasNotGroupsException>>(() => { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+
+            userForUpdate.UserGroups = new UserGroup[] { };
+
+            Assert.ThrowsException<FaultException<UserHasNotGroupsException>>(() => { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+        }
+
+        [TestMethod]
+        public void UpdateUser_DatNotValidException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+            userForUpdate.UserName = "";
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+
+            userForUpdate.UserName = null;
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+        }
+
         #endregion
     }
 }

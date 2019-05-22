@@ -45,16 +45,12 @@ namespace CFAPService
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
-        void AlterSummaries(List<Summary> summaries, User user);
-
-        [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AuthenticateFaultException))]
-        [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(DataNotValidException))]
-        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Summary>))]
         Summary AddSummary(Summary summary, User user);
+
+        [OperationContract]
+        [FaultContract(typeof(DbException))]
+        HashSet<Summary> GetSummary(User user, Filter filter);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
@@ -74,7 +70,11 @@ namespace CFAPService
         int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        HashSet<Summary> GetSummary(User user, Filter filter);
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        void AlterSummaries(List<Summary> summaries, User user);
     }
 }
