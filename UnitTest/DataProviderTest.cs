@@ -33,6 +33,13 @@ namespace UnitTest
         const int OFFICE2_ID = 45;
         const string OFFICE2 = "Office2"; //Добавляемая группа
 
+        const int PROJECT1_ID = 1;
+        const int PROJECT2_ID = 36;
+
+        const int ACCOUNTABLE1_ID = 1;
+        const int BUDGET_ITEM1_ID = 1;
+        const int DESCRIPTION1_ID = 2;
+
         #endregion
 
         #region Authenticate
@@ -348,6 +355,71 @@ namespace UnitTest
             Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateUser(userForUpdate, owner); });
         }
 
+        #endregion
+
+        #region AddSummary
+        [TestMethod]
+        public void AddSummary()
+        {
+            Summary newSummary = new Summary()
+            {
+                SummaGrn = 200,
+                SummaryDate = DateTime.Now,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
+                Project = new Project() { Id = PROJECT1_ID },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID },
+                Description = new DescriptionItem() { Id = DESCRIPTION1_ID }
+            };
+
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+
+            Summary addedSummary = DataProviderProxy.AddSummary(newSummary, user);
+
+            Assert.AreNotEqual(addedSummary.Id, 0);
+            Assert.AreNotEqual(addedSummary.ActionDate, null);
+            Assert.AreEqual(addedSummary.Accountable.Id, newSummary.Accountable.Id);
+            Assert.AreEqual(addedSummary.Project.Id, newSummary.Project.Id);
+            Assert.AreEqual(addedSummary.BudgetItem.Id, newSummary.BudgetItem.Id);
+            Assert.AreEqual(addedSummary.Description.Id, newSummary.Description.Id);
+
+            foreach (var summaryGroup in addedSummary.UserGroups)
+            {
+                var correctedGroup = (from g in user.UserGroups where g.Id == summaryGroup.Id select g).FirstOrDefault();
+                Assert.AreNotEqual(correctedGroup, null);
+            }
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var summaryToRemove = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).Single();
+                ctx.Entry(summaryToRemove).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+        }
+
+        [TestMethod]
+        public void AddSummary_DataNotValidException()
+        {
+            Summary newSummary = new Summary()
+            {
+                SummaGrn = 200,
+                SummaryDate = DateTime.Now,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
+                Project = new Project() { Id = PROJECT1_ID },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID },
+                Description = null
+            };
+
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddSummary(newSummary, user); });
+
+            newSummary.Accountable = new Accountable();
+            newSummary.Project = new Project();
+            newSummary.BudgetItem = new BudgetItem();
+            newSummary.Description = new DescriptionItem();
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddSummary(newSummary, user); });
+        }
         #endregion
     }
 }

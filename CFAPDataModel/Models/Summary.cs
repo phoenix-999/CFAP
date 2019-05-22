@@ -113,26 +113,37 @@ namespace CFAPDataModel.Models
         public void SetStateProperties(CFAPContext ctx)
         {
             ctx.Configuration.ProxyCreationEnabled = false;
-            
-            this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First();
-            this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();
-            this.BudgetItem = (from i in ctx.BudgetItems where i.Id == this.BudgetItem.Id select i).First();
-            this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
+
+            if (this.Project != null && this.Project.Id != default(int))
+            {
+                this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First();
+                this.Project_Id = this.Project.Id;
+            }
+
+            if (this.Accountable != null && this.Accountable.Id != default(int))
+            {
+                this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();
+                this.Accountable_Id = this.Accountable.Id;
+            }
+
+            if (this.BudgetItem != null && this.BudgetItem.Id != default(int))
+            {
+                this.BudgetItem = (from i in ctx.BudgetItems where i.Id == this.BudgetItem.Id select i).First();
+                this.BudgetItem_Id = this.BudgetItem.Id;
+            }
+
+            if (this.Description != null && this.Description.Id != default(int))
+            {
+                this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
+                this.DescriptionItem_Id = this.Description.Id;
+            }
+
             this.UserLastChanged = (from u in ctx.Users where u.Id == this.UserLastChanged.Id select u).First();
 
-            this.ModifyForeignKey();
             this.LoadUserGroups(ctx);
             
         }
 
-        private void ModifyForeignKey()
-        {
-            this.Accountable_Id = this.Accountable.Id;
-            this.Project_Id = this.Project.Id;
-            this.BudgetItem_Id = this.BudgetItem.Id;
-            this.DescriptionItem_Id = this.Description.Id;
-            this.UserLastChangedId = this.UserLastChanged.Id;
-        }
 
         public override int GetHashCode()
         {
@@ -191,24 +202,28 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [ForeignKey("Project_Id")]
+        [Required]
         public virtual Project Project { get; set; }
 
         public int BudgetItem_Id { get; set; }
 
         [DataMember]
         [ForeignKey("BudgetItem_Id")]
+        [Required]
         public virtual BudgetItem BudgetItem { get; set; }
 
         public int DescriptionItem_Id { get; set; }
 
         [DataMember]
         [ForeignKey("DescriptionItem_Id")]
+        [Required]
         public virtual DescriptionItem Description { get; set; }
 
         public int Accountable_Id { get; set; }
 
         [DataMember]
         [ForeignKey("Accountable_Id")]
+        [Required]
         public virtual Accountable Accountable { get; set; }
 
         [DataMember]

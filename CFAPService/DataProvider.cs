@@ -182,25 +182,15 @@ namespace CFAPService
 
                 summary.SetStateProperties(ctx);
 
-                if (summary.ReadOnly)
-                {
-                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
-                }
-
                 try
                 {
                     ctx.Summaries.Add(summary);
 
-                    ctx.SaveChanges(DbConcurencyUpdateOptions.None);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
 
                     summary.IsModified = false;
 
                     result = summary;
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
-                    throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
                 {

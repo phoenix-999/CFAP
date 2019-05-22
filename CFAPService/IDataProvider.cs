@@ -44,8 +44,6 @@ namespace CFAPService
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
-        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
-        [FaultContract(typeof(ConcurrencyException<Summary>))]
         Summary AddSummary(Summary summary, User user);
 
         [OperationContract]
