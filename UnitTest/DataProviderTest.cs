@@ -421,5 +421,54 @@ namespace UnitTest
             Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddSummary(newSummary, user); });
         }
         #endregion
+
+        #region GetSummaries
+
+        [TestMethod]
+        public void GetSummaries()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+            Filter filter = new Filter()
+            {
+                Projects = new Project[] { new Project() { Id = PROJECT1_ID } },
+                DateStart = DateTime.Parse("19.05.2019")
+
+            };
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, filter);
+            Assert.AreNotEqual(summaries, null);
+
+            var correctedProjectsId = (from p in filter.Projects select p.Id).ToList();
+            var correctedUserGroupsId = (from u in user.UserGroups select u.Id).ToList();
+            foreach (var summary in summaries)
+            {
+                var hasCorrectedProject = correctedProjectsId.Contains(summary.Id);
+                Assert.AreEqual(hasCorrectedProject, true);
+
+                var hasCorrectedPeriod = summary.SummaryDate >= filter.DateStart;
+                Assert.AreEqual(hasCorrectedPeriod, true);
+
+                foreach (var userGroup in summary.UserGroups)
+                {
+                    var hasCorrectedUserGroup = correctedUserGroupsId.Contains(userGroup.Id);
+                    Assert.AreEqual(hasCorrectedUserGroup, true);
+                }
+            }
+
+            
+
+        }
+
+        #endregion
+
+        #region UpdateSummary
+
+        [TestMethod]
+        public void UpdateSummary()
+        {
+
+        }
+
+        #endregion
     }
 }
