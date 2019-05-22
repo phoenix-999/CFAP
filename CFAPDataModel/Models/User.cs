@@ -88,19 +88,18 @@ namespace CFAPDataModel.Models
 
         public void ChangeUserGroups(CFAPContext ctx)
         {
+            var newGoupsId = this.GetUserGroupsId();
+
             var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
 
             ctx.Users.Attach(this); //Повторное приединении сущностей или их связей выдаст исключение
 
-            for(int i = 0; i < this.UserGroups.Count; i++)
-            {
-                objectStateManager.ChangeRelationshipState(this, this.UserGroups[i], u => u.UserGroups, EntityState.Deleted);
-            }
 
-            var goupsId = this.GetUserGroupsId();
+            //TODO: Вычилсить изменение групп, удалить лишние и добавить новые
+      
 
             var groups = (from g in ctx.UserGroups
-                          where goupsId.Contains(g.Id) || g.CanUserAllData == true
+                          where newGoupsId.Contains(g.Id) || g.CanUserAllData == true
                           select g).ToList();
 
             foreach (var g in groups)
