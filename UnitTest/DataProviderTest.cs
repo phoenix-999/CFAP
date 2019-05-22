@@ -270,13 +270,13 @@ namespace UnitTest
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
 
             var oldUserName = userForUpdate.UserName;
-            userForUpdate.UserName = "updateUser";
+            userForUpdate.UserName = "Liubov";
             var oldPassword = userForUpdate.Password;
             userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
             userForUpdate.IsAdmin = true;
             UserGroup[] oldGroups = (from g in userForUpdate.UserGroups where g.CanUserAllData == false select g).ToArray();
-            userForUpdate.UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID } };
+            userForUpdate.UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } };
 
             DataProviderProxy.UpdateUser(userForUpdate, owner);
 

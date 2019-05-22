@@ -110,26 +110,14 @@ namespace CFAPService
 
                 userForUpdate.Password = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
 
-                //Обновление данных о пользователе путем удаление старого пользователя и добавления нового.
-                //При обчном изменении данных не меняються ссылочные коллеции
                 using (var transaction = ctx.Database.BeginTransaction())
                 {
                     try
                     {
-                        //Удаление старых данных пользователя
-                        var oldUser = (from u in ctx.Users where u.Id == userForUpdate.Id select u).Single();
-
-                        //Сохранение старого идентификатора
-                        int id = oldUser.Id;
-                        userForUpdate.Id = id;
-
-                        ctx.Users.Remove(oldUser);
-                        ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
-
-                        //Добавление новых данных о пользователе
-                        //Меняеться идентификатор
-                        ctx.Users.Add(userForUpdate);
-                        ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                        //TODO: реализовать изменение групп пользвателя
+                        userForUpdate.LoadUserGroups(ctx);
+                        ctx.Entry(userForUpdate).State = EntityState.Modified;
+                        ctx.SaveChanges();
 
 
                         //Подтверждение завершения транзакции

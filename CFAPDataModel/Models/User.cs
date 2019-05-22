@@ -81,6 +81,8 @@ namespace CFAPDataModel.Models
                           select g).ToList();
 
             this.UserGroups = groups;
+
+            
         }
     }
 }
