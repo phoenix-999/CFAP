@@ -115,7 +115,7 @@ namespace CFAPService
                     try
                     {
                         //TODO: реализовать изменение групп пользвателя
-                        userForUpdate.LoadUserGroups(ctx);
+                        userForUpdate.ChangeUserGroups(ctx);
                         ctx.Entry(userForUpdate).State = EntityState.Modified;
                         ctx.SaveChanges();
 

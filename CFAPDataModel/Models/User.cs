@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Objects.DataClasses;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 
 namespace CFAPDataModel.Models
 {
@@ -42,7 +45,7 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [Required]
-        public virtual ICollection<UserGroup> UserGroups { get; set; }
+        public virtual List<UserGroup> UserGroups { get; set; }
 
 
         public void EncriptPassword()
@@ -81,8 +84,29 @@ namespace CFAPDataModel.Models
                           select g).ToList();
 
             this.UserGroups = groups;
+        }
 
-            
+        public void ChangeUserGroups(CFAPContext ctx)
+        {
+            var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
+
+            ctx.Users.Attach(this); //Повторное приединении сущностей или их связей выдаст исключение
+
+            for(int i = 0; i < this.UserGroups.Count; i++)
+            {
+                objectStateManager.ChangeRelationshipState(this, this.UserGroups[i], u => u.UserGroups, EntityState.Deleted);
+            }
+
+            var goupsId = this.GetUserGroupsId();
+
+            var groups = (from g in ctx.UserGroups
+                          where goupsId.Contains(g.Id) || g.CanUserAllData == true
+                          select g).ToList();
+
+            foreach (var g in groups)
+            {
+                objectStateManager.ChangeRelationshipState(this, g, u => u.UserGroups, EntityState.Added);
+            }
         }
     }
 }
