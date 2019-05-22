@@ -110,7 +110,7 @@ namespace CFAPDataModel.Models
 
         }
 
-        public void SetStateProperties(CFAPContext ctx)
+        public void SetRelationships(CFAPContext ctx)
         {
             ctx.Configuration.ProxyCreationEnabled = false;
 
@@ -139,9 +139,31 @@ namespace CFAPDataModel.Models
             }
 
             this.UserLastChanged = (from u in ctx.Users where u.Id == this.UserLastChanged.Id select u).First();
+            this.UserLastChangedId = UserLastChanged.Id;
 
             this.LoadUserGroups(ctx);
             
+        }
+
+        public static void LoadRelationships(CFAPContext ctx)
+        {
+            ctx.Summaries
+                .Include("Project")
+                .Include("BudgetItem")
+                .Include("Accountable")
+                .Include("Description")
+                .Include("UserLastChanges")
+                .Include("UserGroups");
+
+            foreach (var s in ctx.Summaries.Local)
+            {
+                s.Accountable = (from a in ctx.Accountables where a.Id == s.Accountable_Id select a).Single();
+                s.Project = (from p in ctx.Projects where p.Id == s.Project_Id select p).Single();
+                s.BudgetItem = (from b in ctx.BudgetItems where b.Id == s.BudgetItem_Id select b).Single();
+                s.Description = (from d in ctx.Descriptions where d.Id == s.DescriptionItem_Id select d).Single();
+                s.UserLastChanged = (from u in ctx.Users where u.Id == s.UserLastChangedId select u).Single();
+                ctx.Entry(s).Collection("UserGroups").Load();
+            }
         }
 
 

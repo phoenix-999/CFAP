@@ -180,7 +180,7 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                summary.SetStateProperties(ctx);
+                summary.SetRelationships(ctx);
 
                 try
                 {
@@ -230,7 +230,7 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                summary.SetStateProperties(ctx);
+                summary.SetRelationships(ctx);
 
                 if (summary.ReadOnly)
                 {
@@ -284,7 +284,7 @@ namespace CFAPService
                     summary.UserLastChanged = user;
                 }
 
-                summary.SetStateProperties(ctx);
+                summary.SetRelationships(ctx);
 
                 if (summary.ReadOnly)
                 {
@@ -344,7 +344,7 @@ namespace CFAPService
                         s.UserLastChanged = user;
                     }
 
-                    s.SetStateProperties(ctx);
+                    s.SetRelationships(ctx);
 
                     if (s.ReadOnly)
                     {
@@ -451,8 +451,13 @@ namespace CFAPService
        {
             HashSet<Summary> result = new HashSet<Summary>();
 
-            DateTime? dateStart = filter.DateStart != null ? filter.DateStart : DateTime.MinValue;
-            DateTime? dateEnd = filter.DateEnd != null ? filter.DateEnd : DateTime.MaxValue;
+            DateTime? dateStart = null;
+            DateTime? dateEnd = null;
+            if (filter != null)
+            {
+                dateStart = filter.DateStart != null ? filter.DateStart : DateTime.MinValue;
+                dateEnd = filter.DateEnd != null ? filter.DateEnd : DateTime.MaxValue;
+            }
 
 
             using (CFAPContext ctx = new CFAPContext())
@@ -470,22 +475,25 @@ namespace CFAPService
 
                     result = new HashSet<Summary>(query);
 
+                    Summary.LoadRelationships(ctx);
+
                     return result;
                 }
 
                 var summaries = from s in ctx.Summaries
                                 from g in s.UserGroups
                                 where
-                                    s.ActionDate >= dateStart && s.ActionDate <= dateEnd
+                                    s.SummaryDate >= dateStart && s.SummaryDate <= dateEnd
                                     && userGroupsId.Contains(g.Id)
                                 select s;
+                result = new HashSet<Summary>(summaries.ToArray());
 
                 if (filter.Projects != null && filter.Projects.Count > 0)
                 {
                     var projectsId = filter.GetProjectsId();
 
                     summaries = from s in summaries
-                                where projectsId.Contains(s.Project.Id) //В выражении LINQ To Entyties для сравнения экзмпляров можно использовать только примитивные типы или перечисления
+                                where projectsId.Contains(s.Project.Id) //В выражении LINQ To Entity для сравнения экзмпляров можно использовать только примитивные типы или перечисления
                                 select s;
                 }
 
@@ -507,14 +515,10 @@ namespace CFAPService
                                 select s;
                 }
 
-                ctx.Summaries
-                     .Include(s => s.Project)
-                     .Include(s=> s.Accountable)
-                     .Include(s => s.Description)
-                     .Include(s => s.BudgetItem).Load();
-               
-
                 result = new HashSet<Summary>(summaries.ToArray());
+
+                Summary.LoadRelationships(ctx);
+
             }
 
             return result;
