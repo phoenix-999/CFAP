@@ -90,6 +90,7 @@ namespace CFAPDataModel.Models
             var groupsCanUseAllData = (from g in ctx.UserGroups
                                        where g.CanUserAllData == true
                                        select g).ToList();
+
             foreach (var currentGroup in this.UserGroups)
             {
                 for (int groupIndex = 0; groupIndex < groupsCanUseAllData.Count; groupIndex++)

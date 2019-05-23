@@ -80,7 +80,7 @@ namespace CFAPDataModel.Models
 
             //LINQ to Entities не умеет вызывать методы
             var groups = (from g in ctx.UserGroups
-                          where goupsId.Contains(g.Id) || g.CanUserAllData == true
+                          where goupsId.Contains(g.Id)
                           select g).ToList();
 
             this.UserGroups = groups;
@@ -104,7 +104,7 @@ namespace CFAPDataModel.Models
 
             //Прикрепить к контексту новые группы пользователя
             var newGroups = (from g in ctx.UserGroups
-                          where newGoupsId.Contains(g.Id) || g.CanUserAllData == true
+                          where newGoupsId.Contains(g.Id)
                           select g).ToList();
             
             //Определить группы, с которых был исключен пользователь

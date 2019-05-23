@@ -145,8 +145,7 @@ namespace UnitTest
 
                 UserGroup[] correctedUserGroups = new UserGroup[]
                 {
-                    new UserGroup(){ Id = MAIN_OFFICE_ID}
-                    , new UserGroup() { Id = OFFICE1_ID}
+                    new UserGroup() { Id = OFFICE1_ID}
                 };
 
                 foreach (var addedGroup in addedUser.UserGroups)
@@ -159,7 +158,7 @@ namespace UnitTest
                 ctx.SaveChanges();
 
                 var removedUser = (from u in ctx.Users
-                                 where u.UserName == newUser.UserName
+                                   where u.UserName == newUser.UserName
                                    select u
                                  ).FirstOrDefault();
                 Assert.AreEqual(removedUser, null);
@@ -278,12 +277,12 @@ namespace UnitTest
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
 
             var oldUserName = userForUpdate.UserName;
-            userForUpdate.UserName = "updatedUser";
+            userForUpdate.UserName = "updateUser";
             var oldPassword = userForUpdate.Password;
             userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
             userForUpdate.IsAdmin = true;
-            UserGroup[] oldGroups = (from g in userForUpdate.UserGroups where g.CanUserAllData == false select g).ToArray();
+            UserGroup[] oldGroups = (from g in userForUpdate.UserGroups select g).ToArray();
             userForUpdate.UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } };
 
             DataProviderProxy.UpdateUser(userForUpdate, owner);
@@ -310,13 +309,6 @@ namespace UnitTest
 
                 var canUseAllDataGroups = (from g in ctx.UserGroups where g.CanUserAllData == true select g).ToArray();
                 
-                //Проверка добавления обязательных групп
-                foreach (var groupCanUseAllData in canUseAllDataGroups)
-                {
-                    var correctGroup = (from g in updatedUser.UserGroups where g.Id == groupCanUseAllData.Id select g).FirstOrDefault();
-                    Assert.AreNotEqual(correctGroup, null);
-                }
-
                 //Изменение Id обновленного пользователя, так как при изменении данных пользователя Id меняется
                 userForUpdate.Id = updatedUser.Id;
             }
@@ -395,7 +387,7 @@ namespace UnitTest
 
             foreach (var summaryGroup in addedSummary.UserGroups)
             {
-                var correctedGroup = (from g in user.UserGroups where g.Id == summaryGroup.Id select g).FirstOrDefault();
+                var correctedGroup = (from g in user.UserGroups where g.Id == summaryGroup.Id || summaryGroup.CanUserAllData select summaryGroup).FirstOrDefault();
                 Assert.AreNotEqual(correctedGroup, null);
             }
 
@@ -464,7 +456,8 @@ namespace UnitTest
                 foreach (var userGroup in summary.UserGroups)
                 {
                     var hasCorrectedUserGroup = correctedUserGroupsId.Contains(userGroup.Id);
-                    if (hasCorrectedUserGroup) numbersOfCorrectedGroups++;  
+                    if (hasCorrectedUserGroup || user.UserGroups.Where(g => g.CanUserAllData).FirstOrDefault() != null)
+                        numbersOfCorrectedGroups++;  
                 }
                 Assert.AreEqual(numbersOfCorrectedGroups, user.UserGroups.Length);
             }
@@ -480,7 +473,7 @@ namespace UnitTest
         [TestMethod]
         public void UpdateSummary()
         {
-            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
 
             Summary[] summaries = DataProviderProxy.GetSummary(user, null);
             var summariesCanWrite = (from s in summaries where s.ReadOnly == false select s).ToList();
@@ -507,7 +500,9 @@ namespace UnitTest
             var correctedUserGroupsId = (from g in user.UserGroups select g.Id).ToList();
             foreach (var userGroup in updatedSummary.UserGroups)
             {
-                var hasCorrectedGroups = correctedUserGroupsId.Contains(userGroup.Id);
+                var hasCorrectedGroups = correctedUserGroupsId.Contains(userGroup.Id)
+                    || userGroup.CanUserAllData
+                    || user.UserGroups.Where(g=>g.CanUserAllData).FirstOrDefault() != null;
                 Assert.AreEqual(hasCorrectedGroups, true);
             }
 
