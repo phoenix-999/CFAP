@@ -199,14 +199,6 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
-
-            //Группы пользователей уже существуют в сущности
-            if (summary.UserGroups == null || summary.UserGroups.Count == 0)
-            {
-                summary.UserGroups = user.UserGroups;
-            }
-
-
             //Пользователь который изменил данные устанавливается по факту
             if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
             {
@@ -219,8 +211,6 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                summary.SetRelationships(ctx);
-
                 if (summary.ReadOnly)
                 {
                     throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
@@ -228,6 +218,11 @@ namespace CFAPService
 
                 try
                 {
+                    //Группы пользователей уже существуют в сущности
+                    //Если, по какой то причине их нет - будет исключение валидации
+
+                    summary.SetRelationships(ctx);
+
                     //В данном случае AddOrUpdate не сработает в выдаче исключения оптимистичного паралелизма. Он перезагружет сущности в контекс и формирует уже актуальное поле RowVersion
                     ctx.Summaries.Attach(summary);
 

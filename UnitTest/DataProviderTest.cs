@@ -543,6 +543,7 @@ namespace UnitTest
             summaryToUpdate.Project = null;
             summaryToUpdate.BudgetItem = null;
             summaryToUpdate.Description = null;
+            summaryToUpdate.UserGroups = null;
 
             Assert.ThrowsException<FaultException<DataNotValidException>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
         }

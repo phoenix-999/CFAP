@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.ComponentModel;
 using System.Data.Entity.Validation;
+using System.Collections;
 
 namespace CFAPDataModel.Models
 {
@@ -68,6 +69,11 @@ namespace CFAPDataModel.Models
 
         public ICollection<int> GetUserGroupsId()
         {
+            if (this.UserGroups == null || this.UserGroups.Count == 0)
+            {
+                throw new NullReferenceException("Группы пользователя не определены.");
+            }
+
             var groupsId = (from g in this.UserGroups
                             select g.Id).ToList();
 
@@ -79,7 +85,18 @@ namespace CFAPDataModel.Models
             //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
             ctx.Configuration.ProxyCreationEnabled = false;
 
-            var goupsId = this.GetUserGroupsId();
+            ICollection<int> goupsId = null;
+            try
+            {
+                goupsId = this.GetUserGroupsId();
+            }
+            catch(NullReferenceException ex)
+            {
+                DbValidationError validationError = new DbValidationError("Группы пользователя", "Значениие не определено");
+                DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError });
+
+                throw new DbEntityValidationException("Ошибка при проверке данных групп пользователей. Группы не добавлены", new DbEntityValidationResult[] { dbEntityValidationResult });
+            }
 
             //LINQ to Entities не умеет вызывать методы
             var groups = (from g in ctx.UserGroups
@@ -191,25 +208,27 @@ namespace CFAPDataModel.Models
 
             if (validationResults.Count > 0)
             {
-                throw new DbEntityValidationException("Ошибка при проверке данных.", validationResults);
+                throw new DbEntityValidationException(
+                    "Ошибка при проверке данных. Данные могут остутствовать или указаны не верно. Проверте внесенные данные и повторите попытку"
+                    , validationResults);
             }
         }
 
         private void CustomProperiesValidate<TProperty>(TProperty property, CFAPContext ctx, List<DbEntityValidationResult> validationResults) where TProperty : class
         {
-            if (validationResults == null) throw new ArgumentNullException("List<DbEntityValidationResult> validationResults педеан с неопределенным значением.");
-            
+            if (validationResults == null) throw new ArgumentNullException("List<DbEntityValidationResult> validationResults педреан с неопределенным значением.");
+
             if (property == null)
             {
                 DbValidationError validationError = new DbValidationError(typeof(TProperty).ToString(), "Значениие не определено");
-                DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError});
+                DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError });
                 validationResults.Add(dbEntityValidationResult);
                 return;
             }
 
-            var propertyResult = ctx.Entry(property).GetValidationResult();
+            var propertyValidationResult = ctx.Entry(property).GetValidationResult();
 
-            if (!propertyResult.IsValid) { validationResults.Add(propertyResult); }
+            if (!propertyValidationResult.IsValid) { validationResults.Add(propertyValidationResult); }
         }
 
 
