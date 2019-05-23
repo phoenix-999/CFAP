@@ -15,7 +15,7 @@ namespace CFAP
         static User secondUser;
         static void Main(string[] args)
         {
-            mainUser = Authenticate("yurii", "2");
+            mainUser = Authenticate("yurii", "1");
             secondUser = Authenticate("Liubov", "2"); //2kuSN7rMzfGcB2DKt67EqDWQELA=
             //AddUser();
             List<Summary> summaries = GetSummary();
@@ -23,7 +23,7 @@ namespace CFAP
             summaries = GetSummary();
             //UpdateSummaries(summaries.ToArray(), mainUser);
 
-            //AddSummary(summaries[0], mainUser);
+            AddSummary(summaries[0], mainUser);
             //UpdateSummary(summaries[1], mainUser);
             //DeleteSummary(summaries[1], mainUser);
 
