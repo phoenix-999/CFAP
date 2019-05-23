@@ -32,6 +32,16 @@ namespace CFAPService.Faults
             }
         }
 
+        public DataNotValidException(DbEntityValidationResult validationresults)
+        {
+            this.ValidationErrors = new Dictionary<string, string>();
+            foreach (var er in validationresults.ValidationErrors)
+            {
+                this.ValidationErrors.Add(er.PropertyName, er.ErrorMessage);
+            }
+        }
+
+
         [DataMember]
         public IDictionary<string, string> ValidationErrors { get; private set; }
     }

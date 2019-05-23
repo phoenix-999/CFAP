@@ -980,10 +980,10 @@ namespace UnitTest.DataProviderService {
         private byte[] RowVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double SummaDolarField;
+        private double SummaUAHField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double SummaGrnField;
+        private double SummaUSDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime SummaryDateField;
@@ -1135,27 +1135,27 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double SummaDolar {
+        public double SummaUAH {
             get {
-                return this.SummaDolarField;
+                return this.SummaUAHField;
             }
             set {
-                if ((this.SummaDolarField.Equals(value) != true)) {
-                    this.SummaDolarField = value;
-                    this.RaisePropertyChanged("SummaDolar");
+                if ((this.SummaUAHField.Equals(value) != true)) {
+                    this.SummaUAHField = value;
+                    this.RaisePropertyChanged("SummaUAH");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double SummaGrn {
+        public double SummaUSD {
             get {
-                return this.SummaGrnField;
+                return this.SummaUSDField;
             }
             set {
-                if ((this.SummaGrnField.Equals(value) != true)) {
-                    this.SummaGrnField = value;
-                    this.RaisePropertyChanged("SummaGrn");
+                if ((this.SummaUSDField.Equals(value) != true)) {
+                    this.SummaUSDField = value;
+                    this.RaisePropertyChanged("SummaUSD");
                 }
             }
         }
@@ -1207,6 +1207,129 @@ namespace UnitTest.DataProviderService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.SerializableAttribute()]
+    public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable[] AccountablesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.BudgetItem[] BudgetItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateEndField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateStartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Project[] ProjectsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable[] Accountables {
+            get {
+                return this.AccountablesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
+                    this.AccountablesField = value;
+                    this.RaisePropertyChanged("Accountables");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.BudgetItem[] BudgetItems {
+            get {
+                return this.BudgetItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
+                    this.BudgetItemsField = value;
+                    this.RaisePropertyChanged("BudgetItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateEnd {
+            get {
+                return this.DateEndField;
+            }
+            set {
+                if ((this.DateEndField.Equals(value) != true)) {
+                    this.DateEndField = value;
+                    this.RaisePropertyChanged("DateEnd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.DateStartField;
+            }
+            set {
+                if ((this.DateStartField.Equals(value) != true)) {
+                    this.DateStartField = value;
+                    this.RaisePropertyChanged("DateStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Project[] Projects {
+            get {
+                return this.ProjectsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
+                    this.ProjectsField = value;
+                    this.RaisePropertyChanged("Projects");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DbConcurencyUpdateOptions", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
+    public enum DbConcurencyUpdateOptions : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        None = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ClientPriority = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DatabasePriority = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1363,129 +1486,6 @@ namespace UnitTest.DataProviderService {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DbConcurencyUpdateOptions", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
-    public enum DbConcurencyUpdateOptions : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        None = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ClientPriority = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DatabasePriority = 2,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
-    [System.SerializableAttribute()]
-    public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.Accountable[] AccountablesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.BudgetItem[] BudgetItemsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateEndField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateStartField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.Project[] ProjectsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.Accountable[] Accountables {
-            get {
-                return this.AccountablesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountablesField, value) != true)) {
-                    this.AccountablesField = value;
-                    this.RaisePropertyChanged("Accountables");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.BudgetItem[] BudgetItems {
-            get {
-                return this.BudgetItemsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BudgetItemsField, value) != true)) {
-                    this.BudgetItemsField = value;
-                    this.RaisePropertyChanged("BudgetItems");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateEnd {
-            get {
-                return this.DateEndField;
-            }
-            set {
-                if ((this.DateEndField.Equals(value) != true)) {
-                    this.DateEndField = value;
-                    this.RaisePropertyChanged("DateEnd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateStart {
-            get {
-                return this.DateStartField;
-            }
-            set {
-                if ((this.DateStartField.Equals(value) != true)) {
-                    this.DateStartField = value;
-                    this.RaisePropertyChanged("DateStart");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.Project[] Projects {
-            get {
-                return this.ProjectsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
-                    this.ProjectsField = value;
-                    this.RaisePropertyChanged("Projects");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1529,26 +1529,10 @@ namespace UnitTest.DataProviderService {
         
         void EndUpdateUser(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AlterSummariesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AlterSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AlterSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AlterSummariesTryChangeReadOnlyFiledExceptionFau" +
-            "lt", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
-        System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
-        
-        void EndAlterSummaries(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AddSummaryTryChangeReadOnlyFiledExceptionFault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/AddSummaryConcurrencyExceptionOf_SummaryFault", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
         
@@ -1556,6 +1540,15 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginAddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.Summary EndAddSummary(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1588,14 +1581,19 @@ namespace UnitTest.DataProviderService {
         
         int EndRemoveSummary(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AlterSummariesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AlterSummariesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AlterSummariesDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/AlterSummariesTryChangeReadOnlyFiledExceptionFau" +
+            "lt", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
-        System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AlterSummaries", ReplyAction="http://tempuri.org/IDataProvider/AlterSummariesResponse")]
+        System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
         
-        UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result);
+        void EndAlterSummaries(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1642,6 +1640,25 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Summary[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Summary[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class UpdateSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1680,25 +1697,6 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public UnitTest.DataProviderService.Summary[] Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((UnitTest.DataProviderService.Summary[])(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginAuthenticateDelegate;
@@ -1719,17 +1717,17 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateUserCompletedDelegate;
         
-        private BeginOperationDelegate onBeginAlterSummariesDelegate;
-        
-        private EndOperationDelegate onEndAlterSummariesDelegate;
-        
-        private System.Threading.SendOrPostCallback onAlterSummariesCompletedDelegate;
-        
         private BeginOperationDelegate onBeginAddSummaryDelegate;
         
         private EndOperationDelegate onEndAddSummaryDelegate;
         
         private System.Threading.SendOrPostCallback onAddSummaryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSummaryDelegate;
+        
+        private EndOperationDelegate onEndGetSummaryDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSummaryCompletedDelegate;
         
         private BeginOperationDelegate onBeginUpdateSummaryDelegate;
         
@@ -1743,11 +1741,11 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onRemoveSummaryCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetSummaryDelegate;
+        private BeginOperationDelegate onBeginAlterSummariesDelegate;
         
-        private EndOperationDelegate onEndGetSummaryDelegate;
+        private EndOperationDelegate onEndAlterSummariesDelegate;
         
-        private System.Threading.SendOrPostCallback onGetSummaryCompletedDelegate;
+        private System.Threading.SendOrPostCallback onAlterSummariesCompletedDelegate;
         
         public DataProviderClient() {
         }
@@ -1774,15 +1772,15 @@ namespace UnitTest.DataProviderService {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateUserCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AlterSummariesCompleted;
-        
         public event System.EventHandler<AddSummaryCompletedEventArgs> AddSummaryCompleted;
+        
+        public event System.EventHandler<GetSummaryCompletedEventArgs> GetSummaryCompleted;
         
         public event System.EventHandler<UpdateSummaryCompletedEventArgs> UpdateSummaryCompleted;
         
         public event System.EventHandler<RemoveSummaryCompletedEventArgs> RemoveSummaryCompleted;
         
-        public event System.EventHandler<GetSummaryCompletedEventArgs> GetSummaryCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AlterSummariesCompleted;
         
         public UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user) {
             return base.Channel.Authenticate(user);
@@ -1936,57 +1934,6 @@ namespace UnitTest.DataProviderService {
                         owner}, this.onEndUpdateUserDelegate, this.onUpdateUserCompletedDelegate, userState);
         }
         
-        public void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
-            base.Channel.AlterSummaries(summaries, user);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAlterSummaries(summaries, user, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndAlterSummaries(System.IAsyncResult result) {
-            base.Channel.EndAlterSummaries(result);
-        }
-        
-        private System.IAsyncResult OnBeginAlterSummaries(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            UnitTest.DataProviderService.Summary[] summaries = ((UnitTest.DataProviderService.Summary[])(inValues[0]));
-            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
-            return this.BeginAlterSummaries(summaries, user, callback, asyncState);
-        }
-        
-        private object[] OnEndAlterSummaries(System.IAsyncResult result) {
-            this.EndAlterSummaries(result);
-            return null;
-        }
-        
-        private void OnAlterSummariesCompleted(object state) {
-            if ((this.AlterSummariesCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.AlterSummariesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
-            this.AlterSummariesAsync(summaries, user, null);
-        }
-        
-        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, object userState) {
-            if ((this.onBeginAlterSummariesDelegate == null)) {
-                this.onBeginAlterSummariesDelegate = new BeginOperationDelegate(this.OnBeginAlterSummaries);
-            }
-            if ((this.onEndAlterSummariesDelegate == null)) {
-                this.onEndAlterSummariesDelegate = new EndOperationDelegate(this.OnEndAlterSummaries);
-            }
-            if ((this.onAlterSummariesCompletedDelegate == null)) {
-                this.onAlterSummariesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAlterSummariesCompleted);
-            }
-            base.InvokeAsync(this.onBeginAlterSummariesDelegate, new object[] {
-                        summaries,
-                        user}, this.onEndAlterSummariesDelegate, this.onAlterSummariesCompletedDelegate, userState);
-        }
-        
         public UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {
             return base.Channel.AddSummary(summary, user);
         }
@@ -2037,6 +1984,58 @@ namespace UnitTest.DataProviderService {
             base.InvokeAsync(this.onBeginAddSummaryDelegate, new object[] {
                         summary,
                         user}, this.onEndAddSummaryDelegate, this.onAddSummaryCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            return base.Channel.GetSummary(user, filter);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSummary(user, filter, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result) {
+            return base.Channel.EndGetSummary(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[1]));
+            return this.BeginGetSummary(user, filter, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSummary(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Summary[] retVal = this.EndGetSummary(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSummaryCompleted(object state) {
+            if ((this.GetSummaryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSummaryCompleted(this, new GetSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            this.GetSummaryAsync(user, filter, null);
+        }
+        
+        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, object userState) {
+            if ((this.onBeginGetSummaryDelegate == null)) {
+                this.onBeginGetSummaryDelegate = new BeginOperationDelegate(this.OnBeginGetSummary);
+            }
+            if ((this.onEndGetSummaryDelegate == null)) {
+                this.onEndGetSummaryDelegate = new EndOperationDelegate(this.OnEndGetSummary);
+            }
+            if ((this.onGetSummaryCompletedDelegate == null)) {
+                this.onGetSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSummaryCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSummaryDelegate, new object[] {
+                        user,
+                        filter}, this.onEndGetSummaryDelegate, this.onGetSummaryCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
@@ -2147,56 +2146,55 @@ namespace UnitTest.DataProviderService {
                         concurencyUpdateOptions}, this.onEndRemoveSummaryDelegate, this.onRemoveSummaryCompletedDelegate, userState);
         }
         
-        public UnitTest.DataProviderService.Summary[] GetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
-            return base.Channel.GetSummary(user, filter);
+        public void AlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
+            base.Channel.AlterSummaries(summaries, user);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetSummary(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetSummary(user, filter, callback, asyncState);
+        public System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAlterSummaries(summaries, user, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result) {
-            return base.Channel.EndGetSummary(result);
+        public void EndAlterSummaries(System.IAsyncResult result) {
+            base.Channel.EndAlterSummaries(result);
         }
         
-        private System.IAsyncResult OnBeginGetSummary(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
-            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[1]));
-            return this.BeginGetSummary(user, filter, callback, asyncState);
+        private System.IAsyncResult OnBeginAlterSummaries(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Summary[] summaries = ((UnitTest.DataProviderService.Summary[])(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAlterSummaries(summaries, user, callback, asyncState);
         }
         
-        private object[] OnEndGetSummary(System.IAsyncResult result) {
-            UnitTest.DataProviderService.Summary[] retVal = this.EndGetSummary(result);
-            return new object[] {
-                    retVal};
+        private object[] OnEndAlterSummaries(System.IAsyncResult result) {
+            this.EndAlterSummaries(result);
+            return null;
         }
         
-        private void OnGetSummaryCompleted(object state) {
-            if ((this.GetSummaryCompleted != null)) {
+        private void OnAlterSummariesCompleted(object state) {
+            if ((this.AlterSummariesCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetSummaryCompleted(this, new GetSummaryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.AlterSummariesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
-            this.GetSummaryAsync(user, filter, null);
+        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user) {
+            this.AlterSummariesAsync(summaries, user, null);
         }
         
-        public void GetSummaryAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, object userState) {
-            if ((this.onBeginGetSummaryDelegate == null)) {
-                this.onBeginGetSummaryDelegate = new BeginOperationDelegate(this.OnBeginGetSummary);
+        public void AlterSummariesAsync(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAlterSummariesDelegate == null)) {
+                this.onBeginAlterSummariesDelegate = new BeginOperationDelegate(this.OnBeginAlterSummaries);
             }
-            if ((this.onEndGetSummaryDelegate == null)) {
-                this.onEndGetSummaryDelegate = new EndOperationDelegate(this.OnEndGetSummary);
+            if ((this.onEndAlterSummariesDelegate == null)) {
+                this.onEndAlterSummariesDelegate = new EndOperationDelegate(this.OnEndAlterSummaries);
             }
-            if ((this.onGetSummaryCompletedDelegate == null)) {
-                this.onGetSummaryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSummaryCompleted);
+            if ((this.onAlterSummariesCompletedDelegate == null)) {
+                this.onAlterSummariesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAlterSummariesCompleted);
             }
-            base.InvokeAsync(this.onBeginGetSummaryDelegate, new object[] {
-                        user,
-                        filter}, this.onEndGetSummaryDelegate, this.onGetSummaryCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginAlterSummariesDelegate, new object[] {
+                        summaries,
+                        user}, this.onEndAlterSummariesDelegate, this.onAlterSummariesCompletedDelegate, userState);
         }
     }
 }

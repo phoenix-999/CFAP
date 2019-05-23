@@ -232,6 +232,10 @@ namespace CFAPService
 
                     ctx.Entry(summary).State = EntityState.Modified;
 
+                    //Ручной запуск валидации необходм так как при модификации данных связи с сущностями помечены как EntityState.Unchanged
+                    //В итоге, без ручной валидации, при неверных данных или значениях null будет исключения при внесении данных в бд, а валидация EF ничего не заметит
+                    summary.CustomValidate(ctx);
+
                     ctx.SaveChanges(concurencyUpdateOption);
 
                     result = (from s in ctx.Summaries where s.Id == summary.Id select s).Single();

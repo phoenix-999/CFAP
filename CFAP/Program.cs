@@ -65,7 +65,7 @@ namespace CFAP
 
         static void UpdateSummary(Summary oldSummary, User user)
         {
-            oldSummary.SummaGrn = 5000;
+            oldSummary.SummaUAH = 5000;
             oldSummary.Project = new Project() { Id = 36, ProjectName = "Project3" };
             oldSummary.SummaryDate = DateTime.Now.AddDays(1);
             oldSummary.IsModified = true;
@@ -74,7 +74,7 @@ namespace CFAP
             {
                 var result = DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
 
-                oldSummary.SummaGrn = 10000;
+                oldSummary.SummaUAH = 10000;
                 //oldSummary.RowVersion = result.RowVersion;
                 DataProviderProxy.UpdateSummary(oldSummary, mainUser, DbConcurencyUpdateOptions.None);
 
@@ -96,8 +96,8 @@ namespace CFAP
             catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> ex)
             {
                 Console.WriteLine("Ошибка оптимистичного парралелизма:");
-                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaGrn);
-                Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaGrn);
+                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaUAH);
+                Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaUAH);
             }
             catch (FaultException<DbException> ex)
             {
@@ -123,10 +123,10 @@ namespace CFAP
             catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> ex)
             {
                 Console.WriteLine("Ошибка оптимистичного парралелизма:");
-                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaGrn);
+                Console.WriteLine("Значение в БД: {0}", ex.Detail.DatabaseValue.SummaUAH);
 
                 if (ex.Detail.CurrentValue != null)
-                    Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaGrn);
+                    Console.WriteLine("Значение в сейчас: {0}", ex.Detail.CurrentValue.SummaUAH);
             }
             catch (FaultException<DbException> ex)
             {
@@ -143,7 +143,7 @@ namespace CFAP
                 Project = anySummary.Project,
                 BudgetItem = anySummary.BudgetItem,
                 Description = anySummary.Description,
-                SummaGrn = 400,
+                SummaUAH = 400,
                 UserGroups = new UserGroup[] { user.UserGroups[1] },
                 IsModified = true,
                 SummaryDate = DateTime.Now
@@ -287,7 +287,7 @@ namespace CFAP
                 Project = summary.Project,
                 BudgetItem = summary.BudgetItem,
                 Description = summary.Description,
-                SummaGrn = 100,
+                SummaUAH = 100,
                 UserGroups = new UserGroup[] { user.UserGroups[1] },
                 IsModified = true
                 ,SummaryDate = DateTime.Now                
@@ -298,7 +298,7 @@ namespace CFAP
                 Project = summary.Project,
                 BudgetItem = summary.BudgetItem,
                 Description = summary.Description,
-                SummaGrn = 300,
+                SummaUAH = 300,
                 IsModified = true
                 ,SummaryDate = DateTime.Now
             };
@@ -332,13 +332,13 @@ namespace CFAP
         {
             Console.WriteLine("Обновление summary");
 
-            summaries[0].SummaGrn = 1000;
+            summaries[0].SummaUAH = 1000;
             summaries[0].Project = new Project() { Id=36, ProjectName="Project3" };
             summaries[0].IsModified = true;
             summaries[0].SummaryDate = DateTime.Now.AddDays(1);
             summaries[0].UserLastChanged = new User() { Id = 2, UserName = "Liubov", Password = "2kuSN7rMzfGcB2DKt67EqDWQELA=" };
 
-            summaries[1].SummaGrn = 2000;
+            summaries[1].SummaUAH = 2000;
             summaries[1].Project = new Project() { Id = 37, ProjectName = "Project2" };
             summaries[1].IsModified = true;
 

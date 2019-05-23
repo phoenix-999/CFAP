@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CFAPService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CFAPService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
-  <xs:complexType name="Filter">
-    <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="Accountables" nillable="true" type="q1:ArrayOfAccountable" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="BudgetItems" nillable="true" type="q2:ArrayOfBudgetItem" />
-      <xs:element minOccurs="0" name="DateEnd" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DateStart" nillable="true" type="xs:dateTime" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="Projects" nillable="true" type="q3:ArrayOfProject" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Filter" nillable="true" type="tns:Filter" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CFAPDataModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="DbConcurencyUpdateOptions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="ClientPriority" />
+      <xs:enumeration value="DatabasePriority" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DbConcurencyUpdateOptions" nillable="true" type="tns:DbConcurencyUpdateOptions" />
 </xs:schema>

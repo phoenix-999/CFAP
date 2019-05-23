@@ -37,7 +37,10 @@ namespace UnitTest
         const int PROJECT2_ID = 36;
 
         const int ACCOUNTABLE1_ID = 1;
+        const string ACCOUNTABLE1 = "Accountable1";
+
         const int ACCOUNTABLE2_ID = 40;
+        const string ACCOUNTABLE2 = "Accountable2";
 
         const int BUDGET_ITEM1_ID = 1;
 
@@ -366,7 +369,7 @@ namespace UnitTest
         {
             Summary newSummary = new Summary()
             {
-                SummaGrn = 200,
+                SummaUAH = 200,
                 SummaryDate = DateTime.Now,
                 Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
                 Project = new Project() { Id = PROJECT1_ID },
@@ -404,7 +407,7 @@ namespace UnitTest
         {
             Summary newSummary = new Summary()
             {
-                SummaGrn = 200,
+                SummaUAH = 200,
                 SummaryDate = DateTime.Now,
                 Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
                 Project = new Project() { Id = PROJECT1_ID },
@@ -441,6 +444,7 @@ namespace UnitTest
             Summary[] summaries = DataProviderProxy.GetSummary(user, filter);
             Assert.AreNotEqual(summaries.Length, 0);
 
+            
             var correctedProjectsId = (from p in filter.Projects select p.Id).ToList();
             var correctedUserGroupsId = (from u in user.UserGroups select u.Id).ToList();
             foreach (var summary in summaries)
@@ -451,11 +455,13 @@ namespace UnitTest
                 var hasCorrectedPeriod = summary.SummaryDate >= filter.DateStart;
                 Assert.AreEqual(hasCorrectedPeriod, true);
 
+                var numbersOfCorrectedGroups = 0;
                 foreach (var userGroup in summary.UserGroups)
                 {
                     var hasCorrectedUserGroup = correctedUserGroupsId.Contains(userGroup.Id);
-                    Assert.AreEqual(hasCorrectedUserGroup, true);
+                    if (hasCorrectedUserGroup) numbersOfCorrectedGroups++;  
                 }
+                Assert.AreEqual(numbersOfCorrectedGroups, user.UserGroups.Length);
             }
 
             
@@ -477,10 +483,10 @@ namespace UnitTest
             Summary summaryToUpdate = summariesCanWrite[0];
 
             var oldUser = summaryToUpdate.UserLastChanged;
-            var oldSumma = summaryToUpdate.SummaGrn;
-            summaryToUpdate.SummaGrn = -1;
+            var oldSumma = summaryToUpdate.SummaUAH;
+            summaryToUpdate.SummaUAH = -1;
             Accountable oldAccountable = summaryToUpdate.Accountable;
-            summaryToUpdate.Accountable = new Accountable() { Id = ACCOUNTABLE2_ID };
+            summaryToUpdate.Accountable = new Accountable() { Id = ACCOUNTABLE2_ID, AccountableName = ACCOUNTABLE2 };
 
             Summary updatedSummary = DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
 
@@ -490,7 +496,7 @@ namespace UnitTest
             Assert.AreEqual(updatedSummary.Project.Id, summaryToUpdate.Project.Id);
             Assert.AreEqual(updatedSummary.BudgetItem.Id, summaryToUpdate.BudgetItem.Id);
             Assert.AreEqual(updatedSummary.Description.Id, summaryToUpdate.Description.Id);
-            Assert.AreEqual(updatedSummary.SummaGrn, summaryToUpdate.SummaGrn);
+            Assert.AreEqual(updatedSummary.SummaUAH, summaryToUpdate.SummaUAH);
             Assert.AreEqual(updatedSummary.UserLastChanged.Id, user.Id);
 
             var correctedUserGroupsId = (from g in user.UserGroups select g.Id).ToList();
@@ -500,13 +506,54 @@ namespace UnitTest
                 Assert.AreEqual(hasCorrectedGroups, true);
             }
 
-            updatedSummary.SummaGrn = oldSumma;
+            updatedSummary.SummaUAH = oldSumma;
             updatedSummary.Accountable = oldAccountable;
             updatedSummary.UserLastChanged = oldUser;
 
             DataProviderProxy.UpdateSummary(updatedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
 
         }
+
+        [TestMethod]
+        public void UpdateSummary_TryChangeReadOnlyFileds()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+
+            var summariesCanReadOnly = (from s in summaries where s.ReadOnly == true select s).ToList();
+
+            Assert.AreNotEqual(summariesCanReadOnly.Count, 0);
+
+            Summary summaryToUpdate = summariesCanReadOnly[0];
+
+            Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+        }
+
+        [TestMethod]
+        public void UpdateSummary_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+            var summariesCanWrite = (from s in summaries where s.ReadOnly == false select s).ToList();
+
+            Summary summaryToUpdate = summariesCanWrite[0];
+            summaryToUpdate.Accountable = null;
+            summaryToUpdate.Project = null;
+            summaryToUpdate.BudgetItem = null;
+            summaryToUpdate.Description = null;
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+        }
+
+        [TestMethod]
+        public void UpdateSummary_ConcurencyException()
+        {
+
+        }
+
+        
 
         #endregion
     }

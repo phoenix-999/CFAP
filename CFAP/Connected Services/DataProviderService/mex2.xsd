@@ -96,12 +96,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
-  <xs:complexType name="ArrayOfSummary">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Summary" nillable="true" type="tns:Summary" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSummary" nillable="true" type="tns:ArrayOfSummary" />
   <xs:complexType name="Summary">
     <xs:sequence>
       <xs:element minOccurs="0" name="Accountable" nillable="true" type="tns:Accountable" />
@@ -114,12 +108,18 @@
       <xs:element minOccurs="0" name="Project" nillable="true" type="tns:Project" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
       <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="SummaDolar" type="xs:double" />
-      <xs:element minOccurs="0" name="SummaGrn" type="xs:double" />
+      <xs:element minOccurs="0" name="SummaUAH" type="xs:double" />
+      <xs:element minOccurs="0" name="SummaUSD" type="xs:double" />
       <xs:element minOccurs="0" name="SummaryDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
       <xs:element minOccurs="0" name="UserLastChanged" nillable="true" type="tns:User" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Summary" nillable="true" type="tns:Summary" />
+  <xs:complexType name="ArrayOfSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Summary" nillable="true" type="tns:Summary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSummary" nillable="true" type="tns:ArrayOfSummary" />
 </xs:schema>

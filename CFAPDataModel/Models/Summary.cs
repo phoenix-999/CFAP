@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.ComponentModel;
+using System.Data.Entity.Validation;
 
 namespace CFAPDataModel.Models
 {
@@ -33,17 +34,17 @@ namespace CFAPDataModel.Models
             {
                 double rate = GetRate();
                 if (rate > 0)
-                    this.SummaDolar = this.SummaGrn / rate;
+                    this.SummaUSD = this.SummaUAH / rate;
             }
             catch (DivideByZeroException) 
             {
                 //Возникновения исключения маловероятно по причине неточности обработки чисел с плавающей точкой.
                 //Более вероятно ошибка переполнения из-за слишком маленького значения.
-                this.SummaDolar = double.Epsilon;
+                this.SummaUSD = double.Epsilon;
             }
             catch (OverflowException)
             {
-                this.SummaDolar = double.Epsilon;
+                this.SummaUSD = double.Epsilon;
             }
         }
 
@@ -175,6 +176,41 @@ namespace CFAPDataModel.Models
             }
         }
 
+        public void CustomValidate(CFAPContext ctx)
+        {
+            List<DbEntityValidationResult> validationResults = new List<DbEntityValidationResult>();
+
+            var summaryResult = ctx.Entry(this).GetValidationResult();
+            if (!summaryResult.IsValid) { validationResults.Add(summaryResult); }
+
+            CustomProperiesValidate<Accountable>(this.Accountable, ctx, validationResults);
+            CustomProperiesValidate<BudgetItem>(this.BudgetItem, ctx, validationResults);
+            CustomProperiesValidate<Project>(this.Project, ctx, validationResults);
+            CustomProperiesValidate<DescriptionItem>(this.Description, ctx, validationResults);
+
+            if (validationResults.Count > 0)
+            {
+                throw new DbEntityValidationException("Ошибка при проверке данных.", validationResults);
+            }
+        }
+
+        private void CustomProperiesValidate<TProperty>(TProperty property, CFAPContext ctx, List<DbEntityValidationResult> validationResults) where TProperty : class
+        {
+            if (validationResults == null) throw new ArgumentNullException("List<DbEntityValidationResult> validationResults педеан с неопределенным значением.");
+            
+            if (property == null)
+            {
+                DbValidationError validationError = new DbValidationError(typeof(TProperty).ToString(), "Значениие не определено");
+                DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError});
+                validationResults.Add(dbEntityValidationResult);
+                return;
+            }
+
+            var propertyResult = ctx.Entry(property).GetValidationResult();
+
+            if (!propertyResult.IsValid) { validationResults.Add(propertyResult); }
+        }
+
 
         public override int GetHashCode()
         {
@@ -214,10 +250,10 @@ namespace CFAPDataModel.Models
         public User UserLastChanged { get; set; }
 
         [DataMember]
-        public double SummaGrn { get; set; }
+        public double SummaUAH { get; set; }
 
         [DataMember]
-        public double SummaDolar{ get; set; }
+        public double SummaUSD{ get; set; }
 
         [DataMember]
         public bool CashFlowType { get; set; }

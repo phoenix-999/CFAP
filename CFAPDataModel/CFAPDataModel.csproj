@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201905211416068_User.Password MinLength = 1.Designer.cs">
       <DependentUpon>201905211416068_User.Password MinLength = 1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905231039260_renamed SummaUAH, SummaUSD.cs" />
+    <Compile Include="Migrations\201905231039260_renamed SummaUAH, SummaUSD.Designer.cs">
+      <DependentUpon>201905231039260_renamed SummaUAH, SummaUSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905211416068_User.Password MinLength = 1.resx">
       <DependentUpon>201905211416068_User.Password MinLength = 1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905231039260_renamed SummaUAH, SummaUSD.resx">
+      <DependentUpon>201905231039260_renamed SummaUAH, SummaUSD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
