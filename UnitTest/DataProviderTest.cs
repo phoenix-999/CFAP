@@ -270,7 +270,7 @@ namespace UnitTest
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
 
             var oldUserName = userForUpdate.UserName;
-            userForUpdate.UserName = "Liubov";
+            userForUpdate.UserName = "updatedUser";
             var oldPassword = userForUpdate.Password;
             userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
@@ -297,7 +297,7 @@ namespace UnitTest
                     var correctGroup = (from g in updatedUser.UserGroups where g.Id == newGroup.Id select g).FirstOrDefault();
                     Assert.AreNotEqual(correctGroup, null);
                     //Проверка удаления старой группы
-                    Assert.AreNotEqual(correctGroup.Id, OFFICE1_ID);
+                    Assert.AreNotEqual(correctGroup.Id, userForUpdate.UserGroups[0]);
                 }
 
                 var canUseAllDataGroups = (from g in ctx.UserGroups where g.CanUserAllData == true select g).ToArray();

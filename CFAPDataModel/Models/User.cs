@@ -95,14 +95,35 @@ namespace CFAPDataModel.Models
             ctx.Users.Attach(this); //Повторное приединении сущностей или их связей выдаст исключение
 
 
-            //TODO: Вычилсить изменение групп, удалить лишние и добавить новые
-      
+            //Прикрепить к контексту все существующие группы пользователя
+            var oldGroups = (from g in ctx.UserGroups
+                             from u in g.Users
+                             where u.Id == this.Id
+                             select g
+                             ).ToList();
 
-            var groups = (from g in ctx.UserGroups
+            //Прикрепить к контексту новые группы пользователя
+            var newGroups = (from g in ctx.UserGroups
                           where newGoupsId.Contains(g.Id) || g.CanUserAllData == true
                           select g).ToList();
+            
+            //Определить группы, с которых был исключен пользователь
+            var groupsToRemove = (from g in oldGroups where newGoupsId.Contains(g.Id) == false select g).ToList();
 
-            foreach (var g in groups)
+            //Исключить связи с группами, с которых был исключен пользователь
+            foreach (var g in groupsToRemove)
+            {
+                objectStateManager.ChangeRelationshipState(this, g, u => u.UserGroups, EntityState.Deleted);
+            }
+
+            //Из старого списка групп удалить все группы, с которых был исключен пользователь
+            oldGroups.RemoveAll(g => groupsToRemove.Contains(g));
+
+            //Из списка новых групп исключить группы, к которым пользователь остался прикрепленным. Оставить только группы с которыми нужно создать новые связи.
+            newGroups.RemoveAll(g => oldGroups.Contains(g));
+
+            //Создать связи с группами, в которые пользователь был добален
+            foreach (var g in newGroups)
             {
                 objectStateManager.ChangeRelationshipState(this, g, u => u.UserGroups, EntityState.Added);
             }

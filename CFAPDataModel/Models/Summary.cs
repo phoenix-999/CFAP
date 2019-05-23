@@ -116,13 +116,15 @@ namespace CFAPDataModel.Models
 
             if (this.Project != null && this.Project.Id != default(int))
             {
-                //this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First();
+                // В случае наличия связей с другимим сущностями, это наиболле простой способ добавления сущностей в контекст, иначе, видимо, придется прикрепить каждую связанную сущность и ее связи
+                //this.Project = (from p in ctx.Projects where p.Id == this.Project.Id select p).First(); 
                 ctx.Projects.Attach(this.Project);
                 this.Project_Id = this.Project.Id;
             }
 
             if (this.Accountable != null && this.Accountable.Id != default(int))
             {
+                // В случае наличия связей с другимим сущностями, это наиболле простой способ добавления сущностей в контекст, иначе, видимо, придется прикрепить каждую связанную сущность и ее связи
                 //this.Accountable = (from a in ctx.Accountables where a.Id == this.Accountable.Id select a).First();
                 ctx.Accountables.Attach(this.Accountable);
                 this.Accountable_Id = this.Accountable.Id;
@@ -130,6 +132,7 @@ namespace CFAPDataModel.Models
 
             if (this.BudgetItem != null && this.BudgetItem.Id != default(int))
             {
+                // В случае наличия связей с другимим сущностями, это наиболле простой способ добавления сущностей в контекст, иначе, видимо, придется прикрепить каждую связанную сущность и ее связи
                 //this.BudgetItem = (from i in ctx.BudgetItems where i.Id == this.BudgetItem.Id select i).First();
                 ctx.BudgetItems.Attach(this.BudgetItem);
                 this.BudgetItem_Id = this.BudgetItem.Id;
@@ -137,6 +140,7 @@ namespace CFAPDataModel.Models
 
             if (this.Description != null && this.Description.Id != default(int))
             {
+                // В случае наличия связей с другимим сущностями, это наиболле простой способ добавления сущностей в контекст, иначе, видимо, придется прикрепить каждую связанную сущность и ее связи
                 //this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
                 ctx.Descriptions.Attach(this.Description);
                 this.DescriptionItem_Id = this.Description.Id;
