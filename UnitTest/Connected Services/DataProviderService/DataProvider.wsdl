@@ -1336,6 +1336,36 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_RemoveSummary_InvalidOperationExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AlterSummaries_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -1655,6 +1685,9 @@
   <wsdl:message name="IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
     <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
+  <wsdl:message name="IDataProvider_RemoveSummary_InvalidOperationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/System" name="detail" element="q27:InvalidOperationException" />
+  </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_InputMessage">
     <wsdl:part name="parameters" element="tns:AlterSummaries" />
   </wsdl:message>
@@ -1662,16 +1695,16 @@
     <wsdl:part name="parameters" element="tns:AlterSummariesResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q27:AuthenticateFaultException" />
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q28:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q28:DbException" />
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q29:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q29:DataNotValidException" />
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q30:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q30:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q31:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:portType name="IDataProvider">
     <wsdl:operation name="Authenticate">
@@ -1727,6 +1760,7 @@
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_RemoveSummary_DbExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_RemoveSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" name="ConcurrencyExceptionOf_SummaryFault" message="tns:IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault" name="InvalidOperationExceptionFault" message="tns:IDataProvider_RemoveSummary_InvalidOperationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="AlterSummaries">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/AlterSummaries" message="tns:IDataProvider_AlterSummaries_InputMessage" />
@@ -1924,6 +1958,10 @@
       <wsdl:fault name="ConcurrencyExceptionOf_SummaryFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_Fault" />
         <soap12:fault use="literal" name="ConcurrencyExceptionOf_SummaryFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidOperationExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_RemoveSummary_InvalidOperationExceptionFault_Fault" />
+        <soap12:fault use="literal" name="InvalidOperationExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="AlterSummaries">

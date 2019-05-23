@@ -141,6 +141,7 @@ namespace CFAPService
 
         }
 
+        //Метод-прототип. НЕ ТЕСТИРОВАН!
         [OperationBehavior(TransactionScopeRequired = true)]
         public void AlterSummaries(List<Summary> summaries, User user)
         {
@@ -265,6 +266,11 @@ namespace CFAPService
         public int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             AuthenticateUser(user);
+
+            if (concurencyUpdateOption == DbConcurencyUpdateOptions.DatabasePriority)
+            {
+                throw new FaultException<InvalidOperationException>(new InvalidOperationException("Работа опрации в режиме DbConcurencyUpdateOptions.DatabasePriority не имеет смсла."));
+            }
 
             int result = 0;
 

@@ -23,8 +23,8 @@ namespace CFAP
             summaries = GetSummary();
             //UpdateSummaries(summaries.ToArray(), mainUser);
 
-            AddSummary(summaries[0], mainUser);
-            //UpdateSummary(summaries[1], mainUser);
+            //AddSummary(summaries[0], mainUser);
+            UpdateSummary(summaries[1], mainUser);
             //DeleteSummary(summaries[1], mainUser);
 
 

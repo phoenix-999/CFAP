@@ -8,6 +8,10 @@ using CFAPDataModel;
 
 namespace UnitTest
 {
+    /// <summary>
+    /// ТЕСТИРОВАНИЕ ПРОВОДИТЬ ТОЛЬКО НА ТЕСТОВОЙ БАЗУ ДАННЫХ ДЛЯ ПРЕДОТВРАЩЕНИЯ ПОВРЕЖДЕНИЯ ДАННЫХ ПРИ ТЕСТОВЫХ СБОЯХ
+    /// </summary>
+
     [TestClass]
     public class DataProviderTest
     {
@@ -15,6 +19,7 @@ namespace UnitTest
 
         DataProviderClient DataProviderProxy = new DataProviderClient();
         #region CONSTANTS
+
         const string ADMIN_USER_NAME = "yurii";
         const string ADMIN_USER_PASSWORD = "1";
 
@@ -550,10 +555,141 @@ namespace UnitTest
         [TestMethod]
         public void UpdateSummary_ConcurencyException()
         {
+            User user = DataProviderProxy.Authenticate(new User() {UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+            var summariesCanWrite = (from s in summaries where s.ReadOnly == false select s).ToList();
+
+            Summary summaryToUpdate = summariesCanWrite[0];
+
+            var oldUser = summaryToUpdate.UserLastChanged;
+            var oldSumma = summaryToUpdate.SummaUAH;
+            summaryToUpdate.SummaUAH = -1;
+            Accountable oldAccountable = summaryToUpdate.Accountable;
+            summaryToUpdate.Accountable = new Accountable() { Id = ACCOUNTABLE2_ID, AccountableName = ACCOUNTABLE2 };
+
+            //Имитация изменения сущности в БД после ее получения другим пользователем
+            Summary updatedSummary = DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+            summaryToUpdate.SummaUAH = -2;
+
+            Assert.ThrowsException<FaultException<ConcurrencyExceptionOfSummarydxjYbbDT>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            var databaseSummary = DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.DatabasePriority);
+
+            Assert.AreNotEqual(databaseSummary, null);
+            Assert.AreEqual(databaseSummary.Id, summaryToUpdate.Id);
+            Assert.AreEqual(databaseSummary.SummaUAH, -1);
+
+            updatedSummary.SummaUAH = oldSumma;
+            updatedSummary.Accountable = oldAccountable;
+            updatedSummary.UserLastChanged = oldUser;
+
+            DataProviderProxy.UpdateSummary(updatedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
         }
 
-        
+        #endregion
+
+        #region RemoveSummary
+
+        [TestMethod]
+        public void RemoveSummary()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+
+            Summary testSummary = summaries[0];
+            testSummary.SummaUAH = 0;
+            testSummary.SummaryDate = DateTime.Now;
+
+            Summary addedSummary = DataProviderProxy.AddSummary(testSummary, user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var checkAddedSummary = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).Distinct().ToArray();
+                Assert.AreEqual(1, checkAddedSummary.Length);
+            }
+
+            int numberRemovedSummary = DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+            Assert.AreNotEqual(0, numberRemovedSummary);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var checkRemovedSummary = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).ToArray();
+
+                Assert.AreEqual(0, checkRemovedSummary.Length);
+            }
+        }
+
+        [TestMethod]
+        public void RemoveSummary_TryChangeReadOnlyFileds()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+
+            Summary testSummary = summaries[0];
+            testSummary.SummaUAH = 0;
+            testSummary.SummaryDate = DateTime.Now;
+            testSummary.ReadOnly = true;
+
+            Summary addedSummary = DataProviderProxy.AddSummary(testSummary, user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var checkAddedSummary = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).Distinct().ToArray();
+                Assert.AreEqual(1, checkAddedSummary.Length);
+            }
+
+            Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(()=> { DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); }) ;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var testSummryToRemove = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).First();
+
+                ctx.Summaries.Remove(testSummryToRemove);
+                ctx.SaveChanges();
+            }
+        }
+
+
+        [TestMethod]
+        public void RemoveSummary_ConcurencyException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+
+            Summary testSummary = summaries[0];
+            testSummary.SummaUAH = 0;
+            testSummary.SummaryDate = DateTime.Now;
+
+            Summary addedSummary = DataProviderProxy.AddSummary(testSummary, user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var checkAddedSummary = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).Distinct().ToArray();
+                Assert.AreEqual(1, checkAddedSummary.Length);
+            }
+
+            //Имитация изменения сущности в БД после ее получения другим пользователем
+            Summary updatedSummary = DataProviderProxy.UpdateSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+            addedSummary.SummaUAH = -2;
+
+            Assert.ThrowsException<FaultException<ConcurrencyExceptionOfSummarydxjYbbDT>>(() => { DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            //При выбраном режиме работы удаление сущностей не должно произойти
+            Assert.ThrowsException<FaultException<InvalidOperationException>>(()=> { DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.DatabasePriority); }) ;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var testSummryToRemove = (from s in ctx.Summaries where s.Id == addedSummary.Id select s).First();
+
+                ctx.Summaries.Remove(testSummryToRemove);
+                ctx.SaveChanges();
+            }
+        }
 
         #endregion
     }
