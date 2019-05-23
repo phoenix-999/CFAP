@@ -247,6 +247,7 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [ForeignKey("UserLastChangedId")]
+
         public User UserLastChanged { get; set; }
 
         [DataMember]

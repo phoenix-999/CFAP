@@ -9,6 +9,7 @@
     using System.Data.Entity.Infrastructure;
     using CFAPDataModel.Models;
     using System.Data.Common;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class CFAPContext : DbContext
     {
