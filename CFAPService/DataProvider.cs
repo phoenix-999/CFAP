@@ -40,13 +40,13 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void AddNewUser(User newUser, User owner)
+        public User AddNewUser(User newUser, User owner)
         {
             AuthenticateUser(owner);
 
             if (!owner.CanAddNewUsers)
             {
-                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
+                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
             }
 
             if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
@@ -80,10 +80,12 @@ namespace CFAPService
                     throw new FaultException<DbException>(new DbException(ex));
                 }
             }
+
+            return newUser;
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void UpdateUser(User userForUpdate, User owner)
+        public User UpdateUser(User userForUpdate, User owner)
         {
             //Аутентификация пользователя-владельца
             AuthenticateUser(owner);
@@ -92,7 +94,7 @@ namespace CFAPService
             if (owner.CanAddNewUsers == false)
             {
                 //Если ложь - сбой
-                throw new FaultException<AddUserNotAdminException>(new AddUserNotAdminException(owner));
+                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
             }
 
             if (userForUpdate.UserGroups == null || userForUpdate.UserGroups.Count == 0)
@@ -103,6 +105,8 @@ namespace CFAPService
             //Создание экземпляра контекста
             using (CFAPContext ctx = new CFAPContext())
             {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
                 //Загрузка в контекст данных о группах пользователя
                 userForUpdate.LoadUserGroups(ctx);
 
@@ -110,34 +114,24 @@ namespace CFAPService
 
                 userForUpdate.Password = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
 
-                using (var transaction = ctx.Database.BeginTransaction())
+                try
                 {
-                    try
-                    {
-                        //TODO: реализовать изменение групп пользвателя
-                        userForUpdate.ChangeUserGroups(ctx);
-                        ctx.Entry(userForUpdate).State = EntityState.Modified;
-                        ctx.SaveChanges();
-
-
-                        //Подтверждение завершения транзакции
-                        transaction.Commit();
-                    }
-                    catch (DbEntityValidationException ex)
-                    {
-                        transaction.Rollback();
-                        throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        throw new FaultException<DbException>(new DbException(ex));
-                    }
+                    userForUpdate.ChangeUserGroups(ctx);
+                    ctx.Entry(userForUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
                 }
             }
 
 
-
+            return userForUpdate;
 
         }
 

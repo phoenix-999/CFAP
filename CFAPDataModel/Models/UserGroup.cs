@@ -23,7 +23,7 @@ namespace CFAPDataModel.Models
         [Required]
         public string GroupName { get; set; }
 
-        [DataMember]
+        //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<User> Users { get; set; }
 
         [DataMember]
@@ -34,9 +34,6 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         public virtual ICollection<BudgetItem> BudgetItems { get; set; }
-
-        [DataMember]
-        public virtual ICollection<DescriptionItem> Descriptions { get; set; }
 
         [DataMember]
         public bool CanUserAllData { get; set; }

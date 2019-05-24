@@ -157,14 +157,6 @@ namespace CFAPDataModel.Models
                 this.BudgetItem_Id = this.BudgetItem.Id;
             }
 
-            if (this.Description != null && this.Description.Id != default(int))
-            {
-                // В случае наличия связей с другимим сущностями, это наиболле простой способ добавления сущностей в контекст, иначе, видимо, придется прикрепить каждую связанную сущность и ее связи
-                //this.Description = (from d in ctx.Descriptions where d.Id == this.Description.Id select d).First();
-                ctx.Descriptions.Attach(this.Description);
-                this.DescriptionItem_Id = this.Description.Id;
-            }
-
             //В данном случае Attach не сработает по причине наличия связи с группами пользователей
             //Если добавлять через Attach надо загрузить все группы пользователя и до каждой грппы догрузить всех пользователей
             this.UserLastChanged = (from u in ctx.Users where u.Id == this.UserLastChanged.Id select u).First();
@@ -179,7 +171,6 @@ namespace CFAPDataModel.Models
                 .Include("Project")
                 .Include("BudgetItem")
                 .Include("Accountable")
-                .Include("Description")
                 .Include("UserLastChanges")
                 .Include("UserGroups");
 
@@ -188,7 +179,6 @@ namespace CFAPDataModel.Models
                 s.Accountable = (from a in ctx.Accountables where a.Id == s.Accountable_Id select a).Single();
                 s.Project = (from p in ctx.Projects where p.Id == s.Project_Id select p).Single();
                 s.BudgetItem = (from b in ctx.BudgetItems where b.Id == s.BudgetItem_Id select b).Single();
-                s.Description = (from d in ctx.Descriptions where d.Id == s.DescriptionItem_Id select d).Single();
                 s.UserLastChanged = (from u in ctx.Users where u.Id == s.UserLastChangedId select u).Single();
                 ctx.Entry(s).Collection("UserGroups").Load();
             }
@@ -204,7 +194,6 @@ namespace CFAPDataModel.Models
             CustomProperiesValidate<Accountable>(this.Accountable, ctx, validationResults);
             CustomProperiesValidate<BudgetItem>(this.BudgetItem, ctx, validationResults);
             CustomProperiesValidate<Project>(this.Project, ctx, validationResults);
-            CustomProperiesValidate<DescriptionItem>(this.Description, ctx, validationResults);
 
             if (validationResults.Count > 0)
             {
@@ -300,12 +289,8 @@ namespace CFAPDataModel.Models
         [Required]
         public virtual BudgetItem BudgetItem { get; set; }
 
-        public int DescriptionItem_Id { get; set; }
-
         [DataMember]
-        [ForeignKey("DescriptionItem_Id")]
-        [Required]
-        public virtual DescriptionItem Description { get; set; }
+        public string Description { get; set; }
 
         public int Accountable_Id { get; set; }
 

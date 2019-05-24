@@ -113,10 +113,13 @@
     <Compile Include="Migrations\201905231505206_ON cascade delete.Designer.cs">
       <DependentUpon>201905231505206_ON cascade delete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905240734407_Removed Description table.cs" />
+    <Compile Include="Migrations\201905240734407_Removed Description table.Designer.cs">
+      <DependentUpon>201905240734407_Removed Description table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
-    <Compile Include="Models\DescriptionItem.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Summary.cs" />
@@ -173,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905231505206_ON cascade delete.resx">
       <DependentUpon>201905231505206_ON cascade delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905240734407_Removed Description table.resx">
+      <DependentUpon>201905240734407_Removed Description table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

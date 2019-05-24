@@ -31,7 +31,6 @@
 
         public virtual DbSet<Accountable> Accountables { get; set; }
         public virtual DbSet<BudgetItem> BudgetItems { get; set; }
-        public virtual DbSet<DescriptionItem> Descriptions { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Summary> Summaries { get; set; }

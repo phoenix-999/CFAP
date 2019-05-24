@@ -133,28 +133,29 @@ namespace UnitTest
                 ,UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE1_ID } }
             };
 
-            DataProviderProxy.AddNewUser(newUser, owner);
+            var addedUser = DataProviderProxy.AddNewUser(newUser, owner);
 
-            using (CFAPContext ctx = new CFAPContext())
-            {
-                var addedUser = (from u in ctx.Users
-                                 where u.UserName == newUser.UserName
-                                 select u
-                                 ).FirstOrDefault();
-                Assert.AreNotEqual(addedUser, null);
+            Assert.AreNotEqual(addedUser, null);
 
-                UserGroup[] correctedUserGroups = new UserGroup[]
+            UserGroup[] correctedUserGroups = new UserGroup[]
                 {
                     new UserGroup() { Id = OFFICE1_ID}
                 };
 
-                foreach (var addedGroup in addedUser.UserGroups)
-                {
-                    var correctedGroup = (from g in correctedUserGroups where addedGroup.Id == g.Id select g).FirstOrDefault();
-                    Assert.AreNotEqual(correctedGroup, null);
-                }
+            foreach (var addedGroup in addedUser.UserGroups)
+            {
+                var correctedGroup = (from g in correctedUserGroups where addedGroup.Id == g.Id select g).FirstOrDefault();
+                Assert.AreNotEqual(correctedGroup, null);
+            }
 
-                ctx.Users.Remove(addedUser);
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userToRemove = (from u in ctx.Users
+                                 where u.UserName == newUser.UserName
+                                 select u
+                                 ).FirstOrDefault();
+
+                ctx.Users.Remove(userToRemove);
                 ctx.SaveChanges();
 
                 var removedUser = (from u in ctx.Users
@@ -229,7 +230,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AddNewUser_UserNotAdminException()
+        public void AddNewUser_NoRightsToChangeUserDataException()
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
@@ -237,7 +238,7 @@ namespace UnitTest
 
             User testUser = new User() { UserName = TEST_USER_NAME, Password = TEST_USER_PASSWORD, UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
 
-            Assert.ThrowsException<FaultException<AddUserNotAdminException>>(()=> { DataProviderProxy.AddNewUser(testUser, owner); });
+            Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(()=> { DataProviderProxy.AddNewUser(testUser, owner); });
 
             using (CFAPContext ctx = new CFAPContext())
             {
@@ -277,7 +278,7 @@ namespace UnitTest
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
 
             var oldUserName = userForUpdate.UserName;
-            userForUpdate.UserName = "updateUser";
+            userForUpdate.UserName = "Liubov";
             var oldPassword = userForUpdate.Password;
             userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
@@ -285,32 +286,20 @@ namespace UnitTest
             UserGroup[] oldGroups = (from g in userForUpdate.UserGroups select g).ToArray();
             userForUpdate.UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } };
 
-            DataProviderProxy.UpdateUser(userForUpdate, owner);
+            var updatedUser = DataProviderProxy.UpdateUser(userForUpdate, owner);
 
-            using (CFAPContext ctx = new CFAPContext())
+            Assert.AreEqual(updatedUser.IsAdmin, userForUpdate.IsAdmin);
+            Assert.AreEqual(updatedUser.UserName, userForUpdate.UserName);
+            Assert.AreEqual(updatedUser.Password, oldPassword);
+            Assert.AreEqual(updatedUser.CanAddNewUsers, userForUpdate.CanAddNewUsers);
+
+            //Проверка добавления новых групп
+            foreach (var newGroup in userForUpdate.UserGroups)
             {
-
-                var updatedUser = (from user in ctx.Users where user.UserName == userForUpdate.UserName select user).Single();
-                ctx.Users.Include("UserGroups");
-
-                Assert.AreEqual(updatedUser.IsAdmin, userForUpdate.IsAdmin);
-                Assert.AreEqual(updatedUser.UserName, userForUpdate.UserName);
-                Assert.AreEqual(updatedUser.Password, oldPassword);
-                Assert.AreEqual(updatedUser.CanAddNewUsers, userForUpdate.CanAddNewUsers);
-
-                //Проверка добавления новых групп
-                foreach (var newGroup in userForUpdate.UserGroups)
-                {
-                    var correctGroup = (from g in updatedUser.UserGroups where g.Id == newGroup.Id select g).FirstOrDefault();
-                    Assert.AreNotEqual(correctGroup, null);
-                    //Проверка удаления старой группы
-                    Assert.AreNotEqual(correctGroup.Id, userForUpdate.UserGroups[0]);
-                }
-
-                var canUseAllDataGroups = (from g in ctx.UserGroups where g.CanUserAllData == true select g).ToArray();
-                
-                //Изменение Id обновленного пользователя, так как при изменении данных пользователя Id меняется
-                userForUpdate.Id = updatedUser.Id;
+                var correctGroup = (from g in updatedUser.UserGroups where g.Id == newGroup.Id select g).FirstOrDefault();
+                Assert.AreNotEqual(correctGroup, null);
+                //Проверка удаления старой группы
+                Assert.AreNotEqual(correctGroup.Id, userForUpdate.UserGroups[0]);
             }
 
             userForUpdate.UserName = oldUserName;
@@ -322,12 +311,12 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void UpdateUser_AddUserNotAdminException()
+        public void UpdateUser_NoRightsToChangeUserDataException()
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
-            Assert.ThrowsException<FaultException<AddUserNotAdminException>>(()=> { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+            Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(()=> { DataProviderProxy.UpdateUser(userForUpdate, owner); });
         }
 
         [TestMethod]
@@ -371,7 +360,7 @@ namespace UnitTest
                 Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
                 Project = new Project() { Id = PROJECT1_ID },
                 BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID },
-                Description = new DescriptionItem() { Id = DESCRIPTION1_ID }
+                Description = "test description"
             };
 
             User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
@@ -383,7 +372,6 @@ namespace UnitTest
             Assert.AreEqual(addedSummary.Accountable.Id, newSummary.Accountable.Id);
             Assert.AreEqual(addedSummary.Project.Id, newSummary.Project.Id);
             Assert.AreEqual(addedSummary.BudgetItem.Id, newSummary.BudgetItem.Id);
-            Assert.AreEqual(addedSummary.Description.Id, newSummary.Description.Id);
 
             foreach (var summaryGroup in addedSummary.UserGroups)
             {
@@ -408,8 +396,8 @@ namespace UnitTest
                 SummaryDate = DateTime.Now,
                 Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
                 Project = new Project() { Id = PROJECT1_ID },
-                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID },
-                Description = null
+                BudgetItem = null,
+                Description = "test description"
             };
 
             User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
@@ -419,7 +407,7 @@ namespace UnitTest
             newSummary.Accountable = new Accountable();
             newSummary.Project = new Project();
             newSummary.BudgetItem = new BudgetItem();
-            newSummary.Description = new DescriptionItem();
+            newSummary.Description = "test description";
 
             Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddSummary(newSummary, user); });
         }
@@ -493,7 +481,6 @@ namespace UnitTest
             Assert.AreEqual(updatedSummary.Accountable.Id, summaryToUpdate.Accountable.Id);
             Assert.AreEqual(updatedSummary.Project.Id, summaryToUpdate.Project.Id);
             Assert.AreEqual(updatedSummary.BudgetItem.Id, summaryToUpdate.BudgetItem.Id);
-            Assert.AreEqual(updatedSummary.Description.Id, summaryToUpdate.Description.Id);
             Assert.AreEqual(updatedSummary.SummaUAH, summaryToUpdate.SummaUAH);
             Assert.AreEqual(updatedSummary.UserLastChanged.Id, user.Id);
 
@@ -542,7 +529,6 @@ namespace UnitTest
             summaryToUpdate.Accountable = null;
             summaryToUpdate.Project = null;
             summaryToUpdate.BudgetItem = null;
-            summaryToUpdate.Description = null;
             summaryToUpdate.UserGroups = null;
 
             Assert.ThrowsException<FaultException<DataNotValidException>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });

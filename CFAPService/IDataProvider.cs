@@ -25,19 +25,19 @@ namespace CFAPService
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(AddUserNotAdminException))]
+        [FaultContract(typeof(NoRightsToChangeUserDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
-        void AddNewUser(User newUser, User owner);
+        User AddNewUser(User newUser, User owner);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(AddUserNotAdminException))]
+        [FaultContract(typeof(NoRightsToChangeUserDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
-        void UpdateUser(User userForUpdate, User owner);
+        User UpdateUser(User userForUpdate, User owner);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]

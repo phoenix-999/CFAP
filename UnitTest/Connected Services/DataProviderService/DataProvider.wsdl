@@ -378,7 +378,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddNewUser_AddUserNotAdminExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -595,7 +595,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateUser_AddUserNotAdminExceptionFault_Fault">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_UpdateUser_NoRightsToChangeUserDataExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1592,8 +1592,8 @@
   <wsdl:message name="IDataProvider_AddNewUser_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q5:DbException" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_AddNewUser_AddUserNotAdminExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q6:AddUserNotAdminException" />
+  <wsdl:message name="IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q6:NoRightsToChangeUserDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage">
     <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q7:DataNotValidException" />
@@ -1613,8 +1613,8 @@
   <wsdl:message name="IDataProvider_UpdateUser_DbExceptionFault_FaultMessage">
     <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q10:DbException" />
   </wsdl:message>
-  <wsdl:message name="IDataProvider_UpdateUser_AddUserNotAdminExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q11:AddUserNotAdminException" />
+  <wsdl:message name="IDataProvider_UpdateUser_NoRightsToChangeUserDataExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q11:NoRightsToChangeUserDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DataNotValidExceptionFault_FaultMessage">
     <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:DataNotValidException" />
@@ -1719,7 +1719,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserResponse" message="tns:IDataProvider_AddNewUser_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_AddNewUser_DbExceptionFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserAddUserNotAdminExceptionFault" name="AddUserNotAdminExceptionFault" message="tns:IDataProvider_AddNewUser_AddUserNotAdminExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeUserDataExceptionFault" name="NoRightsToChangeUserDataExceptionFault" message="tns:IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault" name="UserHasNotGroupsExceptionFault" message="tns:IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_FaultMessage" />
     </wsdl:operation>
@@ -1728,7 +1728,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserResponse" message="tns:IDataProvider_UpdateUser_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_UpdateUser_DbExceptionFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserAddUserNotAdminExceptionFault" name="AddUserNotAdminExceptionFault" message="tns:IDataProvider_UpdateUser_AddUserNotAdminExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeUserDataExceptionFault" name="NoRightsToChangeUserDataExceptionFault" message="tns:IDataProvider_UpdateUser_NoRightsToChangeUserDataExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_UpdateUser_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault" name="UserHasNotGroupsExceptionFault" message="tns:IDataProvider_UpdateUser_UserHasNotGroupsExceptionFault_FaultMessage" />
     </wsdl:operation>
@@ -1816,9 +1816,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_DbExceptionFault_Fault" />
         <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="AddUserNotAdminExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_AddUserNotAdminExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AddUserNotAdminExceptionFault" namespace="" />
+      <wsdl:fault name="NoRightsToChangeUserDataExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_Fault" />
+        <soap12:fault use="literal" name="NoRightsToChangeUserDataExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DataNotValidExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_DataNotValidExceptionFault_Fault" />
@@ -1848,9 +1848,9 @@
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_DbExceptionFault_Fault" />
         <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="AddUserNotAdminExceptionFault">
-        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_AddUserNotAdminExceptionFault_Fault" />
-        <soap12:fault use="literal" name="AddUserNotAdminExceptionFault" namespace="" />
+      <wsdl:fault name="NoRightsToChangeUserDataExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_NoRightsToChangeUserDataExceptionFault_Fault" />
+        <soap12:fault use="literal" name="NoRightsToChangeUserDataExceptionFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="DataNotValidExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateUser_DataNotValidExceptionFault_Fault" />

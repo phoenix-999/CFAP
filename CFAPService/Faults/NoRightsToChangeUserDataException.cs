@@ -10,11 +10,11 @@ using CFAPDataModel.Models;
 namespace CFAPService.Faults
 {
     [DataContract]
-    public class AddUserNotAdminException
+    public class NoRightsToChangeUserDataException
     {
 
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
-        public AddUserNotAdminException(User user)
+        public NoRightsToChangeUserDataException(User user)
         {
             this.UserId = user.Id;
             this.UserName = user.UserName;

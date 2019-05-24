@@ -157,9 +157,6 @@ namespace UnitTest.DataProviderService {
         private bool CanUserAllDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.DescriptionItem[] DescriptionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GroupNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -167,9 +164,6 @@ namespace UnitTest.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private UnitTest.DataProviderService.Project[] ProjectsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.User[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -221,19 +215,6 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.DescriptionItem[] Descriptions {
-            get {
-                return this.DescriptionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionsField, value) != true)) {
-                    this.DescriptionsField = value;
-                    this.RaisePropertyChanged("Descriptions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string GroupName {
             get {
                 return this.GroupNameField;
@@ -268,19 +249,6 @@ namespace UnitTest.DataProviderService {
                 if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
                     this.ProjectsField = value;
                     this.RaisePropertyChanged("Projects");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.User[] Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
                 }
             }
         }
@@ -441,99 +409,6 @@ namespace UnitTest.DataProviderService {
                 if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
                     this.ItemNameField = value;
                     this.RaisePropertyChanged("ItemName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ReadOnly {
-            get {
-                return this.ReadOnlyField;
-            }
-            set {
-                if ((this.ReadOnlyField.Equals(value) != true)) {
-                    this.ReadOnlyField = value;
-                    this.RaisePropertyChanged("ReadOnly");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DescriptionItem", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
-    [System.SerializableAttribute()]
-    public partial class DescriptionItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.UserGroup[] UserGroupsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -759,9 +634,9 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
     [System.SerializableAttribute()]
-    public partial class AddUserNotAdminException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class NoRightsToChangeUserDataException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -962,7 +837,7 @@ namespace UnitTest.DataProviderService {
         private bool CashFlowTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.DescriptionItem DescriptionField;
+        private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -1057,7 +932,7 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.DescriptionItem Description {
+        public string Description {
             get {
                 return this.DescriptionField;
             }
@@ -1504,30 +1379,32 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/AddNewUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeUserDataExceptionFault" +
+            "", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
+        UnitTest.DataProviderService.User AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
         System.IAsyncResult BeginAddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
         
-        void EndAddNewUser(System.IAsyncResult result);
+        UnitTest.DataProviderService.User EndAddNewUser(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AddUserNotAdminException), Action="http://tempuri.org/IDataProvider/UpdateUserAddUserNotAdminExceptionFault", Name="AddUserNotAdminException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeUserDataExceptionFault" +
+            "", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
+        UnitTest.DataProviderService.User UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         System.IAsyncResult BeginUpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
         
-        void EndUpdateUser(System.IAsyncResult result);
+        UnitTest.DataProviderService.User EndUpdateUser(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1608,6 +1485,44 @@ namespace UnitTest.DataProviderService {
         private object[] results;
         
         public AuthenticateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.User Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddNewUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddNewUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.User Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1769,9 +1684,9 @@ namespace UnitTest.DataProviderService {
         
         public event System.EventHandler<AuthenticateCompletedEventArgs> AuthenticateCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddNewUserCompleted;
+        public event System.EventHandler<AddNewUserCompletedEventArgs> AddNewUserCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UpdateUserCompleted;
+        public event System.EventHandler<UpdateUserCompletedEventArgs> UpdateUserCompleted;
         
         public event System.EventHandler<AddSummaryCompletedEventArgs> AddSummaryCompleted;
         
@@ -1833,8 +1748,8 @@ namespace UnitTest.DataProviderService {
                         user}, this.onEndAuthenticateDelegate, this.onAuthenticateCompletedDelegate, userState);
         }
         
-        public void AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
-            base.Channel.AddNewUser(newUser, owner);
+        public UnitTest.DataProviderService.User AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner) {
+            return base.Channel.AddNewUser(newUser, owner);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1843,8 +1758,8 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndAddNewUser(System.IAsyncResult result) {
-            base.Channel.EndAddNewUser(result);
+        public UnitTest.DataProviderService.User EndAddNewUser(System.IAsyncResult result) {
+            return base.Channel.EndAddNewUser(result);
         }
         
         private System.IAsyncResult OnBeginAddNewUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1854,14 +1769,15 @@ namespace UnitTest.DataProviderService {
         }
         
         private object[] OnEndAddNewUser(System.IAsyncResult result) {
-            this.EndAddNewUser(result);
-            return null;
+            UnitTest.DataProviderService.User retVal = this.EndAddNewUser(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OnAddNewUserCompleted(object state) {
             if ((this.AddNewUserCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.AddNewUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.AddNewUserCompleted(this, new AddNewUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
@@ -1884,8 +1800,8 @@ namespace UnitTest.DataProviderService {
                         owner}, this.onEndAddNewUserDelegate, this.onAddNewUserCompletedDelegate, userState);
         }
         
-        public void UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
-            base.Channel.UpdateUser(userForUpdate, owner);
+        public UnitTest.DataProviderService.User UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {
+            return base.Channel.UpdateUser(userForUpdate, owner);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1894,8 +1810,8 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndUpdateUser(System.IAsyncResult result) {
-            base.Channel.EndUpdateUser(result);
+        public UnitTest.DataProviderService.User EndUpdateUser(System.IAsyncResult result) {
+            return base.Channel.EndUpdateUser(result);
         }
         
         private System.IAsyncResult OnBeginUpdateUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1905,14 +1821,15 @@ namespace UnitTest.DataProviderService {
         }
         
         private object[] OnEndUpdateUser(System.IAsyncResult result) {
-            this.EndUpdateUser(result);
-            return null;
+            UnitTest.DataProviderService.User retVal = this.EndUpdateUser(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OnUpdateUserCompleted(object state) {
             if ((this.UpdateUserCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.UpdateUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.UpdateUserCompleted(this, new UpdateUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
