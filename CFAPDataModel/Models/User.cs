@@ -38,7 +38,7 @@ namespace CFAPDataModel.Models
         public bool IsAdmin { get; set; }
 
         [DataMember]
-        public bool CanAddNewUsers { get; set; }
+        public bool CanChangeUsersData { get; set; }
 
         [Timestamp]
         public byte[] RowVersion { get; set; }

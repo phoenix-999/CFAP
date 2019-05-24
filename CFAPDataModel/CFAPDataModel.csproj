@@ -117,6 +117,10 @@
     <Compile Include="Migrations\201905240734407_Removed Description table.Designer.cs">
       <DependentUpon>201905240734407_Removed Description table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905240944478_renamed User.CanChangeUsersData.cs" />
+    <Compile Include="Migrations\201905240944478_renamed User.CanChangeUsersData.Designer.cs">
+      <DependentUpon>201905240944478_renamed User.CanChangeUsersData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -179,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905240734407_Removed Description table.resx">
       <DependentUpon>201905240734407_Removed Description table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905240944478_renamed User.CanChangeUsersData.resx">
+      <DependentUpon>201905240944478_renamed User.CanChangeUsersData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

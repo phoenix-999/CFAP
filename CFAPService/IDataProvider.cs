@@ -16,6 +16,10 @@ namespace CFAPService
     interface IDataProvider
     {
         [OperationContract]
+        [FaultContract(typeof(DbException))]
+        List<string> GetLogins();
+
+        [OperationContract]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(ArgumentNullException))]
@@ -29,6 +33,12 @@ namespace CFAPService
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
         User AddNewUser(User newUser, User owner);
+
+        [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeUserDataException))]
+        List<User> GetUsers(User owner);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]

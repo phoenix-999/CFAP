@@ -15,6 +15,51 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class DbException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
     [System.SerializableAttribute()]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -23,7 +68,7 @@ namespace UnitTest.DataProviderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CanAddNewUsersField;
+        private bool CanChangeUsersDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -51,14 +96,14 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CanAddNewUsers {
+        public bool CanChangeUsersData {
             get {
-                return this.CanAddNewUsersField;
+                return this.CanChangeUsersDataField;
             }
             set {
-                if ((this.CanAddNewUsersField.Equals(value) != true)) {
-                    this.CanAddNewUsersField = value;
-                    this.RaisePropertyChanged("CanAddNewUsers");
+                if ((this.CanChangeUsersDataField.Equals(value) != true)) {
+                    this.CanChangeUsersDataField = value;
+                    this.RaisePropertyChanged("CanChangeUsersData");
                 }
             }
         }
@@ -547,51 +592,6 @@ namespace UnitTest.DataProviderService {
     [System.Runtime.Serialization.DataContractAttribute(Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
     [System.SerializableAttribute()]
     public partial class AuthenticateFaultException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-    [System.SerializableAttribute()]
-    public partial class DbException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1365,6 +1365,15 @@ namespace UnitTest.DataProviderService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetLogins", ReplyAction="http://tempuri.org/IDataProvider/GetLoginsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetLoginsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        string[] GetLogins();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetLogins", ReplyAction="http://tempuri.org/IDataProvider/GetLoginsResponse")]
+        System.IAsyncResult BeginGetLogins(System.AsyncCallback callback, object asyncState);
+        
+        string[] EndGetLogins(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AuthenticateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1390,6 +1399,17 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginAddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.User EndAddNewUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUsersAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetUsersDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeUserDataExceptionFault", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.User[] GetUsers(UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
+        System.IAsyncResult BeginGetUsers(UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.User[] EndGetUsers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1480,6 +1500,25 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetLoginsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetLoginsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AuthenticateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1512,6 +1551,25 @@ namespace UnitTest.DataProviderService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((UnitTest.DataProviderService.User)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetUsersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.User[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.User[])(this.results[0]));
             }
         }
     }
@@ -1615,6 +1673,12 @@ namespace UnitTest.DataProviderService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
+        private BeginOperationDelegate onBeginGetLoginsDelegate;
+        
+        private EndOperationDelegate onEndGetLoginsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetLoginsCompletedDelegate;
+        
         private BeginOperationDelegate onBeginAuthenticateDelegate;
         
         private EndOperationDelegate onEndAuthenticateDelegate;
@@ -1626,6 +1690,12 @@ namespace UnitTest.DataProviderService {
         private EndOperationDelegate onEndAddNewUserDelegate;
         
         private System.Threading.SendOrPostCallback onAddNewUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetUsersDelegate;
+        
+        private EndOperationDelegate onEndGetUsersDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetUsersCompletedDelegate;
         
         private BeginOperationDelegate onBeginUpdateUserDelegate;
         
@@ -1682,9 +1752,13 @@ namespace UnitTest.DataProviderService {
                 base(binding, remoteAddress) {
         }
         
+        public event System.EventHandler<GetLoginsCompletedEventArgs> GetLoginsCompleted;
+        
         public event System.EventHandler<AuthenticateCompletedEventArgs> AuthenticateCompleted;
         
         public event System.EventHandler<AddNewUserCompletedEventArgs> AddNewUserCompleted;
+        
+        public event System.EventHandler<GetUsersCompletedEventArgs> GetUsersCompleted;
         
         public event System.EventHandler<UpdateUserCompletedEventArgs> UpdateUserCompleted;
         
@@ -1697,6 +1771,54 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<RemoveSummaryCompletedEventArgs> RemoveSummaryCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AlterSummariesCompleted;
+        
+        public string[] GetLogins() {
+            return base.Channel.GetLogins();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetLogins(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetLogins(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string[] EndGetLogins(System.IAsyncResult result) {
+            return base.Channel.EndGetLogins(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetLogins(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetLogins(callback, asyncState);
+        }
+        
+        private object[] OnEndGetLogins(System.IAsyncResult result) {
+            string[] retVal = this.EndGetLogins(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetLoginsCompleted(object state) {
+            if ((this.GetLoginsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetLoginsCompleted(this, new GetLoginsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetLoginsAsync() {
+            this.GetLoginsAsync(null);
+        }
+        
+        public void GetLoginsAsync(object userState) {
+            if ((this.onBeginGetLoginsDelegate == null)) {
+                this.onBeginGetLoginsDelegate = new BeginOperationDelegate(this.OnBeginGetLogins);
+            }
+            if ((this.onEndGetLoginsDelegate == null)) {
+                this.onEndGetLoginsDelegate = new EndOperationDelegate(this.OnEndGetLogins);
+            }
+            if ((this.onGetLoginsCompletedDelegate == null)) {
+                this.onGetLoginsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetLoginsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetLoginsDelegate, null, this.onEndGetLoginsDelegate, this.onGetLoginsCompletedDelegate, userState);
+        }
         
         public UnitTest.DataProviderService.User Authenticate(UnitTest.DataProviderService.User user) {
             return base.Channel.Authenticate(user);
@@ -1798,6 +1920,56 @@ namespace UnitTest.DataProviderService {
             base.InvokeAsync(this.onBeginAddNewUserDelegate, new object[] {
                         newUser,
                         owner}, this.onEndAddNewUserDelegate, this.onAddNewUserCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.User[] GetUsers(UnitTest.DataProviderService.User owner) {
+            return base.Channel.GetUsers(owner);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetUsers(UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUsers(owner, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.User[] EndGetUsers(System.IAsyncResult result) {
+            return base.Channel.EndGetUsers(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User owner = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginGetUsers(owner, callback, asyncState);
+        }
+        
+        private object[] OnEndGetUsers(System.IAsyncResult result) {
+            UnitTest.DataProviderService.User[] retVal = this.EndGetUsers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetUsersCompleted(object state) {
+            if ((this.GetUsersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetUsersCompleted(this, new GetUsersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetUsersAsync(UnitTest.DataProviderService.User owner) {
+            this.GetUsersAsync(owner, null);
+        }
+        
+        public void GetUsersAsync(UnitTest.DataProviderService.User owner, object userState) {
+            if ((this.onBeginGetUsersDelegate == null)) {
+                this.onBeginGetUsersDelegate = new BeginOperationDelegate(this.OnBeginGetUsers);
+            }
+            if ((this.onEndGetUsersDelegate == null)) {
+                this.onEndGetUsersDelegate = new EndOperationDelegate(this.OnEndGetUsers);
+            }
+            if ((this.onGetUsersCompletedDelegate == null)) {
+                this.onGetUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUsersCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetUsersDelegate, new object[] {
+                        owner}, this.onEndGetUsersDelegate, this.onGetUsersCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.User UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner) {

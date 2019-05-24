@@ -22,6 +22,25 @@ namespace CFAPService
     public class DataProvider : IDataProvider
     {
         #region Котракт службы
+        public List<string> GetLogins()
+        {
+            List<string> result = new List<string>();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                try
+                {
+                    result = (from u in ctx.Users select u.UserName).Distinct().ToList();
+                }
+                catch(Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+           return result;
+        }
+
         public User Authenticate(User user)
         {
             if (
@@ -44,7 +63,7 @@ namespace CFAPService
         {
             AuthenticateUser(owner);
 
-            if (!owner.CanAddNewUsers)
+            if (!owner.CanChangeUsersData)
             {
                 throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
             }
@@ -84,6 +103,45 @@ namespace CFAPService
             return newUser;
         }
 
+        public List<User> GetUsers(User owner)
+        {
+            AuthenticateUser(owner);
+
+            if (!owner.CanChangeUsersData)
+            {
+                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
+            }
+
+            List<User> users = new List<User>();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    if (owner.IsAdmin)
+                    {
+                        users = (from u in ctx.Users
+                                 select u).Distinct().ToList(); //Админы могут видеть все пользователей
+                    }
+                    else
+                    {
+                        var ownerUserGroupsId = owner.GetUserGroupsId();
+                        users = (from g in ctx.UserGroups
+                                 from u in g.Users
+                                 where ownerUserGroupsId.Contains(g.Id)
+                                 select u).Distinct().ToList(); //Должны быть толкьо пользователи с групп владельца
+                    }
+                }
+                catch(Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return users;
+        }
+
         [OperationBehavior(TransactionScopeRequired = true)]
         public User UpdateUser(User userForUpdate, User owner)
         {
@@ -91,7 +149,7 @@ namespace CFAPService
             AuthenticateUser(owner);
 
             //Проверка - иммеет ли право владелец добавлять или изменять данные пользователей (User.CanAddNewUser)
-            if (owner.CanAddNewUsers == false)
+            if (owner.CanChangeUsersData == false)
             {
                 //Если ложь - сбой
                 throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));

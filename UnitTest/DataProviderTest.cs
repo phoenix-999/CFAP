@@ -53,6 +53,32 @@ namespace UnitTest
 
         #endregion
 
+        #region GetLogins
+
+        [TestMethod]
+        public void GetLogins()
+        {
+            string[] logins = DataProviderProxy.GetLogins();
+
+            Assert.AreNotEqual(0, logins.Length);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctedLogins = (from u in ctx.Users select u.UserName).ToArray();
+                HashSet<string> correctedLoginsSet = new HashSet<string>(correctedLogins);
+
+                Assert.AreEqual(correctedLoginsSet.Count, logins.Length);
+
+                foreach (var login in correctedLoginsSet)
+                {
+                    var hasCorrectedLogin = correctedLogins.Contains(login);
+                    Assert.AreEqual(true, hasCorrectedLogin);
+                }
+            }
+        }
+
+        #endregion
+
         #region Authenticate
         [TestMethod]
         public void Authenticate()
@@ -63,13 +89,13 @@ namespace UnitTest
             User correctUser = new User()
             {
                 UserName = user.UserName
-                ,CanAddNewUsers = true
+                ,CanChangeUsersData = true
                 ,IsAdmin = true
             };
 
             Assert.IsNotNull(MainUser);
             Assert.AreEqual(MainUser.UserName, correctUser.UserName);
-            Assert.AreEqual(MainUser.CanAddNewUsers, correctUser.CanAddNewUsers);
+            Assert.AreEqual(MainUser.CanChangeUsersData, correctUser.CanChangeUsersData);
             Assert.AreEqual(MainUser.IsAdmin, correctUser.IsAdmin);
         }
 
@@ -234,7 +260,7 @@ namespace UnitTest
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
-            Assert.AreEqual(owner.CanAddNewUsers, false);
+            Assert.AreEqual(owner.CanChangeUsersData, false);
 
             User testUser = new User() { UserName = TEST_USER_NAME, Password = TEST_USER_PASSWORD, UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
 
@@ -253,7 +279,7 @@ namespace UnitTest
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
 
-            Assert.AreEqual(owner.CanAddNewUsers, true);
+            Assert.AreEqual(owner.CanChangeUsersData, true);
 
             User testUser = new User() { Password = TEST_USER_PASSWORD,  UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
 
@@ -265,6 +291,97 @@ namespace UnitTest
                 var user = (from u in ctx.Users where u.UserName == testUser.UserName select u).FirstOrDefault();
 
                 Assert.AreEqual(user, null);
+            }
+        }
+
+        #endregion
+
+        #region GetUsers
+        [TestMethod]
+        public void GetUsers()
+        {
+            //Проверка для админа
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            User[] users = DataProviderProxy.GetUsers(owner);
+
+            Assert.AreNotEqual(0, users.Length);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctedUsers = (from u in ctx.Users select u).Distinct().ToList();
+
+                foreach (var user in users)
+                {
+                    var hasCorrectedUser = (from u in correctedUsers where u.Id == user.Id select u).FirstOrDefault();
+                    Assert.AreNotEqual(null, hasCorrectedUser);
+                    Assert.AreEqual(correctedUsers.Count, users.Length);
+                }
+            }
+
+            //Проверка для НЕ админа
+            User testUser = new User()
+            {
+                UserName = TEST_USER_NAME,
+                Password = TEST_USER_PASSWORD,
+                UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } },
+                CanChangeUsersData = true
+            };
+
+            testUser = DataProviderProxy.AddNewUser(testUser, owner);
+
+            users = DataProviderProxy.GetUsers(testUser);
+
+            Assert.AreNotEqual(0, users.Length);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctedUsers = (from u in ctx.Users
+                                      from g in u.UserGroups
+                                      where g.Id == OFFICE2_ID
+                                      select u).Distinct().ToList();
+
+                foreach (var user in users)
+                {
+                    var hasCorrectedUser = (from u in correctedUsers where u.Id == user.Id select u).FirstOrDefault();
+                    Assert.AreNotEqual(null, hasCorrectedUser);
+                    Assert.AreEqual(correctedUsers.Count, users.Length);
+                }
+
+                //Удаление тестового пользователя
+
+                ctx.Users.Remove(ctx.Users.Find(testUser.Id));
+                ctx.SaveChanges();
+            }
+
+        }
+        [TestMethod]
+        public void GetUsers_NoRightsToChangeUserDataException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            User testUser = new User()
+            {
+                UserName = TEST_USER_NAME,
+                Password = TEST_USER_PASSWORD,
+                UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } },
+                CanChangeUsersData = false
+            };
+
+            testUser = DataProviderProxy.AddNewUser(testUser, owner);
+
+            try
+            {
+                Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(() => { DataProviderProxy.GetUsers(testUser); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    //Удаление тестового пользователя
+                    ctx.Users.Remove(ctx.Users.Find(testUser.Id));
+                    ctx.SaveChanges();
+                }
             }
         }
 
@@ -291,7 +408,7 @@ namespace UnitTest
             Assert.AreEqual(updatedUser.IsAdmin, userForUpdate.IsAdmin);
             Assert.AreEqual(updatedUser.UserName, userForUpdate.UserName);
             Assert.AreEqual(updatedUser.Password, oldPassword);
-            Assert.AreEqual(updatedUser.CanAddNewUsers, userForUpdate.CanAddNewUsers);
+            Assert.AreEqual(updatedUser.CanChangeUsersData, userForUpdate.CanChangeUsersData);
 
             //Проверка добавления новых групп
             foreach (var newGroup in userForUpdate.UserGroups)
@@ -429,9 +546,8 @@ namespace UnitTest
             Summary[] summaries = DataProviderProxy.GetSummary(user, filter);
             Assert.AreNotEqual(summaries.Length, 0);
 
-            
             var correctedProjectsId = (from p in filter.Projects select p.Id).ToList();
-            var correctedUserGroupsId = (from u in user.UserGroups select u.Id).ToList();
+            var userGroupsId = (from u in user.UserGroups select u.Id).ToList();
             foreach (var summary in summaries)
             {
                 var hasCorrectedProject = correctedProjectsId.Contains(summary.Project.Id);
@@ -439,18 +555,23 @@ namespace UnitTest
 
                 var hasCorrectedPeriod = summary.SummaryDate >= filter.DateStart;
                 Assert.AreEqual(hasCorrectedPeriod, true);
-
-                var numbersOfCorrectedGroups = 0;
-                foreach (var userGroup in summary.UserGroups)
-                {
-                    var hasCorrectedUserGroup = correctedUserGroupsId.Contains(userGroup.Id);
-                    if (hasCorrectedUserGroup || user.UserGroups.Where(g => g.CanUserAllData).FirstOrDefault() != null)
-                        numbersOfCorrectedGroups++;  
-                }
-                Assert.AreEqual(numbersOfCorrectedGroups, user.UserGroups.Length);
             }
 
-            
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctedSummaries = (from s in ctx.Summaries
+                                          from g in s.UserGroups
+                                          where s.SummaryDate >= filter.DateStart
+                                          && s.Project.Id == PROJECT2_ID
+                                          && userGroupsId.Contains(g.Id)
+                                          select s).ToList();
+
+                var numbersCorrectedSummaries = (from s in summaries
+                                          from correctedSummary in correctedSummaries
+                                          where s.Id == correctedSummary.Id select s).ToArray();
+
+                Assert.AreEqual(numbersCorrectedSummaries.Length, summaries.Length);
+            }
 
         }
 

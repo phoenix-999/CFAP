@@ -101,6 +101,96 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetLogins_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetLogins_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetLogins_DbExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_Authenticate_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -439,6 +529,156 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetUsers_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetUsers_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetUsers_AuthenticateFaultExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetUsers_DbExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_GetUsers_NoRightsToChangeUserDataExceptionFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1557,14 +1797,23 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IDataProvider_GetLogins_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogins" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetLogins_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetLogins_DbExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q1:DbException" />
+  </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_InputMessage">
     <wsdl:part name="parameters" element="tns:Authenticate" />
   </wsdl:message>
@@ -1572,13 +1821,13 @@
     <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q1:AuthenticateFaultException" />
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q2:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q2:DbException" />
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q3:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_ArgumentNullExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ArgumentNullException" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ArgumentNullException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddNewUser" />
@@ -1587,19 +1836,34 @@
     <wsdl:part name="parameters" element="tns:AddNewUserResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q4:AuthenticateFaultException" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q5:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q5:DbException" />
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q6:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q6:NoRightsToChangeUserDataException" />
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q7:NoRightsToChangeUserDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q7:DataNotValidException" />
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:UserHasNotGroupsException" />
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q9:UserHasNotGroupsException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetUsers_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q10:AuthenticateFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetUsers_DbExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q11:DbException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_GetUsers_NoRightsToChangeUserDataExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:NoRightsToChangeUserDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUser" />
@@ -1608,19 +1872,19 @@
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q9:AuthenticateFaultException" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q10:DbException" />
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q14:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_NoRightsToChangeUserDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q11:NoRightsToChangeUserDataException" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q15:NoRightsToChangeUserDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:DataNotValidException" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q16:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_UserHasNotGroupsExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:UserHasNotGroupsException" />
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q17:UserHasNotGroupsException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:AddSummary" />
@@ -1629,13 +1893,13 @@
     <wsdl:part name="parameters" element="tns:AddSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q14:AuthenticateFaultException" />
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q18:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q15:DbException" />
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q19:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q16:DataNotValidException" />
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q20:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSummary" />
@@ -1644,7 +1908,7 @@
     <wsdl:part name="parameters" element="tns:GetSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q17:DbException" />
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q21:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSummary" />
@@ -1653,19 +1917,19 @@
     <wsdl:part name="parameters" element="tns:UpdateSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q18:AuthenticateFaultException" />
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q22:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q19:DbException" />
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q23:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q20:DataNotValidException" />
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q24:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q21:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q25:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
-    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q22:ConcurrencyExceptionOfSummarydxjYbbDT" />
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveSummary" />
@@ -1674,19 +1938,19 @@
     <wsdl:part name="parameters" element="tns:RemoveSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q23:AuthenticateFaultException" />
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q27:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q24:DbException" />
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q28:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q25:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q29:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
-    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:ConcurrencyExceptionOfSummarydxjYbbDT" />
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q30:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_InvalidOperationExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/System" name="detail" element="q27:InvalidOperationException" />
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/System" name="detail" element="q31:InvalidOperationException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_InputMessage">
     <wsdl:part name="parameters" element="tns:AlterSummaries" />
@@ -1695,18 +1959,23 @@
     <wsdl:part name="parameters" element="tns:AlterSummariesResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q28:AuthenticateFaultException" />
+    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q32:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q29:DbException" />
+    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q33:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q30:DataNotValidException" />
+    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q34:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AlterSummaries_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q31:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q35:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:portType name="IDataProvider">
+    <wsdl:operation name="GetLogins">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetLogins" message="tns:IDataProvider_GetLogins_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/GetLoginsResponse" message="tns:IDataProvider_GetLogins_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetLoginsDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_GetLogins_DbExceptionFault_FaultMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Authenticate">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/Authenticate" message="tns:IDataProvider_Authenticate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/AuthenticateResponse" message="tns:IDataProvider_Authenticate_OutputMessage" />
@@ -1722,6 +1991,13 @@
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeUserDataExceptionFault" name="NoRightsToChangeUserDataExceptionFault" message="tns:IDataProvider_AddNewUser_NoRightsToChangeUserDataExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault" name="UserHasNotGroupsExceptionFault" message="tns:IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/GetUsers" message="tns:IDataProvider_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/GetUsersResponse" message="tns:IDataProvider_GetUsers_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetUsersAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_GetUsers_AuthenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetUsersDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_GetUsers_DbExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeUserDataExceptionFault" name="NoRightsToChangeUserDataExceptionFault" message="tns:IDataProvider_GetUsers_NoRightsToChangeUserDataExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/UpdateUser" message="tns:IDataProvider_UpdateUser_InputMessage" />
@@ -1774,6 +2050,21 @@
   <wsdl:binding name="NetTcpBinding_IDataProvider" type="tns:IDataProvider">
     <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetLogins">
+      <soap12:operation soapAction="http://tempuri.org/IDataProvider/GetLogins" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetLogins_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetLogins_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DbExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetLogins_DbExceptionFault_Fault" />
+        <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="Authenticate">
       <soap12:operation soapAction="http://tempuri.org/IDataProvider/Authenticate" style="document" />
       <wsdl:input>
@@ -1827,6 +2118,29 @@
       <wsdl:fault name="UserHasNotGroupsExceptionFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_Fault" />
         <soap12:fault use="literal" name="UserHasNotGroupsExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/IDataProvider/GetUsers" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetUsers_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetUsers_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetUsers_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DbExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetUsers_DbExceptionFault_Fault" />
+        <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NoRightsToChangeUserDataExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_GetUsers_NoRightsToChangeUserDataExceptionFault_Fault" />
+        <soap12:fault use="literal" name="NoRightsToChangeUserDataExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
