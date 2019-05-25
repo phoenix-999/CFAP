@@ -54,7 +54,7 @@ namespace CFAPService
                 throw new FaultException<ArgumentNullException>(new ArgumentNullException("Не введен логин или пароль."));
             }
 
-            User result = (User)AuthenticateUser(user, false);
+            User result = AuthenticateUser(user, false);
             return result;
         }
 
@@ -165,16 +165,17 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                //Загрузка в контекст данных о группах пользователя
-                userForUpdate.LoadUserGroups(ctx);
-
                 //Отмена изменения пароля
 
                 userForUpdate.Password = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
 
                 try
                 {
+                    //Загрузка в контекст данных о группах пользователя
+                    userForUpdate.LoadUserGroups(ctx);
+                    //Изменение связей с группами если они изменились
                     userForUpdate.ChangeUserGroups(ctx);
+
                     ctx.Entry(userForUpdate).State = EntityState.Modified;
                     ctx.SaveChanges();
                 }
@@ -520,7 +521,14 @@ namespace CFAPService
 
                     result = new HashSet<Summary>(query);
 
-                    Summary.LoadRelationships(ctx);
+                    try
+                    {
+                        Summary.LoadRelationships(ctx);
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new FaultException<DbException>(new DbException(ex));
+                    }
 
                     return result;
                 }
@@ -562,7 +570,14 @@ namespace CFAPService
 
                 result = new HashSet<Summary>(summaries.ToArray());
 
-                Summary.LoadRelationships(ctx);
+                try
+                {
+                    Summary.LoadRelationships(ctx);
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
 
             }
 

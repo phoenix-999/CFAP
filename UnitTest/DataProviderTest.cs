@@ -107,8 +107,10 @@ namespace UnitTest
 
             List<UserGroup> correctedGroups = new List<UserGroup>();
 
-            UserGroup mainOffice = new UserGroup{ Id = 1, GroupName = MAIN_OFFICE, CanUserAllData = true };
+            UserGroup mainOffice = new UserGroup{ Id = MAIN_OFFICE_ID, GroupName = MAIN_OFFICE, CanUserAllData = true };
             correctedGroups.Add(mainOffice);
+            UserGroup office2 = new UserGroup { Id = OFFICE2_ID, GroupName = "Office2", CanUserAllData = false };
+            correctedGroups.Add(office2);
 
             UserGroup office1 = new UserGroup { Id = 2, GroupName = OFFICE1, CanUserAllData = false };
             correctedGroups.Add(office1);
@@ -395,7 +397,7 @@ namespace UnitTest
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
 
             var oldUserName = userForUpdate.UserName;
-            userForUpdate.UserName = "Liubov";
+            userForUpdate.UserName = "test user";
             var oldPassword = userForUpdate.Password;
             userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
@@ -535,7 +537,7 @@ namespace UnitTest
         [TestMethod]
         public void GetSummaries()
         {
-            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD});
             Filter filter = new Filter()
             {
                 Projects = new Project[] { new Project() { Id = PROJECT2_ID } },
@@ -564,7 +566,7 @@ namespace UnitTest
                                           where s.SummaryDate >= filter.DateStart
                                           && s.Project.Id == PROJECT2_ID
                                           && userGroupsId.Contains(g.Id)
-                                          select s).ToList();
+                                          select s).Distinct().ToList();
 
                 var numbersCorrectedSummaries = (from s in summaries
                                           from correctedSummary in correctedSummaries

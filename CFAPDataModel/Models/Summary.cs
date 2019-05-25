@@ -167,6 +167,8 @@ namespace CFAPDataModel.Models
 
         public static void LoadRelationships(CFAPContext ctx)
         {
+            var oldCofigurationProxy = ctx.Configuration.ProxyCreationEnabled;
+            ctx.Configuration.ProxyCreationEnabled = false;
             ctx.Summaries
                 .Include("Project")
                 .Include("BudgetItem")
@@ -174,14 +176,26 @@ namespace CFAPDataModel.Models
                 .Include("UserLastChanges")
                 .Include("UserGroups");
 
+            
             foreach (var s in ctx.Summaries.Local)
             {
-                s.Accountable = (from a in ctx.Accountables where a.Id == s.Accountable_Id select a).Single();
-                s.Project = (from p in ctx.Projects where p.Id == s.Project_Id select p).Single();
-                s.BudgetItem = (from b in ctx.BudgetItems where b.Id == s.BudgetItem_Id select b).Single();
-                s.UserLastChanged = (from u in ctx.Users where u.Id == s.UserLastChangedId select u).Single();
+                //Исключения могут выпадать только при нарушении целостности данных в БД
+                //s.Accountable = (from a in ctx.Accountables where a.Id == s.Accountable_Id select a).Single();
+                //s.Project = (from p in ctx.Projects where p.Id == s.Project_Id select p).Single();
+                //s.BudgetItem = (from b in ctx.BudgetItems where b.Id == s.BudgetItem_Id select b).Single();
+                //s.UserLastChanged = (from u in ctx.Users where u.Id == s.UserLastChangedId select u).Single();
+                //ctx.Entry(s).Collection("UserGroups").Load();
+
+                //Все связанные сущности существуют в одном экземпляре
+                //В случае отсутствия данных метод Find вернет null
+                s.Accountable = ctx.Accountables.Find(s.Accountable_Id);
+                s.Project = ctx.Projects.Find(s.Project_Id);
+                s.BudgetItem = ctx.BudgetItems.Find(s.BudgetItem_Id);
+                s.UserLastChanged = ctx.Users.Find(s.UserLastChangedId);
                 ctx.Entry(s).Collection("UserGroups").Load();
             }
+
+            ctx.Configuration.ProxyCreationEnabled = oldCofigurationProxy;
         }
 
         public void CustomValidate(CFAPContext ctx)
