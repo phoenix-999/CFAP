@@ -100,5 +100,12 @@ namespace CFAPService
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Accountable>))]
         Accountable UpdateAccountable(Accountable accountableToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        void ChangeSummaryReadOnlyStatus(bool onOff, Filter filter, User user);
     }
 }

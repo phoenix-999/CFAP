@@ -308,6 +308,38 @@ namespace CFAPService
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
+        public void ChangeSummaryReadOnlyStatus(bool onOff, Filter filter, User user)
+        {
+            AuthenticateUser(user);
+
+            if (!user.IsAdmin)
+            {
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Summary"));
+            }
+
+            List<Summary> summaries = this.GetSummary(user, filter).ToList();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                try
+                {
+                    foreach (var summary in summaries)
+                    {
+                        ctx.Summaries.Attach(summary);
+                        summary.ReadOnly = onOff;
+                        ctx.Entry(summary).State = EntityState.Modified;
+                        ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+        }
+
+
+        [OperationBehavior(TransactionScopeRequired = true)]
         public int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             AuthenticateUser(user);

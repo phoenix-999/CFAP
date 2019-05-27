@@ -1596,6 +1596,20 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginUpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.Accountable EndUpdateAccountable(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatus", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusAuthenticateFaultExce" +
+            "ptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusNoRightsToChangeDataE" +
+            "xceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        void ChangeSummaryReadOnlyStatus(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatus", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusResponse")]
+        System.IAsyncResult BeginChangeSummaryReadOnlyStatus(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        void EndChangeSummaryReadOnlyStatus(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1906,6 +1920,12 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateAccountableCompletedDelegate;
         
+        private BeginOperationDelegate onBeginChangeSummaryReadOnlyStatusDelegate;
+        
+        private EndOperationDelegate onEndChangeSummaryReadOnlyStatusDelegate;
+        
+        private System.Threading.SendOrPostCallback onChangeSummaryReadOnlyStatusCompletedDelegate;
+        
         public DataProviderClient() {
         }
         
@@ -1948,6 +1968,8 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<AddAccountableCompletedEventArgs> AddAccountableCompleted;
         
         public event System.EventHandler<UpdateAccountableCompletedEventArgs> UpdateAccountableCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ChangeSummaryReadOnlyStatusCompleted;
         
         public string[] GetLogins() {
             return base.Channel.GetLogins();
@@ -2567,6 +2589,59 @@ namespace UnitTest.DataProviderService {
                         accountableToUpdate,
                         user,
                         concurencyUpdateOption}, this.onEndUpdateAccountableDelegate, this.onUpdateAccountableCompletedDelegate, userState);
+        }
+        
+        public void ChangeSummaryReadOnlyStatus(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user) {
+            base.Channel.ChangeSummaryReadOnlyStatus(onOff, filter, user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginChangeSummaryReadOnlyStatus(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginChangeSummaryReadOnlyStatus(onOff, filter, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndChangeSummaryReadOnlyStatus(System.IAsyncResult result) {
+            base.Channel.EndChangeSummaryReadOnlyStatus(result);
+        }
+        
+        private System.IAsyncResult OnBeginChangeSummaryReadOnlyStatus(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            bool onOff = ((bool)(inValues[0]));
+            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[1]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[2]));
+            return this.BeginChangeSummaryReadOnlyStatus(onOff, filter, user, callback, asyncState);
+        }
+        
+        private object[] OnEndChangeSummaryReadOnlyStatus(System.IAsyncResult result) {
+            this.EndChangeSummaryReadOnlyStatus(result);
+            return null;
+        }
+        
+        private void OnChangeSummaryReadOnlyStatusCompleted(object state) {
+            if ((this.ChangeSummaryReadOnlyStatusCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ChangeSummaryReadOnlyStatusCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ChangeSummaryReadOnlyStatusAsync(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user) {
+            this.ChangeSummaryReadOnlyStatusAsync(onOff, filter, user, null);
+        }
+        
+        public void ChangeSummaryReadOnlyStatusAsync(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginChangeSummaryReadOnlyStatusDelegate == null)) {
+                this.onBeginChangeSummaryReadOnlyStatusDelegate = new BeginOperationDelegate(this.OnBeginChangeSummaryReadOnlyStatus);
+            }
+            if ((this.onEndChangeSummaryReadOnlyStatusDelegate == null)) {
+                this.onEndChangeSummaryReadOnlyStatusDelegate = new EndOperationDelegate(this.OnEndChangeSummaryReadOnlyStatus);
+            }
+            if ((this.onChangeSummaryReadOnlyStatusCompletedDelegate == null)) {
+                this.onChangeSummaryReadOnlyStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnChangeSummaryReadOnlyStatusCompleted);
+            }
+            base.InvokeAsync(this.onBeginChangeSummaryReadOnlyStatusDelegate, new object[] {
+                        onOff,
+                        filter,
+                        user}, this.onEndChangeSummaryReadOnlyStatusDelegate, this.onChangeSummaryReadOnlyStatusCompletedDelegate, userState);
         }
     }
 }

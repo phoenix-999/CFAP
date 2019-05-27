@@ -38,7 +38,10 @@ namespace UnitTest
         const int OFFICE2_ID = 45;
         const string OFFICE2 = "Office2"; //Добавляемая группа
 
+        const string PROJECT1 = "Project1";
         const int PROJECT1_ID = 39;
+
+        const string PROJECT2 = "Project2";
         const int PROJECT2_ID = 40;
 
         const int ACCOUNTABLE1_ID = 71;
@@ -48,6 +51,7 @@ namespace UnitTest
         const string ACCOUNTABLE2 = "Accountable2";
 
         const int BUDGET_ITEM1_ID = 39;
+        const string BUDGET_ITEM1 = "BudgetItem1";
 
         #endregion
 
@@ -1053,6 +1057,130 @@ namespace UnitTest
             }
         }
 
+        #endregion
+
+        #region ChangeSummaryReadOnlyStatus
+
+        [TestMethod]
+        public void ChangeSummaryReadOnlyStatus()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD});
+
+            List<Summary> testSummaries = new List<Summary>();
+            Summary newSummary = new Summary()
+            {
+                SummaUAH = 200,
+                SummaryDate = DateTime.MinValue,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
+                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
+                Description = "test description"
+            };
+
+            
+            for (int i = 0; i < 10; i++)
+            {
+                testSummaries.Add(newSummary);
+            }
+
+            Summary testSummary = null;
+            foreach (var s in testSummaries)
+            {
+                testSummary = DataProviderProxy.AddSummary(s, user);
+            }
+            testSummary.SummaUAH = 99999999;
+            try
+            {
+                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
+
+                DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user);
+
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    foreach (var summary in correctedSummaries)
+                    {
+                        Assert.AreEqual(true, summary.ReadOnly);
+                    }
+                }
+
+                DataProviderProxy.ChangeSummaryReadOnlyStatus(false, filter, user);
+
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    foreach (var summary in correctedSummaries)
+                    {
+                        Assert.AreEqual(false, summary.ReadOnly);
+                    }
+                }
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    ctx.Summaries.RemoveRange(summariesToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+
+
+
+        }
+
+        [TestMethod]
+        public void ChangeSummaryReadOnlyStatus_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            List<Summary> testSummaries = new List<Summary>();
+            Summary newSummary = new Summary()
+            {
+                SummaUAH = 200,
+                SummaryDate = DateTime.MinValue,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
+                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
+                Description = "test description"
+            };
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                testSummaries.Add(newSummary);
+            }
+
+            Summary testSummary = null;
+            foreach (var s in testSummaries)
+            {
+                testSummary = DataProviderProxy.AddSummary(s, user);
+            }
+            testSummary.SummaUAH = 99999999;
+            try
+            {
+                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
+
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(()=>{DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user);});
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    ctx.Summaries.RemoveRange(summariesToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+
+
+
+        }
         #endregion
     }
 }
