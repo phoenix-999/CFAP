@@ -177,7 +177,7 @@ namespace CFAPService
                     userForUpdate.ChangeUserGroups(ctx);
 
                     ctx.Entry(userForUpdate).State = EntityState.Modified;
-                    ctx.SaveChanges();
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -264,11 +264,6 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                if (summary.ReadOnly)
-                {
-                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
-                }
-
                 try
                 {
                     //Группы пользователей уже существуют в сущности
@@ -278,6 +273,12 @@ namespace CFAPService
 
                     //В данном случае AddOrUpdate не сработает в выдаче исключения оптимистичного паралелизма. Он перезагружет сущности в контекс и формирует уже актуальное поле RowVersion
                     ctx.Summaries.Attach(summary);
+
+                    var summaryDbVersion = (Summary)ctx.Entry(summary).GetDatabaseValues().ToObject();
+                    if (summaryDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
 
                     ctx.Entry(summary).State = EntityState.Modified;
 
@@ -290,6 +291,10 @@ namespace CFAPService
                     result = (from s in ctx.Summaries where s.Id == summary.Id select s).Single();
 
                     result.IsModified = false;
+                }
+                catch(ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Summary), summary.Id, null, user));
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
@@ -332,18 +337,23 @@ namespace CFAPService
 
                 summary.SetRelationships(ctx);
 
-                if (summary.ReadOnly)
-                {
-                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(summary.GetType(), summary.Id, null, user));
-                }
-
                 try
                 {
                     ctx.Summaries.Attach(summary);
 
+                    var summaryDbVersion = (Summary)ctx.Entry(summary).GetDatabaseValues().ToObject();
+                    if (summaryDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
+
                     ctx.Entry(summary).State = EntityState.Deleted;
 
                     result = ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Summary), summary.Id, null, user));
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
@@ -423,11 +433,6 @@ namespace CFAPService
                 throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Accountable"));
             }
 
-            if (accountableToUpdate.ReadOnly)
-            {
-                throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Accountable), accountableToUpdate.Id, accountableToUpdate.AccountableName, user));
-            }
-
             using (CFAPContext ctx = new CFAPContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
@@ -435,8 +440,19 @@ namespace CFAPService
                 try
                 {
                     ctx.Accountables.Attach(accountableToUpdate);
+
+                    var accountableToUpdateDbVersion = (Accountable)ctx.Entry(accountableToUpdate).GetDatabaseValues().ToObject();
+                    if (accountableToUpdateDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
+
                     ctx.Entry(accountableToUpdate).State = EntityState.Modified;
                     ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch(ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Accountable), accountableToUpdate.Id, accountableToUpdate.AccountableName, user));
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {

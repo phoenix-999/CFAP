@@ -629,15 +629,39 @@ namespace UnitTest
         {
             User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
 
-            Summary[] summaries = DataProviderProxy.GetSummary(user, null);
+            Summary testSummary = new Summary()
+            {
+                SummaUAH = 200,
+                SummaryDate = DateTime.Now,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID },
+                Project = new Project() { Id = PROJECT1_ID },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID },
+                Description = "TEST"
+            };
+            DataProviderProxy.AddSummary(testSummary, user);
 
-            var summariesCanReadOnly = (from s in summaries where s.ReadOnly == true select s).ToList();
+            try
+            {
+                Summary[] summaries = DataProviderProxy.GetSummary(user, null);
 
-            Assert.AreNotEqual(summariesCanReadOnly.Count, 0);
+                Summary summaryToUpdate = (from s in summaries where s.Description == testSummary.Description select s).First();
 
-            Summary summaryToUpdate = summariesCanReadOnly[0];
+                summaryToUpdate.ReadOnly = true;
+                var readOnlySummary = DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
 
-            Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(()=> { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+                summaryToUpdate.ReadOnly = false;
+                Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateSummary(summaryToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var summaryToRemove = (from s in ctx.Summaries where s.Description == testSummary.Description select s).Single();
+                    ctx.Summaries.Remove(summaryToRemove);
+                    ctx.SaveChanges();
+                }
+            }
         }
 
         [TestMethod]
@@ -737,7 +761,7 @@ namespace UnitTest
             Summary testSummary = summaries[0];
             testSummary.SummaUAH = 0;
             testSummary.SummaryDate = DateTime.Now;
-            testSummary.ReadOnly = true;
+            testSummary.ReadOnly = false;
 
             Summary addedSummary = DataProviderProxy.AddSummary(testSummary, user);
 
@@ -747,6 +771,10 @@ namespace UnitTest
                 Assert.AreEqual(1, checkAddedSummary.Length);
             }
 
+            addedSummary.ReadOnly = true;
+            DataProviderProxy.UpdateSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+            addedSummary.ReadOnly = false;
             Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(()=> { DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); }) ;
 
             using (CFAPContext ctx = new CFAPContext())
@@ -875,6 +903,7 @@ namespace UnitTest
         #endregion
 
         #region UpdateAccountable
+
         [TestMethod]
         public void UpdateAccountable()
         {
@@ -971,7 +1000,7 @@ namespace UnitTest
         public void UpdateAccountable_TryChangeReadOnlyFiledsException()
         {
             User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
-            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable", ReadOnly = true };
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable" };
             testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
 
             Accountable[] accountables = DataProviderProxy.GetAccountables(user);
@@ -982,13 +1011,15 @@ namespace UnitTest
 
             try
             {
+                accountableToUpdate.ReadOnly = true;
+                var updatedAccountable = DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
                 Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
             }
             finally
             {
                 using (CFAPContext ctx = new CFAPContext())
                 {
-                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == accountableToUpdate.AccountableName select a).Single();
                     ctx.Accountables.Remove(accountableToRemove);
                     ctx.SaveChanges();
                 }
