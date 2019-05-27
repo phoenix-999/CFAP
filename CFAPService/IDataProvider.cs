@@ -29,7 +29,7 @@ namespace CFAPService
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(NoRightsToChangeUserDataException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
         User AddNewUser(User newUser, User owner);
@@ -37,14 +37,14 @@ namespace CFAPService
         [OperationContract]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(NoRightsToChangeUserDataException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
         List<User> GetUsers(User owner);
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(NoRightsToChangeUserDataException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
         User UpdateUser(User userForUpdate, User owner);
@@ -85,5 +85,28 @@ namespace CFAPService
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         void AlterSummaries(List<Summary> summaries, User user);
+
+        [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        List<Accountable> GetAccountables(User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        Accountable AddAccountable(Accountable newAccountable, User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        [FaultContract(typeof(ConcurrencyException<Accountable>))]
+        Accountable UpdateAccountable(Accountable accountableToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
     }
 }

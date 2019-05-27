@@ -65,7 +65,7 @@ namespace CFAPService
 
             if (!owner.CanChangeUsersData)
             {
-                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner, "Users"));
             }
 
             if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
@@ -109,7 +109,7 @@ namespace CFAPService
 
             if (!owner.CanChangeUsersData)
             {
-                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner, "User"));
             }
 
             List<User> users = new List<User>();
@@ -152,7 +152,7 @@ namespace CFAPService
             if (owner.CanChangeUsersData == false)
             {
                 //Если ложь - сбой
-                throw new FaultException<NoRightsToChangeUserDataException>(new NoRightsToChangeUserDataException(owner));
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner,"User"));
             }
 
             if (userForUpdate.UserGroups == null || userForUpdate.UserGroups.Count == 0)
@@ -359,6 +359,103 @@ namespace CFAPService
 
             return result;
         }
+        
+        public List<Accountable> GetAccountables(User user)
+        {
+            AuthenticateUser(user);
+
+            List<Accountable> result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    result = (from a in ctx.Accountables select a).Distinct().ToList();
+                }
+                catch(Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+                return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Accountable AddAccountable(Accountable newAccountable, User user)
+        {
+            AuthenticateUser(user);
+
+            if (!user.IsAdmin)
+            {
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Accountable"));
+            }
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    ctx.Accountables.Add(newAccountable);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch(DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch(Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return newAccountable;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Accountable UpdateAccountable(Accountable accountableToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            if (!user.IsAdmin)
+            {
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Accountable"));
+            }
+
+            if (accountableToUpdate.ReadOnly)
+            {
+                throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Accountable), accountableToUpdate.Id, accountableToUpdate.AccountableName, user));
+            }
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                try
+                {
+                    ctx.Accountables.Attach(accountableToUpdate);
+                    ctx.Entry(accountableToUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Accountable> concurrencyException = new ConcurrencyException<Accountable>(ex);
+                    throw new FaultException<ConcurrencyException<Accountable>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+                return accountableToUpdate;
+        }
+
         #endregion
 
 

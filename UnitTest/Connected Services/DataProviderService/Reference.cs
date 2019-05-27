@@ -634,12 +634,15 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
     [System.SerializableAttribute()]
-    public partial class NoRightsToChangeUserDataException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class NoRightsToChangeDataException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EntityNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MessageField;
@@ -657,6 +660,19 @@ namespace UnitTest.DataProviderService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EntityName {
+            get {
+                return this.EntityNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityNameField, value) != true)) {
+                    this.EntityNameField = value;
+                    this.RaisePropertyChanged("EntityName");
+                }
             }
         }
         
@@ -1361,6 +1377,83 @@ namespace UnitTest.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class ConcurrencyExceptionOfAccountabledxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable CurrentValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable DatabaseValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable CurrentValue {
+            get {
+                return this.CurrentValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentValueField, value) != true)) {
+                    this.CurrentValueField = value;
+                    this.RaisePropertyChanged("CurrentValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable DatabaseValue {
+            get {
+                return this.DatabaseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatabaseValueField, value) != true)) {
+                    this.DatabaseValueField = value;
+                    this.RaisePropertyChanged("DatabaseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1388,8 +1481,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeUserDataExceptionFault" +
-            "", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
@@ -1403,7 +1495,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUsersAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetUsersDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeUserDataExceptionFault", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         UnitTest.DataProviderService.User[] GetUsers(UnitTest.DataProviderService.User owner);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
@@ -1414,8 +1506,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeUserDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeUserDataExceptionFault" +
-            "", Name="NoRightsToChangeUserDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
@@ -1492,6 +1583,49 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginAlterSummaries(UnitTest.DataProviderService.Summary[] summaries, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
         
         void EndAlterSummaries(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetAccountablesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetAccountablesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Accountable[] GetAccountables(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
+        System.IAsyncResult BeginGetAccountables(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Accountable[] EndGetAccountables(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddAccountable", ReplyAction="http://tempuri.org/IDataProvider/AddAccountableResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddAccountableAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddAccountableNoRightsToChangeDataExceptionFault" +
+            "", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Accountable AddAccountable(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddAccountable", ReplyAction="http://tempuri.org/IDataProvider/AddAccountableResponse")]
+        System.IAsyncResult BeginAddAccountable(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Accountable EndAddAccountable(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateAccountable", ReplyAction="http://tempuri.org/IDataProvider/UpdateAccountableResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateAccountableAuthenticateFaultExceptionFault" +
+            "", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateAccountableNoRightsToChangeDataExceptionFa" +
+            "ult", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateAccountableTryChangeReadOnlyFiledException" +
+            "Fault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfAccountabledxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateAccountableConcurrencyExceptionOf_Accounta" +
+            "bleFault", Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Accountable UpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateAccountable", ReplyAction="http://tempuri.org/IDataProvider/UpdateAccountableResponse")]
+        System.IAsyncResult BeginUpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Accountable EndUpdateAccountable(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1671,6 +1805,63 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAccountablesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAccountablesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Accountable[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Accountable[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddAccountableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddAccountableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Accountable Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Accountable)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateAccountableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateAccountableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Accountable Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Accountable)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginGetLoginsDelegate;
@@ -1733,6 +1924,24 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onAlterSummariesCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetAccountablesDelegate;
+        
+        private EndOperationDelegate onEndGetAccountablesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAccountablesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddAccountableDelegate;
+        
+        private EndOperationDelegate onEndAddAccountableDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddAccountableCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateAccountableDelegate;
+        
+        private EndOperationDelegate onEndUpdateAccountableDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateAccountableCompletedDelegate;
+        
         public DataProviderClient() {
         }
         
@@ -1771,6 +1980,12 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<RemoveSummaryCompletedEventArgs> RemoveSummaryCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AlterSummariesCompleted;
+        
+        public event System.EventHandler<GetAccountablesCompletedEventArgs> GetAccountablesCompleted;
+        
+        public event System.EventHandler<AddAccountableCompletedEventArgs> AddAccountableCompleted;
+        
+        public event System.EventHandler<UpdateAccountableCompletedEventArgs> UpdateAccountableCompleted;
         
         public string[] GetLogins() {
             return base.Channel.GetLogins();
@@ -2285,6 +2500,162 @@ namespace UnitTest.DataProviderService {
             base.InvokeAsync(this.onBeginAlterSummariesDelegate, new object[] {
                         summaries,
                         user}, this.onEndAlterSummariesDelegate, this.onAlterSummariesCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Accountable[] GetAccountables(UnitTest.DataProviderService.User user) {
+            return base.Channel.GetAccountables(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAccountables(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAccountables(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Accountable[] EndGetAccountables(System.IAsyncResult result) {
+            return base.Channel.EndGetAccountables(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAccountables(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginGetAccountables(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAccountables(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Accountable[] retVal = this.EndGetAccountables(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAccountablesCompleted(object state) {
+            if ((this.GetAccountablesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAccountablesCompleted(this, new GetAccountablesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAccountablesAsync(UnitTest.DataProviderService.User user) {
+            this.GetAccountablesAsync(user, null);
+        }
+        
+        public void GetAccountablesAsync(UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginGetAccountablesDelegate == null)) {
+                this.onBeginGetAccountablesDelegate = new BeginOperationDelegate(this.OnBeginGetAccountables);
+            }
+            if ((this.onEndGetAccountablesDelegate == null)) {
+                this.onEndGetAccountablesDelegate = new EndOperationDelegate(this.OnEndGetAccountables);
+            }
+            if ((this.onGetAccountablesCompletedDelegate == null)) {
+                this.onGetAccountablesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAccountablesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAccountablesDelegate, new object[] {
+                        user}, this.onEndGetAccountablesDelegate, this.onGetAccountablesCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Accountable AddAccountable(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddAccountable(newAccountable, user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddAccountable(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddAccountable(newAccountable, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Accountable EndAddAccountable(System.IAsyncResult result) {
+            return base.Channel.EndAddAccountable(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddAccountable(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Accountable newAccountable = ((UnitTest.DataProviderService.Accountable)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddAccountable(newAccountable, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddAccountable(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Accountable retVal = this.EndAddAccountable(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddAccountableCompleted(object state) {
+            if ((this.AddAccountableCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddAccountableCompleted(this, new AddAccountableCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddAccountableAsync(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user) {
+            this.AddAccountableAsync(newAccountable, user, null);
+        }
+        
+        public void AddAccountableAsync(UnitTest.DataProviderService.Accountable newAccountable, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAddAccountableDelegate == null)) {
+                this.onBeginAddAccountableDelegate = new BeginOperationDelegate(this.OnBeginAddAccountable);
+            }
+            if ((this.onEndAddAccountableDelegate == null)) {
+                this.onEndAddAccountableDelegate = new EndOperationDelegate(this.OnEndAddAccountable);
+            }
+            if ((this.onAddAccountableCompletedDelegate == null)) {
+                this.onAddAccountableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddAccountableCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddAccountableDelegate, new object[] {
+                        newAccountable,
+                        user}, this.onEndAddAccountableDelegate, this.onAddAccountableCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Accountable UpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            return base.Channel.UpdateAccountable(accountableToUpdate, user, concurencyUpdateOption);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateAccountable(accountableToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Accountable EndUpdateAccountable(System.IAsyncResult result) {
+            return base.Channel.EndUpdateAccountable(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateAccountable(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Accountable accountableToUpdate = ((UnitTest.DataProviderService.Accountable)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginUpdateAccountable(accountableToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateAccountable(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Accountable retVal = this.EndUpdateAccountable(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateAccountableCompleted(object state) {
+            if ((this.UpdateAccountableCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateAccountableCompleted(this, new UpdateAccountableCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateAccountableAsync(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            this.UpdateAccountableAsync(accountableToUpdate, user, concurencyUpdateOption, null);
+        }
+        
+        public void UpdateAccountableAsync(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, object userState) {
+            if ((this.onBeginUpdateAccountableDelegate == null)) {
+                this.onBeginUpdateAccountableDelegate = new BeginOperationDelegate(this.OnBeginUpdateAccountable);
+            }
+            if ((this.onEndUpdateAccountableDelegate == null)) {
+                this.onEndUpdateAccountableDelegate = new EndOperationDelegate(this.OnEndUpdateAccountable);
+            }
+            if ((this.onUpdateAccountableCompletedDelegate == null)) {
+                this.onUpdateAccountableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateAccountableCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateAccountableDelegate, new object[] {
+                        accountableToUpdate,
+                        user,
+                        concurencyUpdateOption}, this.onEndUpdateAccountableDelegate, this.onUpdateAccountableCompletedDelegate, userState);
         }
     }
 }

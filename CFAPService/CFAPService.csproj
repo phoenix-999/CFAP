@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
-    <Compile Include="Faults\NoRightsToChangeUserDataException.cs" />
+    <Compile Include="Faults\NoRightsToChangeDataException.cs" />
     <Compile Include="Faults\AutenticateFaultException.cs" />
     <Compile Include="Faults\ConcurrencyException.cs" />
     <Compile Include="Faults\DataNotValidException.cs" />

@@ -10,16 +10,20 @@ using CFAPDataModel.Models;
 namespace CFAPService.Faults
 {
     [DataContract]
-    public class NoRightsToChangeUserDataException
+    public class NoRightsToChangeDataException
     {
 
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
-        public NoRightsToChangeUserDataException(User user)
+        public NoRightsToChangeDataException(User user, string entityName)
         {
             this.UserId = user.Id;
             this.UserName = user.UserName;
-            Log.Error(string.Format("Попытка добавить нового или изменить данные существующего пользователя не админом. Для пользователя {0}", user.UserName));
+            this.EntityName = entityName;
+            Log.Error(string.Format("Попытка добавления или изменения данных не админом. Для пользователя {0}, сущность {1}", user.UserName, entityName));
         }
+
+        [DataMember]
+        public string EntityName { get; set; }
 
         [DataMember]
         public int UserId { get; set; }
@@ -30,7 +34,7 @@ namespace CFAPService.Faults
         [DataMember]
         public virtual string Message
         {
-            get { return string.Format("Пользователь {0} не обладает необходимыми правами для добавления новых или изменение данных существующих пользователей.", UserName); }
+            get { return string.Format("Пользователь {0} не обладает необходимыми правами для добавления новых или изменение данных существующих записей.", UserName); }
             set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
     }

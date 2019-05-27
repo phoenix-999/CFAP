@@ -258,7 +258,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AddNewUser_NoRightsToChangeUserDataException()
+        public void AddNewUser_NoRightsToChangeDataException()
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
@@ -266,7 +266,7 @@ namespace UnitTest
 
             User testUser = new User() { UserName = TEST_USER_NAME, Password = TEST_USER_PASSWORD, UserGroups = new UserGroup[] { new UserGroup { Id = OFFICE1_ID } } };
 
-            Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(()=> { DataProviderProxy.AddNewUser(testUser, owner); });
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(()=> { DataProviderProxy.AddNewUser(testUser, owner); });
 
             using (CFAPContext ctx = new CFAPContext())
             {
@@ -358,7 +358,7 @@ namespace UnitTest
 
         }
         [TestMethod]
-        public void GetUsers_NoRightsToChangeUserDataException()
+        public void GetUsers_NoRightsToChangeDataException()
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
 
@@ -374,7 +374,7 @@ namespace UnitTest
 
             try
             {
-                Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(() => { DataProviderProxy.GetUsers(testUser); });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.GetUsers(testUser); });
             }
             finally
             {
@@ -430,12 +430,12 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void UpdateUser_NoRightsToChangeUserDataException()
+        public void UpdateUser_NoRightsToChangeDataException()
         {
             User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
             User userForUpdate = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
-            Assert.ThrowsException<FaultException<NoRightsToChangeUserDataException>>(()=> { DataProviderProxy.UpdateUser(userForUpdate, owner); });
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(()=> { DataProviderProxy.UpdateUser(userForUpdate, owner); });
         }
 
         [TestMethod]
@@ -798,5 +798,232 @@ namespace UnitTest
 
         #endregion
 
+        #region GetAccountables
+        [TestMethod]
+        public void GetAccountables()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD});
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctAccountables = (from a in ctx.Accountables select a).Distinct().ToList();
+
+                Assert.AreEqual(correctAccountables.Count, accountables.Length);
+
+                foreach (var accountable in correctAccountables)
+                {
+                    var correctAccountable = (from a in accountables where a.Id == accountable.Id select a).Single(); //В случае если не найдет или найдет больше одного - исключение
+                }
+            }
+        }
+        #endregion
+
+
+        #region AddAccountable
+
+        [TestMethod]
+        public void AddAccountable()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Accountable newAccountable = new Accountable() { AccountableName = "Test accountable" };
+
+            try
+            {
+                Accountable addedAccountbale = DataProviderProxy.AddAccountable(newAccountable, user);
+
+                Assert.AreNotEqual(null, addedAccountbale);
+                Assert.AreNotEqual(0, addedAccountbale.Id);
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == newAccountable.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AddAccountable_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Accountable newAccountable = new Accountable() {  };
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddAccountable(newAccountable, user); });
+
+                
+        }
+
+        [TestMethod]
+        public void AddAccountable_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Accountable newAccountable = new Accountable() { };
+
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddAccountable(newAccountable, user); });
+
+
+        }
+
+        #endregion
+
+        #region UpdateAccountable
+        [TestMethod]
+        public void UpdateAccountable()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD});
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable" };
+            testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            Accountable accountableToUpdate = (from a in accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+
+            accountableToUpdate.AccountableName = "Test UPDATE accountable name";
+
+            try
+            {
+
+                Accountable updatedAccountable = DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.AreEqual(accountableToUpdate.Id, updatedAccountable.Id);
+                Assert.AreEqual(accountableToUpdate.AccountableName, updatedAccountable.AccountableName);
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == accountableToUpdate.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateAccountable_ConcurencyException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable" };
+            testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            Accountable accountableToUpdate = (from a in accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+
+            accountableToUpdate.AccountableName = "Test UPDATE accountable name";
+
+            try
+            {
+                Accountable updatedAccountable = DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.ThrowsException<FaultException<ConcurrencyExceptionOfAccountabledxjYbbDT>>(() => { DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == accountableToUpdate.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateAccountable_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable" };
+            testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            Accountable accountableToUpdate = (from a in accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+
+            accountableToUpdate.AccountableName = "";
+
+            try
+            {
+                Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateAccountable_TryChangeReadOnlyFiledsException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable", ReadOnly = true };
+            testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            Accountable accountableToUpdate = (from a in accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+
+            accountableToUpdate.AccountableName = "TEst UPDATE Accountable";
+
+            try
+            {
+                Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateAccountable(accountableToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateAccountable_NoRigthToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Accountable testAccountable = new Accountable() { AccountableName = "Test accountable" };
+            testAccountable = DataProviderProxy.AddAccountable(testAccountable, user);
+
+            Accountable[] accountables = DataProviderProxy.GetAccountables(user);
+
+            Accountable accountableToUpdate = (from a in accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+
+            accountableToUpdate.AccountableName = "TEst UPDATE Accountable";
+
+            try
+            {
+                User userNotAdmin = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.UpdateAccountable(accountableToUpdate, userNotAdmin, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
+                    ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        #endregion
     }
 }

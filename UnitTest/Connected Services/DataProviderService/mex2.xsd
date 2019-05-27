@@ -14,14 +14,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AuthenticateFaultException" nillable="true" type="tns:AuthenticateFaultException" />
-  <xs:complexType name="NoRightsToChangeUserDataException">
+  <xs:complexType name="NoRightsToChangeDataException">
     <xs:sequence>
+      <xs:element minOccurs="0" name="EntityName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserId" type="xs:int" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="NoRightsToChangeUserDataException" nillable="true" type="tns:NoRightsToChangeUserDataException" />
+  <xs:element name="NoRightsToChangeDataException" nillable="true" type="tns:NoRightsToChangeDataException" />
   <xs:complexType name="DataNotValidException">
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ValidationErrors" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
@@ -58,4 +59,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ConcurrencyExceptionOfSummarydxjYbbDT" nillable="true" type="tns:ConcurrencyExceptionOfSummarydxjYbbDT" />
+  <xs:complexType name="ConcurrencyExceptionOfAccountabledxjYbbDT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ConcurrencyExceptionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Accountable" Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="CurrentValue" nillable="true" type="q5:Accountable" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="DatabaseValue" nillable="true" type="q6:Accountable" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConcurrencyExceptionOfAccountabledxjYbbDT" nillable="true" type="tns:ConcurrencyExceptionOfAccountabledxjYbbDT" />
 </xs:schema>
