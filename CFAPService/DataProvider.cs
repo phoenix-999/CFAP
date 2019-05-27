@@ -63,10 +63,7 @@ namespace CFAPService
         {
             AuthenticateUser(owner);
 
-            if (!owner.CanChangeUsersData)
-            {
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner, "Users"));
-            }
+            this.CheckCanChangeUsersData(owner, typeof(User));
 
             if (newUser.UserGroups == null || newUser.UserGroups.Count == 0)
             {
@@ -107,10 +104,7 @@ namespace CFAPService
         {
             AuthenticateUser(owner);
 
-            if (!owner.CanChangeUsersData)
-            {
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner, "User"));
-            }
+            this.CheckCanChangeUsersData(owner, typeof(User));
 
             List<User> users = new List<User>();
 
@@ -149,11 +143,7 @@ namespace CFAPService
             AuthenticateUser(owner);
 
             //Проверка - иммеет ли право владелец добавлять или изменять данные пользователей (User.CanAddNewUser)
-            if (owner.CanChangeUsersData == false)
-            {
-                //Если ложь - сбой
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(owner,"User"));
-            }
+            this.CheckCanChangeUsersData(owner, typeof(User));
 
             if (userForUpdate.UserGroups == null || userForUpdate.UserGroups.Count == 0)
             {
@@ -312,10 +302,7 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
-            if (!user.IsAdmin)
-            {
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Summary"));
-            }
+            this.ChechIsAdmin(user, typeof(Summary));
 
             List<Summary> summaries = this.GetSummary(user, filter).ToList();
 
@@ -421,10 +408,7 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
-            if (!user.IsAdmin)
-            {
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Accountable"));
-            }
+            this.ChechIsAdmin(user, typeof(Accountable));
 
             using (CFAPContext ctx = new CFAPContext())
             {
@@ -452,10 +436,7 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
-            if (!user.IsAdmin)
-            {
-                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, "Accountable"));
-            }
+            this.ChechIsAdmin(user, typeof(Accountable));
 
             using (CFAPContext ctx = new CFAPContext())
             {
@@ -497,6 +478,22 @@ namespace CFAPService
         }
 
         #endregion
+
+        private void CheckCanChangeUsersData(User user, Type entityType)
+        {
+            if (!user.CanChangeUsersData)
+            {
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, entityType.Name));
+            }
+        }
+
+        private void ChechIsAdmin(User user, Type entityType)
+        {
+            if (!user.IsAdmin)
+            {
+                throw new FaultException<NoRightsToChangeDataException>(new NoRightsToChangeDataException(user, entityType.Name));
+            }
+        }
 
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
@@ -558,7 +555,7 @@ namespace CFAPService
             return result;
         }
 
-       private HashSet<Summary> GetFilteredSummary(User user, Filter filter)
+        private HashSet<Summary> GetFilteredSummary(User user, Filter filter)
        {
             HashSet<Summary> result = new HashSet<Summary>();
 
