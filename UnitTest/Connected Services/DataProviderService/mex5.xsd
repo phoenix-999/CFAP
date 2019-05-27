@@ -136,61 +136,48 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AlterSummaries">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="summaries" nillable="true" type="q25:ArrayOfSummary" />
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q26:User" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AlterSummariesResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetAccountables">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q27:User" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q25:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAccountablesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetAccountablesResult" nillable="true" type="q28:ArrayOfAccountable" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetAccountablesResult" nillable="true" type="q26:ArrayOfAccountable" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAccountable">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="newAccountable" nillable="true" type="q29:Accountable" />
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q30:User" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="newAccountable" nillable="true" type="q27:Accountable" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q28:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAccountableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="AddAccountableResult" nillable="true" type="q31:Accountable" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="AddAccountableResult" nillable="true" type="q29:Accountable" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAccountable">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="accountableToUpdate" nillable="true" type="q32:Accountable" />
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q33:User" />
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="concurencyUpdateOption" type="q34:DbConcurencyUpdateOptions" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="accountableToUpdate" nillable="true" type="q30:Accountable" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q31:User" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="concurencyUpdateOption" type="q32:DbConcurencyUpdateOptions" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAccountableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="UpdateAccountableResult" nillable="true" type="q35:Accountable" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="UpdateAccountableResult" nillable="true" type="q33:Accountable" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -79,14 +79,6 @@ namespace CFAPService
         int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AuthenticateFaultException))]
-        [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(DataNotValidException))]
-        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
-        void AlterSummaries(List<Summary> summaries, User user);
-
-        [OperationContract]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         List<Accountable> GetAccountables(User user);

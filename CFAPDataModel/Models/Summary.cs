@@ -316,10 +316,6 @@ namespace CFAPDataModel.Models
         [DataMember]
         public virtual ICollection<UserGroup> UserGroups { get; set; }
 
-        [DataMember]
-        [NotMapped]
-        public bool IsModified { get; set; }
-
         #endregion
     }
 }
