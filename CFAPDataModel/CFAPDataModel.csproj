@@ -121,6 +121,14 @@
     <Compile Include="Migrations\201905240944478_renamed User.CanChangeUsersData.Designer.cs">
       <DependentUpon>201905240944478_renamed User.CanChangeUsersData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905271156581_Aletr column to Unique.cs" />
+    <Compile Include="Migrations\201905271156581_Aletr column to Unique.Designer.cs">
+      <DependentUpon>201905271156581_Aletr column to Unique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905271157458_Aletr column to Unique Accountables.cs" />
+    <Compile Include="Migrations\201905271157458_Aletr column to Unique Accountables.Designer.cs">
+      <DependentUpon>201905271157458_Aletr column to Unique Accountables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -186,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905240944478_renamed User.CanChangeUsersData.resx">
       <DependentUpon>201905240944478_renamed User.CanChangeUsersData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271156581_Aletr column to Unique.resx">
+      <DependentUpon>201905271156581_Aletr column to Unique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271157458_Aletr column to Unique Accountables.resx">
+      <DependentUpon>201905271157458_Aletr column to Unique Accountables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

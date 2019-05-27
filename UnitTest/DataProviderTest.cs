@@ -38,18 +38,16 @@ namespace UnitTest
         const int OFFICE2_ID = 45;
         const string OFFICE2 = "Office2"; //Добавляемая группа
 
-        const int PROJECT1_ID = 1;
-        const int PROJECT2_ID = 36;
+        const int PROJECT1_ID = 39;
+        const int PROJECT2_ID = 40;
 
-        const int ACCOUNTABLE1_ID = 1;
+        const int ACCOUNTABLE1_ID = 71;
         const string ACCOUNTABLE1 = "Accountable1";
 
-        const int ACCOUNTABLE2_ID = 40;
+        const int ACCOUNTABLE2_ID = 79;
         const string ACCOUNTABLE2 = "Accountable2";
 
-        const int BUDGET_ITEM1_ID = 1;
-
-        const int DESCRIPTION1_ID = 2;
+        const int BUDGET_ITEM1_ID = 39;
 
         #endregion
 
@@ -856,7 +854,7 @@ namespace UnitTest
         {
             User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
 
-            Accountable newAccountable = new Accountable() { AccountableName = "Test accountable" };
+            Accountable newAccountable = new Accountable() { AccountableName = "test accountable" };
 
             try
             {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFAPDataModel.Models
 {
@@ -20,7 +21,8 @@ namespace CFAPDataModel.Models
         public int Id { get; set; }
 
         [DataMember]
-        [Required]
+        [Required, MaxLength(70)]
+        [Index(IsUnique = true)]
         public string ProjectName { get; set; }
 
         [Timestamp]
