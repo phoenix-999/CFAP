@@ -241,6 +241,9 @@ namespace CFAPService
         [OperationBehavior(TransactionScopeRequired = true)]
         public Summary UpdateSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
+            //Изменение значения поля ReadOnly осуществляеться другой операцией службы
+
+
             AuthenticateUser(user);
 
             //Пользователь который изменил данные устанавливается по факту
