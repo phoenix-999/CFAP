@@ -50,6 +50,20 @@ namespace CFAPService
         User UpdateUser(User userForUpdate, User owner);
 
         [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        List<UserGroup> GetUserGroups(User owner);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(DataNotValidException))]
+        UserGroup AddNewUserGroup(UserGroup newUserGroup, User owner);
+
+        [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]

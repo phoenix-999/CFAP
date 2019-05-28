@@ -109,12 +109,12 @@ namespace UnitTest
 
             List<UserGroup> correctedGroups = new List<UserGroup>();
 
-            UserGroup mainOffice = new UserGroup{ Id = MAIN_OFFICE_ID, GroupName = MAIN_OFFICE, CanUserAllData = true };
+            UserGroup mainOffice = new UserGroup{ Id = MAIN_OFFICE_ID, GroupName = MAIN_OFFICE, CanReadAllData = true };
             correctedGroups.Add(mainOffice);
-            UserGroup office2 = new UserGroup { Id = OFFICE2_ID, GroupName = "Office2", CanUserAllData = false };
+            UserGroup office2 = new UserGroup { Id = OFFICE2_ID, GroupName = "Office2", CanReadAllData = false };
             correctedGroups.Add(office2);
 
-            UserGroup office1 = new UserGroup { Id = 2, GroupName = OFFICE1, CanUserAllData = false };
+            UserGroup office1 = new UserGroup { Id = 2, GroupName = OFFICE1, CanReadAllData = false };
             correctedGroups.Add(office1);
 
             Assert.IsNotNull(MainUser);
@@ -128,7 +128,7 @@ namespace UnitTest
                 Assert.IsNotNull(currentCorrectedGroup);
 
                 Assert.AreEqual(currentCorrectedGroup.GroupName, groupUser.GroupName);
-                Assert.AreEqual(currentCorrectedGroup.CanUserAllData, groupUser.CanUserAllData);
+                Assert.AreEqual(currentCorrectedGroup.CanReadAllData, groupUser.CanReadAllData);
             }
 
         }
@@ -470,6 +470,169 @@ namespace UnitTest
 
         #endregion
 
+        #region GetUserGroups
+        [TestMethod]
+        public void GetUserGroups()
+        {
+            //Проверка для админа
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            UserGroup[] userGroups = DataProviderProxy.GetUserGroups(owner);
+
+            Assert.AreNotEqual(0, userGroups.Length);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctedUserGroups = (from g in ctx.UserGroups select g).Distinct().ToList();
+
+                foreach (var userGroup in userGroups)
+                {
+                    var hasCorrectedUserGroup = (from g in correctedUserGroups where g.Id == userGroup.Id select g).FirstOrDefault();
+                    Assert.AreNotEqual(null, hasCorrectedUserGroup);
+                    Assert.AreEqual(correctedUserGroups.Count, userGroups.Length);
+                }
+            }
+        }
+        [TestMethod]
+        public void GetUserGroups_NoRightsToChangeDataException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            User testUser = new User()
+            {
+                UserName = TEST_USER_NAME,
+                Password = TEST_USER_PASSWORD,
+                UserGroups = new UserGroup[] { new UserGroup() { Id = OFFICE2_ID, GroupName = OFFICE2 } },
+                IsAdmin = false
+            };
+
+            testUser = DataProviderProxy.AddNewUser(testUser, owner);
+
+            try
+            {
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.GetUserGroups(testUser); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    //Удаление тестового пользователя
+                    ctx.Users.Remove(ctx.Users.Find(testUser.Id));
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        #endregion
+
+        #region AddNewUserGroup
+
+        [TestMethod]
+        public void AddNewUserGroup()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            UserGroup newUserGroup = new UserGroup()
+            {
+                GroupName = "Test group",
+                CanReadAllData = true
+            };
+
+            var addedUserGroup = DataProviderProxy.AddNewUserGroup(newUserGroup, owner);
+
+            Assert.AreNotEqual(addedUserGroup, null);
+
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userGroupToRemove = (from g in ctx.UserGroups
+                                    where g.GroupName == newUserGroup.GroupName
+                                    select g
+                                 ).FirstOrDefault();
+
+                ctx.UserGroups.Remove(userGroupToRemove);
+                ctx.SaveChanges();
+
+                var removedUserGroup = (from g in ctx.UserGroups
+                                   where g.GroupName == newUserGroup.GroupName
+                                   select g
+                                 ).FirstOrDefault();
+                Assert.AreEqual(removedUserGroup, null);
+            }
+
+        }
+
+        [TestMethod]
+        public void AddNewUserGroup_AuthentacateFaultException()
+        {
+            User owner = new User() { UserName = "otherUser", Password = "otherPassword" };
+
+            UserGroup newUserGroup = new UserGroup()
+            {
+                GroupName = "Test group",
+                CanReadAllData = true
+            };
+
+            Assert.ThrowsException<FaultException<AuthenticateFaultException>>(() => { DataProviderProxy.AddNewUserGroup(newUserGroup, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userGroup = (from g in ctx.UserGroups where g.GroupName == newUserGroup.GroupName select g).FirstOrDefault();
+
+                Assert.AreEqual(userGroup, null);
+            }
+        }
+
+
+        [TestMethod]
+        public void AddNewUserGroup_NoRightsToChangeDataException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Assert.AreEqual(owner.IsAdmin, false);
+
+            UserGroup testUserGroup = new UserGroup()
+            {
+                GroupName = "Test group",
+                CanReadAllData = true
+            };
+
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddNewUserGroup(testUserGroup, owner); });
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userGroup = (from g in ctx.UserGroups where g.GroupName == testUserGroup.GroupName select g).FirstOrDefault();
+
+                Assert.AreEqual(userGroup, null);
+            }
+        }
+
+        [TestMethod]
+        public void AddNewUserGroup_DataNotValidException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Assert.AreEqual(owner.IsAdmin, true);
+
+            UserGroup testUserGroup = new UserGroup()
+            {
+                GroupName = "",
+                CanReadAllData = true
+            };
+
+            var errors = Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddNewUserGroup(testUserGroup, owner); });
+
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var userGroup = (from g in ctx.UserGroups where g.GroupName == testUserGroup.GroupName select g).FirstOrDefault();
+
+                Assert.AreEqual(userGroup, null);
+            }
+        }
+
+        #endregion
+
         #region AddSummary
         [TestMethod]
         public void AddSummary()
@@ -496,7 +659,7 @@ namespace UnitTest
 
             foreach (var summaryGroup in addedSummary.UserGroups)
             {
-                var correctedGroup = (from g in user.UserGroups where g.Id == summaryGroup.Id || summaryGroup.CanUserAllData select summaryGroup).FirstOrDefault();
+                var correctedGroup = (from g in user.UserGroups where g.Id == summaryGroup.Id || summaryGroup.CanReadAllData select summaryGroup).FirstOrDefault();
                 Assert.AreNotEqual(correctedGroup, null);
             }
 
@@ -613,8 +776,8 @@ namespace UnitTest
             foreach (var userGroup in updatedSummary.UserGroups)
             {
                 var hasCorrectedGroups = correctedUserGroupsId.Contains(userGroup.Id)
-                    || userGroup.CanUserAllData
-                    || user.UserGroups.Where(g=>g.CanUserAllData).FirstOrDefault() != null;
+                    || userGroup.CanReadAllData
+                    || user.UserGroups.Where(g=>g.CanReadAllData).FirstOrDefault() != null;
                 Assert.AreEqual(hasCorrectedGroups, true);
             }
 

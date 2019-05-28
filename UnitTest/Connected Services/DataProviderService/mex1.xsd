@@ -21,7 +21,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Accountables" nillable="true" type="tns:ArrayOfAccountable" />
       <xs:element minOccurs="0" name="BudgetItems" nillable="true" type="tns:ArrayOfBudgetItem" />
-      <xs:element minOccurs="0" name="CanUserAllData" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CanReadAllData" type="xs:boolean" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />

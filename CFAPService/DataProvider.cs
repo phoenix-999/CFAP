@@ -184,6 +184,60 @@ namespace CFAPService
 
         }
 
+        public List<UserGroup> GetUserGroups(User owner)
+        {
+            AuthenticateUser(owner);
+
+            this.ChechIsAdmin(owner, typeof(UserGroup));
+
+            List<UserGroup> userGroups = new List<UserGroup>();
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    userGroups = (from g in ctx.UserGroups
+                                select g).Distinct().ToList(); 
+                    
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return userGroups;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public UserGroup AddNewUserGroup(UserGroup newUserGroup, User owner)
+        {
+            AuthenticateUser(owner);
+
+            this.ChechIsAdmin(owner, typeof(UserGroup));
+
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                try
+                {
+                    ctx.UserGroups.Add(newUserGroup);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return newUserGroup;
+        }
+
         [OperationBehavior(TransactionScopeRequired = true)]
         public Summary AddSummary(Summary summary, User user)
         {

@@ -133,6 +133,10 @@
     <Compile Include="Migrations\201905280715289_Delete SummaUSD in DB.Designer.cs">
       <DependentUpon>201905280715289_Delete SummaUSD in DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905281145273_Rename CanReadAllData.cs" />
+    <Compile Include="Migrations\201905281145273_Rename CanReadAllData.Designer.cs">
+      <DependentUpon>201905281145273_Rename CanReadAllData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905280715289_Delete SummaUSD in DB.resx">
       <DependentUpon>201905280715289_Delete SummaUSD in DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281145273_Rename CanReadAllData.resx">
+      <DependentUpon>201905281145273_Rename CanReadAllData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

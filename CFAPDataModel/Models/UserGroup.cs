@@ -36,7 +36,7 @@ namespace CFAPDataModel.Models
         public virtual ICollection<BudgetItem> BudgetItems { get; set; }
 
         [DataMember]
-        public bool CanUserAllData { get; set; }
+        public bool CanReadAllData { get; set; }
 
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }

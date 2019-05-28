@@ -111,6 +111,9 @@
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.UserGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CFAPDataModel.Models.Summary.datasource" />
     <None Include="Properties\DataSources\CFAPDataModel.Models.User.datasource" />

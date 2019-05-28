@@ -105,7 +105,7 @@ namespace CFAPDataModel.Models
             this.UserGroups = groups;
 
             var groupsCanUseAllData = (from g in ctx.UserGroups
-                                       where g.CanUserAllData == true
+                                       where g.CanReadAllData == true
                                        select g).ToList();
 
             foreach (var currentGroup in this.UserGroups)
