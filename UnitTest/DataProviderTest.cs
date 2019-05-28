@@ -850,7 +850,6 @@ namespace UnitTest
         }
         #endregion
 
-
         #region AddAccountable
 
         [TestMethod]
@@ -1052,6 +1051,236 @@ namespace UnitTest
                 {
                     var accountableToRemove = (from a in ctx.Accountables where a.AccountableName == testAccountable.AccountableName select a).Single();
                     ctx.Accountables.Remove(accountableToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        #endregion
+
+        #region GetProjects
+        [TestMethod]
+        public void GetProjects()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctProjects = (from a in ctx.Projects select a).Distinct().ToList();
+
+                Assert.AreEqual(correctProjects.Count, projects.Length);
+
+                foreach (var project in correctProjects)
+                {
+                    var correctProject = (from a in projects where a.Id == project.Id select a).Single(); //В случае если не найдет или найдет больше одного - исключение
+                }
+            }
+        }
+        #endregion
+
+        #region AddProject
+
+        [TestMethod]
+        public void AddProject()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Project newProject = new Project() { ProjectName = "test project" };
+
+            try
+            {
+                Project addedProject = DataProviderProxy.AddProject(newProject, user);
+
+                Assert.AreNotEqual(null, addedProject);
+                Assert.AreNotEqual(0, addedProject.Id);
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == newProject.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AddProject_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Project newProject = new Project() { };
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddProject(newProject, user); });
+
+
+        }
+
+        [TestMethod]
+        public void AddProject_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Project newProject = new Project() { };
+
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddProject(newProject, user); });
+
+
+        }
+
+        #endregion
+
+        #region UpdateProject
+
+        [TestMethod]
+        public void UpdateProject()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Project testProject = new Project() { ProjectName = "Test project" };
+            testProject = DataProviderProxy.AddProject(testProject, user);
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            Project projectToUpdate = (from p in projects where p.ProjectName == testProject.ProjectName select p).Single();
+
+            projectToUpdate.ProjectName = "Test UPDATE project name";
+
+            try
+            {
+
+                Project updatedProject = DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.AreEqual(projectToUpdate.Id, updatedProject.Id);
+                Assert.AreEqual(projectToUpdate.ProjectName, updatedProject.ProjectName);
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == projectToUpdate.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateProject_ConcurencyException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Project testProject = new Project() { ProjectName = "Test project" };
+            testProject = DataProviderProxy.AddProject(testProject, user);
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            Project projectToUpdate = (from p in projects where p.ProjectName == testProject.ProjectName select p).Single();
+
+            projectToUpdate.ProjectName = "Test UPDATE project name";
+
+            try
+            {
+                Project updatedProject = DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.ThrowsException<FaultException<ConcurrencyExceptionOfProjectdxjYbbDT>>(() => { DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == projectToUpdate.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateProject_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Project testProject = new Project() { ProjectName = "Test project" };
+            testProject = DataProviderProxy.AddProject(testProject, user);
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            Project projectToUpdate = (from p in projects where p.ProjectName == testProject.ProjectName select p).Single();
+
+            projectToUpdate.ProjectName = "";
+
+            try
+            {
+                Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == testProject.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateProject_TryChangeReadOnlyFiledsException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Project testProject = new Project() { ProjectName = "Test project" };
+            testProject = DataProviderProxy.AddProject(testProject, user);
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            Project projectToUpdate = (from p in projects where p.ProjectName == testProject.ProjectName select p).Single();
+
+            projectToUpdate.ProjectName = "TEst UPDATE Project";
+
+            try
+            {
+                projectToUpdate.ReadOnly = true;
+                var updatedProject = DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+                Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateProject(projectToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == projectToUpdate.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateProject_NoRigthToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Project testProject = new Project() { ProjectName = "Test project" };
+            testProject = DataProviderProxy.AddProject(testProject, user);
+
+            Project[] projects = DataProviderProxy.GetProjects(user);
+
+            Project projectToUpdate = (from p in projects where p.ProjectName == testProject.ProjectName select p).Single();
+
+            projectToUpdate.ProjectName = "TEst UPDATE Project";
+
+            try
+            {
+                User userNotAdmin = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.UpdateProject(projectToUpdate, userNotAdmin, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var projectToRemove = (from p in ctx.Projects where p.ProjectName == testProject.ProjectName select p).Single();
+                    ctx.Projects.Remove(projectToRemove);
                     ctx.SaveChanges();
                 }
             }

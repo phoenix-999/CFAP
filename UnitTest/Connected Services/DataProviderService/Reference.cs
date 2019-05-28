@@ -1454,6 +1454,83 @@ namespace UnitTest.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class ConcurrencyExceptionOfProjectdxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Project CurrentValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Project DatabaseValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Project CurrentValue {
+            get {
+                return this.CurrentValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentValueField, value) != true)) {
+                    this.CurrentValueField = value;
+                    this.RaisePropertyChanged("CurrentValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Project DatabaseValue {
+            get {
+                return this.DatabaseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatabaseValueField, value) != true)) {
+                    this.DatabaseValueField = value;
+                    this.RaisePropertyChanged("DatabaseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1612,6 +1689,46 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginUpdateAccountable(UnitTest.DataProviderService.Accountable accountableToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.Accountable EndUpdateAccountable(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetProjects", ReplyAction="http://tempuri.org/IDataProvider/GetProjectsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetProjectsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetProjectsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Project[] GetProjects(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetProjects", ReplyAction="http://tempuri.org/IDataProvider/GetProjectsResponse")]
+        System.IAsyncResult BeginGetProjects(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Project[] EndGetProjects(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddProject", ReplyAction="http://tempuri.org/IDataProvider/AddProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Project AddProject(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddProject", ReplyAction="http://tempuri.org/IDataProvider/AddProjectResponse")]
+        System.IAsyncResult BeginAddProject(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Project EndAddProject(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateProject", ReplyAction="http://tempuri.org/IDataProvider/UpdateProjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateProjectTryChangeReadOnlyFiledExceptionFaul" +
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfProjectdxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateProjectConcurrencyExceptionOf_ProjectFault" +
+            "", Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Project UpdateProject(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateProject", ReplyAction="http://tempuri.org/IDataProvider/UpdateProjectResponse")]
+        System.IAsyncResult BeginUpdateProject(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Project EndUpdateProject(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatus", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusAuthenticateFaultExce" +
@@ -1862,6 +1979,63 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetProjectsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetProjectsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Project[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Project[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Project Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Project)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Project Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Project)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginGetLoginsDelegate;
@@ -1936,6 +2110,24 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateAccountableCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetProjectsDelegate;
+        
+        private EndOperationDelegate onEndGetProjectsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetProjectsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddProjectDelegate;
+        
+        private EndOperationDelegate onEndAddProjectDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddProjectCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateProjectDelegate;
+        
+        private EndOperationDelegate onEndUpdateProjectDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateProjectCompletedDelegate;
+        
         private BeginOperationDelegate onBeginChangeSummaryReadOnlyStatusDelegate;
         
         private EndOperationDelegate onEndChangeSummaryReadOnlyStatusDelegate;
@@ -1984,6 +2176,12 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<AddAccountableCompletedEventArgs> AddAccountableCompleted;
         
         public event System.EventHandler<UpdateAccountableCompletedEventArgs> UpdateAccountableCompleted;
+        
+        public event System.EventHandler<GetProjectsCompletedEventArgs> GetProjectsCompleted;
+        
+        public event System.EventHandler<AddProjectCompletedEventArgs> AddProjectCompleted;
+        
+        public event System.EventHandler<UpdateProjectCompletedEventArgs> UpdateProjectCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ChangeSummaryReadOnlyStatusCompleted;
         
@@ -2605,6 +2803,162 @@ namespace UnitTest.DataProviderService {
                         accountableToUpdate,
                         user,
                         concurencyUpdateOption}, this.onEndUpdateAccountableDelegate, this.onUpdateAccountableCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Project[] GetProjects(UnitTest.DataProviderService.User user) {
+            return base.Channel.GetProjects(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetProjects(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetProjects(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Project[] EndGetProjects(System.IAsyncResult result) {
+            return base.Channel.EndGetProjects(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetProjects(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginGetProjects(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetProjects(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Project[] retVal = this.EndGetProjects(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetProjectsCompleted(object state) {
+            if ((this.GetProjectsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetProjectsCompleted(this, new GetProjectsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetProjectsAsync(UnitTest.DataProviderService.User user) {
+            this.GetProjectsAsync(user, null);
+        }
+        
+        public void GetProjectsAsync(UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginGetProjectsDelegate == null)) {
+                this.onBeginGetProjectsDelegate = new BeginOperationDelegate(this.OnBeginGetProjects);
+            }
+            if ((this.onEndGetProjectsDelegate == null)) {
+                this.onEndGetProjectsDelegate = new EndOperationDelegate(this.OnEndGetProjects);
+            }
+            if ((this.onGetProjectsCompletedDelegate == null)) {
+                this.onGetProjectsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetProjectsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetProjectsDelegate, new object[] {
+                        user}, this.onEndGetProjectsDelegate, this.onGetProjectsCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Project AddProject(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddProject(newProject, user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddProject(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddProject(newProject, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Project EndAddProject(System.IAsyncResult result) {
+            return base.Channel.EndAddProject(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddProject(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Project newProject = ((UnitTest.DataProviderService.Project)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddProject(newProject, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddProject(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Project retVal = this.EndAddProject(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddProjectCompleted(object state) {
+            if ((this.AddProjectCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddProjectCompleted(this, new AddProjectCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddProjectAsync(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user) {
+            this.AddProjectAsync(newProject, user, null);
+        }
+        
+        public void AddProjectAsync(UnitTest.DataProviderService.Project newProject, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAddProjectDelegate == null)) {
+                this.onBeginAddProjectDelegate = new BeginOperationDelegate(this.OnBeginAddProject);
+            }
+            if ((this.onEndAddProjectDelegate == null)) {
+                this.onEndAddProjectDelegate = new EndOperationDelegate(this.OnEndAddProject);
+            }
+            if ((this.onAddProjectCompletedDelegate == null)) {
+                this.onAddProjectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddProjectCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddProjectDelegate, new object[] {
+                        newProject,
+                        user}, this.onEndAddProjectDelegate, this.onAddProjectCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Project UpdateProject(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            return base.Channel.UpdateProject(projectToUpdate, user, concurencyUpdateOption);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateProject(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateProject(projectToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Project EndUpdateProject(System.IAsyncResult result) {
+            return base.Channel.EndUpdateProject(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateProject(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Project projectToUpdate = ((UnitTest.DataProviderService.Project)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginUpdateProject(projectToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateProject(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Project retVal = this.EndUpdateProject(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateProjectCompleted(object state) {
+            if ((this.UpdateProjectCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateProjectCompleted(this, new UpdateProjectCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateProjectAsync(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            this.UpdateProjectAsync(projectToUpdate, user, concurencyUpdateOption, null);
+        }
+        
+        public void UpdateProjectAsync(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, object userState) {
+            if ((this.onBeginUpdateProjectDelegate == null)) {
+                this.onBeginUpdateProjectDelegate = new BeginOperationDelegate(this.OnBeginUpdateProject);
+            }
+            if ((this.onEndUpdateProjectDelegate == null)) {
+                this.onEndUpdateProjectDelegate = new EndOperationDelegate(this.OnEndUpdateProject);
+            }
+            if ((this.onUpdateProjectCompletedDelegate == null)) {
+                this.onUpdateProjectCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateProjectCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateProjectDelegate, new object[] {
+                        projectToUpdate,
+                        user,
+                        concurencyUpdateOption}, this.onEndUpdateProjectDelegate, this.onUpdateProjectCompletedDelegate, userState);
         }
         
         public void ChangeSummaryReadOnlyStatus(bool onOff, UnitTest.DataProviderService.Filter filter, UnitTest.DataProviderService.User user) {

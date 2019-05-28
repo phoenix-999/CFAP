@@ -477,6 +477,103 @@ namespace CFAPService
                 return accountableToUpdate;
         }
 
+
+        public List<Project> GetProjects(User user)
+        {
+            AuthenticateUser(user);
+
+            List<Project> result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    result = (from a in ctx.Projects select a).Distinct().ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Project AddProject(Project newProject, User user)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(Project));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    ctx.Projects.Add(newProject);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return newProject;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Project UpdateProject(Project projectToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(Project));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                try
+                {
+                    ctx.Projects.Attach(projectToUpdate);
+
+                    var projectToUpdateDbVersion = (Project)ctx.Entry(projectToUpdate).GetDatabaseValues().ToObject();
+                    if (projectToUpdateDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
+
+                    ctx.Entry(projectToUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Project), projectToUpdate.Id, projectToUpdate.ProjectName, user));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Project> concurrencyException = new ConcurrencyException<Project>(ex);
+                    throw new FaultException<ConcurrencyException<Project>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return projectToUpdate;
+        }
+
         #endregion
 
         private void CheckCanChangeUsersData(User user, Type entityType)
