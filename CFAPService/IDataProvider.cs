@@ -67,6 +67,14 @@ namespace CFAPService
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(DataNotValidException))]
+        UserGroup UpdateUserGroup(UserGroup userGroupForUpdate, User owner);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
         Summary AddSummary(Summary summary, User user);
 

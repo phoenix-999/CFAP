@@ -1619,6 +1619,20 @@ namespace UnitTest.DataProviderService {
         
         UnitTest.DataProviderService.UserGroup EndAddNewUserGroup(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUserGroup", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserGroupResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupNoRightsToChangeDataExceptionFaul" +
+            "t", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.UserGroup UpdateUserGroup(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateUserGroup", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserGroupResponse")]
+        System.IAsyncResult BeginUpdateUserGroup(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.UserGroup EndUpdateUserGroup(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1909,6 +1923,25 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateUserGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateUserGroupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.UserGroup Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.UserGroup)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AddSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -2143,6 +2176,12 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onAddNewUserGroupCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUpdateUserGroupDelegate;
+        
+        private EndOperationDelegate onEndUpdateUserGroupDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateUserGroupCompletedDelegate;
+        
         private BeginOperationDelegate onBeginAddSummaryDelegate;
         
         private EndOperationDelegate onEndAddSummaryDelegate;
@@ -2241,6 +2280,8 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<GetUserGroupsCompletedEventArgs> GetUserGroupsCompleted;
         
         public event System.EventHandler<AddNewUserGroupCompletedEventArgs> AddNewUserGroupCompleted;
+        
+        public event System.EventHandler<UpdateUserGroupCompletedEventArgs> UpdateUserGroupCompleted;
         
         public event System.EventHandler<AddSummaryCompletedEventArgs> AddSummaryCompleted;
         
@@ -2616,6 +2657,58 @@ namespace UnitTest.DataProviderService {
             base.InvokeAsync(this.onBeginAddNewUserGroupDelegate, new object[] {
                         newUserGroup,
                         owner}, this.onEndAddNewUserGroupDelegate, this.onAddNewUserGroupCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.UserGroup UpdateUserGroup(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner) {
+            return base.Channel.UpdateUserGroup(userGroupForUpdate, owner);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateUserGroup(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateUserGroup(userGroupForUpdate, owner, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.UserGroup EndUpdateUserGroup(System.IAsyncResult result) {
+            return base.Channel.EndUpdateUserGroup(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateUserGroup(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.UserGroup userGroupForUpdate = ((UnitTest.DataProviderService.UserGroup)(inValues[0]));
+            UnitTest.DataProviderService.User owner = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginUpdateUserGroup(userGroupForUpdate, owner, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateUserGroup(System.IAsyncResult result) {
+            UnitTest.DataProviderService.UserGroup retVal = this.EndUpdateUserGroup(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateUserGroupCompleted(object state) {
+            if ((this.UpdateUserGroupCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateUserGroupCompleted(this, new UpdateUserGroupCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateUserGroupAsync(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner) {
+            this.UpdateUserGroupAsync(userGroupForUpdate, owner, null);
+        }
+        
+        public void UpdateUserGroupAsync(UnitTest.DataProviderService.UserGroup userGroupForUpdate, UnitTest.DataProviderService.User owner, object userState) {
+            if ((this.onBeginUpdateUserGroupDelegate == null)) {
+                this.onBeginUpdateUserGroupDelegate = new BeginOperationDelegate(this.OnBeginUpdateUserGroup);
+            }
+            if ((this.onEndUpdateUserGroupDelegate == null)) {
+                this.onEndUpdateUserGroupDelegate = new EndOperationDelegate(this.OnEndUpdateUserGroup);
+            }
+            if ((this.onUpdateUserGroupCompletedDelegate == null)) {
+                this.onUpdateUserGroupCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateUserGroupCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateUserGroupDelegate, new object[] {
+                        userGroupForUpdate,
+                        owner}, this.onEndUpdateUserGroupDelegate, this.onUpdateUserGroupCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user) {

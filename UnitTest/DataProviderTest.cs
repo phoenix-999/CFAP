@@ -633,6 +633,135 @@ namespace UnitTest
 
         #endregion
 
+        #region UpdateUserGoup
+        [TestMethod]
+        public void UpdateUserGroup()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            UserGroup[] userGroups = DataProviderProxy.GetUserGroups(owner);
+
+            UserGroup groupForUpdate = userGroups[0];
+
+            Summary[] summaries = DataProviderProxy.GetSummary(owner, null);
+            List<Summary> groupForUpdateSummaries = (from s in summaries
+                                               from g in s.UserGroups
+                                               where g.Id == groupForUpdate.Id
+                                               select s).ToList();
+            Assert.AreNotEqual(0, groupForUpdateSummaries.Count);
+
+            User[] users = DataProviderProxy.GetUsers(owner);
+            List<User> groupForUpdateUsers = (from u in users
+                                                     from g in u.UserGroups
+                                                     where g.Id == groupForUpdate.Id
+                                                     select u).ToList();
+            Assert.AreNotEqual(0, groupForUpdateUsers.Count);
+
+            var oldGrupName = groupForUpdate.GroupName;
+            groupForUpdate.GroupName = "UpdateTest Group";
+
+            UserGroup updatedGroup = DataProviderProxy.UpdateUserGroup(groupForUpdate, owner);
+            try
+            {
+                Assert.AreNotEqual(null, updatedGroup);
+                Assert.AreEqual(groupForUpdate.Id, updatedGroup.Id);
+
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var isUpdate = (from g in ctx.UserGroups where g.Id == groupForUpdate.Id select g).Single().GroupName == groupForUpdate.GroupName;
+                    Assert.AreEqual(true, isUpdate);
+
+                    var updatedGroupSummaries = (from s in ctx.Summaries
+                                                 from g in s.UserGroups
+                                                 where g.Id == updatedGroup.Id
+                                                 select s).ToList();
+
+                    foreach (var correctedSummary in groupForUpdateSummaries)
+                    {
+                        var hasCorrectedSummary = (from s in updatedGroupSummaries where s.Id == correctedSummary.Id select s).FirstOrDefault() != null;
+                        Assert.AreEqual(true, hasCorrectedSummary);
+                    }
+
+                    var updatedGroupUsers = (from u in users
+                                             from g in u.UserGroups
+                                             where g.Id == updatedGroup.Id
+                                             select u).ToList();
+                    foreach (var correctedUser in groupForUpdateUsers)
+                    {
+                        var hasCorrectedUser = (from u in updatedGroupUsers where u.Id == correctedUser.Id select u).FirstOrDefault() != null;
+                        Assert.AreEqual(true, hasCorrectedUser);
+                    }
+
+                }
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var groupForBackData = (from g in ctx.UserGroups where g.Id == groupForUpdate.Id select g).Single();
+                    groupForBackData.GroupName = oldGrupName;
+                    ctx.Entry(groupForBackData).State = System.Data.Entity.EntityState.Modified;
+                    ctx.SaveChanges();
+                }
+            }
+
+
+
+
+        }
+
+        [TestMethod]
+        public void UpdateUserGroup_NoRightsToChangeDataException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            UserGroup groupForUpdate = DataProviderProxy.AddNewUserGroup(new UserGroup() { GroupName = "TestGroup" }, owner);
+
+            try
+            {
+                owner = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.UpdateUserGroup(groupForUpdate, owner); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var groupForRemove = (from g in ctx.UserGroups where g.GroupName == groupForUpdate.GroupName select g).Single();
+                    ctx.UserGroups.Remove(groupForRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void UpdateUserGroup_DatNotValidException()
+        {
+            User owner = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            UserGroup groupForUpdate = DataProviderProxy.AddNewUserGroup(new UserGroup() { GroupName = "TestGroup" }, owner);
+            string oldGroupName = groupForUpdate.GroupName;
+            groupForUpdate.GroupName = "";
+
+            try
+            {
+                Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateUserGroup(groupForUpdate, owner); });
+
+                groupForUpdate.GroupName = null;
+
+                Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateUserGroup(groupForUpdate, owner); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var groupForRemove = (from g in ctx.UserGroups where g.GroupName == oldGroupName select g).Single();
+                    ctx.UserGroups.Remove(groupForRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        #endregion
+
         #region AddSummary
         [TestMethod]
         public void AddSummary()

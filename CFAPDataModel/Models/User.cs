@@ -58,15 +58,19 @@ namespace CFAPDataModel.Models
         }
 
 
-        public ICollection<int> GetUserGroupsId()
+        public ICollection<int> GetUserGroupsIdFromObject()
         {
             var groupsId = (from g in this.UserGroups
                             select g.Id).ToList();
 
             return groupsId;
         }
-        public void LoadUserGroups(CFAPContext ctx)
+        public void LoadUserGroupsFromObject(CFAPContext ctx)
         {
+            ///<summary>
+            ///Загружает с базы данных группы пользователя исходя из установленных в экземпляре групп
+            /// </summary>
+            /// 
             //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
                 ctx.Configuration.ProxyCreationEnabled = false;
 
@@ -76,7 +80,7 @@ namespace CFAPDataModel.Models
             //Суть ошибки состоит в том, что при вызове метода ctx.Users.Add(newUser); все поля экземпляра помеаються как Added
             //Возникает конфликт первычных ключей в БД
 
-            var goupsId = this.GetUserGroupsId();
+            var goupsId = this.GetUserGroupsIdFromObject();
 
             //LINQ to Entities не умеет вызывать методы
             var groups = (from g in ctx.UserGroups
@@ -86,9 +90,25 @@ namespace CFAPDataModel.Models
             this.UserGroups = groups;
         }
 
+        public void LoadUserGroupsFromDatabase(CFAPContext ctx)
+        {
+            ///<summary>
+            ///Прикреплает к экземпляру пользователя существующие в базе данных привязанные группы
+            /// </summary>
+            //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
+            ctx.Configuration.ProxyCreationEnabled = false;
+
+            var groups = (from g in ctx.UserGroups
+                          from u in g.Users
+                          where u.Id == this.Id
+                          select g).ToList();
+
+            this.UserGroups = groups;
+        }
+
         public void ChangeUserGroups(CFAPContext ctx)
         {
-            var newGoupsId = this.GetUserGroupsId();
+            var newGoupsId = this.GetUserGroupsIdFromObject();
 
             var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
 

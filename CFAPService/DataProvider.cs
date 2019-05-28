@@ -83,7 +83,7 @@ namespace CFAPService
             {
                 try
                 {
-                    newUser.LoadUserGroups(ctx);
+                    newUser.LoadUserGroupsFromObject(ctx);
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
                 }
@@ -116,15 +116,21 @@ namespace CFAPService
                     if (owner.IsAdmin)
                     {
                         users = (from u in ctx.Users
-                                 select u).Distinct().ToList(); //Админы могут видеть все пользователей
+                                 select u).Distinct().ToList(); //Админы могут видеть все пользователей 
                     }
                     else
                     {
-                        var ownerUserGroupsId = owner.GetUserGroupsId();
+                        owner.LoadUserGroupsFromDatabase(ctx);
+                        var ownerUserGroupsId = (from g in owner.UserGroups select g.Id).ToList();
                         users = (from g in ctx.UserGroups
                                  from u in g.Users
                                  where ownerUserGroupsId.Contains(g.Id)
                                  select u).Distinct().ToList(); //Должны быть толкьо пользователи с групп владельца
+                    }
+
+                    foreach (var u in users)
+                    {
+                        u.LoadUserGroupsFromDatabase(ctx);
                     }
                 }
                 catch(Exception ex)
@@ -162,7 +168,7 @@ namespace CFAPService
                 try
                 {
                     //Загрузка в контекст данных о группах пользователя
-                    userForUpdate.LoadUserGroups(ctx);
+                    userForUpdate.LoadUserGroupsFromObject(ctx);
                     //Изменение связей с группами если они изменились
                     userForUpdate.ChangeUserGroups(ctx);
 
@@ -236,6 +242,41 @@ namespace CFAPService
             }
 
             return newUserGroup;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public UserGroup UpdateUserGroup(UserGroup userGroupForUpdate, User owner)
+        {
+            //Аутентификация пользователя-владельца
+            AuthenticateUser(owner);
+
+            //Проверка - иммеет ли право владелец добавлять или изменять данные
+            this.ChechIsAdmin(owner, typeof(UserGroup));
+
+
+            //Создание экземпляра контекста
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                try
+                {
+                    ctx.Entry(userGroupForUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+
+            return userGroupForUpdate;
+
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
@@ -723,7 +764,7 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                var userGroupsId = user.GetUserGroupsId();
+                var userGroupsId = user.GetUserGroupsIdFromObject();
 
                 if (filter == null)
                 {
