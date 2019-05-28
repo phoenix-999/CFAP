@@ -73,6 +73,13 @@ namespace CFAPService
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        void ChangeSummaryReadOnlyStatus(bool onOff, Filter filter, User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Summary>))]
         [FaultContract(typeof(InvalidOperationException))]
@@ -124,11 +131,5 @@ namespace CFAPService
         [FaultContract(typeof(ConcurrencyException<Project>))]
         Project UpdateProject(Project projectToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
 
-        [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
-        [FaultContract(typeof(AuthenticateFaultException))]
-        [FaultContract(typeof(DbException))]
-        [FaultContract(typeof(NoRightsToChangeDataException))]
-        void ChangeSummaryReadOnlyStatus(bool onOff, Filter filter, User user);
     }
 }
