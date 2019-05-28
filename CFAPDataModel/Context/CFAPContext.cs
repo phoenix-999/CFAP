@@ -38,25 +38,25 @@
         public virtual DbSet<UserGroup> UserGroups { get; set; }
 
 
-        private void CalculateSummary()
-        {
-            var s = Summaries.Local;
+        //private void CalculateSummary()
+        //{
+        //    var s = Summaries.Local;
 
-            foreach (var summary in Summaries.Local)
-            {
+        //    foreach (var summary in Summaries.Local)
+        //    {
               
-                if (this.Entry<Summary>(summary).State == EntityState.Added
-                    || this.Entry<Summary>(summary).State == EntityState.Modified)
-                {
-                    summary.SetSummaDollar();
-                }
+        //        if (this.Entry<Summary>(summary).State == EntityState.Added
+        //            || this.Entry<Summary>(summary).State == EntityState.Modified)
+        //        {
+        //            summary.SetSummaDollar();
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         private int SaveChangesFullData(DbConcurencyUpdateOptions concurrencyOption)
         {
-            CalculateSummary();
+            //CalculateSummary(); //Алгоритм изменен. Вызов метода больше не актуален.
 
             int result = 0;
             bool saveFailed;

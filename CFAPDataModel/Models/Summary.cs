@@ -29,34 +29,34 @@ namespace CFAPDataModel.Models
             this.ActionDate = DateTime.Now;
         }
 
-        public void SetSummaDollar()
-        {
-            try
-            {
-                double rate = GetRate();
-                if (rate > 0)
-                    this.SummaUSD = this.SummaUAH / rate;
-            }
-            catch (DivideByZeroException) 
-            {
-                //Возникновения исключения маловероятно по причине неточности обработки чисел с плавающей точкой.
-                //Более вероятно ошибка переполнения из-за слишком маленького значения.
-                this.SummaUSD = double.Epsilon;
-            }
-            catch (OverflowException)
-            {
-                this.SummaUSD = double.Epsilon;
-            }
-        }
+        //public void SetSummaDollar()
+        //{
+        //    try
+        //    {
+        //        this.CurrentRate = GetRate();
+        //        if (this.CurrentRate > 0)
+        //            this.SummaUSD = this.SummaUAH / this.CurrentRate;
+        //    }
+        //    catch (DivideByZeroException) 
+        //    {
+        //        //Возникновения исключения маловероятно по причине неточности обработки чисел с плавающей точкой.
+        //        //Более вероятно ошибка переполнения из-за слишком маленького значения.
+        //        this.SummaUSD = double.Epsilon;
+        //    }
+        //    catch (OverflowException)
+        //    {
+        //        this.SummaUSD = double.Epsilon;
+        //    }
+        //}
 
-        private double GetRate()
+        private double GetRateUSD()
         {
             double result = 0;
 
             using (CFAPContext ctx = new CFAPContext())
             {
                 double? query = (from rate in ctx.Rates
-                            where rate.DateRate.Month == this.ActionDate.Month && rate.DateRate.Year == this.ActionDate.Year
+                            where rate.DateRate.Month == this.SummaryDate.Month && rate.DateRate.Year == this.SummaryDate.Year
                             select rate.Dolar).FirstOrDefault();
                 if (query != null)
                 {
@@ -277,7 +277,12 @@ namespace CFAPDataModel.Models
         public double SummaUAH { get; set; }
 
         [DataMember]
-        public double SummaUSD{ get; set; }
+        [NotMapped]
+        public double CurrentRateUSD { get { return GetRateUSD(); } set { } }
+
+        [DataMember]
+        [NotMapped]
+        public double SummaUSD{ get { return this.SummaUAH / this.CurrentRateUSD; } set { } } //При маршалинге выражение вычисляеться.
 
         [DataMember]
         public bool CashFlowType { get; set; }

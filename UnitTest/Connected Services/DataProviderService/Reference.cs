@@ -853,6 +853,9 @@ namespace UnitTest.DataProviderService {
         private bool CashFlowTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CurrentRateUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -940,6 +943,19 @@ namespace UnitTest.DataProviderService {
                 if ((this.CashFlowTypeField.Equals(value) != true)) {
                     this.CashFlowTypeField = value;
                     this.RaisePropertyChanged("CashFlowType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double CurrentRateUSD {
+            get {
+                return this.CurrentRateUSDField;
+            }
+            set {
+                if ((this.CurrentRateUSDField.Equals(value) != true)) {
+                    this.CurrentRateUSDField = value;
+                    this.RaisePropertyChanged("CurrentRateUSD");
                 }
             }
         }

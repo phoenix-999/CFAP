@@ -129,6 +129,10 @@
     <Compile Include="Migrations\201905271157458_Aletr column to Unique Accountables.Designer.cs">
       <DependentUpon>201905271157458_Aletr column to Unique Accountables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905280715289_Delete SummaUSD in DB.cs" />
+    <Compile Include="Migrations\201905280715289_Delete SummaUSD in DB.Designer.cs">
+      <DependentUpon>201905280715289_Delete SummaUSD in DB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -200,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905271157458_Aletr column to Unique Accountables.resx">
       <DependentUpon>201905271157458_Aletr column to Unique Accountables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905280715289_Delete SummaUSD in DB.resx">
+      <DependentUpon>201905280715289_Delete SummaUSD in DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -85,6 +85,7 @@
       <xs:element minOccurs="0" name="ActionDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="BudgetItem" nillable="true" type="tns:BudgetItem" />
       <xs:element minOccurs="0" name="CashFlowType" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CurrentRateUSD" type="xs:double" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Project" nillable="true" type="tns:Project" />
