@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAP", "CFAP\CFAP.csproj", "{88D78ACB-61F7-44C9-8BE8-33870116408F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{843B8625-833A-435A-9EFD-779B7FE839D7} = {843B8625-833A-435A-9EFD-779B7FE839D7}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAPDataModel", "CFAPDataModel\CFAPDataModel.csproj", "{846426E1-5678-44C2-BDA7-5744E1EF1C44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAPService", "CFAPService\CFAPService.csproj", "{843B8625-833A-435A-9EFD-779B7FE839D7}"
@@ -17,28 +12,46 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTe
 		{843B8625-833A-435A-9EFD-779B7FE839D7} = {843B8625-833A-435A-9EFD-779B7FE839D7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAP", "CFAP\CFAP.csproj", "{5AB6B6F8-A454-49F7-B249-D0B21743C826}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{88D78ACB-61F7-44C9-8BE8-33870116408F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88D78ACB-61F7-44C9-8BE8-33870116408F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88D78ACB-61F7-44C9-8BE8-33870116408F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88D78ACB-61F7-44C9-8BE8-33870116408F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Debug|x86.Build.0 = Debug|Any CPU
 		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Release|x86.ActiveCfg = Release|Any CPU
+		{846426E1-5678-44C2-BDA7-5744E1EF1C44}.Release|x86.Build.0 = Release|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{843B8625-833A-435A-9EFD-779B7FE839D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{843B8625-833A-435A-9EFD-779B7FE839D7}.Debug|x86.Build.0 = Debug|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|x86.ActiveCfg = Release|Any CPU
+		{843B8625-833A-435A-9EFD-779B7FE839D7}.Release|x86.Build.0 = Release|Any CPU
 		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Debug|x86.Build.0 = Debug|Any CPU
 		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|x86.ActiveCfg = Release|Any CPU
+		{C74C5703-2C29-43AF-B8C2-E6C939317729}.Release|x86.Build.0 = Release|Any CPU
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Debug|x86.ActiveCfg = Debug|x86
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Debug|x86.Build.0 = Debug|x86
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Release|Any CPU.ActiveCfg = Release|x86
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Release|x86.ActiveCfg = Release|x86
+		{5AB6B6F8-A454-49F7-B249-D0B21743C826}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
