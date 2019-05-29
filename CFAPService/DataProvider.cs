@@ -803,9 +803,10 @@ namespace CFAPService
                 try
                 {
                     ctx.Rates.Add(newRate);
+                    newRate.CustomValidate(ctx);
                     ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
                 }
-                catch (DbEntityValidationException ex) //Возникнуть может только при повреждении данных
+                catch (DbEntityValidationException ex)
                 {
                     throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
                 }
@@ -840,6 +841,7 @@ namespace CFAPService
                     }
 
                     ctx.Entry(rateToUpdate).State = EntityState.Modified;
+                    rateToUpdate.CustomValidate(ctx);
                     ctx.SaveChanges(concurencyUpdateOption);
                 }
                 catch (ReadOnlyException)
@@ -851,7 +853,7 @@ namespace CFAPService
                     ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(ex);
                     throw new FaultException<ConcurrencyException<Rate>>(concurrencyException);
                 }
-                catch (DbEntityValidationException ex)//Возникнуть может только при повреждении данных
+                catch (DbEntityValidationException ex)
                 {
                     throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
                 }

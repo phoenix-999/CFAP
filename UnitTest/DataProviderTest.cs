@@ -1831,7 +1831,7 @@ namespace UnitTest
 
             try
             {
-                BudgetItem updatedProject = DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+                BudgetItem updatedBudgetItem = DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
 
                 Assert.ThrowsException<FaultException<ConcurrencyExceptionOfBudgetItemdxjYbbDT>>(() => { DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
 
@@ -1997,6 +1997,146 @@ namespace UnitTest
             Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddRate(newRate, user); });
 
 
+        }
+
+        [TestMethod]
+        public void AddRate_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Rate newRate = new Rate() { };
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddRate(newRate, user); });
+
+
+        }
+
+        #endregion
+
+        #region UpdateBudgetItem
+
+        [TestMethod]
+        public void UpdateRate()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Rate testRate = new Rate() { DateRate = DateTime.Now };
+            testRate = DataProviderProxy.AddRate(testRate, user);
+
+            Rate[] rates = DataProviderProxy.GetRates(user);
+
+            Rate rateToUpdate = (from r in rates where r.DateRate == testRate.DateRate select r).Single();
+
+            rateToUpdate.DateRate = DateTime.Now.AddYears(1);
+
+            try
+            {
+
+                Rate updatedRate = DataProviderProxy.UpdateRate(rateToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.AreEqual(rateToUpdate.Id, updatedRate.Id);
+                Assert.AreEqual(rateToUpdate.DateRate, updatedRate.DateRate);
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var rateToRemove = (from r in ctx.Rates where r.DateRate == rateToUpdate.DateRate select r).Single();
+                    ctx.Rates.Remove(rateToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateRate_ConcurencyException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Rate testRate = new Rate() { DateRate = DateTime.Now };
+            testRate = DataProviderProxy.AddRate(testRate, user);
+
+            Rate[] rates = DataProviderProxy.GetRates(user);
+
+            Rate rateToUpdate = (from r in rates where r.DateRate == testRate.DateRate select r).Single();
+
+            rateToUpdate.DateRate = DateTime.Now.AddYears(1);
+
+            try
+            {
+                Rate updatedRate = DataProviderProxy.UpdateRate(rateToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.ThrowsException<FaultException<ConcurrencyExceptionOfRatedxjYbbDT>>(() => { DataProviderProxy.UpdateRate(rateToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var rateToRemove = (from r in ctx.Rates where r.DateRate == rateToUpdate.DateRate select r).Single();
+                    ctx.Rates.Remove(rateToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void UpdateRate_TryChangeReadOnlyFiledsException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Rate testRate = new Rate() { DateRate = DateTime.Now };
+            testRate = DataProviderProxy.AddRate(testRate, user);
+
+            Rate[] rates = DataProviderProxy.GetRates(user);
+
+            Rate rateToUpdate = (from r in rates where r.DateRate == testRate.DateRate select r).Single();
+
+            rateToUpdate.DateRate = DateTime.Now.AddYears(1);
+
+            try
+            {
+                rateToUpdate.ReadOnly = true;
+                var updatedRate = DataProviderProxy.UpdateRate(rateToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+                Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateRate(rateToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var rateToRemove = (from r in ctx.Rates where r.DateRate == rateToUpdate.DateRate select r).Single();
+                    ctx.Rates.Remove(rateToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateRates_NoRigthToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            Rate testRate = new Rate() { DateRate = DateTime.Now };
+            testRate = DataProviderProxy.AddRate(testRate, user);
+
+            Rate[] rates = DataProviderProxy.GetRates(user);
+
+            Rate rateToUpdate = (from r in rates where r.DateRate == testRate.DateRate select r).Single();
+
+            rateToUpdate.DateRate = DateTime.Now.AddYears(1);
+
+            try
+            {
+                User userNotAdmin = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.UpdateRate(rateToUpdate, userNotAdmin, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var rateToRemove = (from r in ctx.Rates where r.DateRate == testRate.DateRate select r).Single();
+                    ctx.Rates.Remove(rateToRemove);
+                    ctx.SaveChanges();
+                }
+            }
         }
 
         #endregion
