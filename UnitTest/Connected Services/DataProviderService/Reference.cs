@@ -1531,6 +1531,83 @@ namespace UnitTest.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class ConcurrencyExceptionOfBudgetItemdxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.BudgetItem CurrentValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.BudgetItem DatabaseValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.BudgetItem CurrentValue {
+            get {
+                return this.CurrentValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentValueField, value) != true)) {
+                    this.CurrentValueField = value;
+                    this.RaisePropertyChanged("CurrentValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.BudgetItem DatabaseValue {
+            get {
+                return this.DatabaseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatabaseValueField, value) != true)) {
+                    this.DatabaseValueField = value;
+                    this.RaisePropertyChanged("DatabaseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1782,6 +1859,47 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginUpdateProject(UnitTest.DataProviderService.Project projectToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.Project EndUpdateProject(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBudgetItems", ReplyAction="http://tempuri.org/IDataProvider/GetBudgetItemsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.BudgetItem[] GetBudgetItems(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetBudgetItems", ReplyAction="http://tempuri.org/IDataProvider/GetBudgetItemsResponse")]
+        System.IAsyncResult BeginGetBudgetItems(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.BudgetItem[] EndGetBudgetItems(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/AddBudgetItemResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddBudgetItemNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.BudgetItem AddBudgetItem(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/AddBudgetItemResponse")]
+        System.IAsyncResult BeginAddBudgetItem(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.BudgetItem EndAddBudgetItem(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/UpdateBudgetItemResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemNoRightsToChangeDataExceptionFau" +
+            "lt", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemTryChangeReadOnlyFiledExceptionF" +
+            "ault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfBudgetItemdxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemConcurrencyExceptionOf_BudgetIte" +
+            "mFault", Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.BudgetItem UpdateBudgetItem(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/UpdateBudgetItemResponse")]
+        System.IAsyncResult BeginUpdateBudgetItem(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.BudgetItem EndUpdateBudgetItem(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2132,6 +2250,63 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetBudgetItemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetBudgetItemsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.BudgetItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddBudgetItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddBudgetItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.BudgetItem)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateBudgetItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateBudgetItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.BudgetItem)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginGetLoginsDelegate;
@@ -2248,6 +2423,24 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateProjectCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetBudgetItemsDelegate;
+        
+        private EndOperationDelegate onEndGetBudgetItemsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetBudgetItemsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddBudgetItemDelegate;
+        
+        private EndOperationDelegate onEndAddBudgetItemDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddBudgetItemCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateBudgetItemDelegate;
+        
+        private EndOperationDelegate onEndUpdateBudgetItemDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateBudgetItemCompletedDelegate;
+        
         public DataProviderClient() {
         }
         
@@ -2304,6 +2497,12 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<AddProjectCompletedEventArgs> AddProjectCompleted;
         
         public event System.EventHandler<UpdateProjectCompletedEventArgs> UpdateProjectCompleted;
+        
+        public event System.EventHandler<GetBudgetItemsCompletedEventArgs> GetBudgetItemsCompleted;
+        
+        public event System.EventHandler<AddBudgetItemCompletedEventArgs> AddBudgetItemCompleted;
+        
+        public event System.EventHandler<UpdateBudgetItemCompletedEventArgs> UpdateBudgetItemCompleted;
         
         public string[] GetLogins() {
             return base.Channel.GetLogins();
@@ -3286,6 +3485,162 @@ namespace UnitTest.DataProviderService {
                         projectToUpdate,
                         user,
                         concurencyUpdateOption}, this.onEndUpdateProjectDelegate, this.onUpdateProjectCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem[] GetBudgetItems(UnitTest.DataProviderService.User user) {
+            return base.Channel.GetBudgetItems(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetBudgetItems(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBudgetItems(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.BudgetItem[] EndGetBudgetItems(System.IAsyncResult result) {
+            return base.Channel.EndGetBudgetItems(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetBudgetItems(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginGetBudgetItems(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetBudgetItems(System.IAsyncResult result) {
+            UnitTest.DataProviderService.BudgetItem[] retVal = this.EndGetBudgetItems(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetBudgetItemsCompleted(object state) {
+            if ((this.GetBudgetItemsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetBudgetItemsCompleted(this, new GetBudgetItemsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetBudgetItemsAsync(UnitTest.DataProviderService.User user) {
+            this.GetBudgetItemsAsync(user, null);
+        }
+        
+        public void GetBudgetItemsAsync(UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginGetBudgetItemsDelegate == null)) {
+                this.onBeginGetBudgetItemsDelegate = new BeginOperationDelegate(this.OnBeginGetBudgetItems);
+            }
+            if ((this.onEndGetBudgetItemsDelegate == null)) {
+                this.onEndGetBudgetItemsDelegate = new EndOperationDelegate(this.OnEndGetBudgetItems);
+            }
+            if ((this.onGetBudgetItemsCompletedDelegate == null)) {
+                this.onGetBudgetItemsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBudgetItemsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetBudgetItemsDelegate, new object[] {
+                        user}, this.onEndGetBudgetItemsDelegate, this.onGetBudgetItemsCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem AddBudgetItem(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddBudgetItem(newBudgetItem, user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddBudgetItem(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddBudgetItem(newBudgetItem, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.BudgetItem EndAddBudgetItem(System.IAsyncResult result) {
+            return base.Channel.EndAddBudgetItem(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddBudgetItem(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.BudgetItem newBudgetItem = ((UnitTest.DataProviderService.BudgetItem)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddBudgetItem(newBudgetItem, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddBudgetItem(System.IAsyncResult result) {
+            UnitTest.DataProviderService.BudgetItem retVal = this.EndAddBudgetItem(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddBudgetItemCompleted(object state) {
+            if ((this.AddBudgetItemCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddBudgetItemCompleted(this, new AddBudgetItemCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddBudgetItemAsync(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user) {
+            this.AddBudgetItemAsync(newBudgetItem, user, null);
+        }
+        
+        public void AddBudgetItemAsync(UnitTest.DataProviderService.BudgetItem newBudgetItem, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAddBudgetItemDelegate == null)) {
+                this.onBeginAddBudgetItemDelegate = new BeginOperationDelegate(this.OnBeginAddBudgetItem);
+            }
+            if ((this.onEndAddBudgetItemDelegate == null)) {
+                this.onEndAddBudgetItemDelegate = new EndOperationDelegate(this.OnEndAddBudgetItem);
+            }
+            if ((this.onAddBudgetItemCompletedDelegate == null)) {
+                this.onAddBudgetItemCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddBudgetItemCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddBudgetItemDelegate, new object[] {
+                        newBudgetItem,
+                        user}, this.onEndAddBudgetItemDelegate, this.onAddBudgetItemCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.BudgetItem UpdateBudgetItem(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            return base.Channel.UpdateBudgetItem(budgetItemToUpdate, user, concurencyUpdateOption);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateBudgetItem(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateBudgetItem(budgetItemToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.BudgetItem EndUpdateBudgetItem(System.IAsyncResult result) {
+            return base.Channel.EndUpdateBudgetItem(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateBudgetItem(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.BudgetItem budgetItemToUpdate = ((UnitTest.DataProviderService.BudgetItem)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginUpdateBudgetItem(budgetItemToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateBudgetItem(System.IAsyncResult result) {
+            UnitTest.DataProviderService.BudgetItem retVal = this.EndUpdateBudgetItem(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateBudgetItemCompleted(object state) {
+            if ((this.UpdateBudgetItemCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateBudgetItemCompleted(this, new UpdateBudgetItemCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateBudgetItemAsync(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            this.UpdateBudgetItemAsync(budgetItemToUpdate, user, concurencyUpdateOption, null);
+        }
+        
+        public void UpdateBudgetItemAsync(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, object userState) {
+            if ((this.onBeginUpdateBudgetItemDelegate == null)) {
+                this.onBeginUpdateBudgetItemDelegate = new BeginOperationDelegate(this.OnBeginUpdateBudgetItem);
+            }
+            if ((this.onEndUpdateBudgetItemDelegate == null)) {
+                this.onEndUpdateBudgetItemDelegate = new EndOperationDelegate(this.OnEndUpdateBudgetItem);
+            }
+            if ((this.onUpdateBudgetItemCompletedDelegate == null)) {
+                this.onUpdateBudgetItemCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateBudgetItemCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateBudgetItemDelegate, new object[] {
+                        budgetItemToUpdate,
+                        user,
+                        concurencyUpdateOption}, this.onEndUpdateBudgetItemDelegate, this.onUpdateBudgetItemCompletedDelegate, userState);
         }
     }
 }

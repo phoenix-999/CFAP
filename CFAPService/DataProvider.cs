@@ -669,6 +669,104 @@ namespace CFAPService
             return projectToUpdate;
         }
 
+
+        public List<BudgetItem> GetBudgetItems(User user)
+        {
+            AuthenticateUser(user);
+
+            List<BudgetItem> result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    result = (from i in ctx.BudgetItems select i).Distinct().ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public BudgetItem AddBudgetItem(BudgetItem newBudgetItem, User user)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(BudgetItem));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    ctx.BudgetItems.Add(newBudgetItem);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return newBudgetItem;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public BudgetItem UpdateBudgetItem(BudgetItem budgetItemToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(BudgetItem));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                try
+                {
+                    ctx.BudgetItems.Attach(budgetItemToUpdate);
+
+                    var budgetItemToUpdateDbVersion = (BudgetItem)ctx.Entry(budgetItemToUpdate).GetDatabaseValues().ToObject();
+                    if (budgetItemToUpdateDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
+
+                    ctx.Entry(budgetItemToUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(BudgetItem), budgetItemToUpdate.Id, budgetItemToUpdate.ItemName, user));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<BudgetItem> concurrencyException = new ConcurrencyException<BudgetItem>(ex);
+                    throw new FaultException<ConcurrencyException<BudgetItem>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return budgetItemToUpdate;
+        }
+
         #endregion
 
         private void CheckCanChangeUsersData(User user, Type entityType)

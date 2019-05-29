@@ -153,5 +153,28 @@ namespace CFAPService
         [FaultContract(typeof(ConcurrencyException<Project>))]
         Project UpdateProject(Project projectToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
 
+
+        [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        List<BudgetItem> GetBudgetItems(User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        BudgetItem AddBudgetItem(BudgetItem newBudgetItem, User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        [FaultContract(typeof(ConcurrencyException<BudgetItem>))]
+        BudgetItem UpdateBudgetItem(BudgetItem budgetItemToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
     }
 }

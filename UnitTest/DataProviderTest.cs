@@ -1012,6 +1012,130 @@ namespace UnitTest
 
         #endregion
 
+        #region ChangeSummaryReadOnlyStatus
+
+        [TestMethod]
+        public void ChangeSummaryReadOnlyStatus()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            List<Summary> testSummaries = new List<Summary>();
+            Summary newSummary = new Summary()
+            {
+                SummaUAH = 200,
+                SummaryDate = DateTime.MinValue,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
+                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
+                Description = "test description"
+            };
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                testSummaries.Add(newSummary);
+            }
+
+            Summary testSummary = null;
+            foreach (var s in testSummaries)
+            {
+                testSummary = DataProviderProxy.AddSummary(s, user);
+            }
+            testSummary.SummaUAH = 99999999;
+            try
+            {
+                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
+
+                DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user);
+
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    foreach (var summary in correctedSummaries)
+                    {
+                        Assert.AreEqual(true, summary.ReadOnly);
+                    }
+                }
+
+                DataProviderProxy.ChangeSummaryReadOnlyStatus(false, filter, user);
+
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    foreach (var summary in correctedSummaries)
+                    {
+                        Assert.AreEqual(false, summary.ReadOnly);
+                    }
+                }
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    ctx.Summaries.RemoveRange(summariesToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+
+
+
+        }
+
+        [TestMethod]
+        public void ChangeSummaryReadOnlyStatus_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            List<Summary> testSummaries = new List<Summary>();
+            Summary newSummary = new Summary()
+            {
+                SummaUAH = 200,
+                SummaryDate = DateTime.MinValue,
+                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
+                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
+                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
+                Description = "test description"
+            };
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                testSummaries.Add(newSummary);
+            }
+
+            Summary testSummary = null;
+            foreach (var s in testSummaries)
+            {
+                testSummary = DataProviderProxy.AddSummary(s, user);
+            }
+            testSummary.SummaUAH = 99999999;
+            try
+            {
+                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
+
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
+                    ctx.Summaries.RemoveRange(summariesToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+
+
+
+        }
+        #endregion
+
         #region RemoveSummary
 
         [TestMethod]
@@ -1580,128 +1704,238 @@ namespace UnitTest
 
         #endregion
 
-        #region ChangeSummaryReadOnlyStatus
-
+        #region GetBudgetItems
         [TestMethod]
-        public void ChangeSummaryReadOnlyStatus()
-        {
-            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD});
-
-            List<Summary> testSummaries = new List<Summary>();
-            Summary newSummary = new Summary()
-            {
-                SummaUAH = 200,
-                SummaryDate = DateTime.MinValue,
-                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
-                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
-                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
-                Description = "test description"
-            };
-
-            
-            for (int i = 0; i < 10; i++)
-            {
-                testSummaries.Add(newSummary);
-            }
-
-            Summary testSummary = null;
-            foreach (var s in testSummaries)
-            {
-                testSummary = DataProviderProxy.AddSummary(s, user);
-            }
-            testSummary.SummaUAH = 99999999;
-            try
-            {
-                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
-
-                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
-
-                DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user);
-
-                using (CFAPContext ctx = new CFAPContext())
-                {
-                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
-                    foreach (var summary in correctedSummaries)
-                    {
-                        Assert.AreEqual(true, summary.ReadOnly);
-                    }
-                }
-
-                DataProviderProxy.ChangeSummaryReadOnlyStatus(false, filter, user);
-
-                using (CFAPContext ctx = new CFAPContext())
-                {
-                    var correctedSummaries = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
-                    foreach (var summary in correctedSummaries)
-                    {
-                        Assert.AreEqual(false, summary.ReadOnly);
-                    }
-                }
-            }
-            finally
-            {
-                using (CFAPContext ctx = new CFAPContext())
-                {
-                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
-                    ctx.Summaries.RemoveRange(summariesToRemove);
-                    ctx.SaveChanges();
-                }
-            }
-
-
-
-        }
-
-        [TestMethod]
-        public void ChangeSummaryReadOnlyStatus_NoRightsToChangeDataException()
+        public void GetBudgetItems()
         {
             User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
 
-            List<Summary> testSummaries = new List<Summary>();
-            Summary newSummary = new Summary()
-            {
-                SummaUAH = 200,
-                SummaryDate = DateTime.MinValue,
-                Accountable = new Accountable() { Id = ACCOUNTABLE1_ID, AccountableName = ACCOUNTABLE1 },
-                Project = new Project() { Id = PROJECT1_ID, ProjectName = PROJECT1 },
-                BudgetItem = new BudgetItem() { Id = BUDGET_ITEM1_ID, ItemName = BUDGET_ITEM1 },
-                Description = "test description"
-            };
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
 
-
-            for (int i = 0; i < 10; i++)
+            using (CFAPContext ctx = new CFAPContext())
             {
-                testSummaries.Add(newSummary);
+                var correctBudgetItems = (from i in ctx.BudgetItems select i).Distinct().ToList();
+
+                Assert.AreEqual(correctBudgetItems.Count, budgetItems.Length);
+
+                foreach (var budgetItem in correctBudgetItems)
+                {
+                    var correctProject = (from i in budgetItems where i.Id == budgetItem.Id select i).Single(); //В случае если не найдет или найдет больше одного - исключение
+                }
             }
+        }
+        #endregion
 
-            Summary testSummary = null;
-            foreach (var s in testSummaries)
-            {
-                testSummary = DataProviderProxy.AddSummary(s, user);
-            }
-            testSummary.SummaUAH = 99999999;
+
+        #region AddBudgetItem
+
+        [TestMethod]
+        public void AddBudgetItem()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            BudgetItem newBudgetItem = new BudgetItem() { ItemName = "test item" };
+
             try
             {
-                DataProviderProxy.UpdateSummary(testSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+                BudgetItem addedBudgetItem = DataProviderProxy.AddBudgetItem(newBudgetItem, user);
 
-                Filter filter = new Filter() { DateEnd = DateTime.MinValue };
+                Assert.AreNotEqual(null, addedBudgetItem);
+                Assert.AreNotEqual(0, addedBudgetItem.Id);
 
-                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(()=>{DataProviderProxy.ChangeSummaryReadOnlyStatus(true, filter, user);});
+                Assert.ThrowsException<FaultException<DbException>>(()=> { DataProviderProxy.AddBudgetItem(newBudgetItem, user); }); //Дубликат
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == newBudgetItem.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AddBudgetItem_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            BudgetItem newBudgetItem = new BudgetItem() { };
+
+            Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.AddBudgetItem(newBudgetItem, user); });
+
+
+        }
+
+        [TestMethod]
+        public void AddBudgetItem_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            BudgetItem newBudgetItem = new BudgetItem() { };
+
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddBudgetItem(newBudgetItem, user); });
+
+
+        }
+
+        #endregion
+
+        #region UpdateBudgetItem
+
+        [TestMethod]
+        public void UpdateBudgetItem()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            BudgetItem testBudgetItem = new BudgetItem() { ItemName = "Test item" };
+            testBudgetItem = DataProviderProxy.AddBudgetItem(testBudgetItem, user);
+
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
+
+            BudgetItem budgetItemToUpdate = (from i in budgetItems where i.ItemName == testBudgetItem.ItemName select i).Single();
+
+            budgetItemToUpdate.ItemName = "Test UPDATE item name";
+
+            try
+            {
+
+                BudgetItem updatedBudgetItem = DataProviderProxy.UpdateBudgetItem(budgetItemToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.AreEqual(budgetItemToUpdate.Id, updatedBudgetItem.Id);
+                Assert.AreEqual(budgetItemToUpdate.ItemName, updatedBudgetItem.ItemName);
 
             }
             finally
             {
                 using (CFAPContext ctx = new CFAPContext())
                 {
-                    var summariesToRemove = (from s in ctx.Summaries where s.Description == newSummary.Description select s).ToList();
-                    ctx.Summaries.RemoveRange(summariesToRemove);
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == budgetItemToUpdate.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
                     ctx.SaveChanges();
                 }
             }
-
-
-
         }
+
+        [TestMethod]
+        public void UpdateBudgetItem_ConcurencyException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            BudgetItem testBudgetItem = new BudgetItem() { ItemName = "Test item" };
+            testBudgetItem = DataProviderProxy.AddBudgetItem(testBudgetItem, user);
+
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
+
+            BudgetItem budgetItemsToUpdate = (from i in budgetItems where i.ItemName == testBudgetItem.ItemName select i).Single();
+
+            budgetItemsToUpdate.ItemName = "Test UPDATE item name";
+
+            try
+            {
+                BudgetItem updatedProject = DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+
+                Assert.ThrowsException<FaultException<ConcurrencyExceptionOfBudgetItemdxjYbbDT>>(() => { DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.None); });
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == budgetItemsToUpdate.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateBudgetItem_DataNotValidException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            BudgetItem testBudgetItem = new BudgetItem() { ItemName = "Test item" };
+            testBudgetItem = DataProviderProxy.AddBudgetItem(testBudgetItem, user);
+
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
+
+            BudgetItem budgetItemsToUpdate = (from i in budgetItems where i.ItemName == testBudgetItem.ItemName select i).Single();
+
+            budgetItemsToUpdate.ItemName = "";
+
+            try
+            {
+                Assert.ThrowsException<FaultException<DataNotValidException>>(() => { DataProviderProxy.UpdateBudgetItem(budgetItemsToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == testBudgetItem.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateBudgetItem_TryChangeReadOnlyFiledsException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            BudgetItem testBudgetItem = new BudgetItem() { ItemName = "Test item" };
+            testBudgetItem = DataProviderProxy.AddBudgetItem(testBudgetItem, user);
+
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
+
+            BudgetItem budgetItemToUpdate = (from i in budgetItems where i.ItemName == testBudgetItem.ItemName select i).Single();
+
+            budgetItemToUpdate.ItemName = "TEst UPDATE item";
+
+            try
+            {
+                budgetItemToUpdate.ReadOnly = true;
+                var updatedBudgetItem = DataProviderProxy.UpdateBudgetItem(budgetItemToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+                Assert.ThrowsException<FaultException<TryChangeReadOnlyFiledException>>(() => { DataProviderProxy.UpdateBudgetItem(budgetItemToUpdate, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == budgetItemToUpdate.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateBudgetItem_NoRigthToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+            BudgetItem testbudgetItem = new BudgetItem() { ItemName = "Test item" };
+            testbudgetItem = DataProviderProxy.AddBudgetItem(testbudgetItem, user);
+
+            BudgetItem[] budgetItems = DataProviderProxy.GetBudgetItems(user);
+
+            BudgetItem budgetItemToUpdate = (from i in budgetItems where i.ItemName == testbudgetItem.ItemName select i).Single();
+
+            budgetItemToUpdate.ItemName = "TEst UPDATE item";
+
+            try
+            {
+                User userNotAdmin = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+                Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.UpdateBudgetItem(budgetItemToUpdate, userNotAdmin, DataProviderService.DbConcurencyUpdateOptions.ClientPriority); });
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var itemToRemove = (from i in ctx.BudgetItems where i.ItemName == testbudgetItem.ItemName select i).Single();
+                    ctx.BudgetItems.Remove(itemToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
         #endregion
+
     }
 }
