@@ -767,6 +767,103 @@ namespace CFAPService
             return budgetItemToUpdate;
         }
 
+        public List<Rate> GetRates(User user)
+        {
+            AuthenticateUser(user);
+
+            List<Rate> result = null;
+
+            using (CFAPContext ctx = new CFAPContext())
+
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    result = (from r in ctx.Rates select r).Distinct().ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return result;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Rate AddRate(Rate newRate, User user)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(Rate));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                try
+                {
+                    ctx.Rates.Add(newRate);
+                    ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
+                }
+                catch (DbEntityValidationException ex) //Возникнуть может только при повреждении данных
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return newRate;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Rate UpdateRate(Rate rateToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        {
+            AuthenticateUser(user);
+
+            this.ChechIsAdmin(user, typeof(Rate));
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                try
+                {
+                    ctx.Rates.Attach(rateToUpdate);
+
+                    var ratesToUpdateDbVersion = (Rate)ctx.Entry(rateToUpdate).GetDatabaseValues().ToObject();
+                    if (ratesToUpdateDbVersion.ReadOnly)
+                    {
+                        throw new ReadOnlyException();
+                    }
+
+                    ctx.Entry(rateToUpdate).State = EntityState.Modified;
+                    ctx.SaveChanges(concurencyUpdateOption);
+                }
+                catch (ReadOnlyException)
+                {
+                    throw new FaultException<TryChangeReadOnlyFiledException>(new TryChangeReadOnlyFiledException(typeof(Rate), rateToUpdate.Id, null, user));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(ex);
+                    throw new FaultException<ConcurrencyException<Rate>>(concurrencyException);
+                }
+                catch (DbEntityValidationException ex)//Возникнуть может только при повреждении данных
+                {
+                    throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
+
+            return rateToUpdate;
+        }
+
         #endregion
 
         private void CheckCanChangeUsersData(User user, Type entityType)

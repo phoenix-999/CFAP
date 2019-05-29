@@ -108,6 +108,9 @@
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Rate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Summary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

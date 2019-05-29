@@ -329,4 +329,49 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetRates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q62:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="GetRatesResult" nillable="true" type="q63:ArrayOfRate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="newRate" nillable="true" type="q64:Rate" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q65:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="AddRateResult" nillable="true" type="q66:Rate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="rateToUpdate" nillable="true" type="q67:Rate" />
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q68:User" />
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="concurencyUpdateOption" type="q69:DbConcurencyUpdateOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="UpdateRateResult" nillable="true" type="q70:Rate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

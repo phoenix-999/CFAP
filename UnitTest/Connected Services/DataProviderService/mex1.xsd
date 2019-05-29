@@ -105,4 +105,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSummary" nillable="true" type="tns:ArrayOfSummary" />
+  <xs:complexType name="ArrayOfRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Rate" nillable="true" type="tns:Rate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRate" nillable="true" type="tns:ArrayOfRate" />
+  <xs:complexType name="Rate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateRate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="RateUSD" type="xs:double" />
+      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Rate" nillable="true" type="tns:Rate" />
 </xs:schema>

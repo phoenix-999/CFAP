@@ -1720,12 +1720,11 @@ namespace UnitTest
 
                 foreach (var budgetItem in correctBudgetItems)
                 {
-                    var correctProject = (from i in budgetItems where i.Id == budgetItem.Id select i).Single(); //В случае если не найдет или найдет больше одного - исключение
+                    var correctBugetItem = (from i in budgetItems where i.Id == budgetItem.Id select i).Single(); //В случае если не найдет или найдет больше одного - исключение
                 }
             }
         }
         #endregion
-
 
         #region AddBudgetItem
 
@@ -1933,6 +1932,71 @@ namespace UnitTest
                     ctx.SaveChanges();
                 }
             }
+        }
+
+        #endregion
+
+        #region GetRates
+        [TestMethod]
+        public void GetRates()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Rate[] rates = DataProviderProxy.GetRates(user);
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                var correctRates = (from r in ctx.Rates select r).Distinct().ToList();
+
+                Assert.AreEqual(correctRates.Count, rates.Length);
+
+                foreach (var rate in correctRates)
+                {
+                    var correctRate = (from r in rates where r.Id == rate.Id select r).Single(); //В случае если не найдет или найдет больше одного - исключение
+                }
+            }
+        }
+        #endregion
+
+        #region AddRate
+
+        [TestMethod]
+        public void AddRate()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD });
+
+            Rate newRate = new Rate() { DateRate = DateTime.Now, RateUSD = 30.5 };
+
+            try
+            {
+                Rate addedRate = DataProviderProxy.AddRate(newRate, user);
+
+                Assert.AreNotEqual(null, addedRate);
+                Assert.AreNotEqual(0, addedRate.Id);
+
+            }
+            finally
+            {
+                using (CFAPContext ctx = new CFAPContext())
+                {
+                    var rateToRemove = (from r in ctx.Rates where r.DateRate == newRate.DateRate select r).Single();
+                    ctx.Rates.Remove(rateToRemove);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void AddRate_NoRightsToChangeDataException()
+        {
+            User user = DataProviderProxy.Authenticate(new User() { UserName = USER_NOT_ADMIN_NAME, Password = USER_NOT_ADMIN_PASSWORD });
+
+            Rate newRate = new Rate() { };
+
+            Assert.ThrowsException<FaultException<NoRightsToChangeDataException>>(() => { DataProviderProxy.AddRate(newRate, user); });
+
+
         }
 
         #endregion

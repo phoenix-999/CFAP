@@ -1608,6 +1608,192 @@ namespace UnitTest.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Rate", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Rate : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RateUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateRate {
+            get {
+                return this.DateRateField;
+            }
+            set {
+                if ((this.DateRateField.Equals(value) != true)) {
+                    this.DateRateField = value;
+                    this.RaisePropertyChanged("DateRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double RateUSD {
+            get {
+                return this.RateUSDField;
+            }
+            set {
+                if ((this.RateUSDField.Equals(value) != true)) {
+                    this.RateUSDField = value;
+                    this.RaisePropertyChanged("RateUSD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadOnly {
+            get {
+                return this.ReadOnlyField;
+            }
+            set {
+                if ((this.ReadOnlyField.Equals(value) != true)) {
+                    this.ReadOnlyField = value;
+                    this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class ConcurrencyExceptionOfRatedxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Rate CurrentValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Rate DatabaseValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Rate CurrentValue {
+            get {
+                return this.CurrentValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentValueField, value) != true)) {
+                    this.CurrentValueField = value;
+                    this.RaisePropertyChanged("CurrentValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Rate DatabaseValue {
+            get {
+                return this.DatabaseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatabaseValueField, value) != true)) {
+                    this.DatabaseValueField = value;
+                    this.RaisePropertyChanged("DatabaseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1900,6 +2086,44 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginUpdateBudgetItem(UnitTest.DataProviderService.BudgetItem budgetItemToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.BudgetItem EndUpdateBudgetItem(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetRates", ReplyAction="http://tempuri.org/IDataProvider/GetRatesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetRatesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetRatesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Rate[] GetRates(UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetRates", ReplyAction="http://tempuri.org/IDataProvider/GetRatesResponse")]
+        System.IAsyncResult BeginGetRates(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Rate[] EndGetRates(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddRate", ReplyAction="http://tempuri.org/IDataProvider/AddRateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Rate AddRate(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/AddRate", ReplyAction="http://tempuri.org/IDataProvider/AddRateResponse")]
+        System.IAsyncResult BeginAddRate(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Rate EndAddRate(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateRate", ReplyAction="http://tempuri.org/IDataProvider/UpdateRateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateRateTryChangeReadOnlyFiledExceptionFault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfRatedxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateRateConcurrencyExceptionOf_RateFault", Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        UnitTest.DataProviderService.Rate UpdateRate(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/UpdateRate", ReplyAction="http://tempuri.org/IDataProvider/UpdateRateResponse")]
+        System.IAsyncResult BeginUpdateRate(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Rate EndUpdateRate(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2307,6 +2531,63 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetRatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetRatesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Rate[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Rate[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddRateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddRateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Rate Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Rate)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateRateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateRateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Rate Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Rate)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginGetLoginsDelegate;
@@ -2441,6 +2722,24 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateBudgetItemCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetRatesDelegate;
+        
+        private EndOperationDelegate onEndGetRatesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetRatesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddRateDelegate;
+        
+        private EndOperationDelegate onEndAddRateDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddRateCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateRateDelegate;
+        
+        private EndOperationDelegate onEndUpdateRateDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateRateCompletedDelegate;
+        
         public DataProviderClient() {
         }
         
@@ -2503,6 +2802,12 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<AddBudgetItemCompletedEventArgs> AddBudgetItemCompleted;
         
         public event System.EventHandler<UpdateBudgetItemCompletedEventArgs> UpdateBudgetItemCompleted;
+        
+        public event System.EventHandler<GetRatesCompletedEventArgs> GetRatesCompleted;
+        
+        public event System.EventHandler<AddRateCompletedEventArgs> AddRateCompleted;
+        
+        public event System.EventHandler<UpdateRateCompletedEventArgs> UpdateRateCompleted;
         
         public string[] GetLogins() {
             return base.Channel.GetLogins();
@@ -3641,6 +3946,162 @@ namespace UnitTest.DataProviderService {
                         budgetItemToUpdate,
                         user,
                         concurencyUpdateOption}, this.onEndUpdateBudgetItemDelegate, this.onUpdateBudgetItemCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Rate[] GetRates(UnitTest.DataProviderService.User user) {
+            return base.Channel.GetRates(user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetRates(UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetRates(user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Rate[] EndGetRates(System.IAsyncResult result) {
+            return base.Channel.EndGetRates(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetRates(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            return this.BeginGetRates(user, callback, asyncState);
+        }
+        
+        private object[] OnEndGetRates(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Rate[] retVal = this.EndGetRates(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetRatesCompleted(object state) {
+            if ((this.GetRatesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetRatesCompleted(this, new GetRatesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetRatesAsync(UnitTest.DataProviderService.User user) {
+            this.GetRatesAsync(user, null);
+        }
+        
+        public void GetRatesAsync(UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginGetRatesDelegate == null)) {
+                this.onBeginGetRatesDelegate = new BeginOperationDelegate(this.OnBeginGetRates);
+            }
+            if ((this.onEndGetRatesDelegate == null)) {
+                this.onEndGetRatesDelegate = new EndOperationDelegate(this.OnEndGetRates);
+            }
+            if ((this.onGetRatesCompletedDelegate == null)) {
+                this.onGetRatesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRatesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetRatesDelegate, new object[] {
+                        user}, this.onEndGetRatesDelegate, this.onGetRatesCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Rate AddRate(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user) {
+            return base.Channel.AddRate(newRate, user);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddRate(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddRate(newRate, user, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Rate EndAddRate(System.IAsyncResult result) {
+            return base.Channel.EndAddRate(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddRate(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Rate newRate = ((UnitTest.DataProviderService.Rate)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            return this.BeginAddRate(newRate, user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddRate(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Rate retVal = this.EndAddRate(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddRateCompleted(object state) {
+            if ((this.AddRateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddRateCompleted(this, new AddRateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddRateAsync(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user) {
+            this.AddRateAsync(newRate, user, null);
+        }
+        
+        public void AddRateAsync(UnitTest.DataProviderService.Rate newRate, UnitTest.DataProviderService.User user, object userState) {
+            if ((this.onBeginAddRateDelegate == null)) {
+                this.onBeginAddRateDelegate = new BeginOperationDelegate(this.OnBeginAddRate);
+            }
+            if ((this.onEndAddRateDelegate == null)) {
+                this.onEndAddRateDelegate = new EndOperationDelegate(this.OnEndAddRate);
+            }
+            if ((this.onAddRateCompletedDelegate == null)) {
+                this.onAddRateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddRateCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddRateDelegate, new object[] {
+                        newRate,
+                        user}, this.onEndAddRateDelegate, this.onAddRateCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Rate UpdateRate(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            return base.Channel.UpdateRate(rateToUpdate, user, concurencyUpdateOption);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdateRate(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateRate(rateToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Rate EndUpdateRate(System.IAsyncResult result) {
+            return base.Channel.EndUpdateRate(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateRate(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.Rate rateToUpdate = ((UnitTest.DataProviderService.Rate)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            return this.BeginUpdateRate(rateToUpdate, user, concurencyUpdateOption, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateRate(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Rate retVal = this.EndUpdateRate(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateRateCompleted(object state) {
+            if ((this.UpdateRateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateRateCompleted(this, new UpdateRateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateRateAsync(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption) {
+            this.UpdateRateAsync(rateToUpdate, user, concurencyUpdateOption, null);
+        }
+        
+        public void UpdateRateAsync(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, object userState) {
+            if ((this.onBeginUpdateRateDelegate == null)) {
+                this.onBeginUpdateRateDelegate = new BeginOperationDelegate(this.OnBeginUpdateRate);
+            }
+            if ((this.onEndUpdateRateDelegate == null)) {
+                this.onEndUpdateRateDelegate = new EndOperationDelegate(this.OnEndUpdateRate);
+            }
+            if ((this.onUpdateRateCompletedDelegate == null)) {
+                this.onUpdateRateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateRateCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateRateDelegate, new object[] {
+                        rateToUpdate,
+                        user,
+                        concurencyUpdateOption}, this.onEndUpdateRateDelegate, this.onUpdateRateCompletedDelegate, userState);
         }
     }
 }

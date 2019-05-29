@@ -137,6 +137,10 @@
     <Compile Include="Migrations\201905281145273_Rename CanReadAllData.Designer.cs">
       <DependentUpon>201905281145273_Rename CanReadAllData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291404182_Rename RateUSD.cs" />
+    <Compile Include="Migrations\201905291404182_Rename RateUSD.Designer.cs">
+      <DependentUpon>201905291404182_Rename RateUSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\BudgetItem.cs" />
@@ -214,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905281145273_Rename CanReadAllData.resx">
       <DependentUpon>201905281145273_Rename CanReadAllData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291404182_Rename RateUSD.resx">
+      <DependentUpon>201905291404182_Rename RateUSD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

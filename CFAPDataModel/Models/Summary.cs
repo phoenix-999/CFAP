@@ -57,7 +57,7 @@ namespace CFAPDataModel.Models
             {
                 double? query = (from rate in ctx.Rates
                             where rate.DateRate.Month == this.SummaryDate.Month && rate.DateRate.Year == this.SummaryDate.Year
-                            select rate.Dolar).FirstOrDefault();
+                            select rate.RateUSD).FirstOrDefault();
                 if (query != null)
                 {
                     result = (double)query;

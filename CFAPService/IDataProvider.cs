@@ -176,5 +176,28 @@ namespace CFAPService
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<BudgetItem>))]
         BudgetItem UpdateBudgetItem(BudgetItem budgetItemToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
+
+        [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        List<Rate> GetRates(User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        Rate AddRate(Rate newRate, User user);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(TryChangeReadOnlyFiledException))]
+        [FaultContract(typeof(ConcurrencyException<Rate>))]
+        Rate UpdateRate(Rate rateToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
     }
 }
