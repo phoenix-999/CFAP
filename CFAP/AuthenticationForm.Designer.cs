@@ -1,6 +1,6 @@
 ﻿namespace CFAP
 {
-    partial class RadForm1
+    partial class AuthenticationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,17 @@
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // RadForm1
+            // AuthenticationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "RadForm1";
-            this.Text = "RadForm1";
+            this.ClientSize = new System.Drawing.Size(292, 270);
+            this.Name = "AuthenticationForm";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
+            this.Text = "Аутентификация";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

@@ -58,14 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogicEvents.cs" />
-    <Compile Include="RadForm1.cs">
+    <Compile Include="AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadForm1.Designer.cs">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <Compile Include="AuthenticationForm.Designer.cs">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RadForm1.resx">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <EmbeddedResource Include="AuthenticationForm.resx">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

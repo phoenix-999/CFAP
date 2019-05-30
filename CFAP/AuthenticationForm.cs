@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CFAP
 {
-    public partial class RadForm1 : Telerik.WinControls.UI.RadForm
+    public partial class AuthenticationForm : Telerik.WinControls.UI.RadForm
     {
-        public RadForm1()
+        public AuthenticationForm()
         {
             InitializeComponent();
         }
