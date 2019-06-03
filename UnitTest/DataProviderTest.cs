@@ -60,6 +60,8 @@ namespace UnitTest
         [TestMethod]
         public void GetLogins()
         {
+            //Assert.ThrowsException<FaultException>(() => { DataProviderProxy.GetLogins(); }); //тестирование непредвиденного исключения. ЗАКОМЕНТИРОВАТЬ!
+
             string[] logins = DataProviderProxy.GetLogins();
 
             Assert.AreNotEqual(0, logins.Length);

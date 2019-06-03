@@ -19,6 +19,7 @@ namespace CFAPService
 {
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ExceptionHandler]
     public class DataProvider : IDataProvider
     {
         #region Котракт службы
@@ -37,6 +38,8 @@ namespace CFAPService
                     throw new FaultException<DbException>(new DbException(ex));
                 }
             }
+
+            //throw new Exception(); //Для тестирование непредвиденных исключений. ЗАКОМЕНТИРОВАТЬ!!!!
 
            return result;
         }

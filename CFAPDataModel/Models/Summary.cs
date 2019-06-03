@@ -26,7 +26,7 @@ namespace CFAPDataModel.Models
 
         private void SetDefaultValues()
         {
-            this.ActionDate = DateTime.Now;
+            this.ActionDate = DateTime.Now; 
         }
 
         //public void SetSummaDollar()

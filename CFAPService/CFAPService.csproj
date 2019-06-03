@@ -61,12 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
+    <Compile Include="ExceptionHandlerAttribute.cs" />
     <Compile Include="Faults\NoRightsToChangeDataException.cs" />
     <Compile Include="Faults\AutenticateFaultException.cs" />
     <Compile Include="Faults\ConcurrencyException.cs" />
     <Compile Include="Faults\DataNotValidException.cs" />
     <Compile Include="Faults\DbException.cs" />
     <Compile Include="Faults\TryChangeReadOnlyFiledException.cs" />
+    <Compile Include="Faults\UnexpectedException.cs" />
     <Compile Include="Faults\UserHasNotGroupsException.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="IDataProvider.cs" />
