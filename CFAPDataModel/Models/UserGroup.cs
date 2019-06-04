@@ -26,13 +26,10 @@ namespace CFAPDataModel.Models
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<User> Users { get; set; }
 
-        [DataMember]
         public virtual ICollection<Accountable> Accountables { get; set; }
 
-        [DataMember]
         public virtual ICollection<Project> Projects { get; set; }
 
-        [DataMember]
         public virtual ICollection<BudgetItem> BudgetItems { get; set; }
 
         [DataMember]

@@ -9,42 +9,21 @@ using System.Windows.Forms;
 
 namespace CFAP
 {
-    class ExceptionsHandler
+    abstract class ExceptionsHandler
     {
-        
-        public static void AuthenticateFaultExceptionHandler(FaultException<AuthenticateFaultException> fault)
-        {
-            MessageBox.Show(fault.Detail.Message, "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
-        public static void DbExceptionHandler(FaultException<DbException> fault)
-        {
-            MessageBox.Show(fault.Detail.Message, "Ошибка в работе с базой данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void AuthenticateFaultExceptionHandler(FaultException<AuthenticateFaultException> fault);
 
-        public static void ArgumentNullExceptionHandler(FaultException<ArgumentNullException> fault)
-        {
-            MessageBox.Show(fault.Detail.Message, "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void DbExceptionHandler(FaultException<DbException> fault);
 
-        public static void FaultExceptionHandler(FaultException fault)
-        {
-            MessageBox.Show(fault.Message, "Неопознання ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void ArgumentNullExceptionHandler(FaultException<ArgumentNullException> fault);
 
-        public static void CommunicationExceptionHandler(CommunicationException ex)
-        {
-            MessageBox.Show(ex.Message, "Ошибка связи с сервером", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void FaultExceptionHandler(FaultException fault);
 
-        public static void TimeOutExceptionExceptionHandler(TimeoutException ex)
-        {
-            MessageBox.Show(ex.Message, "Ошибка связи с сервером", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void CommunicationExceptionHandler(CommunicationException ex);
 
-        public static void NoRightsToChangeDataExceptionHandler(FaultException<NoRightsToChangeDataException> ex)
-        {
-            MessageBox.Show(ex.Message, "Ошибка в процессе изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        public abstract void TimeOutExceptionExceptionHandler(TimeoutException ex);
+
+        public abstract void NoRightsToChangeDataExceptionHandler(FaultException<NoRightsToChangeDataException> ex);
     }
 }

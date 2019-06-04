@@ -55,25 +55,23 @@ namespace CFAP
 
         void InitializeRelations()
         {
-
+            if (radGridView.Relations == null || radGridView.Relations.Count == 0)
+                return;
 
             foreach (var r in radGridView.Relations)
             {
-                if (r.ChildTemplate.HierarchyLevel > 1)
-                    break;
-
                 r.ChildTemplate.Caption = "Группы пользователя";
+                r.ChildTemplate.AllowAddNewRow = false;
                 r.ChildTemplate.AllowEditRow = false;
+                r.ChildTemplate.AllowDeleteRow = false;
                 r.ChildTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+                
+                if (r.ChildTemplate.Columns["GroupName"] != null)
+                    r.ChildTemplate.Columns["GroupName"].HeaderText = "Наименование группы";
 
-                r.ChildTemplate.Columns["Accountables"].IsVisible = false;
-                r.ChildTemplate.Columns["Projects"].IsVisible = false;
-                r.ChildTemplate.Columns["BudgetItems"].IsVisible = false;
-
-                r.ChildTemplate.Columns["GroupName"].HeaderText = "Наименование группы";
-                r.ChildTemplate.Columns["CanReadAllData"].HeaderText = "Доступ ко всем данным";
+                if (r.ChildTemplate.Columns["CanReadAllData"] != null)
+                    r.ChildTemplate.Columns["CanReadAllData"].HeaderText = "Доступ ко всем данным";
             }
-        }
-
+        }           
     }
 }

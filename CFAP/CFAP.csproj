@@ -71,6 +71,7 @@
     <Compile Include="AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExceptionsHandlerUI.cs" />
     <Compile Include="UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>

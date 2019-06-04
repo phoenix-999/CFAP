@@ -22,7 +22,8 @@ namespace CFAP
             {
                 Application.Exit();
             }
-            businessLogic = new CFAPBusinessLogic();
+
+            businessLogic = new CFAPBusinessLogic(new ExceptionsHandlerUI());
 
             InitializeRadMenu();
         }

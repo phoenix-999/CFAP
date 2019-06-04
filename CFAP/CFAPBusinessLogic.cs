@@ -10,14 +10,17 @@ namespace CFAP
 {
     class CFAPBusinessLogic
     {
+        public ExceptionsHandler ExceptionsHandler { get; set; }
+
         public static User User { get; private set; }
         DataProviderClient.DataProviderClient DataProviderProxy;
        
         public static List<User> UsersData { get; private set; }
 
 
-        public CFAPBusinessLogic()
+        public CFAPBusinessLogic(ExceptionsHandler exceptionsHandler)
         {
+            this.ExceptionsHandler = exceptionsHandler;
             DataProviderProxy = new DataProviderClient.DataProviderClient();
         }
 

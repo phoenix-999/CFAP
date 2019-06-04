@@ -34,8 +34,8 @@
             this.radButton_Ok = new Telerik.WinControls.UI.RadButton();
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox_Main = new Telerik.WinControls.UI.RadGroupBox();
-            this.radTextBox_Password = new Telerik.WinControls.UI.RadTextBox();
             this.radDropDownList_Logins = new Telerik.WinControls.UI.RadDropDownList();
+            this.radTextBox_Password = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_Login)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_AuthenticateText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_Password)).BeginInit();
@@ -43,8 +43,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_Main)).BeginInit();
             this.radGroupBox_Main.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_Password)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Logins)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_Password)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,22 +124,24 @@
             this.radGroupBox_Main.Size = new System.Drawing.Size(292, 221);
             this.radGroupBox_Main.TabIndex = 5;
             // 
+            // radDropDownList_Logins
+            // 
+            this.radDropDownList_Logins.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radDropDownList_Logins.DropDownAnimationEnabled = false;
+            this.radDropDownList_Logins.Location = new System.Drawing.Point(94, 56);
+            this.radDropDownList_Logins.Name = "radDropDownList_Logins";
+            this.radDropDownList_Logins.Size = new System.Drawing.Size(193, 20);
+            this.radDropDownList_Logins.TabIndex = 4;
+            this.radDropDownList_Logins.Text = "Выбрать логин из списка";
+            // 
             // radTextBox_Password
             // 
             this.radTextBox_Password.AcceptsTab = true;
             this.radTextBox_Password.Location = new System.Drawing.Point(94, 103);
             this.radTextBox_Password.Name = "radTextBox_Password";
             this.radTextBox_Password.PasswordChar = '*';
-            this.radTextBox_Password.Size = new System.Drawing.Size(193, 22);
+            this.radTextBox_Password.Size = new System.Drawing.Size(193, 20);
             this.radTextBox_Password.TabIndex = 3;
-            // 
-            // radDropDownList_Logins
-            // 
-            this.radDropDownList_Logins.Location = new System.Drawing.Point(94, 56);
-            this.radDropDownList_Logins.Name = "radDropDownList_Logins";
-            this.radDropDownList_Logins.Size = new System.Drawing.Size(193, 20);
-            this.radDropDownList_Logins.TabIndex = 4;
-            this.radDropDownList_Logins.Text = "Выбрать логин из списка";
             // 
             // AuthenticationForm
             // 
@@ -167,8 +169,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_Main)).EndInit();
             this.radGroupBox_Main.ResumeLayout(false);
             this.radGroupBox_Main.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_Password)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Logins)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_Password)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

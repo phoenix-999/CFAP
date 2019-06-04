@@ -41,6 +41,7 @@
             // radMenu
             // 
             this.radMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.radMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radMenu.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItem_Settings,
             this.radMenuItem_Users,

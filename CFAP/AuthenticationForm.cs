@@ -15,7 +15,8 @@ namespace CFAP
         public AuthenticationForm()
         {
             InitializeComponent();
-            businessLogic = new CFAPBusinessLogic();
+            ExceptionsHandler exceptionsHandler = new ExceptionsHandlerUI();
+            businessLogic = new CFAPBusinessLogic(exceptionsHandler);
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)

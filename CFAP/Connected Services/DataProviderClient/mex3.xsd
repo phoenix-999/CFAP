@@ -19,60 +19,12 @@
   <xs:element name="ArrayOfUserGroup" nillable="true" type="tns:ArrayOfUserGroup" />
   <xs:complexType name="UserGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Accountables" nillable="true" type="tns:ArrayOfAccountable" />
-      <xs:element minOccurs="0" name="BudgetItems" nillable="true" type="tns:ArrayOfBudgetItem" />
       <xs:element minOccurs="0" name="CanReadAllData" type="xs:boolean" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Projects" nillable="true" type="tns:ArrayOfProject" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserGroup" nillable="true" type="tns:UserGroup" />
-  <xs:complexType name="ArrayOfAccountable">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Accountable" nillable="true" type="tns:Accountable" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfAccountable" nillable="true" type="tns:ArrayOfAccountable" />
-  <xs:complexType name="Accountable">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AccountableName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Accountable" nillable="true" type="tns:Accountable" />
-  <xs:complexType name="ArrayOfBudgetItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="BudgetItem" nillable="true" type="tns:BudgetItem" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfBudgetItem" nillable="true" type="tns:ArrayOfBudgetItem" />
-  <xs:complexType name="BudgetItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="BudgetItem" nillable="true" type="tns:BudgetItem" />
-  <xs:complexType name="ArrayOfProject">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Project" nillable="true" type="tns:Project" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfProject" nillable="true" type="tns:ArrayOfProject" />
-  <xs:complexType name="Project">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Project" nillable="true" type="tns:Project" />
   <xs:complexType name="ArrayOfUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
@@ -99,6 +51,51 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Summary" nillable="true" type="tns:Summary" />
+  <xs:complexType name="Accountable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountableName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Accountable" nillable="true" type="tns:Accountable" />
+  <xs:complexType name="BudgetItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BudgetItem" nillable="true" type="tns:BudgetItem" />
+  <xs:complexType name="Project">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Project" nillable="true" type="tns:Project" />
+  <xs:complexType name="ArrayOfAccountable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Accountable" nillable="true" type="tns:Accountable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccountable" nillable="true" type="tns:ArrayOfAccountable" />
+  <xs:complexType name="ArrayOfBudgetItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BudgetItem" nillable="true" type="tns:BudgetItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBudgetItem" nillable="true" type="tns:ArrayOfBudgetItem" />
+  <xs:complexType name="ArrayOfProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Project" nillable="true" type="tns:Project" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProject" nillable="true" type="tns:ArrayOfProject" />
   <xs:complexType name="ArrayOfSummary">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Summary" nillable="true" type="tns:Summary" />
