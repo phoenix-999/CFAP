@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CFAPDataModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="DbConcurencyUpdateOptions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="ClientPriority" />
+      <xs:enumeration value="DatabasePriority" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DbConcurencyUpdateOptions" nillable="true" type="tns:DbConcurencyUpdateOptions" />
+</xs:schema>

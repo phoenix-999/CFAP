@@ -13,6 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTe
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFAP", "CFAP\CFAP.csproj", "{5AB6B6F8-A454-49F7-B249-D0B21743C826}"
+	ProjectSection(ProjectDependencies) = postProject
+		{843B8625-833A-435A-9EFD-779B7FE839D7} = {843B8625-833A-435A-9EFD-779B7FE839D7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,8 +69,15 @@
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Connected Services\DataProviderClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionsHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -78,6 +87,52 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Accountable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.BudgetItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Project.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Rate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Summary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.UserGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\DataProvider.wsdl" />
+    <None Include="Connected Services\DataProviderClient\mex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DataProviderClient\mex7.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +148,22 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DataProviderClient\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DataProviderClient\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DataProviderClient\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DataProviderClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
