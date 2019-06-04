@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using CFAP.DataProviderClient;
+using System.Collections.Specialized;
+using Telerik.WinControls.UI;
 
 namespace CFAP
 {
@@ -32,7 +34,12 @@ namespace CFAP
         {
             this.radGridView.DataSource = this.Users;
 
+            InitializeColumns();
+            InitializeRelations();
+        }
 
+        void InitializeColumns()
+        {
             this.radGridView.Columns["Password"].IsVisible = false;
             this.radGridView.Columns["UserGroups"].IsVisible = false;
 
@@ -44,8 +51,28 @@ namespace CFAP
             this.radGridView.Columns["IsAdmin"].HeaderText = "Администратор";
 
             this.radGridView.Columns["UserName"].HeaderText = "Имя пользователя";
+        }
 
-            
+        void InitializeRelations()
+        {
+
+
+            foreach (var r in radGridView.Relations)
+            {
+                if (r.ChildTemplate.HierarchyLevel > 1)
+                    break;
+
+                r.ChildTemplate.Caption = "Группы пользователя";
+                r.ChildTemplate.AllowEditRow = false;
+                r.ChildTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+
+                r.ChildTemplate.Columns["Accountables"].IsVisible = false;
+                r.ChildTemplate.Columns["Projects"].IsVisible = false;
+                r.ChildTemplate.Columns["BudgetItems"].IsVisible = false;
+
+                r.ChildTemplate.Columns["GroupName"].HeaderText = "Наименование группы";
+                r.ChildTemplate.Columns["CanReadAllData"].HeaderText = "Доступ ко всем данным";
+            }
         }
 
     }
