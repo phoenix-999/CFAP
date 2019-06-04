@@ -35,7 +35,8 @@ namespace CFAP
             {
                 return;
             }
-            MessageBox.Show(string.Format("Аутентификация выполнена для пользователя {0}", BusinessLogicEvents.User.UserName));
+            new MainForm().Show();
+            this.Hide();
         }
     }
 }
