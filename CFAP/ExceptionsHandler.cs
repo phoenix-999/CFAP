@@ -41,5 +41,10 @@ namespace CFAP
         {
             MessageBox.Show(ex.Message, "Ошибка связи с сервером", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static void NoRightsToChangeDataExceptionHandler(FaultException<NoRightsToChangeDataException> ex)
+        {
+            MessageBox.Show(ex.Message, "Ошибка в процессе изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

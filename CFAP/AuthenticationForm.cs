@@ -11,16 +11,16 @@ namespace CFAP
 {
     public partial class AuthenticationForm : Telerik.WinControls.UI.RadForm
     {
-        BusinessLogicEvents businessLogicEvents;
+        CFAPBusinessLogic businessLogic;
         public AuthenticationForm()
         {
             InitializeComponent();
-            businessLogicEvents = new BusinessLogicEvents();
+            businessLogic = new CFAPBusinessLogic();
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)
         {
-            this.radDropDownList_Logins.DataSource = businessLogicEvents.GetLogins();
+            this.radDropDownList_Logins.DataSource = businessLogic.GetLogins();
         }
 
         private void radButton_Cancel_Click(object sender, EventArgs e)
@@ -30,8 +30,8 @@ namespace CFAP
 
         private void radButton_Ok_Click(object sender, EventArgs e)
         {
-            businessLogicEvents.Authenticate(radDropDownList_Logins.SelectedItem.Text, radTextBox_Password.Text);
-            if (BusinessLogicEvents.User == null)
+            businessLogic.Authenticate(radDropDownList_Logins.SelectedItem.Text, radTextBox_Password.Text);
+            if (CFAPBusinessLogic.User == null)
             {
                 return;
             }
