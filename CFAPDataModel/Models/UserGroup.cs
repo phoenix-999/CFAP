@@ -37,5 +37,10 @@ namespace CFAPDataModel.Models
 
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }
+
+        public override string ToString()
+        {
+            return this.GroupName;
+        }
     }
 }

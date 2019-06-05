@@ -30,16 +30,16 @@
         {
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
+            this.radButton_AddItem = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Grid = new Telerik.WinControls.UI.RadPanel();
             this.radGridView = new Telerik.WinControls.UI.RadGridView();
-            this.radButton_AddItem = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Grid)).BeginInit();
             this.radPanel_Grid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,17 @@
             this.radPanel_Header.Name = "radPanel_Header";
             this.radPanel_Header.Size = new System.Drawing.Size(753, 29);
             this.radPanel_Header.TabIndex = 1;
+            // 
+            // radButton_AddItem
+            // 
+            this.radButton_AddItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_AddItem.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radButton_AddItem.Location = new System.Drawing.Point(0, 0);
+            this.radButton_AddItem.Name = "radButton_AddItem";
+            this.radButton_AddItem.Size = new System.Drawing.Size(110, 29);
+            this.radButton_AddItem.TabIndex = 0;
+            this.radButton_AddItem.Text = "Добавить";
+            this.radButton_AddItem.Click += new System.EventHandler(this.radButton_AddItem_Click);
             // 
             // radPanel_Grid
             // 
@@ -84,16 +95,7 @@
             this.radGridView.ShowChildViewCaptions = true;
             this.radGridView.Size = new System.Drawing.Size(753, 730);
             this.radGridView.TabIndex = 1;
-            // 
-            // radButton_AddItem
-            // 
-            this.radButton_AddItem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton_AddItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radButton_AddItem.Location = new System.Drawing.Point(0, 0);
-            this.radButton_AddItem.Name = "radButton_AddItem";
-            this.radButton_AddItem.Size = new System.Drawing.Size(110, 29);
-            this.radButton_AddItem.TabIndex = 0;
-            this.radButton_AddItem.Text = "Добавить";
+            this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
             // 
             // UsersForm
             // 
@@ -111,11 +113,11 @@
             this.Text = "Пользователи";
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Grid)).EndInit();
             this.radPanel_Grid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

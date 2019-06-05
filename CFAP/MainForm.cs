@@ -39,10 +39,6 @@ namespace CFAP
             {
                 this.radMenuItem_Users.Visibility = ElementVisibility.Hidden;
             }
-            else
-            {
-                businessLogic.LoadUsers();
-            }
 
             if (CFAPBusinessLogic.User.IsAdmin == false)
             {
@@ -60,8 +56,10 @@ namespace CFAP
         private void radMenuItem_Users_Click(object sender, EventArgs e)
         {
             if (CFAPBusinessLogic.UsersData == null)
+            {
+                MessageBox.Show("Данные о пользователях не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
+            }
             new UsersForm().Show();
         }
     }

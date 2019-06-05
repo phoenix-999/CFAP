@@ -17,13 +17,7 @@ namespace CFAP
         BindingList<User> Users { get; set; }
         public UsersForm()
         {
-            InitializeComponent();
-
-            if (CFAPBusinessLogic.UsersData == null)
-            {
-                MessageBox.Show("Данные о пользователях не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            InitializeComponent();          
 
             this.Users = new BindingList<User>(CFAPBusinessLogic.UsersData);
 
@@ -72,6 +66,20 @@ namespace CFAP
                 if (r.ChildTemplate.Columns["CanReadAllData"] != null)
                     r.ChildTemplate.Columns["CanReadAllData"].HeaderText = "Доступ ко всем данным";
             }
-        }           
+        }
+
+        private void radButton_AddItem_Click(object sender, EventArgs e)
+        {
+            new ChangeUserDataForm(new User(), ChangeDataOptions.AddNew).ShowDialog();
+        }
+
+        private void radGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Row.DataBoundItem is User)
+            {
+                User userToChange = (User)e.Row.DataBoundItem;
+                new ChangeUserDataForm(userToChange, ChangeDataOptions.ChangeData).ShowDialog();
+            }
+        }
     }
 }

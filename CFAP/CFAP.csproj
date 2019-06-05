@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,7 +72,15 @@
     <Compile Include="AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeDataOptions.cs" />
+    <Compile Include="ChangeUserDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeUserDataForm.Designer.cs">
+      <DependentUpon>ChangeUserDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExceptionsHandlerUI.cs" />
+    <Compile Include="UserGroup.cs" />
     <Compile Include="UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +104,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChangeUserDataForm.resx">
+      <DependentUpon>ChangeUserDataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
