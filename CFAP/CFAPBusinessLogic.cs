@@ -976,5 +976,48 @@ namespace CFAP
                 ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
         }
+
+        public void ChangeReadOnlySummary(bool onOff, Filter filter)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        DataProviderProxy.ChangeSummaryReadOnlyStatus(onOff, filter, CFAPBusinessLogic.User);
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<NoRightsToChangeDataException> fault)
+                    {
+                        ExceptionsHandler.NoRightsToChangeDataExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+        }
     }
 }

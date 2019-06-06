@@ -30,6 +30,9 @@
         {
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radPanel_ChangeReadOnly = new Telerik.WinControls.UI.RadPanel();
+            this.radCheckBox_ReadOnly = new Telerik.WinControls.UI.RadCheckBox();
+            this.radButton_AcceptReadOnly = new Telerik.WinControls.UI.RadButton();
             this.radCheckedDropDownList_BudgetItems = new Telerik.WinControls.UI.RadCheckedDropDownList();
             this.radCheckedDropDownList_Accountables = new Telerik.WinControls.UI.RadCheckedDropDownList();
             this.radCheckedDropDownList_Projects = new Telerik.WinControls.UI.RadCheckedDropDownList();
@@ -45,6 +48,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel_ChangeReadOnly)).BeginInit();
+            this.radPanel_ChangeReadOnly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).BeginInit();
+            this.radCheckBox_ReadOnly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_AcceptReadOnly)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_BudgetItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Accountables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Projects)).BeginInit();
@@ -74,6 +82,7 @@
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.radPanel_ChangeReadOnly);
             this.radGroupBox2.Controls.Add(this.radCheckedDropDownList_BudgetItems);
             this.radGroupBox2.Controls.Add(this.radCheckedDropDownList_Accountables);
             this.radGroupBox2.Controls.Add(this.radCheckedDropDownList_Projects);
@@ -92,6 +101,37 @@
             this.radGroupBox2.Size = new System.Drawing.Size(724, 153);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "Настройки фильтра получения данных";
+            // 
+            // radPanel_ChangeReadOnly
+            // 
+            this.radPanel_ChangeReadOnly.Controls.Add(this.radCheckBox_ReadOnly);
+            this.radPanel_ChangeReadOnly.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radPanel_ChangeReadOnly.Location = new System.Drawing.Point(2, 116);
+            this.radPanel_ChangeReadOnly.Name = "radPanel_ChangeReadOnly";
+            this.radPanel_ChangeReadOnly.Size = new System.Drawing.Size(720, 35);
+            this.radPanel_ChangeReadOnly.TabIndex = 10;
+            // 
+            // radCheckBox_ReadOnly
+            // 
+            this.radCheckBox_ReadOnly.AutoSize = false;
+            this.radCheckBox_ReadOnly.Controls.Add(this.radButton_AcceptReadOnly);
+            this.radCheckBox_ReadOnly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radCheckBox_ReadOnly.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radCheckBox_ReadOnly.Location = new System.Drawing.Point(0, 0);
+            this.radCheckBox_ReadOnly.Name = "radCheckBox_ReadOnly";
+            this.radCheckBox_ReadOnly.Size = new System.Drawing.Size(720, 35);
+            this.radCheckBox_ReadOnly.TabIndex = 1;
+            this.radCheckBox_ReadOnly.Text = "Изменить значение \"Только для чтения\" по выбранным фильтрам";
+            // 
+            // radButton_AcceptReadOnly
+            // 
+            this.radButton_AcceptReadOnly.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radButton_AcceptReadOnly.Location = new System.Drawing.Point(461, 0);
+            this.radButton_AcceptReadOnly.Name = "radButton_AcceptReadOnly";
+            this.radButton_AcceptReadOnly.Size = new System.Drawing.Size(259, 35);
+            this.radButton_AcceptReadOnly.TabIndex = 0;
+            this.radButton_AcceptReadOnly.Text = "Применить изменения \"Только для чтения\"";
+            this.radButton_AcceptReadOnly.Click += new System.EventHandler(this.radButton_AcceptReadOnly_Click);
             // 
             // radCheckedDropDownList_BudgetItems
             // 
@@ -218,6 +258,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel_ChangeReadOnly)).EndInit();
+            this.radPanel_ChangeReadOnly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).EndInit();
+            this.radCheckBox_ReadOnly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_AcceptReadOnly)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_BudgetItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Accountables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Projects)).EndInit();
@@ -251,5 +296,8 @@
         private Telerik.WinControls.UI.RadCheckedDropDownList radCheckedDropDownList_BudgetItems;
         private Telerik.WinControls.UI.RadCheckedDropDownList radCheckedDropDownList_Accountables;
         private Telerik.WinControls.UI.RadCheckedDropDownList radCheckedDropDownList_Projects;
+        private Telerik.WinControls.UI.RadPanel radPanel_ChangeReadOnly;
+        private Telerik.WinControls.UI.RadCheckBox radCheckBox_ReadOnly;
+        private Telerik.WinControls.UI.RadButton radButton_AcceptReadOnly;
     }
 }

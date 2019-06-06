@@ -21,7 +21,14 @@ namespace CFAP
 
             this.filter = filter;
 
+            InitializeForm();
             InitializeData();
+        }
+
+        void InitializeForm()
+        {
+            if (CFAPBusinessLogic.User.IsAdmin == false)
+                this.radPanel_ChangeReadOnly.Visible = false;
         }
 
         void InitializeData()
@@ -114,6 +121,13 @@ namespace CFAP
 
         private void radButton_Accept_Click(object sender, EventArgs e)
         {
+            AcceptChanges();
+
+            this.Close();
+        }
+
+        private void AcceptChanges()
+        {
             filter.DateStart = this.radDateTimePicker_DateStart.Value;
             filter.DateEnd = this.radDateTimePicker_DateEnd.Value;
 
@@ -131,9 +145,18 @@ namespace CFAP
                 filter.Projects = (from p in radCheckedDropDownList_Projects.CheckedItems select (Project)p.DataBoundItem).ToArray();
             else
                 filter.Projects = null;
-
-            this.Close();
         }
 
+        private void radButton_AcceptReadOnly_Click(object sender, EventArgs e)
+        {
+            AcceptChanges();
+
+            bool onOff = this.radCheckBox_ReadOnly.Checked;
+
+            CFAPBusinessLogic businessLogic = new CFAPBusinessLogic(new ExceptionsHandlerUI());
+            businessLogic.ChangeReadOnlySummary(onOff, this.filter);
+
+            MessageBox.Show("Изменения будут видны при следующей загрузке данных");
+        }
     }
 }
