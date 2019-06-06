@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using CFAP.DataProviderClient;
+using System.Globalization;
 
 namespace CFAP
 {
@@ -14,6 +15,9 @@ namespace CFAP
     {
         CFAPBusinessLogic businessLogic;
 
+        public CFAP.DataProviderClient.Filter Filter { get; set; }
+
+        BindingList<Summary> Summaries;
         public MainForm()
         {
             InitializeComponent();
@@ -26,6 +30,51 @@ namespace CFAP
             businessLogic = new CFAPBusinessLogic(new ExceptionsHandlerUI());
 
             InitializeRadMenu();
+
+            InitializeGrid();
+        }
+
+        private void InitializeGrid()
+        {
+            if (this.Summaries == null)
+                return;
+
+            this.radGridView.DataSource = this.Summaries;
+
+            this.radGridView.Columns["Accountable"].HeaderText = "Подотчетник";
+
+            this.radGridView.Columns["ActionDate"].IsVisible = false;
+
+            this.radGridView.Columns["BudgetItem"].HeaderText = "Статья";
+
+            this.radGridView.Columns["CashFlowType"].HeaderText = "Приход/Расход";
+
+            this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
+
+            this.radGridView.Columns["Description"].HeaderText = "Расшифровка";
+
+            this.radGridView.Columns["Id"].IsVisible = false;
+
+            this.radGridView.Columns["Project"].HeaderText = "Проект";
+
+            this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтение";
+
+            this.radGridView.Columns["RowVersion"].IsVisible = false;
+
+            this.radGridView.Columns["SummaUAH"].HeaderText = "Сумма, грн.";
+            this.radGridView.Columns["SummaUAH"].FormatString = "{0:C}";
+            this.radGridView.Columns["SummaUSD"].FormatInfo = CultureInfo.CreateSpecificCulture("uk-UA");
+
+            this.radGridView.Columns["SummaUSD"].HeaderText = "Сумма, $";
+            this.radGridView.Columns["SummaUSD"].FormatString = "{0:C}";
+            this.radGridView.Columns["SummaUSD"].FormatInfo = CultureInfo.CreateSpecificCulture("en-US");
+
+            this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
+            this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
+
+            this.radGridView.Columns["UserGroups"].IsVisible = false;
+
+            this.radGridView.Columns["UserLastChanged"].HeaderText = "Изменил";
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -113,6 +162,21 @@ namespace CFAP
                 return;
             }
             new UserGroupsForm().Show();
+        }
+
+        private void radButton_GetData_Click(object sender, EventArgs e)
+        {
+            this.businessLogic.LoadSummaries(this.Filter);
+            this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
+            InitializeGrid();
+        }
+
+        private void radMenuItem_Settings_Click(object sender, EventArgs e)
+        {
+            if (this.Filter == null)
+                this.Filter = new DataProviderClient.Filter();
+
+            new SettingsForm(this.Filter).ShowDialog();            
         }
     }
 }

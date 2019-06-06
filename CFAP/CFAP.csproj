@@ -65,6 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accountables\Accountable.cs" />
+    <Compile Include="BudgetItems\BudgetItem.cs" />
     <Compile Include="BudgetItems\BudgetItemsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +99,7 @@
     <Compile Include="Projects\ChangeProjectForm.Designer.cs">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\ProjectsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +118,12 @@
     <Compile Include="Rates\RatesForm.Designer.cs">
       <DependentUpon>RatesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersData\ChangeUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +131,7 @@
       <DependentUpon>ChangeUserDataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ExceptionsHandlers\ExceptionsHandlerUI.cs" />
+    <Compile Include="UsersData\User.cs" />
     <Compile Include="UsersData\UserGroup.cs" />
     <Compile Include="Accountables\AccountablesForm.cs">
       <SubType>Form</SubType>
@@ -184,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rates\RatesForm.resx">
       <DependentUpon>RatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersData\ChangeUserDataForm.resx">
       <DependentUpon>ChangeUserDataForm.cs</DependentUpon>

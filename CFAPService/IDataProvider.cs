@@ -79,6 +79,7 @@ namespace CFAPService
         Summary AddSummary(Summary summary, User user);
 
         [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         HashSet<Summary> GetSummary(User user, Filter filter);
 

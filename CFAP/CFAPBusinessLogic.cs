@@ -23,7 +23,8 @@ namespace CFAP
         public static List<BudgetItem> BudgetItems { get; private set; }
         public static List<Project> Projects { get; private set; }
         public static List<Rate> Rates { get; private set; }
-
+        public static List<Summary> Summaries { get; private set; }
+        public static Filter CurrentFilter { get; set; }
 
         public CFAPBusinessLogic(ExceptionsHandler exceptionsHandler)
         {
@@ -932,6 +933,35 @@ namespace CFAP
             catch (FaultException<ConcurrencyExceptionOfRatedxjYbbDT> fault)
             {
                 ExceptionsHandler.ConcurrencyExceptionRatesHandler(fault);
+            }
+            catch (FaultException fault)
+            {
+                ExceptionsHandler.FaultExceptionHandler(fault);
+            }
+            catch (CommunicationException ex)
+            {
+                ExceptionsHandler.CommunicationExceptionHandler(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+            }
+        }
+
+        public void LoadSummaries(Filter filter)
+        {
+            try
+            {
+                CFAPBusinessLogic.CurrentFilter = filter;
+                CFAPBusinessLogic.Summaries = DataProviderProxy.GetSummary(CFAPBusinessLogic.User, filter).ToList();
+            }
+            catch (FaultException<AuthenticateFaultException> fault)
+            {
+                ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+            }
+            catch (FaultException<DbException> fault)
+            {
+                ExceptionsHandler.DbExceptionHandler(fault);
             }
             catch (FaultException fault)
             {

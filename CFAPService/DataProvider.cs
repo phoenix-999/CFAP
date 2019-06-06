@@ -880,6 +880,7 @@ namespace CFAPService
 
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
+            AuthenticateUser(user);
             HashSet<Summary> result = new HashSet<Summary>();
 
             try
