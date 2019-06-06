@@ -98,7 +98,11 @@ namespace CFAP
             ((RadTextBox)sender).BackColor = Color.White;
         }
 
+        private void radCheckBox_ReadOnly_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Для установки значения \"Только чтения\" обратитесь к администратору.");
+        }
 
-        
+
     }
 }

@@ -12,16 +12,16 @@ using System.Reflection;
 
 namespace CFAP
 {
-    public partial class ChangeAccountableForm : Telerik.WinControls.UI.RadForm
+    public partial class ChangeProjectForm : Telerik.WinControls.UI.RadForm
     {
-        Accountable accountable;
+        Project project;
         ChangeDataOptions changeDataOption;
         CFAPBusinessLogic businessLogic;
-        public ChangeAccountableForm(Accountable accountable, ChangeDataOptions changeDataOption)
+        public ChangeProjectForm(Project project, ChangeDataOptions changeDataOption)
         {
             InitializeComponent();
 
-            this.accountable = accountable;
+            this.project = project;
             this.changeDataOption = changeDataOption;
 
             InitializeFileds();
@@ -45,19 +45,19 @@ namespace CFAP
 
         void InitializeFileds()
         {
-            if (accountable.AccountableName != null)
-                this.radTextBox_AccountableName.Text = accountable.AccountableName;
+            if (project.ProjectName != null)
+                this.radTextBox_ProjectName.Text = project.ProjectName;
 
-            this.radCheckBox_ReadOnly.Checked = accountable.ReadOnly;
+            this.radCheckBox_ReadOnly.Checked = project.ReadOnly;
         }
 
         bool ValidateFormData()
         {
             bool result = true;
 
-            if (this.radTextBox_AccountableName.Text == null || this.radTextBox_AccountableName.Text.Length == 0)
+            if (this.radTextBox_ProjectName.Text == null || this.radTextBox_ProjectName.Text.Length == 0)
             {
-                this.radTextBox_AccountableName.BackColor = Color.Red;
+                this.radTextBox_ProjectName.BackColor = Color.Red;
                 result = false;
             }
 
@@ -70,7 +70,7 @@ namespace CFAP
 
             SetData();
 
-            businessLogic.AddAccountable(accountable);
+            businessLogic.AddProject(project);
 
             this.Close();
         }
@@ -82,15 +82,15 @@ namespace CFAP
 
             SetData();
 
-            businessLogic.UpdateAccountable(accountable);
+            businessLogic.UpdateProject(project);
 
             this.Close();
         }
 
         void SetData()
         {
-            accountable.AccountableName = this.radTextBox_AccountableName.Text;
-            accountable.ReadOnly = this.radCheckBox_ReadOnly.Checked;
+            project.ProjectName = this.radTextBox_ProjectName.Text;
+            project.ReadOnly = this.radCheckBox_ReadOnly.Checked;
         }
 
         private void radTextBox_Click(object sender, EventArgs e)
@@ -102,5 +102,7 @@ namespace CFAP
         {
             MessageBox.Show("Для установки значения \"Только чтения\" обратитесь к администратору.");
         }
+
+
     }
 }

@@ -108,6 +108,7 @@
             this.radCheckBox_ReadOnly.Size = new System.Drawing.Size(102, 18);
             this.radCheckBox_ReadOnly.TabIndex = 5;
             this.radCheckBox_ReadOnly.Text = "Только чтение";
+            this.radCheckBox_ReadOnly.Click += new System.EventHandler(this.radCheckBox_ReadOnly_Click);
             // 
             // radLabel1
             // 

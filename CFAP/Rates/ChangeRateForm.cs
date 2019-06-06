@@ -12,16 +12,16 @@ using System.Reflection;
 
 namespace CFAP
 {
-    public partial class ChangeAccountableForm : Telerik.WinControls.UI.RadForm
+    public partial class ChangeRateForm : Telerik.WinControls.UI.RadForm
     {
-        Accountable accountable;
+        Rate rate;
         ChangeDataOptions changeDataOption;
         CFAPBusinessLogic businessLogic;
-        public ChangeAccountableForm(Accountable accountable, ChangeDataOptions changeDataOption)
+        public ChangeRateForm(Rate rate, ChangeDataOptions changeDataOption)
         {
             InitializeComponent();
 
-            this.accountable = accountable;
+            this.rate = rate;
             this.changeDataOption = changeDataOption;
 
             InitializeFileds();
@@ -45,20 +45,31 @@ namespace CFAP
 
         void InitializeFileds()
         {
-            if (accountable.AccountableName != null)
-                this.radTextBox_AccountableName.Text = accountable.AccountableName;
+            this.radTextBox_RateUSD.Text = rate.RateUSD.ToString();
+            this.radDateTimePicker_DateRate.Value = rate.DateRate;
 
-            this.radCheckBox_ReadOnly.Checked = accountable.ReadOnly;
+            this.radCheckBox_ReadOnly.Checked = rate.ReadOnly;
         }
 
         bool ValidateFormData()
         {
             bool result = true;
 
-            if (this.radTextBox_AccountableName.Text == null || this.radTextBox_AccountableName.Text.Length == 0)
+            if (this.radTextBox_RateUSD.Text == null || this.radTextBox_RateUSD.Text.Length == 0)
             {
-                this.radTextBox_AccountableName.BackColor = Color.Red;
+                this.radTextBox_RateUSD.BackColor = Color.Red;
                 result = false;
+            }
+
+            try
+            {
+                double.Parse(this.radTextBox_RateUSD.Text);
+            }
+            catch (Exception)
+            {
+                result = false;
+                this.radTextBox_RateUSD.BackColor = Color.Red;
+                MessageBox.Show("Ошибка преобразования курса валют", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return result;
@@ -70,7 +81,7 @@ namespace CFAP
 
             SetData();
 
-            businessLogic.AddAccountable(accountable);
+            businessLogic.AddRate(rate);
 
             this.Close();
         }
@@ -82,15 +93,17 @@ namespace CFAP
 
             SetData();
 
-            businessLogic.UpdateAccountable(accountable);
+            businessLogic.UpdateRate(rate);
 
             this.Close();
         }
 
         void SetData()
         {
-            accountable.AccountableName = this.radTextBox_AccountableName.Text;
-            accountable.ReadOnly = this.radCheckBox_ReadOnly.Checked;
+            
+            rate.RateUSD = double.Parse(this.radTextBox_RateUSD.Text);
+            rate.DateRate = this.radDateTimePicker_DateRate.Value;
+            rate.ReadOnly = this.radCheckBox_ReadOnly.Checked;
         }
 
         private void radTextBox_Click(object sender, EventArgs e)
@@ -102,5 +115,7 @@ namespace CFAP
         {
             MessageBox.Show("Для установки значения \"Только чтения\" обратитесь к администратору.");
         }
+
+
     }
 }

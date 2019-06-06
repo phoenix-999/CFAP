@@ -34,6 +34,7 @@
             this.radMenuItem_Projects = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_BudgetItems = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_Accountables = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem_Rates = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +48,8 @@
             this.radMenuItem_Users,
             this.radMenuItem_Projects,
             this.radMenuItem_BudgetItems,
-            this.radMenuItem_Accountables});
+            this.radMenuItem_Accountables,
+            this.radMenuItem_Rates});
             this.radMenu.Location = new System.Drawing.Point(0, 0);
             this.radMenu.Name = "radMenu";
             this.radMenu.Size = new System.Drawing.Size(1139, 20);
@@ -69,6 +71,7 @@
             // 
             this.radMenuItem_Projects.Name = "radMenuItem_Projects";
             this.radMenuItem_Projects.Text = "Проекты";
+            this.radMenuItem_Projects.Click += new System.EventHandler(this.radMenuItem_Projects_Click);
             // 
             // radMenuItem_BudgetItems
             // 
@@ -81,6 +84,12 @@
             this.radMenuItem_Accountables.Name = "radMenuItem_Accountables";
             this.radMenuItem_Accountables.Text = "Подотчетники";
             this.radMenuItem_Accountables.Click += new System.EventHandler(this.radMenuItem_Accountables_Click);
+            // 
+            // radMenuItem_Rates
+            // 
+            this.radMenuItem_Rates.Name = "radMenuItem_Rates";
+            this.radMenuItem_Rates.Text = "Курсы валют";
+            this.radMenuItem_Rates.Click += new System.EventHandler(this.radMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -111,5 +120,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Projects;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_BudgetItems;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Accountables;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem_Rates;
     }
 }

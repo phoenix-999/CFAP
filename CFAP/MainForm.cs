@@ -45,6 +45,7 @@ namespace CFAP
                 this.radMenuItem_Accountables.Visibility = ElementVisibility.Hidden;
                 this.radMenuItem_BudgetItems.Visibility = ElementVisibility.Hidden;
                 this.radMenuItem_Projects.Visibility = ElementVisibility.Hidden;
+                this.radMenuItem_Rates.Visibility = ElementVisibility.Hidden;
             }
         }
 
@@ -81,6 +82,26 @@ namespace CFAP
                 return;
             }
             new BudgetItemsForm().Show();
+        }
+
+        private void radMenuItem_Projects_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.Projects == null)
+            {
+                MessageBox.Show("Данные о проектах не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            new ProjectsForm().Show();
+        }
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.Rates == null)
+            {
+                MessageBox.Show("Данные о курсах валют не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            new RatesForm().Show();
         }
     }
 }
