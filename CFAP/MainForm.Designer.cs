@@ -35,6 +35,7 @@
             this.radMenuItem_BudgetItems = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_Accountables = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_Rates = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem_UsersGroups = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,8 @@
             this.radMenuItem_Projects,
             this.radMenuItem_BudgetItems,
             this.radMenuItem_Accountables,
-            this.radMenuItem_Rates});
+            this.radMenuItem_Rates,
+            this.radMenuItem_UsersGroups});
             this.radMenu.Location = new System.Drawing.Point(0, 0);
             this.radMenu.Name = "radMenu";
             this.radMenu.Size = new System.Drawing.Size(1139, 20);
@@ -91,6 +93,12 @@
             this.radMenuItem_Rates.Text = "Курсы валют";
             this.radMenuItem_Rates.Click += new System.EventHandler(this.radMenuItem1_Click);
             // 
+            // radMenuItem_UsersGroups
+            // 
+            this.radMenuItem_UsersGroups.Name = "radMenuItem_UsersGroups";
+            this.radMenuItem_UsersGroups.Text = "Группы пользователей";
+            this.radMenuItem_UsersGroups.Click += new System.EventHandler(this.radMenuItem_UsersGroups_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,5 +129,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_BudgetItems;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Accountables;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Rates;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem_UsersGroups;
     }
 }

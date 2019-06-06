@@ -149,6 +149,101 @@ namespace CFAP
             }
         }
 
+        public void AddUserGroup(UserGroup newGroup)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        UserGroup addedUserGroup = DataProviderProxy.AddNewUserGroup(newGroup, CFAPBusinessLogic.User);
+                        CFAPBusinessLogic.UserGroups.Add(addedUserGroup);
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<NoRightsToChangeDataException> fault)
+                    {
+                        ExceptionsHandler.NoRightsToChangeDataExceptionHandler(fault);
+                    }
+                    catch (FaultException<DataNotValidException> fault)
+                    {
+                        ExceptionsHandler.DataNotValidExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+        }
+
+        public void UpdateUserGroup(UserGroup userGroupForUpdate)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        DataProviderProxy.UpdateUserGroup(userGroupForUpdate, CFAPBusinessLogic.User);
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<NoRightsToChangeDataException> fault)
+                    {
+                        ExceptionsHandler.NoRightsToChangeDataExceptionHandler(fault);
+                    }
+                    catch (FaultException<DataNotValidException> fault)
+                    {
+                        ExceptionsHandler.DataNotValidExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+        }
+
         public void LoadUsers()
         {
             try

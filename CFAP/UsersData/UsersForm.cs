@@ -71,6 +71,7 @@ namespace CFAP
         private void radButton_AddItem_Click(object sender, EventArgs e)
         {
             new ChangeUserDataForm(new User(), ChangeDataOptions.AddNew).ShowDialog();
+            this.Users.ResetBindings();
         }
 
         private void radGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -79,6 +80,7 @@ namespace CFAP
             {
                 User userToChange = (User)e.Row.DataBoundItem;
                 new ChangeUserDataForm(userToChange, ChangeDataOptions.ChangeData).ShowDialog();
+                this.Users.ResetBindings();
             }
         }
     }

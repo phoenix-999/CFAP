@@ -135,6 +135,18 @@
     <Compile Include="UsersData\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersGroups\ChangeUserGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersGroups\ChangeUserGroupForm.Designer.cs">
+      <DependentUpon>ChangeUserGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersGroups\UserGroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersGroups\UserGroupsForm.Designer.cs">
+      <DependentUpon>UserGroupsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsersData\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersGroups\ChangeUserGroupForm.resx">
+      <DependentUpon>ChangeUserGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersGroups\UserGroupsForm.resx">
+      <DependentUpon>UserGroupsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Accountable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

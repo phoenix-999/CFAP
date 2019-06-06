@@ -46,6 +46,7 @@ namespace CFAP
                 this.radMenuItem_BudgetItems.Visibility = ElementVisibility.Hidden;
                 this.radMenuItem_Projects.Visibility = ElementVisibility.Hidden;
                 this.radMenuItem_Rates.Visibility = ElementVisibility.Hidden;
+                this.radMenuItem_UsersGroups.Visibility = ElementVisibility.Hidden;
             }
         }
 
@@ -102,6 +103,16 @@ namespace CFAP
                 return;
             }
             new RatesForm().Show();
+        }
+
+        private void radMenuItem_UsersGroups_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.UserGroups == null)
+            {
+                MessageBox.Show("Данные о группах пользователей не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            new UserGroupsForm().Show();
         }
     }
 }
