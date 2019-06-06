@@ -32,5 +32,17 @@ namespace CFAP
         public abstract void UserHasNotGroupsExceptionHandler(FaultException<UserHasNotGroupsException> fault);
 
         public abstract void TransactionAbortedExceptionHandler(TransactionAbortedException ex);
+
+        public abstract void TryChangeReadOnlyFieldExceptionHandler(FaultException<TryChangeReadOnlyFiledException> fault);
+
+        public abstract void ConcurrencyExceptionAccountablesHandler(FaultException<ConcurrencyExceptionOfAccountabledxjYbbDT> fault);
+
+        public abstract void ConcurrencyExceptionBudgetItemsHandler(FaultException<ConcurrencyExceptionOfBudgetItemdxjYbbDT> fault);
+
+        public abstract void ConcurrencyExceptionProjectsHandler(FaultException<ConcurrencyExceptionOfProjectdxjYbbDT> fault);
+
+        public abstract void ConcurrencyExceptionRatesHandler(FaultException<ConcurrencyExceptionOfRatedxjYbbDT> fault);
+
+        public abstract void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault);
     }
 }

@@ -76,6 +76,10 @@ namespace CFAP
                 UserGroup group = item.DataBoundItem as UserGroup;
                 if (group == null)
                     continue;
+
+                if (changeDataOption == ChangeDataOptions.AddNew)
+                    continue;
+
                 List<UserGroup> userGroups = new List<UserGroup>(user.UserGroups);
                 bool userHasGroup = userGroups.Find(g => g.GroupName == group.GroupName) != null;
                 if (!userHasGroup)

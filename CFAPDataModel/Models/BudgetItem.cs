@@ -27,6 +27,7 @@ namespace CFAPDataModel.Models
         [Index(IsUnique = true)]
         public string ItemName { get; set; }
 
+        [DataMember]
         [Timestamp]
         public byte[] RowVersion { get; set; }
 

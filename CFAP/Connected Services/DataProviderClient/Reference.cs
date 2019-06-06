@@ -792,6 +792,9 @@ namespace CFAP.DataProviderClient {
         private bool ReadOnlyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -844,6 +847,19 @@ namespace CFAP.DataProviderClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderClient.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -883,6 +899,9 @@ namespace CFAP.DataProviderClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
@@ -937,6 +956,19 @@ namespace CFAP.DataProviderClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderClient.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -976,6 +1008,9 @@ namespace CFAP.DataProviderClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
@@ -1025,6 +1060,19 @@ namespace CFAP.DataProviderClient {
                 if ((this.ReadOnlyField.Equals(value) != true)) {
                     this.ReadOnlyField = value;
                     this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
                 }
             }
         }

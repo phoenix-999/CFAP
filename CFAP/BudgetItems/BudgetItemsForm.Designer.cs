@@ -1,6 +1,6 @@
 ﻿namespace CFAP
 {
-    partial class UsersForm
+    partial class BudgetItemsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -75,7 +75,6 @@
             // 
             // radGridView
             // 
-            this.radGridView.AutoGenerateHierarchy = true;
             this.radGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView.Location = new System.Drawing.Point(0, 0);
             this.radGridView.Margin = new System.Windows.Forms.Padding(10);
@@ -97,20 +96,20 @@
             this.radGridView.TabIndex = 1;
             this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
             // 
-            // UsersForm
+            // BudgetItemsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 759);
             this.Controls.Add(this.radPanel_Grid);
             this.Controls.Add(this.radPanel_Header);
-            this.Name = "UsersForm";
+            this.Name = "BudgetItemsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Пользователи";
+            this.Text = "Бюджетные статьи";
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).EndInit();

@@ -25,6 +25,7 @@ namespace CFAPDataModel.Models
         [Index(IsUnique = true)]
         public string ProjectName { get; set; }
 
+        [DataMember]
         [Timestamp]
         public byte[] RowVersion { get; set; }
 

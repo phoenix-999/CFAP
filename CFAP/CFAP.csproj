@@ -65,6 +65,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgetItems\BudgetItemsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BudgetItems\BudgetItemsForm.Designer.cs">
+      <DependentUpon>BudgetItemsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetItems\ChangeBudgetItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BudgetItems\ChangeBudgetItemForm.Designer.cs">
+      <DependentUpon>ChangeBudgetItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CFAPBusinessLogic.cs" />
     <Compile Include="AuthenticationForm.cs">
       <SubType>Form</SubType>
@@ -73,18 +85,30 @@
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChangeDataOptions.cs" />
-    <Compile Include="ChangeUserDataForm.cs">
+    <Compile Include="Accountables\ChangeAccountableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeUserDataForm.Designer.cs">
+    <Compile Include="Accountables\ChangeAccountableForm.Designer.cs">
+      <DependentUpon>ChangeAccountableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersData\ChangeUserDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersData\ChangeUserDataForm.Designer.cs">
       <DependentUpon>ChangeUserDataForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExceptionsHandlerUI.cs" />
-    <Compile Include="UserGroup.cs" />
-    <Compile Include="UsersForm.cs">
+    <Compile Include="ExceptionsHandlers\ExceptionsHandlerUI.cs" />
+    <Compile Include="UsersData\UserGroup.cs" />
+    <Compile Include="Accountables\AccountablesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsersForm.Designer.cs">
+    <Compile Include="Accountables\AccountablesForm.Designer.cs">
+      <DependentUpon>AccountablesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersData\UsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersData\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AuthenticationForm.resx">
@@ -95,7 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ExceptionsHandler.cs" />
+    <Compile Include="ExceptionsHandlers\ExceptionsHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,7 +128,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChangeUserDataForm.resx">
+    <EmbeddedResource Include="Accountables\ChangeAccountableForm.resx">
+      <DependentUpon>ChangeAccountableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BudgetItems\BudgetItemsForm.resx">
+      <DependentUpon>BudgetItemsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BudgetItems\ChangeBudgetItemForm.resx">
+      <DependentUpon>ChangeBudgetItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersData\ChangeUserDataForm.resx">
       <DependentUpon>ChangeUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -120,7 +153,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UsersForm.resx">
+    <EmbeddedResource Include="Accountables\AccountablesForm.resx">
+      <DependentUpon>AccountablesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersData\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Accountable.datasource">

@@ -74,11 +74,13 @@
             // 
             this.radMenuItem_BudgetItems.Name = "radMenuItem_BudgetItems";
             this.radMenuItem_BudgetItems.Text = "Бюджетные статьи";
+            this.radMenuItem_BudgetItems.Click += new System.EventHandler(this.radMenuItem_BudgetItems_Click);
             // 
             // radMenuItem_Accountables
             // 
             this.radMenuItem_Accountables.Name = "radMenuItem_Accountables";
             this.radMenuItem_Accountables.Text = "Подотчетники";
+            this.radMenuItem_Accountables.Click += new System.EventHandler(this.radMenuItem_Accountables_Click);
             // 
             // MainForm
             // 

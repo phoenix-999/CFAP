@@ -62,5 +62,25 @@ namespace CFAP
             }
             new UsersForm().Show();
         }
+
+        private void radMenuItem_Accountables_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.Accountables == null)
+            {
+                MessageBox.Show("Данные о подотчетных лицах не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            new AccountableForm().Show();
+        }
+
+        private void radMenuItem_BudgetItems_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.BudgetItems == null)
+            {
+                MessageBox.Show("Данные о бюджетных статьях не были загружены.", "Ошибка получения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            new BudgetItemsForm().Show();
+        }
     }
 }
