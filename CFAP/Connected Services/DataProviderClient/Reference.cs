@@ -1891,6 +1891,7 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary> AddSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         CFAP.DataProviderClient.Summary[] GetSummary(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
         

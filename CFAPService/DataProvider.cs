@@ -288,6 +288,8 @@ namespace CFAPService
                 summary.UserLastChanged = user;
             }
 
+            summary.SetAutoValues();
+
             Summary result = null;
 
             using (CFAPContext ctx = new CFAPContext())
@@ -330,6 +332,7 @@ namespace CFAPService
             {
                 summary.UserLastChanged = user;
             }
+            summary.SetAutoValues();
 
             Summary result = null;
 

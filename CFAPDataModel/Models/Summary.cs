@@ -19,14 +19,13 @@ namespace CFAPDataModel.Models
         
         public Summary()
         {
-            this.UserGroups = new HashSet<UserGroup>();
-            this.SetDefaultValues();   
+            this.UserGroups = new HashSet<UserGroup>();  
         }
 
 
-        private void SetDefaultValues()
+        public void SetAutoValues()
         {
-            this.ActionDate = DateTime.Now; 
+             this.ActionDate = DateTime.Now; 
         }
 
         //public void SetSummaDollar()
@@ -132,6 +131,7 @@ namespace CFAPDataModel.Models
         public void SetRelationships(CFAPContext ctx)
         {
             ctx.Configuration.ProxyCreationEnabled = false;
+
 
             if (this.Project != null && this.Project.Id != default(int))
             {
