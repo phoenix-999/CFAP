@@ -57,11 +57,12 @@ namespace CFAPService.Faults
 
                 var findedSummary = (from s in ctx.Summaries where s.Id == dbSummary.Id select s).First();
 
-                findedSummary.UserGroups = currentSummary.UserGroups;
-
                 try
                 {
                     Summary.LoadRelationships(ctx);
+
+                    //Присовение групп необходимо делать после загрузки связей по причине исключения метода Load для коллекции ассоциаций.
+                    findedSummary.UserGroups = currentSummary.UserGroups;
 
                     this.DatabaseValue = (findedSummary as T);
                 }
