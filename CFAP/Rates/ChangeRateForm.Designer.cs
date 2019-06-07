@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.radPanel = new Telerik.WinControls.UI.RadPanel();
+            this.radDateTimePicker_DateRate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radButton_UpdateAccountable = new Telerik.WinControls.UI.RadButton();
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radButton_AddAccountable = new Telerik.WinControls.UI.RadButton();
             this.radTextBox_RateUSD = new Telerik.WinControls.UI.RadTextBox();
             this.radCheckBox_ReadOnly = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radDateTimePicker_DateRate = new Telerik.WinControls.UI.RadDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
             this.radPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_RateUSD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,26 @@
             this.radPanel.Name = "radPanel";
             this.radPanel.Size = new System.Drawing.Size(391, 294);
             this.radPanel.TabIndex = 0;
+            // 
+            // radDateTimePicker_DateRate
+            // 
+            this.radDateTimePicker_DateRate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.radDateTimePicker_DateRate.Location = new System.Drawing.Point(178, 81);
+            this.radDateTimePicker_DateRate.Name = "radDateTimePicker_DateRate";
+            this.radDateTimePicker_DateRate.Size = new System.Drawing.Size(164, 20);
+            this.radDateTimePicker_DateRate.TabIndex = 14;
+            this.radDateTimePicker_DateRate.TabStop = false;
+            this.radDateTimePicker_DateRate.Text = "06.06.2019";
+            this.radDateTimePicker_DateRate.Value = new System.DateTime(2019, 6, 6, 0, 0, 0, 0);
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel2.Location = new System.Drawing.Point(13, 84);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(86, 18);
+            this.radLabel2.TabIndex = 13;
+            this.radLabel2.Text = "Курс на месяц";
             // 
             // radButton_UpdateAccountable
             // 
@@ -125,26 +145,6 @@
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Курс долара";
             // 
-            // radLabel2
-            // 
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radLabel2.Location = new System.Drawing.Point(13, 84);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(66, 18);
-            this.radLabel2.TabIndex = 13;
-            this.radLabel2.Text = "Дата курса";
-            // 
-            // radDateTimePicker_DateRate
-            // 
-            this.radDateTimePicker_DateRate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.radDateTimePicker_DateRate.Location = new System.Drawing.Point(178, 81);
-            this.radDateTimePicker_DateRate.Name = "radDateTimePicker_DateRate";
-            this.radDateTimePicker_DateRate.Size = new System.Drawing.Size(164, 20);
-            this.radDateTimePicker_DateRate.TabIndex = 14;
-            this.radDateTimePicker_DateRate.TabStop = false;
-            this.radDateTimePicker_DateRate.Text = "06.06.2019";
-            this.radDateTimePicker_DateRate.Value = new System.DateTime(2019, 6, 6, 0, 0, 0, 0);
-            // 
             // ChangeRateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,14 +162,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).EndInit();
             this.radPanel.ResumeLayout(false);
             this.radPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_RateUSD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

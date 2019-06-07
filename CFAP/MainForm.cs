@@ -42,10 +42,13 @@ namespace CFAP
             this.radGridView.DataSource = this.Summaries;
 
             this.radGridView.Columns["Accountable"].HeaderText = "Подотчетник";
+            //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.
+            this.radGridView.Columns["Accountable"].FieldName = "Accountable.AccountableName";
 
             this.radGridView.Columns["ActionDate"].IsVisible = false;
 
             this.radGridView.Columns["BudgetItem"].HeaderText = "Статья";
+            this.radGridView.Columns["BudgetItem"].FieldName = "BudgetItem.ItemName";
 
             this.radGridView.Columns["CashFlowType"].HeaderText = "Приход/Расход";
 
@@ -56,6 +59,10 @@ namespace CFAP
             this.radGridView.Columns["Id"].IsVisible = false;
 
             this.radGridView.Columns["Project"].HeaderText = "Проект";
+            
+            this.radGridView.Columns["Project"].FieldName = "Project.ProjectName";
+            var s = this.radGridView.Columns["Project"].GetDefaultGroupByExpression();
+            Console.WriteLine(s);
 
             this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтение";
 
@@ -74,7 +81,7 @@ namespace CFAP
 
             this.radGridView.Columns["UserGroups"].IsVisible = false;
 
-            this.radGridView.Columns["UserLastChanged"].HeaderText = "Изменил";
+            this.radGridView.Columns["UserLastChanged"].IsVisible = false;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

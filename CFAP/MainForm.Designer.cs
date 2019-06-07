@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItem_Settings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_Users = new Telerik.WinControls.UI.RadMenuItem();
@@ -38,20 +38,20 @@
             this.radMenuItem_Rates = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_UsersGroups = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
-            this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton_Remove = new Telerik.WinControls.UI.RadButton();
+            this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Footer = new Telerik.WinControls.UI.RadPanel();
             this.radGridView = new Telerik.WinControls.UI.RadGridView();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,16 +127,15 @@
             this.radPanel_Header.Size = new System.Drawing.Size(1139, 29);
             this.radPanel_Header.TabIndex = 1;
             // 
-            // radButton_GetData
+            // radButton1
             // 
-            this.radButton_GetData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton_GetData.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radButton_GetData.Location = new System.Drawing.Point(0, 0);
-            this.radButton_GetData.Name = "radButton_GetData";
-            this.radButton_GetData.Size = new System.Drawing.Size(110, 29);
-            this.radButton_GetData.TabIndex = 0;
-            this.radButton_GetData.Text = "Получить данные";
-            this.radButton_GetData.Click += new System.EventHandler(this.radButton_GetData_Click);
+            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radButton1.Location = new System.Drawing.Point(919, 0);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 29);
+            this.radButton1.TabIndex = 2;
+            this.radButton1.Text = "Добавить";
             // 
             // radButton_Remove
             // 
@@ -147,6 +146,17 @@
             this.radButton_Remove.Size = new System.Drawing.Size(110, 29);
             this.radButton_Remove.TabIndex = 1;
             this.radButton_Remove.Text = "Удалить";
+            // 
+            // radButton_GetData
+            // 
+            this.radButton_GetData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_GetData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radButton_GetData.Location = new System.Drawing.Point(0, 0);
+            this.radButton_GetData.Name = "radButton_GetData";
+            this.radButton_GetData.Size = new System.Drawing.Size(110, 29);
+            this.radButton_GetData.TabIndex = 0;
+            this.radButton_GetData.Text = "Получить данные";
+            this.radButton_GetData.Click += new System.EventHandler(this.radButton_GetData_Click);
             // 
             // radPanel_Footer
             // 
@@ -159,8 +169,13 @@
             // 
             // radGridView
             // 
+            this.radGridView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radGridView.Cursor = System.Windows.Forms.Cursors.Default;
             this.radGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView.EnterKeyMode = Telerik.WinControls.UI.RadGridViewEnterKeyMode.EnterMovesToNextRow;
+            this.radGridView.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radGridView.ForeColor = System.Drawing.Color.Black;
+            this.radGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.radGridView.Location = new System.Drawing.Point(0, 49);
             // 
             // 
@@ -174,20 +189,12 @@
             this.radGridView.MasterTemplate.EnableFiltering = true;
             this.radGridView.MasterTemplate.MultiSelect = true;
             this.radGridView.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
-            this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView.MasterTemplate.ShowTotals = true;
+            this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView.Name = "radGridView";
+            this.radGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView.Size = new System.Drawing.Size(1139, 605);
             this.radGridView.TabIndex = 3;
-            // 
-            // radButton1
-            // 
-            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radButton1.Location = new System.Drawing.Point(919, 0);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 29);
-            this.radButton1.TabIndex = 2;
-            this.radButton1.Text = "Добавить";
             // 
             // MainForm
             // 
@@ -209,12 +216,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
