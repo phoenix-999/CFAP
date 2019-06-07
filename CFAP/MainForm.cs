@@ -194,6 +194,7 @@ namespace CFAP
             if (this.Summaries == null)
             {
                 this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
+                InitializeGrid();
             }
 
             new ChangeSummaryForm(new Summary(), ChangeDataOptions.AddNew).ShowDialog();

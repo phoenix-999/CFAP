@@ -220,6 +220,8 @@ namespace CFAP
                 return;
 
             this.businessLogic.RemoveSummary(summary);
+
+            this.Close();
         }
     }
 }

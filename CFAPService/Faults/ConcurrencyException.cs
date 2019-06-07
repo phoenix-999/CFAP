@@ -49,8 +49,6 @@ namespace CFAPService.Faults
 
             Summary dbSummary = (this.DatabaseValue as Summary);
             Summary currentSummary = (this.CurrentValue as Summary);
-
-            dbSummary.UserGroups = currentSummary.UserGroups;
             
 
             using (CFAPContext ctx = new CFAPContext())
@@ -58,6 +56,8 @@ namespace CFAPService.Faults
                 ctx.Configuration.ProxyCreationEnabled = false;
 
                 var findedSummary = (from s in ctx.Summaries where s.Id == dbSummary.Id select s).First();
+
+                findedSummary.UserGroups = currentSummary.UserGroups;
 
                 try
                 {

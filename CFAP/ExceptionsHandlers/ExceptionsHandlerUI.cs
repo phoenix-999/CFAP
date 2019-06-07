@@ -182,11 +182,11 @@ namespace CFAP
                     businessLogic.UpdateSummary(fault.Detail.CurrentValue, DbConcurencyUpdateOptions.ClientPriority);
 
                 if (options == UpdateDeleteOptions.Delete)
-                    businessLogic.RemoveSummary(fault.Detail.CurrentValue, DbConcurencyUpdateOptions.ClientPriority);
+                    businessLogic.RemoveSummary(fault.Detail.DatabaseValue, DbConcurencyUpdateOptions.ClientPriority);
             }
             else
             {
-                businessLogic.UpdateSummary(fault.Detail.DatabaseValue, DbConcurencyUpdateOptions.DatabasePriority);
+                    businessLogic.UpdateSummary(fault.Detail.DatabaseValue, DbConcurencyUpdateOptions.DatabasePriority);
 
             }
         }

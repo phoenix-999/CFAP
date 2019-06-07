@@ -14,7 +14,7 @@ using System.Collections;
 namespace CFAPDataModel.Models
 {
     [DataContract]
-    public class Summary
+    public class Summary : ICloneable
     {
         
         public Summary()
@@ -252,6 +252,33 @@ namespace CFAPDataModel.Models
             result = this.Id == otherProject.Id;
 
             return result;
+        }
+
+        public object Clone()
+        {
+            Summary clonedSummary = new Summary();
+
+            Type thisType = this.GetType();
+            Type cloneType = clonedSummary.GetType();
+
+            var thisFileds = thisType.GetFields();
+
+            foreach (var field in thisFileds)
+            {
+                cloneType.GetField(field.Name).SetValue(clonedSummary, field.GetValue(this));
+            }
+
+            var thisProperties = thisType.GetProperties();
+
+            foreach (var property in thisProperties)
+            {
+                cloneType.GetProperty(property.Name).SetValue(clonedSummary, property.GetValue(this));
+            }
+
+
+            clonedSummary.UserGroups = this.UserGroups.ToList();
+
+            return clonedSummary;
         }
 
         #region Properies

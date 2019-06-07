@@ -432,7 +432,7 @@ namespace CFAPService
                 throw new FaultException<InvalidOperationException>(new InvalidOperationException("Работа опрации в режиме DbConcurencyUpdateOptions.DatabasePriority не имеет смысла."));
             }
 
-            Summary result = summary;
+            Summary result = null;
 
             
             using (CFAPContext ctx = new CFAPContext())
@@ -444,6 +444,9 @@ namespace CFAPService
 
                 summary.SetRelationships(ctx);
 
+                //Когда сущность проходит через SaveChanges все ассоциации обнуляються. Так как с базы данных после удаления обькт получить невозможно - единственный способ сохранить его состояние через клонирование.
+                result = (Summary)summary.Clone();
+
                 try
                 {
                     ctx.Summaries.Attach(summary);
@@ -454,8 +457,10 @@ namespace CFAPService
                         throw new ReadOnlyException();
                     }
 
+                    //Ссылочные свойства затираются
                     ctx.Entry(summary).State = EntityState.Deleted;
-
+                                       
+                    
                     ctx.SaveChanges(concurencyUpdateOption);
                 }
                 catch (ReadOnlyException)
@@ -464,7 +469,7 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, summary);
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, result);
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (NullReferenceException ex)
