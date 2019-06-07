@@ -99,6 +99,12 @@
     <Compile Include="Projects\ChangeProjectForm.Designer.cs">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Summaries\ChangeSummaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Summaries\ChangeSummaryForm.Designer.cs">
+      <DependentUpon>ChangeSummaryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\ProjectsForm.cs">
       <SubType>Form</SubType>
@@ -124,6 +130,7 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateDeleteOptions.cs" />
     <Compile Include="UsersData\ChangeUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Projects\ChangeProjectForm.resx">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summaries\ChangeSummaryForm.resx">
+      <DependentUpon>ChangeSummaryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Projects\ProjectsForm.resx">
       <DependentUpon>ProjectsForm.cs</DependentUpon>

@@ -372,12 +372,16 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, summary);
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
                 {
                     throw new FaultException<DataNotValidException>(new DataNotValidException(ex.EntityValidationErrors));
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw new FaultException<FiledDeletedException>(new FiledDeletedException(ex));
                 }
                 catch (Exception ex)
                 {
@@ -419,16 +423,16 @@ namespace CFAPService
 
 
         [OperationBehavior(TransactionScopeRequired = true)]
-        public int RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
+        public Summary RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             AuthenticateUser(user);
 
             if (concurencyUpdateOption == DbConcurencyUpdateOptions.DatabasePriority)
             {
-                throw new FaultException<InvalidOperationException>(new InvalidOperationException("Работа опрации в режиме DbConcurencyUpdateOptions.DatabasePriority не имеет смсла."));
+                throw new FaultException<InvalidOperationException>(new InvalidOperationException("Работа опрации в режиме DbConcurencyUpdateOptions.DatabasePriority не имеет смысла."));
             }
 
-            int result = 0;
+            Summary result = summary;
 
             
             using (CFAPContext ctx = new CFAPContext())
@@ -452,7 +456,7 @@ namespace CFAPService
 
                     ctx.Entry(summary).State = EntityState.Deleted;
 
-                    result = ctx.SaveChanges(concurencyUpdateOption);
+                    ctx.SaveChanges(concurencyUpdateOption);
                 }
                 catch (ReadOnlyException)
                 {
@@ -460,8 +464,12 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex);
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, summary);
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw new FaultException<FiledDeletedException>(new FiledDeletedException(ex));
                 }
                 catch (Exception ex)
                 {
@@ -553,7 +561,7 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Accountable> concurrencyException = new ConcurrencyException<Accountable>(ex);
+                    ConcurrencyException<Accountable> concurrencyException = new ConcurrencyException<Accountable>(ex, accountableToUpdate);
                     throw new FaultException<ConcurrencyException<Accountable>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -650,7 +658,7 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Project> concurrencyException = new ConcurrencyException<Project>(ex);
+                    ConcurrencyException<Project> concurrencyException = new ConcurrencyException<Project>(ex, projectToUpdate);
                     throw new FaultException<ConcurrencyException<Project>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -748,7 +756,7 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<BudgetItem> concurrencyException = new ConcurrencyException<BudgetItem>(ex);
+                    ConcurrencyException<BudgetItem> concurrencyException = new ConcurrencyException<BudgetItem>(ex, budgetItemToUpdate);
                     throw new FaultException<ConcurrencyException<BudgetItem>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -847,7 +855,7 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(ex);
+                    ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(ex, rateToUpdate);
                     throw new FaultException<ConcurrencyException<Rate>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)

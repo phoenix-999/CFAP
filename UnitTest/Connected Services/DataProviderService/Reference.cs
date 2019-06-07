@@ -1302,6 +1302,51 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class FiledDeletedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfSummarydxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1924,6 +1969,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateSummaryTryChangeReadOnlyFiledExceptionFaul" +
             "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
@@ -1955,14 +2001,15 @@ namespace UnitTest.DataProviderService {
             "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.InvalidOperationException), Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault", Name="InvalidOperationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        UnitTest.DataProviderService.Summary RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
         System.IAsyncResult BeginRemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, System.AsyncCallback callback, object asyncState);
         
-        int EndRemoveSummary(System.IAsyncResult result);
+        UnitTest.DataProviderService.Summary EndRemoveSummary(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetAccountablesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -2351,10 +2398,10 @@ namespace UnitTest.DataProviderService {
             this.results = results;
         }
         
-        public int Result {
+        public UnitTest.DataProviderService.Summary Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((UnitTest.DataProviderService.Summary)(this.results[0]));
             }
         }
     }
@@ -3427,7 +3474,7 @@ namespace UnitTest.DataProviderService {
                         user}, this.onEndChangeSummaryReadOnlyStatusDelegate, this.onChangeSummaryReadOnlyStatusCompletedDelegate, userState);
         }
         
-        public int RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+        public UnitTest.DataProviderService.Summary RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.RemoveSummary(summary, user, concurencyUpdateOptions);
         }
         
@@ -3437,7 +3484,7 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public int EndRemoveSummary(System.IAsyncResult result) {
+        public UnitTest.DataProviderService.Summary EndRemoveSummary(System.IAsyncResult result) {
             return base.Channel.EndRemoveSummary(result);
         }
         
@@ -3449,7 +3496,7 @@ namespace UnitTest.DataProviderService {
         }
         
         private object[] OnEndRemoveSummary(System.IAsyncResult result) {
-            int retVal = this.EndRemoveSummary(result);
+            UnitTest.DataProviderService.Summary retVal = this.EndRemoveSummary(result);
             return new object[] {
                     retVal};
         }

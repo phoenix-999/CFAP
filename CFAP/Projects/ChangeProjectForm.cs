@@ -46,7 +46,7 @@ namespace CFAP
         void InitializeFileds()
         {
             if (project.ProjectName != null)
-                this.radTextBox_ProjectName.Text = project.ProjectName;
+                this.radTextBox_ItemName.Text = project.ProjectName;
 
             this.radCheckBox_ReadOnly.Checked = project.ReadOnly;
         }
@@ -55,9 +55,9 @@ namespace CFAP
         {
             bool result = true;
 
-            if (this.radTextBox_ProjectName.Text == null || this.radTextBox_ProjectName.Text.Length == 0)
+            if (this.radTextBox_ItemName.Text == null || this.radTextBox_ItemName.Text.Length == 0)
             {
-                this.radTextBox_ProjectName.BackColor = Color.Red;
+                this.radTextBox_ItemName.BackColor = Color.Red;
                 result = false;
             }
 
@@ -89,7 +89,7 @@ namespace CFAP
 
         void SetData()
         {
-            project.ProjectName = this.radTextBox_ProjectName.Text;
+            project.ProjectName = this.radTextBox_ItemName.Text;
             project.ReadOnly = this.radCheckBox_ReadOnly.Checked;
         }
 

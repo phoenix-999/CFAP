@@ -58,11 +58,9 @@ namespace CFAP
 
             this.radGridView.Columns["Id"].IsVisible = false;
 
-            this.radGridView.Columns["Project"].HeaderText = "Проект";
-            
+            this.radGridView.Columns["Project"].HeaderText = "Проект";            
             this.radGridView.Columns["Project"].FieldName = "Project.ProjectName";
-            var s = this.radGridView.Columns["Project"].GetDefaultGroupByExpression();
-            Console.WriteLine(s);
+
 
             this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтение";
 
@@ -184,6 +182,35 @@ namespace CFAP
                 this.Filter = new DataProviderClient.Filter();
 
             new SettingsForm(this.Filter).ShowDialog();            
+        }
+
+        private void radButton_Add_Click(object sender, EventArgs e)
+        {
+            if (CFAPBusinessLogic.Summaries == null)
+            {
+                CFAPBusinessLogic.Summaries = new List<Summary>();
+            }
+
+            if (this.Summaries == null)
+            {
+                this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
+            }
+
+            new ChangeSummaryForm(new Summary(), ChangeDataOptions.AddNew).ShowDialog();
+            this.Summaries.ResetBindings();
+        }
+
+        private void radGridView_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (this.Summaries == null)
+                return;
+
+            if (e.Row.DataBoundItem is Summary)
+            {
+                Summary summaryToChange = (Summary)e.Row.DataBoundItem;
+                new ChangeSummaryForm(summaryToChange, ChangeDataOptions.ChangeData).ShowDialog();
+                this.Summaries.ResetBindings();
+            }
         }
     }
 }

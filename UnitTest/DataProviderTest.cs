@@ -1159,9 +1159,9 @@ namespace UnitTest
                 Assert.AreEqual(1, checkAddedSummary.Length);
             }
 
-            int numberRemovedSummary = DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
+            Summary removedSummary = DataProviderProxy.RemoveSummary(addedSummary, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority);
 
-            Assert.AreNotEqual(0, numberRemovedSummary);
+            Assert.AreNotEqual(null, removedSummary);
 
             using (CFAPContext ctx = new CFAPContext())
             {

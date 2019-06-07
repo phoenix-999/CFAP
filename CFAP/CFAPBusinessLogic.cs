@@ -23,7 +23,7 @@ namespace CFAP
         public static List<BudgetItem> BudgetItems { get; private set; }
         public static List<Project> Projects { get; private set; }
         public static List<Rate> Rates { get; private set; }
-        public static List<Summary> Summaries { get; private set; }
+        public static List<Summary> Summaries { get; set; }
         public static Filter CurrentFilter { get; set; }
 
         public CFAPBusinessLogic(ExceptionsHandler exceptionsHandler)
@@ -1017,6 +1017,184 @@ namespace CFAP
             catch (TransactionAbortedException ex)
             {
                 ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+        }
+
+        public void AddSummary(Summary newSummary)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        Summary addedSummary = DataProviderProxy.AddSummary(newSummary, CFAPBusinessLogic.User);
+                        CFAPBusinessLogic.Summaries.Add(addedSummary);
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<DataNotValidException> fault)
+                    {
+                        ExceptionsHandler.DataNotValidExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+        }
+
+        public void UpdateSummary(Summary summaryToUpdate, DbConcurencyUpdateOptions updateOption = DbConcurencyUpdateOptions.None)
+        {
+            //Изменена структура выполнения транзакции по причине запуска новой транзакции с обработчика исключения FaultException<ConcurrencyExceptionOf...>
+            try
+            {
+                try
+                {
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        Summary updatedSummary = DataProviderProxy.UpdateSummary(summaryToUpdate, CFAPBusinessLogic.User, updateOption);
+
+                        for (int summaryIndex = 0; summaryIndex < CFAPBusinessLogic.Summaries.Count; summaryIndex++)
+                        {
+                            if (CFAPBusinessLogic.Summaries[summaryIndex].Id == updatedSummary.Id)
+                            {
+                                CFAPBusinessLogic.Summaries[summaryIndex] = updatedSummary;
+                            }
+                        }
+
+
+                        transaction.Complete();
+                    }
+                }
+                catch (TransactionAbortedException ex)
+                {
+                    ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+                }
+            }
+            catch (FaultException<AuthenticateFaultException> fault)
+            {
+                ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+            }
+            catch (FaultException<DbException> fault)
+            {
+                ExceptionsHandler.DbExceptionHandler(fault);
+            }
+            catch (FaultException<DataNotValidException> fault)
+            {
+                ExceptionsHandler.DataNotValidExceptionHandler(fault);
+            }
+            catch (FaultException<TryChangeReadOnlyFiledException> fault)
+            {
+                ExceptionsHandler.TryChangeReadOnlyFieldExceptionHandler(fault);
+            }
+            catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault)
+            {
+                ExceptionsHandler.ConcurrencyExceptionSummariesHandler(fault, UpdateDeleteOptions.Update);
+            }
+            catch (FaultException<FiledDeletedException> fault)
+            {
+                ExceptionsHandler.FiledDeletedExceptionHandler(fault);
+                CFAPBusinessLogic.Summaries.Remove(summaryToUpdate);
+            }
+            catch (FaultException fault)
+            {
+                ExceptionsHandler.FaultExceptionHandler(fault);
+            }
+            catch (CommunicationException ex)
+            {
+                ExceptionsHandler.CommunicationExceptionHandler(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+            }
+        }
+
+        public void RemoveSummary(Summary summaryToRemove, DbConcurencyUpdateOptions updateOption = DbConcurencyUpdateOptions.None)
+        {
+            //Изменена структура выполнения транзакции по причине запуска новой транзакции с обработчика исключения FaultException<ConcurrencyExceptionOf...>
+            try
+            {
+                try
+                {
+                    using (TransactionScope transaction = new TransactionScope())
+                    {
+                        Summary removedSummary = DataProviderProxy.RemoveSummary(summaryToRemove, CFAPBusinessLogic.User, updateOption);
+
+                        for (int summaryIndex = 0; summaryIndex < CFAPBusinessLogic.Summaries.Count; summaryIndex++)
+                        {
+                            if (CFAPBusinessLogic.Summaries[summaryIndex].Id == removedSummary.Id)
+                            {
+                                CFAPBusinessLogic.Summaries.RemoveAt(summaryIndex);
+                            }
+                        }
+
+
+                        transaction.Complete();
+                    }
+                }
+                catch (TransactionAbortedException ex)
+                {
+                    ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+                }
+            }
+            catch (FaultException<AuthenticateFaultException> fault)
+            {
+                ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+            }
+            catch (FaultException<DbException> fault)
+            {
+                ExceptionsHandler.DbExceptionHandler(fault);
+            }
+            catch (FaultException<DataNotValidException> fault)
+            {
+                ExceptionsHandler.DataNotValidExceptionHandler(fault);
+            }
+            catch (FaultException<TryChangeReadOnlyFiledException> fault)
+            {
+                ExceptionsHandler.TryChangeReadOnlyFieldExceptionHandler(fault);
+            }
+            catch (FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault)
+            {
+                ExceptionsHandler.ConcurrencyExceptionSummariesHandler(fault, UpdateDeleteOptions.Delete);
+            }
+            catch (FaultException<FiledDeletedException> fault)
+            {
+                ExceptionsHandler.FiledDeletedExceptionHandler(fault);
+                CFAPBusinessLogic.Summaries.Remove(summaryToRemove);
+            }
+            catch (FaultException fault)
+            {
+                ExceptionsHandler.FaultExceptionHandler(fault);
+            }
+            catch (CommunicationException ex)
+            {
+                ExceptionsHandler.CommunicationExceptionHandler(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
         }
     }

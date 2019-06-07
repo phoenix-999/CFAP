@@ -32,7 +32,7 @@
             this.radButton_UpdateAccountable = new Telerik.WinControls.UI.RadButton();
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radButton_AddAccountable = new Telerik.WinControls.UI.RadButton();
-            this.radTextBox_ProjectName = new Telerik.WinControls.UI.RadTextBox();
+            this.radTextBox_ItemName = new Telerik.WinControls.UI.RadTextBox();
             this.radCheckBox_ReadOnly = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
@@ -40,7 +40,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_ProjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_ItemName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -51,7 +51,7 @@
             this.radPanel.Controls.Add(this.radButton_UpdateAccountable);
             this.radPanel.Controls.Add(this.radButton_Cancel);
             this.radPanel.Controls.Add(this.radButton_AddAccountable);
-            this.radPanel.Controls.Add(this.radTextBox_ProjectName);
+            this.radPanel.Controls.Add(this.radTextBox_ItemName);
             this.radPanel.Controls.Add(this.radCheckBox_ReadOnly);
             this.radPanel.Controls.Add(this.radLabel1);
             this.radPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,14 +89,14 @@
             this.radButton_AddAccountable.Text = "Добавить";
             this.radButton_AddAccountable.Click += new System.EventHandler(this.radButton_Add_Click);
             // 
-            // radTextBox_ProjectName
+            // radTextBox_ItemName
             // 
-            this.radTextBox_ProjectName.Location = new System.Drawing.Point(170, 43);
-            this.radTextBox_ProjectName.MaxLength = 70;
-            this.radTextBox_ProjectName.Name = "radTextBox_ProjectName";
-            this.radTextBox_ProjectName.Size = new System.Drawing.Size(350, 20);
-            this.radTextBox_ProjectName.TabIndex = 7;
-            this.radTextBox_ProjectName.Click += new System.EventHandler(this.radTextBox_Click);
+            this.radTextBox_ItemName.Location = new System.Drawing.Point(170, 43);
+            this.radTextBox_ItemName.MaxLength = 70;
+            this.radTextBox_ItemName.Name = "radTextBox_ItemName";
+            this.radTextBox_ItemName.Size = new System.Drawing.Size(350, 20);
+            this.radTextBox_ItemName.TabIndex = 7;
+            this.radTextBox_ItemName.Click += new System.EventHandler(this.radTextBox_Click);
             // 
             // radCheckBox_ReadOnly
             // 
@@ -139,7 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_ProjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_ItemName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -151,7 +151,7 @@
 
         private Telerik.WinControls.UI.RadPanel radPanel;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox_ProjectName;
+        private Telerik.WinControls.UI.RadTextBox radTextBox_ItemName;
         private Telerik.WinControls.UI.RadButton radButton_Cancel;
         private Telerik.WinControls.UI.RadButton radButton_AddAccountable;
         private Telerik.WinControls.UI.RadButton radButton_UpdateAccountable;

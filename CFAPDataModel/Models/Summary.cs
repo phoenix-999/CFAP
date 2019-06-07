@@ -89,7 +89,7 @@ namespace CFAPDataModel.Models
             {
                 goupsId = this.GetUserGroupsId();
             }
-            catch(NullReferenceException ex)
+            catch(NullReferenceException)
             {
                 DbValidationError validationError = new DbValidationError("Группы пользователя", "Значениие не определено");
                 DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError });

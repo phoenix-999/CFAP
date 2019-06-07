@@ -71,7 +71,7 @@ namespace CFAP
 
         public override void TryChangeReadOnlyFieldExceptionHandler(FaultException<TryChangeReadOnlyFiledException> fault)
         {
-            MessageBox.Show(fault.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public override void ConcurrencyExceptionAccountablesHandler(FaultException<ConcurrencyExceptionOfAccountabledxjYbbDT> fault)
@@ -155,9 +155,45 @@ namespace CFAP
             }
         }
 
-        public override void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault)
+        public override void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault, UpdateDeleteOptions options)
         {
-            throw new NotImplementedException();
+
+            var errorString = new StringBuilder();
+            errorString.Append("Данные были изменены другим пользователем с момента загрузки\n");
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Приход/Расход", fault.Detail.DatabaseValue.CashFlowType, fault.Detail.CurrentValue.CashFlowType));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Только чтение", fault.Detail.DatabaseValue.ReadOnly, fault.Detail.CurrentValue.ReadOnly));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Бюджетная статья", fault.Detail.DatabaseValue.BudgetItem.ItemName, fault.Detail.CurrentValue.BudgetItem.ItemName));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Проект", fault.Detail.DatabaseValue.Project.ProjectName, fault.Detail.CurrentValue.Project.ProjectName));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Подотчетник", fault.Detail.DatabaseValue.Accountable.AccountableName, fault.Detail.CurrentValue.Accountable.AccountableName));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Расшифровка", fault.Detail.DatabaseValue.Description, fault.Detail.CurrentValue.Description));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Сумма, грн.", fault.Detail.DatabaseValue.SummaUAH, fault.Detail.CurrentValue.SummaUAH));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Сумма, $.", fault.Detail.DatabaseValue.SummaUSD, fault.Detail.CurrentValue.SummaUSD));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Дата", fault.Detail.DatabaseValue.SummaryDate, fault.Detail.CurrentValue.SummaryDate));
+
+            errorString.Append(string.Format("Изменение были внесены в {0}\n\n", fault.Detail.DatabaseValue.ActionDate));
+
+            errorString.Append("Изменить значение в базе данных?");
+            var dialogResult = MessageBox.Show(errorString.ToString(), "Ошибка изменения данных", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+            CFAPBusinessLogic businessLogic = new CFAPBusinessLogic(this);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (options == UpdateDeleteOptions.Update)
+                    businessLogic.UpdateSummary(fault.Detail.CurrentValue, DbConcurencyUpdateOptions.ClientPriority);
+
+                if (options == UpdateDeleteOptions.Delete)
+                    businessLogic.RemoveSummary(fault.Detail.CurrentValue, DbConcurencyUpdateOptions.ClientPriority);
+            }
+            else
+            {
+                businessLogic.UpdateSummary(fault.Detail.DatabaseValue, DbConcurencyUpdateOptions.DatabasePriority);
+
+            }
+        }
+
+        public override void FiledDeletedExceptionHandler(FaultException<FiledDeletedException> fault)
+        {
+            MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

@@ -43,6 +43,8 @@ namespace CFAP
 
         public abstract void ConcurrencyExceptionRatesHandler(FaultException<ConcurrencyExceptionOfRatedxjYbbDT> fault);
 
-        public abstract void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault);
+        public abstract void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault, UpdateDeleteOptions option);
+
+        public abstract void FiledDeletedExceptionHandler(FaultException<FiledDeletedException> fault);
     }
 }

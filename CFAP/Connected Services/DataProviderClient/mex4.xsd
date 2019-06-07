@@ -44,6 +44,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TryChangeReadOnlyFiledException" nillable="true" type="tns:TryChangeReadOnlyFiledException" />
+  <xs:complexType name="FiledDeletedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiledDeletedException" nillable="true" type="tns:FiledDeletedException" />
   <xs:complexType name="ConcurrencyExceptionOfSummarydxjYbbDT">
     <xs:annotation>
       <xs:appinfo>

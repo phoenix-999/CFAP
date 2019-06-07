@@ -1302,6 +1302,51 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class FiledDeletedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfSummarydxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1904,6 +1949,7 @@ namespace CFAP.DataProviderClient {
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateSummaryTryChangeReadOnlyFiledExceptionFaul" +
             "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
@@ -1931,12 +1977,13 @@ namespace CFAP.DataProviderClient {
             "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.InvalidOperationException), Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault", Name="InvalidOperationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
-        int RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        CFAP.DataProviderClient.Summary RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
-        System.Threading.Tasks.Task<int> RemoveSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
+        System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary> RemoveSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetAccountablesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -2200,11 +2247,11 @@ namespace CFAP.DataProviderClient {
             return base.Channel.ChangeSummaryReadOnlyStatusAsync(onOff, filter, user);
         }
         
-        public int RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+        public CFAP.DataProviderClient.Summary RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.RemoveSummary(summary, user, concurencyUpdateOptions);
         }
         
-        public System.Threading.Tasks.Task<int> RemoveSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions) {
+        public System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary> RemoveSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions) {
             return base.Channel.RemoveSummaryAsync(summary, user, concurencyUpdateOptions);
         }
         

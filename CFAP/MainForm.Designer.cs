@@ -39,7 +39,6 @@
             this.radMenuItem_UsersGroups = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton_Remove = new Telerik.WinControls.UI.RadButton();
             this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Footer = new Telerik.WinControls.UI.RadPanel();
             this.radGridView = new Telerik.WinControls.UI.RadGridView();
@@ -47,7 +46,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).BeginInit();
@@ -119,7 +117,6 @@
             // 
             this.radPanel_Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radPanel_Header.Controls.Add(this.radButton1);
-            this.radPanel_Header.Controls.Add(this.radButton_Remove);
             this.radPanel_Header.Controls.Add(this.radButton_GetData);
             this.radPanel_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel_Header.Location = new System.Drawing.Point(0, 20);
@@ -131,21 +128,12 @@
             // 
             this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radButton1.Location = new System.Drawing.Point(919, 0);
+            this.radButton1.Location = new System.Drawing.Point(1029, 0);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 29);
             this.radButton1.TabIndex = 2;
             this.radButton1.Text = "Добавить";
-            // 
-            // radButton_Remove
-            // 
-            this.radButton_Remove.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton_Remove.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radButton_Remove.Location = new System.Drawing.Point(1029, 0);
-            this.radButton_Remove.Name = "radButton_Remove";
-            this.radButton_Remove.Size = new System.Drawing.Size(110, 29);
-            this.radButton_Remove.TabIndex = 1;
-            this.radButton_Remove.Text = "Удалить";
+            this.radButton1.Click += new System.EventHandler(this.radButton_Add_Click);
             // 
             // radButton_GetData
             // 
@@ -195,6 +183,7 @@
             this.radGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView.Size = new System.Drawing.Size(1139, 605);
             this.radGridView.TabIndex = 3;
+            this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
             // 
             // MainForm
             // 
@@ -217,7 +206,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).EndInit();
@@ -239,7 +227,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Rates;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_UsersGroups;
         private Telerik.WinControls.UI.RadPanel radPanel_Header;
-        private Telerik.WinControls.UI.RadButton radButton_Remove;
         private Telerik.WinControls.UI.RadButton radButton_GetData;
         private Telerik.WinControls.UI.RadPanel radPanel_Footer;
         private Telerik.WinControls.UI.RadGridView radGridView;
