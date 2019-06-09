@@ -12,7 +12,7 @@ namespace CFAPService.Faults
     {
         public FiledDeletedException(NullReferenceException ex)
         {
-            this.Message = "Поле не было найдено. Возможно оно было удалено другим пользователем в после получения Вами данных.";
+            this.Message = "Поле не было найдено. Возможно оно было удалено другим пользователем после получения Вами данных.";
         }
 
         [DataMember]

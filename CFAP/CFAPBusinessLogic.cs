@@ -93,9 +93,12 @@ namespace CFAP
                 ExceptionsHandler.CommunicationExceptionHandler(ex);
             }
 
-            CFAPBusinessLogic.User = result;
-
-            LoadTotalData();
+            if (result != null)
+            {
+                CFAPBusinessLogic.User = result;
+                LoadTotalData();
+            }
+            
         }
 
         private void LoadTotalData()

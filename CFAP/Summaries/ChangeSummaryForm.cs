@@ -152,6 +152,19 @@ namespace CFAP
                 this.radDropDownList_Projects.BackColor = Color.Red;
             }
 
+            try
+            {
+                var accoutableTest = (Accountable)this.radDropDownList_Accountables.SelectedItem.DataBoundItem;
+                var projectTest = (Project)this.radDropDownList_Projects.SelectedItem.DataBoundItem;
+                var itemTest = (BudgetItem)this.radDropDownList_BudgetItems.SelectedItem.DataBoundItem;
+            }
+            catch (NullReferenceException)
+            {
+                string errorMessage = "Одно или несколько полей заполнено не верно. Воспользуйтесь выпадающим списком вместо ручного ввода.";
+                MessageBox.Show(errorMessage, "Ошибка в данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                result = false;
+            }
+
             return result;
         }
         private void radButton_Add_Click(object sender, EventArgs e)
@@ -182,9 +195,12 @@ namespace CFAP
         {
             summary.CashFlowType = this.radCheckBox_CashFlowType.Checked;
             summary.SummaryDate = this.radDateTimePicker_SummaryDate.Value;
+            
             summary.Accountable = (Accountable)this.radDropDownList_Accountables.SelectedItem.DataBoundItem;
             summary.Project = (Project)this.radDropDownList_Projects.SelectedItem.DataBoundItem;
             summary.BudgetItem = (BudgetItem)this.radDropDownList_BudgetItems.SelectedItem.DataBoundItem;
+            
+
             summary.SummaUAH = double.Parse(this.radMaskedEditBox_SummaUAH.Value.ToString());
             if (this.radTextBox_Description.Text != null)
             {
@@ -214,7 +230,7 @@ namespace CFAP
 
         private void radButton_Remove_Click(object sender, EventArgs e)
         {
-           var ansver =  MessageBox.Show("После удаления востановление невозможно. Вы действительно хотите удалить операцию?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           var ansver =  MessageBox.Show("После удаления востановление невозможно. Вы действительно хотите удалить операцию?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (ansver == DialogResult.No)
                 return;
