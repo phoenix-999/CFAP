@@ -51,7 +51,7 @@ namespace CFAP
             if (user.Password != null && user.Password.Length > 0)
             {
                 this.radTextBox_Password.PasswordChar = '*';
-                this.radTextBox_Password.ReadOnly = true;
+                //this.radTextBox_Password.ReadOnly = true;
                 this.radTextBox_Password.Text = user.Password;
             }
 

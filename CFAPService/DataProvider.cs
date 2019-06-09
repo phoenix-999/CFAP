@@ -155,9 +155,12 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                //Отмена изменения пароля
+                var oldPassword = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
 
-                userForUpdate.Password = (from u in ctx.Users where u.Id == userForUpdate.Id select u.Password).Single();
+                if (oldPassword != userForUpdate.Password)
+                {
+                    userForUpdate.EncriptPassword();
+                }
 
                 try
                 {
@@ -372,7 +375,12 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, summary);
+                    Summary dbSummary = (Summary)ex.Entries.Single().GetDatabaseValues().ToObject();
+                    Summary currentSummary = summary;
+
+                    dbSummary = CorrectDbSummary(currentSummary, dbSummary);
+
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(dbSummary, currentSummary);
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -389,6 +397,33 @@ namespace CFAPService
                 }
             }
 
+
+            return result;
+        }
+
+        private Summary CorrectDbSummary(Summary currentSummary, Summary dbSummary)
+        {
+            Summary result = null;
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                var findedSummary = (from s in ctx.Summaries where s.Id == dbSummary.Id select s).First();
+
+                try
+                {
+                    Summary.LoadRelationships(ctx);
+
+                    //Присовение групп необходимо делать после загрузки связей по причине исключения метода Load для коллекции ассоциаций.
+                    findedSummary.UserGroups = currentSummary.UserGroups;
+
+                    result = (findedSummary as Summary);
+                }
+                catch (Exception ex)
+                {
+                    throw new FaultException<DbException>(new DbException(ex));
+                }
+            }
 
             return result;
         }
@@ -469,7 +504,13 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(ex, result);
+                    Summary dbSummary = (Summary)ex.Entries.Single().GetDatabaseValues().ToObject();
+                    Summary currentSummary = result;
+
+                    dbSummary = CorrectDbSummary(currentSummary, dbSummary);
+
+                    ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(dbSummary, currentSummary);
+
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
                 }
                 catch (NullReferenceException ex)
@@ -566,7 +607,9 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Accountable> concurrencyException = new ConcurrencyException<Accountable>(ex, accountableToUpdate);
+                    var currentValue = accountableToUpdate;
+                    var dbValue = (Accountable)ex.Entries.Single().GetDatabaseValues().ToObject();
+                    ConcurrencyException<Accountable> concurrencyException = new ConcurrencyException<Accountable>(dbValue, currentValue);
                     throw new FaultException<ConcurrencyException<Accountable>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -663,7 +706,10 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Project> concurrencyException = new ConcurrencyException<Project>(ex, projectToUpdate);
+                    var currentValue = projectToUpdate;
+                    var dbValue = (Project)ex.Entries.Single().GetDatabaseValues().ToObject();
+
+                    ConcurrencyException<Project> concurrencyException = new ConcurrencyException<Project>(dbValue, currentValue);
                     throw new FaultException<ConcurrencyException<Project>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -761,7 +807,10 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<BudgetItem> concurrencyException = new ConcurrencyException<BudgetItem>(ex, budgetItemToUpdate);
+                    var currentValue = budgetItemToUpdate;
+                    var dbValue = (BudgetItem)ex.Entries.Single().GetDatabaseValues().ToObject();
+
+                    ConcurrencyException<BudgetItem> concurrencyException = new ConcurrencyException<BudgetItem>(dbValue, currentValue);
                     throw new FaultException<ConcurrencyException<BudgetItem>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)
@@ -860,7 +909,10 @@ namespace CFAPService
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(ex, rateToUpdate);
+                    var currentValue = rateToUpdate;
+                    var dbValue = (Rate)ex.Entries.Single().GetDatabaseValues().ToObject();
+
+                    ConcurrencyException<Rate> concurrencyException = new ConcurrencyException<Rate>(dbValue, currentValue);
                     throw new FaultException<ConcurrencyException<Rate>>(concurrencyException);
                 }
                 catch (DbEntityValidationException ex)

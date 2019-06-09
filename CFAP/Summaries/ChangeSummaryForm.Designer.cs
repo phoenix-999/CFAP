@@ -30,6 +30,7 @@
         {
             this.radPanel = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radButton_Remove = new Telerik.WinControls.UI.RadButton();
             this.radDropDownList_Projects = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownList_Accountables = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownList_BudgetItems = new Telerik.WinControls.UI.RadDropDownList();
@@ -46,11 +47,11 @@
             this.radButton_UpdateAccountable = new Telerik.WinControls.UI.RadButton();
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radButton_AddAccountable = new Telerik.WinControls.UI.RadButton();
-            this.radButton_Remove = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
             this.radPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Projects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Accountables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_BudgetItems)).BeginInit();
@@ -67,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,8 +108,19 @@
             this.radGroupBox1.Size = new System.Drawing.Size(463, 349);
             this.radGroupBox1.TabIndex = 20;
             // 
+            // radButton_Remove
+            // 
+            this.radButton_Remove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.radButton_Remove.Location = new System.Drawing.Point(341, 12);
+            this.radButton_Remove.Name = "radButton_Remove";
+            this.radButton_Remove.Size = new System.Drawing.Size(110, 27);
+            this.radButton_Remove.TabIndex = 30;
+            this.radButton_Remove.Text = "Удалить";
+            this.radButton_Remove.Click += new System.EventHandler(this.radButton_Remove_Click);
+            // 
             // radDropDownList_Projects
             // 
+            this.radDropDownList_Projects.DropDownAnimationEnabled = false;
             this.radDropDownList_Projects.Location = new System.Drawing.Point(145, 123);
             this.radDropDownList_Projects.Name = "radDropDownList_Projects";
             this.radDropDownList_Projects.Size = new System.Drawing.Size(299, 20);
@@ -117,6 +128,7 @@
             // 
             // radDropDownList_Accountables
             // 
+            this.radDropDownList_Accountables.DropDownAnimationEnabled = false;
             this.radDropDownList_Accountables.Location = new System.Drawing.Point(145, 99);
             this.radDropDownList_Accountables.Name = "radDropDownList_Accountables";
             this.radDropDownList_Accountables.Size = new System.Drawing.Size(299, 20);
@@ -124,6 +136,7 @@
             // 
             // radDropDownList_BudgetItems
             // 
+            this.radDropDownList_BudgetItems.DropDownAnimationEnabled = false;
             this.radDropDownList_BudgetItems.Location = new System.Drawing.Point(145, 75);
             this.radDropDownList_BudgetItems.Name = "radDropDownList_BudgetItems";
             this.radDropDownList_BudgetItems.Size = new System.Drawing.Size(299, 20);
@@ -142,12 +155,13 @@
             // 
             this.radMaskedEditBox_SummaUAH.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.radMaskedEditBox_SummaUAH.Location = new System.Drawing.Point(145, 199);
-            this.radMaskedEditBox_SummaUAH.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.radMaskedEditBox_SummaUAH.Mask = "[0-9]+\\,[0-9]*";
+            this.radMaskedEditBox_SummaUAH.MaskType = Telerik.WinControls.UI.MaskType.Regex;
             this.radMaskedEditBox_SummaUAH.Name = "radMaskedEditBox_SummaUAH";
             this.radMaskedEditBox_SummaUAH.Size = new System.Drawing.Size(77, 20);
             this.radMaskedEditBox_SummaUAH.TabIndex = 25;
             this.radMaskedEditBox_SummaUAH.TabStop = false;
-            this.radMaskedEditBox_SummaUAH.Text = "0";
+            this.radMaskedEditBox_SummaUAH.Text = "_";
             this.radMaskedEditBox_SummaUAH.Click += new System.EventHandler(this.radMaskedEditBox_SummaUAH_Click);
             // 
             // radDateTimePicker_SummaryDate
@@ -252,16 +266,6 @@
             this.radButton_AddAccountable.Text = "Добавить";
             this.radButton_AddAccountable.Click += new System.EventHandler(this.radButton_Add_Click);
             // 
-            // radButton_Remove
-            // 
-            this.radButton_Remove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.radButton_Remove.Location = new System.Drawing.Point(341, 12);
-            this.radButton_Remove.Name = "radButton_Remove";
-            this.radButton_Remove.Size = new System.Drawing.Size(110, 27);
-            this.radButton_Remove.TabIndex = 30;
-            this.radButton_Remove.Text = "Удалить";
-            this.radButton_Remove.Click += new System.EventHandler(this.radButton_Remove_Click);
-            // 
             // ChangeSummaryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,6 +285,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Projects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Accountables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_BudgetItems)).EndInit();
@@ -297,7 +302,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

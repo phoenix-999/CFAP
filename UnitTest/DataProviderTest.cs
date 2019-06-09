@@ -403,7 +403,7 @@ namespace UnitTest
             var oldUserName = userForUpdate.UserName;
             userForUpdate.UserName = "test user";
             var oldPassword = userForUpdate.Password;
-            userForUpdate.Password = null;
+            //userForUpdate.Password = null;
             var oldIsAdmin = userForUpdate.IsAdmin;
             userForUpdate.IsAdmin = true;
             UserGroup[] oldGroups = (from g in userForUpdate.UserGroups select g).ToArray();
@@ -413,7 +413,7 @@ namespace UnitTest
 
             Assert.AreEqual(updatedUser.IsAdmin, userForUpdate.IsAdmin);
             Assert.AreEqual(updatedUser.UserName, userForUpdate.UserName);
-            Assert.AreEqual(updatedUser.Password, oldPassword);
+            Assert.AreEqual(updatedUser.Password, userForUpdate.Password);
             Assert.AreEqual(updatedUser.CanChangeUsersData, userForUpdate.CanChangeUsersData);
 
             //Проверка добавления новых групп
