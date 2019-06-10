@@ -246,8 +246,7 @@ namespace CFAP
             }
 
             new ChangeSummaryForm(new Summary(), ChangeDataOptions.AddNew).ShowDialog();
-            this.Summaries.ResetBindings();
-            this.AddOrUpdateCurrentBalance();
+            RefreshData();
         }
 
         private void radGridView_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -259,10 +258,14 @@ namespace CFAP
             {
                 Summary summaryToChange = (Summary)e.Row.DataBoundItem;
                 new ChangeSummaryForm(summaryToChange, ChangeDataOptions.ChangeData).ShowDialog();
-                this.Summaries.ResetBindings();
-                this.AddOrUpdateCurrentBalance();
+                RefreshData();
             }
         }
-
+        
+        private void RefreshData()
+        {
+            this.Summaries.ResetBindings();
+            this.AddOrUpdateCurrentBalance();
+        }
     }
 }
