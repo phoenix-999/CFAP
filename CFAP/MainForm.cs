@@ -91,6 +91,19 @@ namespace CFAP
             this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
             this.radGridView.Columns["UserGroups"].IsVisible = false;
             this.radGridView.Columns["UserLastChanged"].IsVisible = false;
+
+            //Упорядчивание столбцов
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaryDate"].Index, 0);
+            this.radGridView.Columns.Move(this.radGridView.Columns["CashFlowType"].Index, 1);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Project"].Index, 2);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Accountable"].Index, 3);
+            this.radGridView.Columns.Move(this.radGridView.Columns["BudgetItem"].Index, 4);
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUAH"].Index, 5);
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUSD"].Index, 6);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 7);
+            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 8);
+
+            //Настройка данных столбцов
             //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.
             this.radGridView.Columns["Accountable"].FieldName = "Accountable.AccountableName";
 
@@ -118,16 +131,7 @@ namespace CFAP
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
             this.radGridView.Columns["SummaryDate"].TextAlignment = ContentAlignment.MiddleRight;
 
-            //Упорядчивание столбцов
-            this.radGridView.Columns.Move(this.radGridView.Columns["SummaryDate"].Index, 0);
-            this.radGridView.Columns.Move(this.radGridView.Columns["CashFlowType"].Index, 1);
-            this.radGridView.Columns.Move(this.radGridView.Columns["Project"].Index, 2);
-            this.radGridView.Columns.Move(this.radGridView.Columns["Accountable"].Index, 3);
-            this.radGridView.Columns.Move(this.radGridView.Columns["BudgetItem"].Index, 4);
-            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUAH"].Index, 5);
-            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUSD"].Index, 6);
-            this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 7);
-            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 8);
+            
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
