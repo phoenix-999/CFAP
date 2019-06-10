@@ -1209,6 +1209,67 @@ namespace CFAP.DataProviderClient {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Balance", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Balance : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BalanceUAHField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BalanceUSDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BalanceUAH {
+            get {
+                return this.BalanceUAHField;
+            }
+            set {
+                if ((this.BalanceUAHField.Equals(value) != true)) {
+                    this.BalanceUAHField = value;
+                    this.RaisePropertyChanged("BalanceUAH");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BalanceUSD {
+            get {
+                return this.BalanceUSDField;
+            }
+            set {
+                if ((this.BalanceUSDField.Equals(value) != true)) {
+                    this.BalanceUSDField = value;
+                    this.RaisePropertyChanged("BalanceUSD");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DbConcurencyUpdateOptions", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
     public enum DbConcurencyUpdateOptions : int {
@@ -1943,6 +2004,15 @@ namespace CFAP.DataProviderClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary[]> GetSummaryAsync(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodAuthenticateFaultExcept" +
+            "ionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        CFAP.DataProviderClient.Balance GetBalanceBeginningPeriod(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
+        System.Threading.Tasks.Task<CFAP.DataProviderClient.Balance> GetBalanceBeginningPeriodAsync(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -2229,6 +2299,14 @@ namespace CFAP.DataProviderClient {
         
         public System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary[]> GetSummaryAsync(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter) {
             return base.Channel.GetSummaryAsync(user, filter);
+        }
+        
+        public CFAP.DataProviderClient.Balance GetBalanceBeginningPeriod(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter) {
+            return base.Channel.GetBalanceBeginningPeriod(user, filter);
+        }
+        
+        public System.Threading.Tasks.Task<CFAP.DataProviderClient.Balance> GetBalanceBeginningPeriodAsync(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter) {
+            return base.Channel.GetBalanceBeginningPeriodAsync(user, filter);
         }
         
         public CFAP.DataProviderClient.Summary UpdateSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions) {

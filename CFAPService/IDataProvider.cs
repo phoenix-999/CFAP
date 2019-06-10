@@ -99,6 +99,11 @@ namespace CFAPService
         HashSet<Summary> GetSummary(User user, Filter filter);
 
         [OperationContract]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DbException))]
+        Balance GetBalanceBeginningPeriod(User user, Filter filter);
+
+        [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]

@@ -26,6 +26,40 @@ namespace CFAP
         public static List<Summary> Summaries { get; set; }
         public static Filter CurrentFilter { get; set; }
 
+        public static Balance BalanceBeginningPeriod { get; private set; }
+
+        public static Balance Incomming
+        {
+            get
+            {
+                Balance result = new Balance();
+
+                if (Summaries == null)
+                    return result;
+
+                result.BalanceUAH = Summaries.Where(s => s.CashFlowType == true).Sum(s => s.SummaUAH);
+                result.BalanceUSD = Summaries.Where(s => s.CashFlowType == true).Sum(s => s.SummaUSD);
+
+                return result;
+            }
+        }
+
+        public static Balance Expense
+        {
+            get
+            {
+                Balance result = new Balance();
+
+                if (Summaries == null)
+                    return result;
+
+                result.BalanceUAH = Summaries.Where(s => s.CashFlowType == false).Sum(s => s.SummaUAH);
+                result.BalanceUSD = Summaries.Where(s => s.CashFlowType == false).Sum(s => s.SummaUSD);
+
+                return result;
+            }
+        }
+
         public CFAPBusinessLogic(ExceptionsHandler exceptionsHandler)
         {
             this.ExceptionsHandler = exceptionsHandler;
@@ -978,6 +1012,8 @@ namespace CFAP
             {
                 ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
+
+            LoadBalanceBeginningPeriod(filter);
         }
 
         public void ChangeReadOnlySummary(bool onOff, Filter filter)
@@ -1200,5 +1236,36 @@ namespace CFAP
                 ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
         }
+
+        public void LoadBalanceBeginningPeriod(Filter filter)
+        {
+            try
+            {
+                CFAPBusinessLogic.CurrentFilter = filter;
+                CFAPBusinessLogic.BalanceBeginningPeriod = DataProviderProxy.GetBalanceBeginningPeriod(CFAPBusinessLogic.User, filter);
+            }
+            catch (FaultException<AuthenticateFaultException> fault)
+            {
+                ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+            }
+            catch (FaultException<DbException> fault)
+            {
+                ExceptionsHandler.DbExceptionHandler(fault);
+            }
+            catch (FaultException fault)
+            {
+                ExceptionsHandler.FaultExceptionHandler(fault);
+            }
+            catch (CommunicationException ex)
+            {
+                ExceptionsHandler.CommunicationExceptionHandler(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+            }
+        }
+
+
     }
 }

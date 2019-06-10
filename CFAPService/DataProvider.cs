@@ -946,6 +946,61 @@ namespace CFAPService
             }
         }
 
+        public Balance GetBalanceBeginningPeriod(User user, Filter filter)
+        {
+            AuthenticateUser(user);
+            Balance result = new Balance();
+
+            DateTime startDate = DateTime.MinValue;
+            DateTime endDate;
+
+            if (filter == null)
+            {
+                filter = new Filter();
+            }
+
+            if (filter.DateStart != null && filter.DateStart != default(DateTime) && filter.DateStart != DateTime.MinValue)
+            {
+                endDate = filter.DateStart.Value.AddDays(-1);
+            }
+            else
+            {
+                endDate = DateTime.MinValue;
+            }
+
+            filter.DateStart = startDate;
+            filter.DateEnd = endDate;
+
+            HashSet<Summary> summaries;
+            try
+            {
+                summaries = GetFilteredSummary(user, filter);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<DbException>(new DbException(ex));
+            }
+
+            result.BalanceUAH = 0;
+            result.BalanceUSD = 0;
+
+            foreach (var s in summaries)
+            {
+                if (s.CashFlowType == true)
+                {
+                    result.BalanceUAH += s.SummaUAH;
+                    result.BalanceUSD += s.SummaUSD;
+                }
+                else
+                {
+                    result.BalanceUAH -= s.SummaUAH;
+                    result.BalanceUSD -= s.SummaUSD;
+                }
+            }
+
+            return result;            
+        }
+
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
             AuthenticateUser(user);
@@ -959,8 +1014,8 @@ namespace CFAPService
             {
                 throw new FaultException<DbException>(new DbException(ex));
             }
-            return result;            
-        }   
+            return result;
+        }
 
         private User AuthenticateUser(User user, bool hasEncriptedPassword = true)
         {

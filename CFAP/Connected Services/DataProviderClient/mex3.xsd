@@ -105,6 +105,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSummary" nillable="true" type="tns:ArrayOfSummary" />
+  <xs:complexType name="Balance">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BalanceUAH" type="xs:double" />
+      <xs:element minOccurs="0" name="BalanceUSD" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Balance" nillable="true" type="tns:Balance" />
   <xs:complexType name="ArrayOfRate">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Rate" nillable="true" type="tns:Rate" />

@@ -31,7 +31,45 @@ namespace CFAP
 
             InitializeRadMenu();
 
+            InitializeData();
+
+        }
+
+        private void InitializeData()
+        {
             InitializeGrid();
+            InitializeBalance();
+        }
+
+        private void InitializeBalance()
+        {
+            if (CFAPBusinessLogic.BalanceBeginningPeriod == null || CFAPBusinessLogic.Summaries == null)
+                return;
+
+            if (this.radLabel_BeginPeriodBalanceUAH.DataBindings.Count > 0)
+            {
+                this.radLabel_BeginPeriodBalanceUAH.DataBindings.Clear();
+            }
+
+            this.radLabel_BeginPeriodBalanceUAH.DataBindings.Add(new Binding("Text", CFAPBusinessLogic.BalanceBeginningPeriod, "BalanceUAH", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C", CultureInfo.CreateSpecificCulture("uk-UA")));
+            this.radLabel_BeginPeriodBalanceUSD.DataBindings.Add(new Binding("Text", CFAPBusinessLogic.BalanceBeginningPeriod, "BalanceUSD", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C", CultureInfo.CreateSpecificCulture("en-US")));
+
+            this.AddOrUpdateCurrentBalance();
+        }
+
+        private void AddOrUpdateCurrentBalance()
+        {
+            double endPeriodBalanceUAH = CFAPBusinessLogic.BalanceBeginningPeriod.BalanceUAH + CFAPBusinessLogic.Incomming.BalanceUAH - CFAPBusinessLogic.Expense.BalanceUAH;
+            this.radLabel_EndPeriodBalanceUAH.Text = string.Format(CultureInfo.CreateSpecificCulture("uk-UA"), "{0:C}", endPeriodBalanceUAH);
+
+            double endPeriodBalanceUSD = CFAPBusinessLogic.BalanceBeginningPeriod.BalanceUSD + CFAPBusinessLogic.Incomming.BalanceUSD - CFAPBusinessLogic.Expense.BalanceUSD;
+            this.radLabel_EndPeriodBalanceUSD.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C}", endPeriodBalanceUSD);
+
+            this.radLabel_CurrentExpenseUAH.Text = string.Format(CultureInfo.CreateSpecificCulture("uk-UA"), "{0:C}", CFAPBusinessLogic.Expense.BalanceUAH);
+            this.radLabel_CurrentExpenseUSD.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C}", CFAPBusinessLogic.Expense.BalanceUSD);
+
+            this.radLabel_CurrentIncommingUAH.Text = string.Format(CultureInfo.CreateSpecificCulture("uk-UA"), "{0:C}", CFAPBusinessLogic.Incomming.BalanceUAH);
+            this.radLabel_CurrentIncommingUSD.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C}", CFAPBusinessLogic.Incomming.BalanceUSD);
         }
 
         private void InitializeGrid()
@@ -58,7 +96,7 @@ namespace CFAP
 
             this.radGridView.Columns["Id"].IsVisible = false;
 
-            this.radGridView.Columns["Project"].HeaderText = "Проект";            
+            this.radGridView.Columns["Project"].HeaderText = "Проект";
             this.radGridView.Columns["Project"].FieldName = "Project.ProjectName";
 
 
@@ -76,6 +114,7 @@ namespace CFAP
 
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
+
 
             this.radGridView.Columns["UserGroups"].IsVisible = false;
 
@@ -173,7 +212,7 @@ namespace CFAP
         {
             this.businessLogic.LoadSummaries(this.Filter);
             this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
-            InitializeGrid();
+            InitializeData();
         }
 
         private void radMenuItem_Settings_Click(object sender, EventArgs e)
@@ -194,11 +233,12 @@ namespace CFAP
             if (this.Summaries == null)
             {
                 this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
-                InitializeGrid();
+                InitializeData();
             }
 
             new ChangeSummaryForm(new Summary(), ChangeDataOptions.AddNew).ShowDialog();
             this.Summaries.ResetBindings();
+            this.AddOrUpdateCurrentBalance();
         }
 
         private void radGridView_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -211,7 +251,9 @@ namespace CFAP
                 Summary summaryToChange = (Summary)e.Row.DataBoundItem;
                 new ChangeSummaryForm(summaryToChange, ChangeDataOptions.ChangeData).ShowDialog();
                 this.Summaries.ResetBindings();
+                this.AddOrUpdateCurrentBalance();
             }
         }
+
     }
 }
