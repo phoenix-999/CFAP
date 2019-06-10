@@ -104,13 +104,13 @@
             this.ClientSize = new System.Drawing.Size(753, 759);
             this.Controls.Add(this.radPanel_Grid);
             this.Controls.Add(this.radPanel_Header);
-            this.Name = "AccountablesForm";
+            this.Name = "UsersForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Подотчетники";
+            this.Text = "Пользователи";
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddItem)).EndInit();

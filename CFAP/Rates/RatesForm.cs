@@ -42,7 +42,8 @@ namespace CFAP
 
             this.radGridView.Columns["RateUSD"].HeaderText = "Курс долара";
 
-            this.radGridView.Columns["DateRate"].HeaderText = "Дата";
+            this.radGridView.Columns["DateRate"].HeaderText = "Месяц";
+            this.radGridView.Columns["DateRate"].FormatString = "{0:MM/yyyy}";
         }
 
 
