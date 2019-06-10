@@ -68,13 +68,14 @@
             // 
             // radDateTimePicker_DateRate
             // 
-            this.radDateTimePicker_DateRate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.radDateTimePicker_DateRate.CustomFormat = "MM.yyyy";
+            this.radDateTimePicker_DateRate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.radDateTimePicker_DateRate.Location = new System.Drawing.Point(178, 81);
             this.radDateTimePicker_DateRate.Name = "radDateTimePicker_DateRate";
             this.radDateTimePicker_DateRate.Size = new System.Drawing.Size(164, 20);
             this.radDateTimePicker_DateRate.TabIndex = 14;
             this.radDateTimePicker_DateRate.TabStop = false;
-            this.radDateTimePicker_DateRate.Text = "06.06.2019";
+            this.radDateTimePicker_DateRate.Text = "06.2019";
             this.radDateTimePicker_DateRate.Value = new System.DateTime(2019, 6, 6, 0, 0, 0, 0);
             // 
             // radLabel2
