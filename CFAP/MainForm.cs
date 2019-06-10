@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using CFAP.DataProviderClient;
 using System.Globalization;
+using System.Linq;
+using System.Reflection;
 
 namespace CFAP
 {
@@ -46,19 +48,23 @@ namespace CFAP
             if (CFAPBusinessLogic.BalanceBeginningPeriod == null || CFAPBusinessLogic.Summaries == null)
                 return;
 
-            if (this.radLabel_BeginPeriodBalanceUAH.DataBindings.Count > 0)
-            {
-                this.radLabel_BeginPeriodBalanceUAH.DataBindings.Clear();
-            }
 
-            this.radLabel_BeginPeriodBalanceUAH.DataBindings.Add(new Binding("Text", CFAPBusinessLogic.BalanceBeginningPeriod, "BalanceUAH", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C", CultureInfo.CreateSpecificCulture("uk-UA")));
-            this.radLabel_BeginPeriodBalanceUSD.DataBindings.Add(new Binding("Text", CFAPBusinessLogic.BalanceBeginningPeriod, "BalanceUSD", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C", CultureInfo.CreateSpecificCulture("en-US")));
+            this.radLabel_BeginPeriodBalanceUAH.Text = string.Format(CultureInfo.CreateSpecificCulture("uk-UU"), "{0:C}", CFAPBusinessLogic.BalanceBeginningPeriod.BalanceUAH);
+            this.radLabel_BeginPeriodBalanceUSD.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C}", CFAPBusinessLogic.BalanceBeginningPeriod.BalanceUSD);
 
             this.AddOrUpdateCurrentBalance();
         }
 
         private void AddOrUpdateCurrentBalance()
         {
+            if (CFAPBusinessLogic.Summaries == null)
+                return;
+
+            if (CFAPBusinessLogic.BalanceBeginningPeriod == null)
+            {
+                CFAPBusinessLogic.BalanceBeginningPeriod = new Balance() { BalanceUAH = 0, BalanceUSD = 0};
+            }
+
             double endPeriodBalanceUAH = CFAPBusinessLogic.BalanceBeginningPeriod.BalanceUAH + CFAPBusinessLogic.Incomming.BalanceUAH - CFAPBusinessLogic.Expense.BalanceUAH;
             this.radLabel_EndPeriodBalanceUAH.Text = string.Format(CultureInfo.CreateSpecificCulture("uk-UA"), "{0:C}", endPeriodBalanceUAH);
 
@@ -115,10 +121,11 @@ namespace CFAP
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
 
-
             this.radGridView.Columns["UserGroups"].IsVisible = false;
 
             this.radGridView.Columns["UserLastChanged"].IsVisible = false;
+
+            
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

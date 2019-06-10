@@ -26,7 +26,7 @@ namespace CFAP
         public static List<Summary> Summaries { get; set; }
         public static Filter CurrentFilter { get; set; }
 
-        public static Balance BalanceBeginningPeriod { get; private set; }
+        public static Balance BalanceBeginningPeriod { get; set; }
 
         public static Balance Incomming
         {
