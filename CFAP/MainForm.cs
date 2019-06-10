@@ -85,30 +85,26 @@ namespace CFAP
 
             this.radGridView.DataSource = this.Summaries;
 
-            this.radGridView.Columns["Accountable"].HeaderText = "Подотчетник";
+            this.radGridView.Columns["Id"].IsVisible = false;
+            this.radGridView.Columns["RowVersion"].IsVisible = false;
+            this.radGridView.Columns["ActionDate"].IsVisible = false;
+            this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
+            this.radGridView.Columns["UserGroups"].IsVisible = false;
+            this.radGridView.Columns["UserLastChanged"].IsVisible = false;
             //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.
             this.radGridView.Columns["Accountable"].FieldName = "Accountable.AccountableName";
-
-            this.radGridView.Columns["ActionDate"].IsVisible = false;
 
             this.radGridView.Columns["BudgetItem"].HeaderText = "Статья";
             this.radGridView.Columns["BudgetItem"].FieldName = "BudgetItem.ItemName";
 
             this.radGridView.Columns["CashFlowType"].HeaderText = "Приход/Расход";
 
-            this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
-
             this.radGridView.Columns["Description"].HeaderText = "Расшифровка";
-
-            this.radGridView.Columns["Id"].IsVisible = false;
 
             this.radGridView.Columns["Project"].HeaderText = "Проект";
             this.radGridView.Columns["Project"].FieldName = "Project.ProjectName";
 
-
             this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтение";
-
-            this.radGridView.Columns["RowVersion"].IsVisible = false;
 
             this.radGridView.Columns["SummaUAH"].HeaderText = "Сумма, грн.";
             this.radGridView.Columns["SummaUAH"].FormatString = "{0:C}";
@@ -120,12 +116,18 @@ namespace CFAP
 
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
+            this.radGridView.Columns["SummaryDate"].TextAlignment = ContentAlignment.MiddleRight;
 
-            this.radGridView.Columns["UserGroups"].IsVisible = false;
-
-            this.radGridView.Columns["UserLastChanged"].IsVisible = false;
-
-            
+            //Упорядчивание столбцов
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaryDate"].Index, 0);
+            this.radGridView.Columns.Move(this.radGridView.Columns["CashFlowType"].Index, 1);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Project"].Index, 2);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Accountable"].Index, 3);
+            this.radGridView.Columns.Move(this.radGridView.Columns["BudgetItem"].Index, 4);
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUAH"].Index, 5);
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaUSD"].Index, 6);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 7);
+            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 8);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
