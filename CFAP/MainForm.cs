@@ -39,12 +39,18 @@ namespace CFAP
 
         private void InitializeData()
         {
+            ///<summary>
+            ///Инициализирует сетку представления и данные по остаткам
+            /// </summary>
             InitializeGrid();
             InitializeBalance();
         }
 
         private void InitializeBalance()
         {
+            ///<summary>
+            ///Устанавливает текстовое представление данных остатков на начало периода, которые были предаврительно загружены или созданы экземпляры по уммолчанию.
+            /// </summary>
             if (CFAPBusinessLogic.BalanceBeginningPeriod == null || CFAPBusinessLogic.Summaries == null)
                 return;
 
@@ -57,6 +63,11 @@ namespace CFAP
 
         private void AddOrUpdateCurrentBalance()
         {
+            ///<summary>
+            ///Устанавливает текстовое представление данных о остатках по загруженным операциям.
+            ///Если данные о отстаткам на начло периода не были загружены с сервера - создает экземляр остатков на начало периода с данными по уммолчанию.
+            ///Требует предварительно созданного экземпляра коллекции операций.
+            /// </summary>
             if (CFAPBusinessLogic.Summaries == null)
                 return;
 
@@ -80,6 +91,10 @@ namespace CFAP
 
         private void InitializeGrid()
         {
+            ///<summary>
+            ///Инициализирует поля сетки.
+            ///Если коллекция операций в экземпляре формы не инициализированна - действия не происходят.
+            /// </summary>
             if (this.Summaries == null)
                 return;
 
@@ -156,11 +171,6 @@ namespace CFAP
             }
         }
 
-        void InitializeMenuItemUsers()
-        {
-
-        }
-
         private void radMenuItem_Users_Click(object sender, EventArgs e)
         {
             if (CFAPBusinessLogic.UsersData == null)
@@ -223,6 +233,10 @@ namespace CFAP
 
         private void radButton_GetData_Click(object sender, EventArgs e)
         {
+            ///<summary>
+            ///При возниковении события происходит загрузка колекции операций из сервера.
+            ///Инициализируеться экземпляр коллекции операций формы.
+            /// </summary>
             this.businessLogic.LoadSummaries(this.Filter);
             this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
             InitializeData();
@@ -238,6 +252,11 @@ namespace CFAP
 
         private void radButton_Add_Click(object sender, EventArgs e)
         {
+            ///<summary>
+            ///Вызывает форму добавления новой записи.
+            //////После закрытия вызванной формы обновляет данные.
+            ///Если экземпляр коллекции операций не создан - создает экземпляр коллекции и инициализирует сетку представления.
+            /// </summary>
             if (CFAPBusinessLogic.Summaries == null)
             {
                 CFAPBusinessLogic.Summaries = new List<Summary>();
@@ -255,6 +274,10 @@ namespace CFAP
 
         private void radGridView_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            ///<summary>
+            ///Вызывает форму изменения данных операции.
+            ///После закрытия формы обновляет данные.
+            /// </summary>
             if (this.Summaries == null)
                 return;
 
@@ -268,8 +291,12 @@ namespace CFAP
         
         private void RefreshData()
         {
+            ///<summary>
+            ///Обновляет данные привязки и данные остатков загруженных операций
+            /// </summary>
             this.Summaries.ResetBindings();
             this.AddOrUpdateCurrentBalance();
         }
+
     }
 }

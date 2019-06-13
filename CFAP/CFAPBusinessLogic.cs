@@ -60,6 +60,12 @@ namespace CFAP
             }
         }
 
+        static CFAPBusinessLogic()
+        {
+            Summaries = new List<Summary>();
+            BalanceBeginningPeriod = new Balance() { BalanceUAH = 0, BalanceUSD = 0};
+        }
+
         public CFAPBusinessLogic(ExceptionsHandler exceptionsHandler)
         {
             this.ExceptionsHandler = exceptionsHandler;
