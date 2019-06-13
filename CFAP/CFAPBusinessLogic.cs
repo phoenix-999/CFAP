@@ -13,11 +13,10 @@ namespace CFAP
     {
         public ExceptionsHandler ExceptionsHandler { get; set; }
 
-        public static User User { get; private set; }
         DataProviderClient.DataProviderClient DataProviderProxy;
-       
-        public static List<User> UsersData { get; private set; }
 
+        public static User User { get; private set; }
+        public static List<User> UsersData { get; private set; }
         public static List<UserGroup> UserGroups { get; private set; }
         public static List<Accountable> Accountables { get; private set; }
         public static List<BudgetItem> BudgetItems { get; private set; }
@@ -995,8 +994,14 @@ namespace CFAP
         {
             try
             {
+                if (DataProviderProxy.State == CommunicationState.Faulted)
+                {
+                    DataProviderProxy = new DataProviderClient.DataProviderClient();
+                }
+
                 CFAPBusinessLogic.CurrentFilter = filter;
                 CFAPBusinessLogic.Summaries = DataProviderProxy.GetSummary(CFAPBusinessLogic.User, filter).ToList();
+                LoadBalanceBeginningPeriod(filter);
             }
             catch (FaultException<AuthenticateFaultException> fault)
             {
@@ -1018,8 +1023,6 @@ namespace CFAP
             {
                 ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
-
-            LoadBalanceBeginningPeriod(filter);
         }
 
         public void ChangeReadOnlySummary(bool onOff, Filter filter)

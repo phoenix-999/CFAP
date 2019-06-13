@@ -120,6 +120,7 @@ namespace CFAP
 
             //Настройка данных столбцов
             //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.
+            this.radGridView.Columns["Accountable"].HeaderText = "Подотчетник";
             this.radGridView.Columns["Accountable"].FieldName = "Accountable.AccountableName";
 
             this.radGridView.Columns["BudgetItem"].HeaderText = "Статья";

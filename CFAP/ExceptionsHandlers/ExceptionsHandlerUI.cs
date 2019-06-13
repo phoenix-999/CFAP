@@ -30,7 +30,7 @@ namespace CFAP
 
         public override void FaultExceptionHandler(FaultException fault)
         {
-            MessageBox.Show(fault.Message, "Неопознання ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Непредвиденный сбой", "Неопознання ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public override void CommunicationExceptionHandler(CommunicationException ex)

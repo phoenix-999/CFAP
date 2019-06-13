@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2a1d7f91-3201-4e21-a2f6-09bfdcbddd30" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a6f49874-9699-423f-9985-250bf299d20e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,15 +22,15 @@
     <MetadataSource Address="http://localhost/CFAPService/mex" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="mex.xsd" MetadataType="Schema" ID="5041f8bf-a940-469a-afb8-7ca932cac982" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd7" />
-    <MetadataFile FileName="mex1.xsd" MetadataType="Schema" ID="722995ab-8da2-4f5c-aacd-05589e489f57" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd6" />
-    <MetadataFile FileName="mex2.xsd" MetadataType="Schema" ID="7a0eee97-76c7-4f17-8349-4e40179df585" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd5" />
-    <MetadataFile FileName="mex3.xsd" MetadataType="Schema" ID="0ba73eaf-24b8-4acd-9d91-4520c74a59aa" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd4" />
-    <MetadataFile FileName="mex4.xsd" MetadataType="Schema" ID="a9654bb0-d456-445f-8633-d600c217f321" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd3" />
-    <MetadataFile FileName="mex5.xsd" MetadataType="Schema" ID="afffdc6a-c6db-4a53-94e7-0e361f22e83b" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd2" />
-    <MetadataFile FileName="mex6.xsd" MetadataType="Schema" ID="a1fa0551-5dda-4145-aaee-9dd754ef5c5c" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd1" />
-    <MetadataFile FileName="DataProvider.wsdl" MetadataType="Wsdl" ID="723e9e26-70df-4955-b004-2c9d26fd7b1a" SourceId="1" SourceUrl="http://localhost/CFAPService/mex" />
-    <MetadataFile FileName="mex7.xsd" MetadataType="Schema" ID="0fbe7010-a4c6-4609-9ec0-eb856efc61ee" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd0" />
+    <MetadataFile FileName="mex.xsd" MetadataType="Schema" ID="307a8496-983f-4e16-a71f-43e4b14af87f" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd7" />
+    <MetadataFile FileName="mex1.xsd" MetadataType="Schema" ID="5bb9c4f2-ff98-4f58-95c7-c29970d64444" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd6" />
+    <MetadataFile FileName="mex2.xsd" MetadataType="Schema" ID="02497f88-7149-4cb7-ba85-da6fd619449a" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd5" />
+    <MetadataFile FileName="mex3.xsd" MetadataType="Schema" ID="e1aed245-75fc-48e2-9ea7-4e1910bf0545" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd4" />
+    <MetadataFile FileName="mex4.xsd" MetadataType="Schema" ID="d3f0d99a-e122-4e0b-849c-4d8a52266101" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd3" />
+    <MetadataFile FileName="mex5.xsd" MetadataType="Schema" ID="3c14f89e-c3bb-48d0-b869-e7e855bbdf78" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd2" />
+    <MetadataFile FileName="mex6.xsd" MetadataType="Schema" ID="c359e49c-2b39-4de9-8629-5101da79ea2a" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd1" />
+    <MetadataFile FileName="DataProvider.wsdl" MetadataType="Wsdl" ID="3d523b97-1a09-405e-986e-68db00c3b88a" SourceId="1" SourceUrl="http://localhost/CFAPService/mex" />
+    <MetadataFile FileName="mex7.xsd" MetadataType="Schema" ID="7c5c83de-858c-40d3-8941-b87a47ee0cf6" SourceId="1" SourceUrl="http://localhost/CFAPService/mex?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

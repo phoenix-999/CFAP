@@ -96,6 +96,11 @@
     <Compile Include="Accountables\ChangeAccountableForm.Designer.cs">
       <DependentUpon>ChangeAccountableForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\DataProviderClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Projects\ChangeProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,11 +175,6 @@
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Connected Services\DataProviderClient\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ExceptionsHandlers\ExceptionsHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
