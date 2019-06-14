@@ -107,6 +107,7 @@
     <Compile Include="Projects\ChangeProjectForm.Designer.cs">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RussianRadGridLocalizationProvider.cs" />
     <Compile Include="Summaries\ChangeSummaryForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading;
+using Telerik.WinControls.UI.Localization;
 
 namespace CFAP
 {
@@ -98,6 +99,8 @@ namespace CFAP
             /// </summary>
             if (this.Summaries == null)
                 return;
+
+            RadGridLocalizationProvider.CurrentProvider = new RussianRadGridLocalizationProvider();
 
             this.radGridView.DataSource = this.Summaries;
 
