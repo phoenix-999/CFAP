@@ -34,9 +34,16 @@ namespace CFAP
 
             businessLogic = new CFAPBusinessLogic(new ExceptionsHandlerUI());
 
+            SetLocalization();
+
             InitializeRadMenu();
 
             InitializeData();
+        }
+
+        private void SetLocalization()
+        {
+            RadGridLocalizationProvider.CurrentProvider = new RussianRadGridLocalizationProvider();
         }
 
         private void InitializeData()
@@ -99,8 +106,6 @@ namespace CFAP
             /// </summary>
             if (this.Summaries == null)
                 return;
-
-            RadGridLocalizationProvider.CurrentProvider = new RussianRadGridLocalizationProvider();
 
             this.radGridView.DataSource = this.Summaries;
 

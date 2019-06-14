@@ -104,9 +104,9 @@
             this.radCheckBox_CanReadAllData.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radCheckBox_CanReadAllData.Location = new System.Drawing.Point(15, 80);
             this.radCheckBox_CanReadAllData.Name = "radCheckBox_CanReadAllData";
-            this.radCheckBox_CanReadAllData.Size = new System.Drawing.Size(154, 18);
+            this.radCheckBox_CanReadAllData.Size = new System.Drawing.Size(322, 18);
             this.radCheckBox_CanReadAllData.TabIndex = 5;
-            this.radCheckBox_CanReadAllData.Text = "Доступ ко всем данным";
+            this.radCheckBox_CanReadAllData.Text = "Доступ ко всем данным (с момента создания группы)";
             // 
             // radLabel1
             // 

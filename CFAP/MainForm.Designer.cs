@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.radMenu = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItem_Settings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_Users = new Telerik.WinControls.UI.RadMenuItem();
@@ -38,6 +39,10 @@
             this.radMenuItem_Rates = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_UsersGroups = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radButton_RefreshGeneralData = new Telerik.WinControls.UI.RadButton();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_CurrentIncommingUSD = new Telerik.WinControls.UI.RadLabel();
@@ -45,7 +50,6 @@
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_CurrentExpenseUSD = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_CurrentExpenseUAH = new Telerik.WinControls.UI.RadLabel();
@@ -69,12 +73,14 @@
             this.radWaitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.radButton_RefreshGeneralData = new Telerik.WinControls.UI.RadButton();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
@@ -83,7 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_CurrentExpenseUSD)).BeginInit();
@@ -110,10 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).BeginInit();
             this.radGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,6 +193,51 @@
             this.radPanel_Header.Size = new System.Drawing.Size(1139, 81);
             this.radPanel_Header.TabIndex = 1;
             // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.radButton_RefreshGeneralData);
+            this.radGroupBox1.Controls.Add(this.radLabel15);
+            this.radGroupBox1.Controls.Add(this.radButton1);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radGroupBox1.HeaderText = "";
+            this.radGroupBox1.Location = new System.Drawing.Point(626, 0);
+            this.radGroupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Padding = new System.Windows.Forms.Padding(0);
+            this.radGroupBox1.Size = new System.Drawing.Size(171, 81);
+            this.radGroupBox1.TabIndex = 9;
+            // 
+            // radButton_RefreshGeneralData
+            // 
+            this.radButton_RefreshGeneralData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_RefreshGeneralData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radButton_RefreshGeneralData.Location = new System.Drawing.Point(0, 41);
+            this.radButton_RefreshGeneralData.Name = "radButton_RefreshGeneralData";
+            this.radButton_RefreshGeneralData.Size = new System.Drawing.Size(171, 40);
+            this.radButton_RefreshGeneralData.TabIndex = 9;
+            this.radButton_RefreshGeneralData.Text = "Обновить состаляющие операций";
+            this.radButton_RefreshGeneralData.TextWrap = true;
+            this.radButton_RefreshGeneralData.Click += new System.EventHandler(this.radButton_RefreshGeneralData_Click);
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(54, 3);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(2, 2);
+            this.radLabel15.TabIndex = 2;
+            // 
+            // radButton1
+            // 
+            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radButton1.Location = new System.Drawing.Point(0, 0);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(171, 40);
+            this.radButton1.TabIndex = 2;
+            this.radButton1.Text = "Добавить";
+            this.radButton1.Click += new System.EventHandler(this.radButton_Add_Click);
+            // 
             // radButton_GetData
             // 
             this.radButton_GetData.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -260,17 +306,6 @@
             this.radLabel14.Size = new System.Drawing.Size(29, 18);
             this.radLabel14.TabIndex = 0;
             this.radLabel14.Text = "UAH";
-            // 
-            // radButton1
-            // 
-            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radButton1.Location = new System.Drawing.Point(0, 0);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(171, 40);
-            this.radButton1.TabIndex = 2;
-            this.radButton1.Text = "Добавить";
-            this.radButton1.Click += new System.EventHandler(this.radButton_Add_Click);
             // 
             // radGroupBox3
             // 
@@ -515,40 +550,6 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // radButton_RefreshGeneralData
-            // 
-            this.radButton_RefreshGeneralData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton_RefreshGeneralData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radButton_RefreshGeneralData.Location = new System.Drawing.Point(0, 41);
-            this.radButton_RefreshGeneralData.Name = "radButton_RefreshGeneralData";
-            this.radButton_RefreshGeneralData.Size = new System.Drawing.Size(171, 40);
-            this.radButton_RefreshGeneralData.TabIndex = 9;
-            this.radButton_RefreshGeneralData.Text = "Обновить состаляющие операций";
-            this.radButton_RefreshGeneralData.TextWrap = true;
-            this.radButton_RefreshGeneralData.Click += new System.EventHandler(this.radButton_RefreshGeneralData_Click);
-            // 
-            // radGroupBox1
-            // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.radButton_RefreshGeneralData);
-            this.radGroupBox1.Controls.Add(this.radLabel15);
-            this.radGroupBox1.Controls.Add(this.radButton1);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radGroupBox1.HeaderText = "";
-            this.radGroupBox1.Location = new System.Drawing.Point(626, 0);
-            this.radGroupBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.radGroupBox1.Size = new System.Drawing.Size(171, 81);
-            this.radGroupBox1.TabIndex = 9;
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(54, 3);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(2, 2);
-            this.radLabel15.TabIndex = 2;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -558,6 +559,7 @@
             this.Controls.Add(this.radPanel_Footer);
             this.Controls.Add(this.radPanel_Header);
             this.Controls.Add(this.radMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             // 
             // 
@@ -569,6 +571,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
@@ -578,7 +586,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.radGroupBox3.PerformLayout();
@@ -609,11 +616,6 @@
             this.radGridView.ResumeLayout(false);
             this.radGridView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            this.radGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
