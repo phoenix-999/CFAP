@@ -330,5 +330,11 @@ namespace CFAP
                 radWaitingBar.Visible = false;
             }
         }
+
+        private void radButton_RefreshGeneralData_Click(object sender, EventArgs e)
+        {
+            businessLogic.LoadTotalData();
+            MessageBox.Show("Обновление завершено");
+        }
     }
 }

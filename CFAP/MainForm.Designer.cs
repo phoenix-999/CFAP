@@ -38,40 +38,44 @@
             this.radMenuItem_Rates = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem_UsersGroups = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
+            this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_CurrentIncommingUSD = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_CurrentIncommingUAH = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_CurrentExpenseUSD = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_CurrentExpenseUAH = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radGroupBox7 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_EndPeriodBalanceUSD = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_EndPeriodBalanceUAH = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radGroupBox6 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel_BeginPeriodBalanceUSD = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_BeginPeriodBalanceUAH = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Footer = new Telerik.WinControls.UI.RadPanel();
             this.radGridView = new Telerik.WinControls.UI.RadGridView();
             this.radWaitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.radButton_RefreshGeneralData = new Telerik.WinControls.UI.RadButton();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_CurrentIncommingUSD)).BeginInit();
@@ -79,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_CurrentExpenseUSD)).BeginInit();
@@ -86,27 +91,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).BeginInit();
+            this.radGroupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_EndPeriodBalanceUSD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_EndPeriodBalanceUAH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox6)).BeginInit();
+            this.radGroupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_BeginPeriodBalanceUSD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_BeginPeriodBalanceUAH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).BeginInit();
             this.radGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,17 +180,28 @@
             // radPanel_Header
             // 
             this.radPanel_Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radPanel_Header.Controls.Add(this.radGroupBox1);
+            this.radPanel_Header.Controls.Add(this.radButton_GetData);
             this.radPanel_Header.Controls.Add(this.radGroupBox4);
             this.radPanel_Header.Controls.Add(this.radGroupBox3);
-            this.radPanel_Header.Controls.Add(this.radGroupBox2);
-            this.radPanel_Header.Controls.Add(this.radGroupBox1);
-            this.radPanel_Header.Controls.Add(this.radButton1);
-            this.radPanel_Header.Controls.Add(this.radButton_GetData);
+            this.radPanel_Header.Controls.Add(this.radGroupBox7);
+            this.radPanel_Header.Controls.Add(this.radGroupBox6);
             this.radPanel_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel_Header.Location = new System.Drawing.Point(0, 20);
             this.radPanel_Header.Name = "radPanel_Header";
             this.radPanel_Header.Size = new System.Drawing.Size(1139, 81);
             this.radPanel_Header.TabIndex = 1;
+            // 
+            // radButton_GetData
+            // 
+            this.radButton_GetData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_GetData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radButton_GetData.Location = new System.Drawing.Point(342, 0);
+            this.radButton_GetData.Name = "radButton_GetData";
+            this.radButton_GetData.Size = new System.Drawing.Size(119, 81);
+            this.radButton_GetData.TabIndex = 8;
+            this.radButton_GetData.Text = "Получить операции";
+            this.radButton_GetData.Click += new System.EventHandler(this.radButton_GetData_Click);
             // 
             // radGroupBox4
             // 
@@ -195,7 +213,7 @@
             this.radGroupBox4.Controls.Add(this.radLabel14);
             this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Right;
             this.radGroupBox4.HeaderText = "Приход";
-            this.radGroupBox4.Location = new System.Drawing.Point(687, 0);
+            this.radGroupBox4.Location = new System.Drawing.Point(797, 0);
             this.radGroupBox4.Margin = new System.Windows.Forms.Padding(5);
             this.radGroupBox4.Name = "radGroupBox4";
             this.radGroupBox4.Size = new System.Drawing.Size(171, 81);
@@ -243,6 +261,17 @@
             this.radLabel14.TabIndex = 0;
             this.radLabel14.Text = "UAH";
             // 
+            // radButton1
+            // 
+            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radButton1.Location = new System.Drawing.Point(0, 0);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(171, 40);
+            this.radButton1.TabIndex = 2;
+            this.radButton1.Text = "Добавить";
+            this.radButton1.Click += new System.EventHandler(this.radButton_Add_Click);
+            // 
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -253,7 +282,7 @@
             this.radGroupBox3.Controls.Add(this.radLabel11);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.radGroupBox3.HeaderText = "Расход";
-            this.radGroupBox3.Location = new System.Drawing.Point(858, 0);
+            this.radGroupBox3.Location = new System.Drawing.Point(968, 0);
             this.radGroupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.radGroupBox3.Name = "radGroupBox3";
             this.radGroupBox3.Size = new System.Drawing.Size(171, 81);
@@ -301,22 +330,22 @@
             this.radLabel11.TabIndex = 0;
             this.radLabel11.Text = "UAH";
             // 
-            // radGroupBox2
+            // radGroupBox7
             // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.radLabel_EndPeriodBalanceUSD);
-            this.radGroupBox2.Controls.Add(this.radLabel_EndPeriodBalanceUAH);
-            this.radGroupBox2.Controls.Add(this.radLabel6);
-            this.radGroupBox2.Controls.Add(this.radLabel7);
-            this.radGroupBox2.Controls.Add(this.radLabel8);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radGroupBox2.HeaderText = "Остаток на конец периода";
-            this.radGroupBox2.Location = new System.Drawing.Point(281, 0);
-            this.radGroupBox2.Margin = new System.Windows.Forms.Padding(5);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(171, 81);
-            this.radGroupBox2.TabIndex = 4;
-            this.radGroupBox2.Text = "Остаток на конец периода";
+            this.radGroupBox7.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox7.Controls.Add(this.radLabel_EndPeriodBalanceUSD);
+            this.radGroupBox7.Controls.Add(this.radLabel_EndPeriodBalanceUAH);
+            this.radGroupBox7.Controls.Add(this.radLabel6);
+            this.radGroupBox7.Controls.Add(this.radLabel7);
+            this.radGroupBox7.Controls.Add(this.radLabel8);
+            this.radGroupBox7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radGroupBox7.HeaderText = "Остаток на конец периода";
+            this.radGroupBox7.Location = new System.Drawing.Point(171, 0);
+            this.radGroupBox7.Margin = new System.Windows.Forms.Padding(5);
+            this.radGroupBox7.Name = "radGroupBox7";
+            this.radGroupBox7.Size = new System.Drawing.Size(171, 81);
+            this.radGroupBox7.TabIndex = 4;
+            this.radGroupBox7.Text = "Остаток на конец периода";
             // 
             // radLabel_EndPeriodBalanceUSD
             // 
@@ -359,22 +388,22 @@
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "UAH";
             // 
-            // radGroupBox1
+            // radGroupBox6
             // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.radLabel_BeginPeriodBalanceUSD);
-            this.radGroupBox1.Controls.Add(this.radLabel_BeginPeriodBalanceUAH);
-            this.radGroupBox1.Controls.Add(this.radLabel3);
-            this.radGroupBox1.Controls.Add(this.radLabel2);
-            this.radGroupBox1.Controls.Add(this.radLabel1);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radGroupBox1.HeaderText = "Остаток на начало периода";
-            this.radGroupBox1.Location = new System.Drawing.Point(110, 0);
-            this.radGroupBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(171, 81);
-            this.radGroupBox1.TabIndex = 3;
-            this.radGroupBox1.Text = "Остаток на начало периода";
+            this.radGroupBox6.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox6.Controls.Add(this.radLabel_BeginPeriodBalanceUSD);
+            this.radGroupBox6.Controls.Add(this.radLabel_BeginPeriodBalanceUAH);
+            this.radGroupBox6.Controls.Add(this.radLabel3);
+            this.radGroupBox6.Controls.Add(this.radLabel2);
+            this.radGroupBox6.Controls.Add(this.radLabel1);
+            this.radGroupBox6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radGroupBox6.HeaderText = "Остаток на начало периода";
+            this.radGroupBox6.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBox6.Margin = new System.Windows.Forms.Padding(5);
+            this.radGroupBox6.Name = "radGroupBox6";
+            this.radGroupBox6.Size = new System.Drawing.Size(171, 81);
+            this.radGroupBox6.TabIndex = 3;
+            this.radGroupBox6.Text = "Остаток на начало периода";
             // 
             // radLabel_BeginPeriodBalanceUSD
             // 
@@ -416,28 +445,6 @@
             this.radLabel1.Size = new System.Drawing.Size(29, 18);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "UAH";
-            // 
-            // radButton1
-            // 
-            this.radButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radButton1.Location = new System.Drawing.Point(1029, 0);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 81);
-            this.radButton1.TabIndex = 2;
-            this.radButton1.Text = "Добавить";
-            this.radButton1.Click += new System.EventHandler(this.radButton_Add_Click);
-            // 
-            // radButton_GetData
-            // 
-            this.radButton_GetData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radButton_GetData.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radButton_GetData.Location = new System.Drawing.Point(0, 0);
-            this.radButton_GetData.Name = "radButton_GetData";
-            this.radButton_GetData.Size = new System.Drawing.Size(110, 81);
-            this.radButton_GetData.TabIndex = 0;
-            this.radButton_GetData.Text = "Получить данные";
-            this.radButton_GetData.Click += new System.EventHandler(this.radButton_GetData_Click);
             // 
             // radPanel_Footer
             // 
@@ -508,6 +515,40 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // radButton_RefreshGeneralData
+            // 
+            this.radButton_RefreshGeneralData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_RefreshGeneralData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radButton_RefreshGeneralData.Location = new System.Drawing.Point(0, 41);
+            this.radButton_RefreshGeneralData.Name = "radButton_RefreshGeneralData";
+            this.radButton_RefreshGeneralData.Size = new System.Drawing.Size(171, 40);
+            this.radButton_RefreshGeneralData.TabIndex = 9;
+            this.radButton_RefreshGeneralData.Text = "Обновить состаляющие операций";
+            this.radButton_RefreshGeneralData.TextWrap = true;
+            this.radButton_RefreshGeneralData.Click += new System.EventHandler(this.radButton_RefreshGeneralData_Click);
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.radButton_RefreshGeneralData);
+            this.radGroupBox1.Controls.Add(this.radLabel15);
+            this.radGroupBox1.Controls.Add(this.radButton1);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radGroupBox1.HeaderText = "";
+            this.radGroupBox1.Location = new System.Drawing.Point(626, 0);
+            this.radGroupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Padding = new System.Windows.Forms.Padding(0);
+            this.radGroupBox1.Size = new System.Drawing.Size(171, 81);
+            this.radGroupBox1.TabIndex = 9;
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(54, 3);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(2, 2);
+            this.radLabel15.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,6 +569,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).EndInit();
             this.radPanel_Header.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             this.radGroupBox4.PerformLayout();
@@ -536,6 +578,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.radGroupBox3.PerformLayout();
@@ -544,30 +587,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).EndInit();
+            this.radGroupBox7.ResumeLayout(false);
+            this.radGroupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_EndPeriodBalanceUSD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_EndPeriodBalanceUAH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox6)).EndInit();
+            this.radGroupBox6.ResumeLayout(false);
+            this.radGroupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_BeginPeriodBalanceUSD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel_BeginPeriodBalanceUAH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton_GetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).EndInit();
             this.radGridView.ResumeLayout(false);
             this.radGridView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_RefreshGeneralData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -585,17 +631,16 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_Rates;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem_UsersGroups;
         private Telerik.WinControls.UI.RadPanel radPanel_Header;
-        private Telerik.WinControls.UI.RadButton radButton_GetData;
         private Telerik.WinControls.UI.RadPanel radPanel_Footer;
         private Telerik.WinControls.UI.RadGridView radGridView;
         private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox6;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel_BeginPeriodBalanceUSD;
         private Telerik.WinControls.UI.RadLabel radLabel_BeginPeriodBalanceUAH;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox7;
         private Telerik.WinControls.UI.RadLabel radLabel_EndPeriodBalanceUSD;
         private Telerik.WinControls.UI.RadLabel radLabel_EndPeriodBalanceUAH;
         private Telerik.WinControls.UI.RadLabel radLabel6;
@@ -616,5 +661,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
+        private Telerik.WinControls.UI.RadButton radButton_GetData;
+        private Telerik.WinControls.UI.RadButton radButton_RefreshGeneralData;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
     }
 }

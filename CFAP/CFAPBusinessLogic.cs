@@ -140,7 +140,7 @@ namespace CFAP
             
         }
 
-        private void LoadTotalData()
+        public void LoadTotalData()
         {
             if (CFAPBusinessLogic.User.CanChangeUsersData)
                 LoadUsers();

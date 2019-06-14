@@ -15,11 +15,13 @@ namespace CFAP
     public partial class RatesForm : Telerik.WinControls.UI.RadForm
     {
         BindingList<Rate> Rates { get; set; }
+        CFAPBusinessLogic businessLogic;
         public RatesForm()
         {
             InitializeComponent();          
 
             this.Rates = new BindingList<Rate>(CFAPBusinessLogic.Rates);
+            businessLogic = new CFAPBusinessLogic(new ExceptionsHandlerUI());
 
             InitializeDataGrid();
         }

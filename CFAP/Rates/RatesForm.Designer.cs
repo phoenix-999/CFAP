@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radPanel_Header = new Telerik.WinControls.UI.RadPanel();
             this.radButton_AddItem = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Grid = new Telerik.WinControls.UI.RadPanel();
@@ -89,7 +89,7 @@
             this.radGridView.MasterTemplate.EnableFiltering = true;
             this.radGridView.MasterTemplate.MultiSelect = true;
             this.radGridView.MasterTemplate.ShowChildViewCaptions = true;
-            this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView.Name = "radGridView";
             this.radGridView.ShowChildViewCaptions = true;
             this.radGridView.Size = new System.Drawing.Size(753, 730);
