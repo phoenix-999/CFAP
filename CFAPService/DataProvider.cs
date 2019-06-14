@@ -378,7 +378,7 @@ namespace CFAPService
                     Summary dbSummary = (Summary)ex.Entries.Single().GetDatabaseValues().ToObject();
                     Summary currentSummary = summary;
 
-                    dbSummary = CorrectDbSummary(currentSummary, dbSummary);
+                    dbSummary = LoadRelationshipsDbSummary(dbSummary);
 
                     ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(dbSummary, currentSummary);
                     throw new FaultException<ConcurrencyException<Summary>>(concurrencyException);
@@ -401,23 +401,20 @@ namespace CFAPService
             return result;
         }
 
-        private Summary CorrectDbSummary(Summary currentSummary, Summary dbSummary)
+        private Summary LoadRelationshipsDbSummary(Summary dbSummary)
         {
             Summary result = null;
             using (CFAPContext ctx = new CFAPContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                var findedSummary = (from s in ctx.Summaries where s.Id == dbSummary.Id select s).First();
+                ctx.Summaries.Attach(dbSummary);
 
                 try
                 {
                     Summary.LoadRelationships(ctx);
 
-                    //Присовение групп необходимо делать после загрузки связей по причине исключения метода Load для коллекции ассоциаций.
-                    findedSummary.UserGroups = currentSummary.UserGroups;
-
-                    result = (findedSummary as Summary);
+                    result = dbSummary;
                 }
                 catch (Exception ex)
                 {
@@ -492,11 +489,10 @@ namespace CFAPService
                         throw new ReadOnlyException();
                     }
 
-                    //Ссылочные свойства затираются
                     ctx.Entry(summary).State = EntityState.Deleted;
-                                       
-                    
+
                     ctx.SaveChanges(concurencyUpdateOption);
+                    //Ссылочные свойства (связи в БД) больше не отслеживаютсья контекстом и подлежать востановлению только вручную, через явное указание Id и поиск в БД сущности связи по идентификатору.
                 }
                 catch (ReadOnlyException)
                 {
@@ -507,7 +503,11 @@ namespace CFAPService
                     Summary dbSummary = (Summary)ex.Entries.Single().GetDatabaseValues().ToObject();
                     Summary currentSummary = result;
 
-                    dbSummary = CorrectDbSummary(currentSummary, dbSummary);
+                    //Метод Load не загрузит ссылочные свойства без конкретного указания Id. 
+                    //Свойство коллекции UserGroups является связью многие-ко-многим. Экземпляр сущности не содержит ключи этих связей в виде элементарных типов данных.
+                    dbSummary.UserGroups = result.UserGroups;
+
+                    dbSummary = LoadRelationshipsDbSummary(dbSummary);
 
                     ConcurrencyException<Summary> concurrencyException = new ConcurrencyException<Summary>(dbSummary, currentSummary);
 

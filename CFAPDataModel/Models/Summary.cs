@@ -169,13 +169,6 @@ namespace CFAPDataModel.Models
         {
             var oldCofigurationProxy = ctx.Configuration.ProxyCreationEnabled;
             ctx.Configuration.ProxyCreationEnabled = false;
-            ctx.Summaries
-                .Include("Project")
-                .Include("BudgetItem")
-                .Include("Accountable")
-                .Include("UserLastChanges")
-                .Include("UserGroups");
-
             
             foreach (var s in ctx.Summaries.Local)
             {
@@ -192,7 +185,7 @@ namespace CFAPDataModel.Models
                 s.Project = ctx.Projects.Find(s.Project_Id);
                 s.BudgetItem = ctx.BudgetItems.Find(s.BudgetItem_Id);
                 s.UserLastChanged = ctx.Users.Find(s.UserLastChangedId);
-                ctx.Entry(s).Collection("UserGroups").Load();
+                ctx.Entry(s).Collection("UserGroups").Load(); //Не сработает, если коллекция уже содержит элементы
             }
 
             ctx.Configuration.ProxyCreationEnabled = oldCofigurationProxy;
