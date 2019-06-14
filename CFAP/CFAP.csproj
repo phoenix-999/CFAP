@@ -325,7 +325,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img1.ico" />
     <Content Include="img2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

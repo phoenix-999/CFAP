@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthenticationForm));
             this.radLabel_Login = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_AuthenticateText = new Telerik.WinControls.UI.RadLabel();
             this.radLabel_Password = new Telerik.WinControls.UI.RadLabel();
@@ -152,6 +153,7 @@
             this.Controls.Add(this.radButton_Ok);
             this.Controls.Add(this.radLabel_AuthenticateText);
             this.Controls.Add(this.radGroupBox_Main);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AuthenticationForm";
             // 
