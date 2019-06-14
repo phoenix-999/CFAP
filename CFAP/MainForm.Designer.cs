@@ -66,6 +66,9 @@
             this.radButton_GetData = new Telerik.WinControls.UI.RadButton();
             this.radPanel_Footer = new Telerik.WinControls.UI.RadPanel();
             this.radGridView = new Telerik.WinControls.UI.RadGridView();
+            this.radWaitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Header)).BeginInit();
             this.radPanel_Header.SuspendLayout();
@@ -102,6 +105,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).BeginInit();
+            this.radGridView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -446,6 +451,7 @@
             // radGridView
             // 
             this.radGridView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radGridView.Controls.Add(this.radWaitingBar);
             this.radGridView.Cursor = System.Windows.Forms.Cursors.Default;
             this.radGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView.EnterKeyMode = Telerik.WinControls.UI.RadGridViewEnterKeyMode.EnterMovesToNextRow;
@@ -469,9 +475,38 @@
             this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView.Name = "radGridView";
             this.radGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radGridView.ShowNoDataText = false;
             this.radGridView.Size = new System.Drawing.Size(1139, 566);
             this.radGridView.TabIndex = 3;
             this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
+            // 
+            // radWaitingBar
+            // 
+            this.radWaitingBar.AssociatedControl = this.radGridView;
+            this.radWaitingBar.BackColor = System.Drawing.Color.White;
+            this.radWaitingBar.Location = new System.Drawing.Point(536, 220);
+            this.radWaitingBar.Name = "radWaitingBar";
+            this.radWaitingBar.Size = new System.Drawing.Size(70, 70);
+            this.radWaitingBar.TabIndex = 1;
+            this.radWaitingBar.UseWaitCursor = true;
+            this.radWaitingBar.Visible = false;
+            this.radWaitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.radWaitingBar.WaitingSpeed = 20;
+            this.radWaitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.ElementColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(124)))), ((int)(((byte)(209)))));
+            this.lineRingWaitingBarIndicatorElement1.ElementColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(166)))), ((int)(((byte)(246)))));
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.Text = "Загрузка...";
+            this.lineRingWaitingBarIndicatorElement1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // MainForm
             // 
@@ -530,6 +565,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_Footer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView)).EndInit();
+            this.radGridView.ResumeLayout(false);
+            this.radGridView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -575,5 +613,8 @@
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadLabel radLabel14;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

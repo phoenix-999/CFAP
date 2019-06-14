@@ -10,6 +10,8 @@ using CFAP.DataProviderClient;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace CFAP
 {
@@ -34,7 +36,6 @@ namespace CFAP
             InitializeRadMenu();
 
             InitializeData();
-
         }
 
         private void InitializeData()
@@ -235,12 +236,13 @@ namespace CFAP
         private void radButton_GetData_Click(object sender, EventArgs e)
         {
             ///<summary>
-            ///При возниковении события происходит загрузка колекции операций из сервера.
-            ///Инициализируеться экземпляр коллекции операций формы.
+            ///При возниковении события происходит загрузка колекции операций из сервера в асинхронном режиме.
+            ///Инициализируеться экземпляр коллекции операций формы по окончанию работы backgroundWorker.
             /// </summary>
-            this.businessLogic.LoadSummaries(this.Filter);
-            this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
-            InitializeData();
+
+            backgroundWorker.RunWorkerAsync();
+            ShowWaitingBar();
+
         }
 
         private void radMenuItem_Settings_Click(object sender, EventArgs e)
@@ -299,5 +301,34 @@ namespace CFAP
             this.AddOrUpdateCurrentBalance();
         }
 
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.businessLogic.LoadSummaries(this.Filter);
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Summaries = new BindingList<Summary>(CFAPBusinessLogic.Summaries);
+            InitializeData();
+            HideWaitingBar();
+        }
+
+        void ShowWaitingBar()
+        {
+            if (radWaitingBar.IsWaiting)
+                return;
+
+            radWaitingBar.Visible = true;
+            radWaitingBar.StartWaiting();
+        }
+
+        void HideWaitingBar()
+        {
+            if (radWaitingBar.IsWaiting || radWaitingBar.Visible)
+            {
+                radWaitingBar.StopWaiting();
+                radWaitingBar.Visible = false;
+            }
+        }
     }
 }
