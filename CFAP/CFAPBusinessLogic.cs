@@ -379,7 +379,21 @@ namespace CFAP
                 {
                     try
                     {
-                        DataProviderProxy.UpdateUser(userForUpdate, CFAPBusinessLogic.User);
+                        User updatedUser = DataProviderProxy.UpdateUser(userForUpdate, CFAPBusinessLogic.User);
+
+                        if (userForUpdate.Id == CFAPBusinessLogic.User.Id)
+                        {
+                            CFAPBusinessLogic.User = updatedUser;
+                        }
+
+                        for (int userIndex = 0; userIndex < CFAPBusinessLogic.UsersData.Count; userIndex++)
+                        {
+                            if (CFAPBusinessLogic.UsersData[userIndex].Id == userForUpdate.Id)
+                            {
+                                CFAPBusinessLogic.UsersData[userIndex] = updatedUser;
+                            }
+                        }
+
                         transaction.Complete();
                     }
                     catch (FaultException<AuthenticateFaultException> fault)
