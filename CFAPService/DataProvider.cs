@@ -83,7 +83,7 @@ namespace CFAPService
             {
                 try
                 {
-                    newUser.LoadUserGroupsFromObject(ctx);
+                    //newUser.LoadUserGroupsFromObject(ctx); //Перенесено в SetRelationships()
                     newUser.SetRelationships(ctx);
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
@@ -131,7 +131,7 @@ namespace CFAPService
 
                     foreach (var u in users)
                     {
-                        u.LoadUserGroupsFromDatabase(ctx);
+                        //u.LoadUserGroupsFromDatabase(ctx); //Пенесено в LoadRelationships()
                         u.LoadRelationships(ctx);
                     }
                 }
@@ -178,9 +178,9 @@ namespace CFAPService
                 try
                 {
                     //Загрузка в контекст данных о группах пользователя
-                    userForUpdate.LoadUserGroupsFromObject(ctx);
-
+                    //userForUpdate.LoadUserGroupsFromObject(ctx);
                     userForUpdate.SetRelationships(ctx);
+
                     //Изменение связей с группами если они изменились
                     userForUpdate.ChangeUserGroups(ctx);
 

@@ -67,23 +67,28 @@ namespace CFAPDataModel.Models
 
         public void LoadRelationships(CFAPContext ctx)
         {
-            if (this.IsAccountable == false || this.AccountableId == null)
-                return;
-
-            ctx.Configuration.ProxyCreationEnabled = false;
-            this.Accountable = (from a in ctx.Accountables where a.Id == this.AccountableId select a).Single();
+            LoadUserGroupsFromDatabase(ctx);
+            if (this.IsAccountable == true || this.AccountableId != null)
+            {
+                ctx.Configuration.ProxyCreationEnabled = false;
+                this.Accountable = (from a in ctx.Accountables where a.Id == this.AccountableId select a).Single();
+            }
         }
 
         public void SetRelationships(CFAPContext ctx)
         {
+            LoadUserGroupsFromObject(ctx);
+
             if (this.IsAccountable == false || this.Accountable == null)
             {
                 this.AccountableId = null;
                 this.Accountable = null;
-                return;
             }
-            ctx.Accountables.Attach(this.Accountable);
-            this.AccountableId = this.Accountable.Id;
+            else
+            {
+                ctx.Accountables.Attach(this.Accountable);
+                this.AccountableId = this.Accountable.Id;
+            } 
         }
 
         public ICollection<int> GetUserGroupsIdFromObject()
