@@ -46,5 +46,7 @@ namespace CFAP
         public abstract void ConcurrencyExceptionSummariesHandler(FaultException<ConcurrencyExceptionOfSummarydxjYbbDT> fault, UpdateDeleteOptions option);
 
         public abstract void FiledDeletedExceptionHandler(FaultException<FiledDeletedException> fault);
+
+        public abstract void AccountableUserHasNotAccountableRefferenceExceptionHandler(FaultException<AccountableUserHasNotAccountableRefferenceException> fault);
     }
 }

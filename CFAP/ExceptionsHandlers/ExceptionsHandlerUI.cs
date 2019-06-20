@@ -195,5 +195,10 @@ namespace CFAP
         {
             MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public override void AccountableUserHasNotAccountableRefferenceExceptionHandler(FaultException<AccountableUserHasNotAccountableRefferenceException> fault)
+        {
+            MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace CFAPService
         [FaultContract(typeof(NoRightsToChangeDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
+        [FaultContract(typeof(AccountableUserHasNotAccountableRefferenceException))]
         User AddNewUser(User newUser, User owner);
 
         [OperationContract]
@@ -62,6 +63,7 @@ namespace CFAPService
         [FaultContract(typeof(NoRightsToChangeDataException))]
         [FaultContract(typeof(DataNotValidException))]
         [FaultContract(typeof(UserHasNotGroupsException))]
+        [FaultContract(typeof(AccountableUserHasNotAccountableRefferenceException))]
         User UpdateUser(User userForUpdate, User owner);
 
         [OperationContract]

@@ -71,6 +71,12 @@ namespace CFAPService
                 throw new FaultException<DataNotValidException>(new DataNotValidException(errors));
             }
 
+            if (newUser.IsAccountable && newUser.Accountable == null)
+            {
+                throw new FaultException<AccountableUserHasNotAccountableRefferenceException>(new AccountableUserHasNotAccountableRefferenceException(newUser));
+            }
+
+
             newUser.EncriptPassword();
 
             using (CFAPContext ctx = new CFAPContext())
@@ -150,6 +156,11 @@ namespace CFAPService
             if (userForUpdate.UserGroups == null || userForUpdate.UserGroups.Count == 0)
             {
                 throw new FaultException<UserHasNotGroupsException>(new UserHasNotGroupsException(userForUpdate));
+            }
+
+            if (userForUpdate.IsAccountable && userForUpdate.Accountable == null)
+            {
+                throw new FaultException<AccountableUserHasNotAccountableRefferenceException>(new AccountableUserHasNotAccountableRefferenceException(userForUpdate));
             }
 
             //Создание экземпляра контекста
@@ -1010,16 +1021,16 @@ namespace CFAPService
             AuthenticateUser(user);
             HashSet<Summary> result = new HashSet<Summary>();
 
-            if (user.IsAccountable)
-            {
-                if (filter == null)
-                    filter = new Filter();
-
-                filter.Accountables = new Accountable[] { user.Accountable };
-            }
-
             try
             {
+                if (user.IsAccountable)
+                {
+                    if (filter == null)
+                        filter = new Filter();
+
+                    filter.Accountables = new Accountable[] { user.Accountable };
+                }
+
                 result = GetFilteredSummary(user, filter);
             }
             catch (Exception ex)

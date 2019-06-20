@@ -36,6 +36,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserHasNotGroupsException" nillable="true" type="tns:UserHasNotGroupsException" />
+  <xs:complexType name="AccountableUserHasNotAccountableRefferenceException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountableUserHasNotAccountableRefferenceException" nillable="true" type="tns:AccountableUserHasNotAccountableRefferenceException" />
   <xs:complexType name="TryChangeReadOnlyFiledException">
     <xs:sequence>
       <xs:element minOccurs="0" name="FieldId" type="xs:int" />

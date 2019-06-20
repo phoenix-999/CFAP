@@ -79,7 +79,7 @@ namespace CFAP
 
             this.radCheckedDropDownList_Accountables.DataSource = CFAPBusinessLogic.Accountables;
 
-            if (user.IsAccountable == false)
+            if (user.IsAccountable == false || user.Accountable == null)
                 return;
 
             foreach (var item in this.radCheckedDropDownList_Accountables.Items)
@@ -194,9 +194,9 @@ namespace CFAP
             user.CanChangeUsersData = this.radCheckBox_CanChangeUsersData.Checked;
             user.IsAccountable = this.radCheckBox_IsAccountable.Checked;
 
-            if (this.radCheckBox_IsAccountable.Checked == true)
+            if (this.radCheckBox_IsAccountable.Checked == true && this.radCheckedDropDownList_Accountables.CheckedItems.Count > 0)
             {
-                user.Accountable = (Accountable)this.radCheckedDropDownList_Accountables.CheckedItems.First().Value;
+               user.Accountable = (Accountable)this.radCheckedDropDownList_Accountables.CheckedItems.First().Value;
             }
 
             List<UserGroup> userGroups = new List<UserGroup>();

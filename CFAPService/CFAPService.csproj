@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
     <Compile Include="ExceptionHandlerAttribute.cs" />
+    <Compile Include="Faults\AccountableUserHasNotAccountableRefferenceException.cs" />
     <Compile Include="Faults\FiledDeletedException.cs" />
     <Compile Include="Faults\NoRightsToChangeDataException.cs" />
     <Compile Include="Faults\AutenticateFaultException.cs" />

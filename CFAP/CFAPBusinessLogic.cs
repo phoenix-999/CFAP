@@ -351,6 +351,10 @@ namespace CFAP
                     {
                         ExceptionsHandler.UserHasNotGroupsExceptionHandler(fault);
                     }
+                    catch (FaultException<AccountableUserHasNotAccountableRefferenceException> fault)
+                    {
+                        ExceptionsHandler.AccountableUserHasNotAccountableRefferenceExceptionHandler(fault);
+                    }
                     catch (FaultException fault)
                     {
                         ExceptionsHandler.FaultExceptionHandler(fault);
@@ -415,6 +419,10 @@ namespace CFAP
                     catch (FaultException<UserHasNotGroupsException> fault)
                     {
                         ExceptionsHandler.UserHasNotGroupsExceptionHandler(fault);
+                    }
+                    catch (FaultException<AccountableUserHasNotAccountableRefferenceException> fault)
+                    {
+                        ExceptionsHandler.AccountableUserHasNotAccountableRefferenceExceptionHandler(fault);
                     }
                     catch (FaultException fault)
                     {
