@@ -424,6 +424,12 @@ namespace CFAP
 
         public void LoadAccountables()
         {
+            if (CFAPBusinessLogic.User.IsAccountable)
+            {
+                CFAPBusinessLogic.Accountables = new List<Accountable>() { CFAPBusinessLogic.User.Accountable};
+                return;
+            }
+
             try
             {
                 CFAPBusinessLogic.Accountables = DataProviderProxy.GetAccountables(CFAPBusinessLogic.User).ToList();
@@ -992,6 +998,14 @@ namespace CFAP
 
         public void LoadSummaries(Filter filter)
         {
+            if (CFAPBusinessLogic.User.IsAccountable)
+            {
+                if (filter == null)
+                    filter = new Filter();
+
+                filter.Accountables = new Accountable[] { CFAPBusinessLogic.User.Accountable };
+            }
+
             try
             {
                 if (DataProviderProxy.State == CommunicationState.Faulted)

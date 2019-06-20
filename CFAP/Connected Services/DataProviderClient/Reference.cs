@@ -68,10 +68,16 @@ namespace CFAP.DataProviderClient {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderClient.Accountable AccountableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CanChangeUsersDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsAccountableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsAdminField;
@@ -92,6 +98,19 @@ namespace CFAP.DataProviderClient {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderClient.Accountable Accountable {
+            get {
+                return this.AccountableField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
+                    this.AccountableField = value;
+                    this.RaisePropertyChanged("Accountable");
+                }
             }
         }
         
@@ -117,6 +136,19 @@ namespace CFAP.DataProviderClient {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsAccountable {
+            get {
+                return this.IsAccountableField;
+            }
+            set {
+                if ((this.IsAccountableField.Equals(value) != true)) {
+                    this.IsAccountableField = value;
+                    this.RaisePropertyChanged("IsAccountable");
                 }
             }
         }
@@ -169,6 +201,115 @@ namespace CFAP.DataProviderClient {
                 if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
                     this.UserNameField = value;
                     this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Accountable", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Accountable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AccountableNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccountableName {
+            get {
+                return this.AccountableNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableNameField, value) != true)) {
+                    this.AccountableNameField = value;
+                    this.RaisePropertyChanged("AccountableName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadOnly {
+            get {
+                return this.ReadOnlyField;
+            }
+            set {
+                if ((this.ReadOnlyField.Equals(value) != true)) {
+                    this.ReadOnlyField = value;
+                    this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CFAP.DataProviderClient.UserGroup[] UserGroups {
+            get {
+                return this.UserGroupsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -759,115 +900,6 @@ namespace CFAP.DataProviderClient {
                 if ((object.ReferenceEquals(this.UserLastChangedField, value) != true)) {
                     this.UserLastChangedField = value;
                     this.RaisePropertyChanged("UserLastChanged");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Accountable", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
-    [System.SerializableAttribute()]
-    public partial class Accountable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AccountableNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] RowVersionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AccountableName {
-            get {
-                return this.AccountableNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountableNameField, value) != true)) {
-                    this.AccountableNameField = value;
-                    this.RaisePropertyChanged("AccountableName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ReadOnly {
-            get {
-                return this.ReadOnlyField;
-            }
-            set {
-                if ((this.ReadOnlyField.Equals(value) != true)) {
-                    this.ReadOnlyField = value;
-                    this.RaisePropertyChanged("ReadOnly");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] RowVersion {
-            get {
-                return this.RowVersionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
-                    this.RowVersionField = value;
-                    this.RaisePropertyChanged("RowVersion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderClient.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }

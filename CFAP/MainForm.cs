@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading;
 using Telerik.WinControls.UI.Localization;
+using Telerik.WinControls.Data;
 
 namespace CFAP
 {
@@ -155,8 +156,6 @@ namespace CFAP
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
             this.radGridView.Columns["SummaryDate"].TextAlignment = ContentAlignment.MiddleRight;
-
-            
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -344,5 +343,6 @@ namespace CFAP
             businessLogic.LoadTotalData();
             MessageBox.Show("Обновление завершено");
         }
+
     }
 }

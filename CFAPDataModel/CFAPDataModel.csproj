@@ -141,6 +141,10 @@
     <Compile Include="Migrations\201905291404182_Rename RateUSD.Designer.cs">
       <DependentUpon>201905291404182_Rename RateUSD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906200949583_Add User.Accoutable.cs" />
+    <Compile Include="Migrations\201906200949583_Add User.Accoutable.Designer.cs">
+      <DependentUpon>201906200949583_Add User.Accoutable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\Balance.cs" />
@@ -222,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905291404182_Rename RateUSD.resx">
       <DependentUpon>201905291404182_Rename RateUSD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906200949583_Add User.Accoutable.resx">
+      <DependentUpon>201906200949583_Add User.Accoutable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

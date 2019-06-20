@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using CFAP.DataProviderClient;
 using Telerik.WinControls.UI;
 using System.Reflection;
+using System.Linq;
 
 namespace CFAP
 {
@@ -57,8 +58,47 @@ namespace CFAP
 
             this.radCheckBox_CanChangeUsersData.Checked = user.CanChangeUsersData;
             this.radCheckBox_IsAdmin.Checked = user.IsAdmin;
+            this.radCheckBox_IsAccountable.Checked = user.IsAccountable;
 
+            if (user.IsAccountable)
+            {
+                this.radCheckedDropDownList_Accountables.Visible = true;
+            }
+
+            AttachAccountables();
             AttachUserGroups();
+        }
+
+        void AttachAccountables()
+        {
+            if (CFAPBusinessLogic.Accountables == null && CFAPBusinessLogic.Accountables.Count == 0)
+            {
+                MessageBox.Show("Данные подотчетных лиц не были получены.", "Ошибка загрузки данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            this.radCheckedDropDownList_Accountables.DataSource = CFAPBusinessLogic.Accountables;
+
+            if (user.IsAccountable == false)
+                return;
+
+            foreach (var item in this.radCheckedDropDownList_Accountables.Items)
+            {
+                Accountable accountable = item.DataBoundItem as Accountable;
+                if (accountable == null)
+                    continue;
+
+                if (changeDataOption == ChangeDataOptions.AddNew)
+                    continue;
+
+                if (accountable.Id != user.Accountable.Id)
+                    continue;
+
+                //Обходной маневр. Невозможно присовить значения этому свойсту напрямую, но оно там есть
+                Type itemType = item.GetType();
+                PropertyInfo checkedProperty = itemType.GetRuntimeProperty("Checked");
+                checkedProperty.SetValue(item, true);
+            }
         }
 
         void AttachUserGroups()
@@ -114,6 +154,12 @@ namespace CFAP
                 result = false;
             }
 
+            if (this.radCheckBox_IsAccountable.Checked == true && this.radCheckedDropDownList_Accountables.CheckedItems.Count == 0)
+            {
+                this.radCheckedDropDownList_Accountables.BackColor = Color.Red;
+                result = false;
+            }
+
             return result;
         }
         private void radButton_AddUser_Click(object sender, EventArgs e)
@@ -146,6 +192,12 @@ namespace CFAP
             user.Password = this.radTextBox_Password.Text;
             user.IsAdmin = this.radCheckBox_IsAdmin.Checked;
             user.CanChangeUsersData = this.radCheckBox_CanChangeUsersData.Checked;
+            user.IsAccountable = this.radCheckBox_IsAccountable.Checked;
+
+            if (this.radCheckBox_IsAccountable.Checked == true)
+            {
+                user.Accountable = (Accountable)this.radCheckedDropDownList_Accountables.CheckedItems.First().Value;
+            }
 
             List<UserGroup> userGroups = new List<UserGroup>();
             foreach (var group in this.radCheckedDropDownList_UserGroups.CheckedItems)
@@ -161,11 +213,22 @@ namespace CFAP
             ((RadTextBox)sender).BackColor = Color.White;
         }
 
-        private void radCheckedDropDownList_UserGroups_Click(object sender, EventArgs e)
+        private void radCheckedDropDownList_Click(object sender, EventArgs e)
         {
             ((RadCheckedDropDownList)sender).BackColor = Color.White;
         }
 
-        
+        private void radCheckBox_IsAccountable_CheckStateChanged(object sender, EventArgs e)
+        {
+            RadCheckBox checkBox = (RadCheckBox)sender;
+            if (checkBox.Checked)
+            {
+                this.radCheckedDropDownList_Accountables.Visible = true;
+            }
+            else
+            {
+                this.radCheckedDropDownList_Accountables.Visible = false;
+            }
+        }
     }
 }

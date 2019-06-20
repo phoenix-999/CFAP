@@ -78,6 +78,7 @@ namespace CFAPService
                 try
                 {
                     newUser.LoadUserGroupsFromObject(ctx);
+                    newUser.SetRelationships(ctx);
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges(DbConcurencyUpdateOptions.ClientPriority);
                 }
@@ -125,6 +126,7 @@ namespace CFAPService
                     foreach (var u in users)
                     {
                         u.LoadUserGroupsFromDatabase(ctx);
+                        u.LoadRelationships(ctx);
                     }
                 }
                 catch(Exception ex)
@@ -166,6 +168,8 @@ namespace CFAPService
                 {
                     //Загрузка в контекст данных о группах пользователя
                     userForUpdate.LoadUserGroupsFromObject(ctx);
+
+                    userForUpdate.SetRelationships(ctx);
                     //Изменение связей с группами если они изменились
                     userForUpdate.ChangeUserGroups(ctx);
 
@@ -1006,6 +1010,14 @@ namespace CFAPService
             AuthenticateUser(user);
             HashSet<Summary> result = new HashSet<Summary>();
 
+            if (user.IsAccountable)
+            {
+                if (filter == null)
+                    filter = new Filter();
+
+                filter.Accountables = new Accountable[] { user.Accountable };
+            }
+
             try
             {
                 result = GetFilteredSummary(user, filter);
@@ -1048,6 +1060,7 @@ namespace CFAPService
                 {
                     var resultQuery = query.Single();
                     result = resultQuery.User;
+                    result.LoadRelationships(ctx);
                     //var groups = ctx.UserGroups.Include("Users").ToList(); //В этом случае ProxyCreationEnabled = true
                     var groups = resultQuery.UserGroup;
                     result.UserGroups = groups.ToList();

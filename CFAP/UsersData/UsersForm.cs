@@ -45,6 +45,13 @@ namespace CFAP
             this.radGridView.Columns["IsAdmin"].HeaderText = "Администратор";
 
             this.radGridView.Columns["UserName"].HeaderText = "Имя пользователя";
+
+            this.radGridView.Columns["IsAccountable"].HeaderText = "Признак подотчетника";
+
+            this.radGridView.Columns["Accountable"].HeaderText = "Подотчетник";
+
+            this.radGridView.Columns["Accountable"].FieldName = "Accountable.AccountableName";
+
         }
 
         void InitializeRelations()

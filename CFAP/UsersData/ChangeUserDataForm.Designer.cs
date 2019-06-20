@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.radPanel = new Telerik.WinControls.UI.RadPanel();
+            this.radCheckedDropDownList_Accountables = new Telerik.WinControls.UI.RadCheckedDropDownList();
+            this.radCheckBox_IsAccountable = new Telerik.WinControls.UI.RadCheckBox();
             this.radButton_CahngeUser = new Telerik.WinControls.UI.RadButton();
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radButton_AddUser = new Telerik.WinControls.UI.RadButton();
@@ -42,6 +44,8 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
             this.radPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Accountables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_IsAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_CahngeUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddUser)).BeginInit();
@@ -58,6 +62,8 @@
             // 
             // radPanel
             // 
+            this.radPanel.Controls.Add(this.radCheckedDropDownList_Accountables);
+            this.radPanel.Controls.Add(this.radCheckBox_IsAccountable);
             this.radPanel.Controls.Add(this.radButton_CahngeUser);
             this.radPanel.Controls.Add(this.radButton_Cancel);
             this.radPanel.Controls.Add(this.radButton_AddUser);
@@ -72,13 +78,38 @@
             this.radPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel.Location = new System.Drawing.Point(0, 0);
             this.radPanel.Name = "radPanel";
-            this.radPanel.Size = new System.Drawing.Size(532, 294);
+            this.radPanel.Size = new System.Drawing.Size(532, 403);
             this.radPanel.TabIndex = 0;
+            // 
+            // radCheckedDropDownList_Accountables
+            // 
+            this.radCheckedDropDownList_Accountables.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radCheckedDropDownList_Accountables.Location = new System.Drawing.Point(242, 197);
+            this.radCheckedDropDownList_Accountables.Name = "radCheckedDropDownList_Accountables";
+            // 
+            // 
+            // 
+            this.radCheckedDropDownList_Accountables.RootElement.AccessibleRole = System.Windows.Forms.AccessibleRole.ListItem;
+            this.radCheckedDropDownList_Accountables.Size = new System.Drawing.Size(278, 20);
+            this.radCheckedDropDownList_Accountables.TabIndex = 14;
+            this.radCheckedDropDownList_Accountables.Visible = false;
+            this.radCheckedDropDownList_Accountables.Click += new System.EventHandler(this.radCheckedDropDownList_Click);
+            // 
+            // radCheckBox_IsAccountable
+            // 
+            this.radCheckBox_IsAccountable.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radCheckBox_IsAccountable.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radCheckBox_IsAccountable.Location = new System.Drawing.Point(13, 199);
+            this.radCheckBox_IsAccountable.Name = "radCheckBox_IsAccountable";
+            this.radCheckBox_IsAccountable.Size = new System.Drawing.Size(124, 18);
+            this.radCheckBox_IsAccountable.TabIndex = 13;
+            this.radCheckBox_IsAccountable.Text = "Подотчетное лицо";
+            this.radCheckBox_IsAccountable.CheckStateChanged += new System.EventHandler(this.radCheckBox_IsAccountable_CheckStateChanged);
             // 
             // radButton_CahngeUser
             // 
             this.radButton_CahngeUser.Enabled = false;
-            this.radButton_CahngeUser.Location = new System.Drawing.Point(138, 258);
+            this.radButton_CahngeUser.Location = new System.Drawing.Point(134, 367);
             this.radButton_CahngeUser.Name = "radButton_CahngeUser";
             this.radButton_CahngeUser.Size = new System.Drawing.Size(110, 24);
             this.radButton_CahngeUser.TabIndex = 12;
@@ -88,7 +119,7 @@
             // radButton_Cancel
             // 
             this.radButton_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.radButton_Cancel.Location = new System.Drawing.Point(410, 258);
+            this.radButton_Cancel.Location = new System.Drawing.Point(410, 367);
             this.radButton_Cancel.Name = "radButton_Cancel";
             this.radButton_Cancel.Size = new System.Drawing.Size(110, 24);
             this.radButton_Cancel.TabIndex = 11;
@@ -97,7 +128,7 @@
             // radButton_AddUser
             // 
             this.radButton_AddUser.Enabled = false;
-            this.radButton_AddUser.Location = new System.Drawing.Point(13, 258);
+            this.radButton_AddUser.Location = new System.Drawing.Point(13, 367);
             this.radButton_AddUser.Name = "radButton_AddUser";
             this.radButton_AddUser.Size = new System.Drawing.Size(110, 24);
             this.radButton_AddUser.TabIndex = 10;
@@ -107,7 +138,7 @@
             // radCheckedDropDownList_UserGroups
             // 
             this.radCheckedDropDownList_UserGroups.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radCheckedDropDownList_UserGroups.Location = new System.Drawing.Point(242, 195);
+            this.radCheckedDropDownList_UserGroups.Location = new System.Drawing.Point(242, 241);
             this.radCheckedDropDownList_UserGroups.Name = "radCheckedDropDownList_UserGroups";
             // 
             // 
@@ -115,7 +146,7 @@
             this.radCheckedDropDownList_UserGroups.RootElement.AccessibleRole = System.Windows.Forms.AccessibleRole.ListItem;
             this.radCheckedDropDownList_UserGroups.Size = new System.Drawing.Size(278, 20);
             this.radCheckedDropDownList_UserGroups.TabIndex = 9;
-            this.radCheckedDropDownList_UserGroups.Click += new System.EventHandler(this.radCheckedDropDownList_UserGroups_Click);
+            this.radCheckedDropDownList_UserGroups.Click += new System.EventHandler(this.radCheckedDropDownList_Click);
             // 
             // radTextBox_Password
             // 
@@ -157,7 +188,7 @@
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radLabel5.Location = new System.Drawing.Point(13, 198);
+            this.radLabel5.Location = new System.Drawing.Point(12, 243);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(128, 18);
             this.radLabel5.TabIndex = 4;
@@ -186,7 +217,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.radButton_Cancel;
-            this.ClientSize = new System.Drawing.Size(532, 294);
+            this.ClientSize = new System.Drawing.Size(532, 403);
             this.Controls.Add(this.radPanel);
             this.Name = "ChangeUserDataForm";
             // 
@@ -198,6 +229,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).EndInit();
             this.radPanel.ResumeLayout(false);
             this.radPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckedDropDownList_Accountables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_IsAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_CahngeUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddUser)).EndInit();
@@ -228,5 +261,7 @@
         private Telerik.WinControls.UI.RadButton radButton_AddUser;
         private Telerik.WinControls.UI.RadCheckedDropDownList radCheckedDropDownList_UserGroups;
         private Telerik.WinControls.UI.RadButton radButton_CahngeUser;
+        private Telerik.WinControls.UI.RadCheckBox radCheckBox_IsAccountable;
+        private Telerik.WinControls.UI.RadCheckedDropDownList radCheckedDropDownList_Accountables;
     }
 }

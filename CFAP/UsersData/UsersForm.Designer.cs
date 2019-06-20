@@ -49,7 +49,7 @@
             this.radPanel_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel_Header.Location = new System.Drawing.Point(0, 0);
             this.radPanel_Header.Name = "radPanel_Header";
-            this.radPanel_Header.Size = new System.Drawing.Size(753, 29);
+            this.radPanel_Header.Size = new System.Drawing.Size(885, 29);
             this.radPanel_Header.TabIndex = 1;
             // 
             // radButton_AddItem
@@ -69,7 +69,7 @@
             this.radPanel_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel_Grid.Location = new System.Drawing.Point(0, 29);
             this.radPanel_Grid.Name = "radPanel_Grid";
-            this.radPanel_Grid.Size = new System.Drawing.Size(753, 730);
+            this.radPanel_Grid.Size = new System.Drawing.Size(885, 730);
             this.radPanel_Grid.TabIndex = 2;
             this.radPanel_Grid.Text = "radPanel2";
             // 
@@ -93,7 +93,7 @@
             this.radGridView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView.Name = "radGridView";
             this.radGridView.ShowChildViewCaptions = true;
-            this.radGridView.Size = new System.Drawing.Size(753, 730);
+            this.radGridView.Size = new System.Drawing.Size(885, 730);
             this.radGridView.TabIndex = 1;
             this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
             // 
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 759);
+            this.ClientSize = new System.Drawing.Size(885, 759);
             this.Controls.Add(this.radPanel_Grid);
             this.Controls.Add(this.radPanel_Header);
             this.Name = "UsersForm";
