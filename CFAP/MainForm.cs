@@ -165,18 +165,18 @@ namespace CFAP
             GridViewSummaryItem summaryItemCount = new GridViewSummaryItem();
             summaryItemCount.Name = "SummaryDate";
             summaryItemCount.Aggregate = GridAggregateFunction.Count;
-            summaryItemCount.FormatString = "Кол-во операций = {0}";
+            summaryItemCount.FormatString = "Итог, количество = {0}";
 
             GridViewSummaryItem summaryItemUAH = new GridViewSummaryItem();
             summaryItemUAH.Name = "SummaUAH";
             summaryItemUAH.Aggregate = GridAggregateFunction.Sum;
-            summaryItemUAH.FormatString = "Сумма, грн. = {0:N2} грн.";
+            summaryItemUAH.FormatString = "Итог, грн. = {0:N2} грн.";
 
 
             GridViewSummaryItem summaryItemUSD = new GridViewSummaryItem();
             summaryItemUSD.Name = "SummaUSD";
             summaryItemUSD.Aggregate = GridAggregateFunction.Sum;
-            summaryItemUSD.FormatString = "Сумма, $. = ${0:N2}";
+            summaryItemUSD.FormatString = "Итог, $. = ${0:N2}";
 
             GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem();
             summaryRowItem.Add(summaryItemCount);
