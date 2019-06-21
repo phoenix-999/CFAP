@@ -87,6 +87,7 @@
             // 
             // radButton_Ok
             // 
+            this.radButton_Ok.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radButton_Ok.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.radButton_Ok.Location = new System.Drawing.Point(12, 189);
             this.radButton_Ok.Name = "radButton_Ok";
@@ -97,6 +98,8 @@
             // 
             // radButton_Cancel
             // 
+            this.radButton_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radButton_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.radButton_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.radButton_Cancel.Location = new System.Drawing.Point(170, 189);
             this.radButton_Cancel.Name = "radButton_Cancel";
@@ -146,8 +149,10 @@
             // 
             // AuthenticationForm
             // 
+            this.AcceptButton = this.radButton_Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.radButton_Cancel;
             this.ClientSize = new System.Drawing.Size(292, 221);
             this.Controls.Add(this.radButton_Cancel);
             this.Controls.Add(this.radButton_Ok);

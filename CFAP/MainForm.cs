@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Telerik.WinControls.UI.Localization;
 using Telerik.WinControls.Data;
+using Telerik.WinControls.UI;
 
 namespace CFAP
 {
@@ -156,6 +157,34 @@ namespace CFAP
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
             this.radGridView.Columns["SummaryDate"].TextAlignment = ContentAlignment.MiddleRight;
+
+            //Добавление итогов
+            this.radGridView.MasterTemplate.ShowTotals = true;
+
+
+            GridViewSummaryItem summaryItemCount = new GridViewSummaryItem();
+            summaryItemCount.Name = "SummaryDate";
+            summaryItemCount.Aggregate = GridAggregateFunction.Count;
+            summaryItemCount.FormatString = "Кол-во операций = {0}";
+
+            GridViewSummaryItem summaryItemUAH = new GridViewSummaryItem();
+            summaryItemUAH.Name = "SummaUAH";
+            summaryItemUAH.Aggregate = GridAggregateFunction.Sum;
+            summaryItemUAH.FormatString = "Сумма, грн. = {0:N2} грн.";
+
+
+            GridViewSummaryItem summaryItemUSD = new GridViewSummaryItem();
+            summaryItemUSD.Name = "SummaUSD";
+            summaryItemUSD.Aggregate = GridAggregateFunction.Sum;
+            summaryItemUSD.FormatString = "Сумма, $. = ${0:N2}";
+
+            GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem();
+            summaryRowItem.Add(summaryItemCount);
+            summaryRowItem.Add(summaryItemUAH);
+            summaryRowItem.Add(summaryItemUSD);
+
+            this.radGridView.SummaryRowsTop.Add(summaryRowItem);
+
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
