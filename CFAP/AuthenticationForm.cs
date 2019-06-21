@@ -31,7 +31,16 @@ namespace CFAP
 
         private void radButton_Ok_Click(object sender, EventArgs e)
         {
-            businessLogic.Authenticate(radDropDownList_Logins.SelectedItem.Text, radTextBox_Password.Text);
+            try
+            {
+                businessLogic.Authenticate(radDropDownList_Logins.SelectedItem.Text, radTextBox_Password.Text);
+            }
+            catch (NullReferenceException) //Исключение набоюдаеться при попытке входа в систему с другого домена
+            {
+                MessageBox.Show("Аутентификация не выполнена", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (CFAPBusinessLogic.User == null)
             {
                 return;
