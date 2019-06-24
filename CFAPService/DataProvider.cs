@@ -989,6 +989,11 @@ namespace CFAPService
             HashSet<Summary> summaries;
             try
             {
+                if (user.IsAccountable)
+                {
+                    filter.Accountables = new Accountable[] { user.Accountable };
+                }
+
                 summaries = GetFilteredSummary(user, filter);
             }
             catch (Exception ex)

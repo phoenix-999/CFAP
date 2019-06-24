@@ -183,6 +183,11 @@ namespace CFAP
             summaryRowItem.Add(summaryItemUAH);
             summaryRowItem.Add(summaryItemUSD);
 
+            if (this.radGridView.SummaryRowsTop != null && this.radGridView.SummaryRowsTop.Count > 0)
+            {
+                this.radGridView.SummaryRowsTop.Clear();
+            }
+
             this.radGridView.SummaryRowsTop.Add(summaryRowItem);
 
         }
