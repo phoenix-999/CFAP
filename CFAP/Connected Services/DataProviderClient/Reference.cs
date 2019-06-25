@@ -712,6 +712,9 @@ namespace CFAP.DataProviderClient {
         private bool CashFlowTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CurrentEuroToDollarRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double CurrentRateUSDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -728,6 +731,9 @@ namespace CFAP.DataProviderClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaEuroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double SummaUAHField;
@@ -807,6 +813,19 @@ namespace CFAP.DataProviderClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double CurrentEuroToDollarRate {
+            get {
+                return this.CurrentEuroToDollarRateField;
+            }
+            set {
+                if ((this.CurrentEuroToDollarRateField.Equals(value) != true)) {
+                    this.CurrentEuroToDollarRateField = value;
+                    this.RaisePropertyChanged("CurrentEuroToDollarRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public double CurrentRateUSD {
             get {
                 return this.CurrentRateUSDField;
@@ -880,6 +899,19 @@ namespace CFAP.DataProviderClient {
                 if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
                     this.RowVersionField = value;
                     this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaEuro {
+            get {
+                return this.SummaEuroField;
+            }
+            set {
+                if ((this.SummaEuroField.Equals(value) != true)) {
+                    this.SummaEuroField = value;
+                    this.RaisePropertyChanged("SummaEuro");
                 }
             }
         }
@@ -1804,6 +1836,9 @@ namespace CFAP.DataProviderClient {
         private System.DateTime DateRateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double EuroToDollarRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1834,6 +1869,19 @@ namespace CFAP.DataProviderClient {
                 if ((this.DateRateField.Equals(value) != true)) {
                     this.DateRateField = value;
                     this.RaisePropertyChanged("DateRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double EuroToDollarRate {
+            get {
+                return this.EuroToDollarRateField;
+            }
+            set {
+                if ((this.EuroToDollarRateField.Equals(value) != true)) {
+                    this.EuroToDollarRateField = value;
+                    this.RaisePropertyChanged("EuroToDollarRate");
                 }
             }
         }

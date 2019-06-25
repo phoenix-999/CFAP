@@ -23,6 +23,9 @@ namespace CFAPDataModel.Models
         [DataMember]
         public double RateUSD { get; set; }
 
+        [DataMember]
+        public double EuroToDollarRate { get; set; }
+
         [Timestamp]
         [DataMember]
         public byte[] RowVersion { get; set; }

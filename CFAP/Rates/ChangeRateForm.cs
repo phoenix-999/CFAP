@@ -46,6 +46,7 @@ namespace CFAP
         void InitializeFileds()
         {
             this.radTextBox_RateUSD.Text = rate.RateUSD.ToString();
+            this.radTextBox_EuroToDollarRate.Text = rate.EuroToDollarRate.ToString();
             this.radDateTimePicker_DateRate.Value = rate.DateRate;
 
             this.radCheckBox_ReadOnly.Checked = rate.ReadOnly;
@@ -61,14 +62,22 @@ namespace CFAP
                 result = false;
             }
 
+            if (this.radTextBox_EuroToDollarRate.Text == null || this.radTextBox_EuroToDollarRate.Text.Length == 0)
+            {
+                this.radTextBox_EuroToDollarRate.BackColor = Color.Red;
+                result = false;
+            }
+
             try
             {
                 double.Parse(this.radTextBox_RateUSD.Text);
+                double.Parse(this.radTextBox_EuroToDollarRate.Text);
             }
             catch (Exception)
             {
                 result = false;
                 this.radTextBox_RateUSD.BackColor = Color.Red;
+                this.radTextBox_EuroToDollarRate.BackColor = Color.Red;
                 MessageBox.Show("Ошибка преобразования курса валют", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -102,6 +111,7 @@ namespace CFAP
         {
             
             rate.RateUSD = double.Parse(this.radTextBox_RateUSD.Text);
+            rate.EuroToDollarRate = double.Parse(this.radTextBox_EuroToDollarRate.Text);
             rate.DateRate = this.radDateTimePicker_DateRate.Value;
             rate.ReadOnly = this.radCheckBox_ReadOnly.Checked;
         }

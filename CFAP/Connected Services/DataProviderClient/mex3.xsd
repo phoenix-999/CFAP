@@ -49,12 +49,14 @@
       <xs:element minOccurs="0" name="ActionDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="BudgetItem" nillable="true" type="tns:BudgetItem" />
       <xs:element minOccurs="0" name="CashFlowType" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CurrentEuroToDollarRate" type="xs:double" />
       <xs:element minOccurs="0" name="CurrentRateUSD" type="xs:double" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Project" nillable="true" type="tns:Project" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
       <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="SummaEuro" type="xs:double" />
       <xs:element minOccurs="0" name="SummaUAH" type="xs:double" />
       <xs:element minOccurs="0" name="SummaUSD" type="xs:double" />
       <xs:element minOccurs="0" name="SummaryDate" type="xs:dateTime" />
@@ -123,6 +125,7 @@
   <xs:complexType name="Rate">
     <xs:sequence>
       <xs:element minOccurs="0" name="DateRate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EuroToDollarRate" type="xs:double" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="RateUSD" type="xs:double" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />

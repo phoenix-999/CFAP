@@ -43,6 +43,7 @@ namespace CFAP
             this.radGridView.Columns["ReadOnly"].ReadOnly = true;
 
             this.radGridView.Columns["RateUSD"].HeaderText = "Курс долара";
+            this.radGridView.Columns["EuroToDollarRate"].HeaderText = "Курс евро";
 
             this.radGridView.Columns["DateRate"].HeaderText = "Месяц";
             this.radGridView.Columns["DateRate"].FormatString = "{0:MM/yyyy}";

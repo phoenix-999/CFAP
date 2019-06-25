@@ -115,6 +115,7 @@ namespace CFAP
             this.radGridView.Columns["RowVersion"].IsVisible = false;
             this.radGridView.Columns["ActionDate"].IsVisible = false;
             this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
+            this.radGridView.Columns["CurrentEuroToDollarRate"].IsVisible = false;
             this.radGridView.Columns["UserGroups"].IsVisible = false;
             this.radGridView.Columns["UserLastChanged"].IsVisible = false;
 
@@ -126,8 +127,9 @@ namespace CFAP
             this.radGridView.Columns.Move(this.radGridView.Columns["BudgetItem"].Index, 4);
             this.radGridView.Columns.Move(this.radGridView.Columns["SummaUAH"].Index, 5);
             this.radGridView.Columns.Move(this.radGridView.Columns["SummaUSD"].Index, 6);
-            this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 7);
-            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 8);
+            this.radGridView.Columns.Move(this.radGridView.Columns["SummaEuro"].Index, 7);
+            this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 8);
+            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 9);
 
             //Настройка данных столбцов
             //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.
@@ -154,6 +156,10 @@ namespace CFAP
             this.radGridView.Columns["SummaUSD"].FormatString = "{0:C}";
             this.radGridView.Columns["SummaUSD"].FormatInfo = CultureInfo.CreateSpecificCulture("en-US");
 
+            this.radGridView.Columns["SummaEuro"].HeaderText = "Сумма, ЕВРО";
+            this.radGridView.Columns["SummaEuro"].FormatString = "{0:C}";
+            this.radGridView.Columns["SummaEuro"].FormatInfo = CultureInfo.CreateSpecificCulture("fr-FR");
+
             this.radGridView.Columns["SummaryDate"].HeaderText = "Дата";
             this.radGridView.Columns["SummaryDate"].FormatString = "{0:d}";
             this.radGridView.Columns["SummaryDate"].TextAlignment = ContentAlignment.MiddleRight;
@@ -178,10 +184,16 @@ namespace CFAP
             summaryItemUSD.Aggregate = GridAggregateFunction.Sum;
             summaryItemUSD.FormatString = "Итог, $. = ${0:N2}";
 
+            GridViewSummaryItem summaryItemEuro = new GridViewSummaryItem();
+            summaryItemEuro.Name = "SummaEuro";
+            summaryItemEuro.Aggregate = GridAggregateFunction.Sum;
+            summaryItemEuro.FormatString = "Итог, ЕВРО = {0:N2} EUR";
+
             GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem();
             summaryRowItem.Add(summaryItemCount);
             summaryRowItem.Add(summaryItemUAH);
             summaryRowItem.Add(summaryItemUSD);
+            summaryRowItem.Add(summaryItemEuro);
 
             if (this.radGridView.SummaryRowsTop != null && this.radGridView.SummaryRowsTop.Count > 0)
             {

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.radPanel = new Telerik.WinControls.UI.RadPanel();
+            this.radTextBox_EuroToDollarRate = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radDateTimePicker_DateRate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radButton_UpdateAccountable = new Telerik.WinControls.UI.RadButton();
@@ -39,6 +41,8 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
             this.radPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_EuroToDollarRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).BeginInit();
@@ -52,6 +56,8 @@
             // 
             // radPanel
             // 
+            this.radPanel.Controls.Add(this.radTextBox_EuroToDollarRate);
+            this.radPanel.Controls.Add(this.radLabel3);
             this.radPanel.Controls.Add(this.radDateTimePicker_DateRate);
             this.radPanel.Controls.Add(this.radLabel2);
             this.radPanel.Controls.Add(this.radButton_UpdateAccountable);
@@ -66,11 +72,29 @@
             this.radPanel.Size = new System.Drawing.Size(391, 294);
             this.radPanel.TabIndex = 0;
             // 
+            // radTextBox_EuroToDollarRate
+            // 
+            this.radTextBox_EuroToDollarRate.Location = new System.Drawing.Point(178, 91);
+            this.radTextBox_EuroToDollarRate.MaxLength = 70;
+            this.radTextBox_EuroToDollarRate.Name = "radTextBox_EuroToDollarRate";
+            this.radTextBox_EuroToDollarRate.Size = new System.Drawing.Size(164, 20);
+            this.radTextBox_EuroToDollarRate.TabIndex = 16;
+            this.radTextBox_EuroToDollarRate.Click += new System.EventHandler(this.radTextBox_Click);
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel3.Location = new System.Drawing.Point(13, 93);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(62, 18);
+            this.radLabel3.TabIndex = 15;
+            this.radLabel3.Text = "Курс евро";
+            // 
             // radDateTimePicker_DateRate
             // 
             this.radDateTimePicker_DateRate.CustomFormat = "MM.yyyy";
             this.radDateTimePicker_DateRate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker_DateRate.Location = new System.Drawing.Point(178, 81);
+            this.radDateTimePicker_DateRate.Location = new System.Drawing.Point(178, 133);
             this.radDateTimePicker_DateRate.Name = "radDateTimePicker_DateRate";
             this.radDateTimePicker_DateRate.Size = new System.Drawing.Size(164, 20);
             this.radDateTimePicker_DateRate.TabIndex = 14;
@@ -81,7 +105,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radLabel2.Location = new System.Drawing.Point(13, 84);
+            this.radLabel2.Location = new System.Drawing.Point(13, 135);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(86, 18);
             this.radLabel2.TabIndex = 13;
@@ -118,7 +142,7 @@
             // 
             // radTextBox_RateUSD
             // 
-            this.radTextBox_RateUSD.Location = new System.Drawing.Point(178, 45);
+            this.radTextBox_RateUSD.Location = new System.Drawing.Point(178, 67);
             this.radTextBox_RateUSD.MaxLength = 70;
             this.radTextBox_RateUSD.Name = "radTextBox_RateUSD";
             this.radTextBox_RateUSD.Size = new System.Drawing.Size(164, 20);
@@ -129,7 +153,7 @@
             // 
             this.radCheckBox_ReadOnly.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radCheckBox_ReadOnly.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radCheckBox_ReadOnly.Location = new System.Drawing.Point(13, 125);
+            this.radCheckBox_ReadOnly.Location = new System.Drawing.Point(13, 159);
             this.radCheckBox_ReadOnly.Name = "radCheckBox_ReadOnly";
             this.radCheckBox_ReadOnly.ReadOnly = true;
             this.radCheckBox_ReadOnly.Size = new System.Drawing.Size(102, 18);
@@ -140,7 +164,7 @@
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radLabel1.Location = new System.Drawing.Point(13, 46);
+            this.radLabel1.Location = new System.Drawing.Point(13, 69);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(75, 18);
             this.radLabel1.TabIndex = 0;
@@ -163,6 +187,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).EndInit();
             this.radPanel.ResumeLayout(false);
             this.radPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox_EuroToDollarRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker_DateRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_UpdateAccountable)).EndInit();
@@ -187,5 +213,7 @@
         private Telerik.WinControls.UI.RadCheckBox radCheckBox_ReadOnly;
         private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker_DateRate;
         private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadTextBox radTextBox_EuroToDollarRate;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
     }
 }

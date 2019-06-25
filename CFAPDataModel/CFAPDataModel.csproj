@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201906200949583_Add User.Accoutable.Designer.cs">
       <DependentUpon>201906200949583_Add User.Accoutable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906251408241_Add EuroToDollarRate.cs" />
+    <Compile Include="Migrations\201906251408241_Add EuroToDollarRate.Designer.cs">
+      <DependentUpon>201906251408241_Add EuroToDollarRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\Balance.cs" />
@@ -229,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906200949583_Add User.Accoutable.resx">
       <DependentUpon>201906200949583_Add User.Accoutable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906251408241_Add EuroToDollarRate.resx">
+      <DependentUpon>201906251408241_Add EuroToDollarRate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

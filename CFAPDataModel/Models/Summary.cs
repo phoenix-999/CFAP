@@ -28,25 +28,6 @@ namespace CFAPDataModel.Models
              this.ActionDate = DateTime.Now; 
         }
 
-        //public void SetSummaDollar()
-        //{
-        //    try
-        //    {
-        //        this.CurrentRate = GetRate();
-        //        if (this.CurrentRate > 0)
-        //            this.SummaUSD = this.SummaUAH / this.CurrentRate;
-        //    }
-        //    catch (DivideByZeroException) 
-        //    {
-        //        //Возникновения исключения маловероятно по причине неточности обработки чисел с плавающей точкой.
-        //        //Более вероятно ошибка переполнения из-за слишком маленького значения.
-        //        this.SummaUSD = double.Epsilon;
-        //    }
-        //    catch (OverflowException)
-        //    {
-        //        this.SummaUSD = double.Epsilon;
-        //    }
-        //}
 
         private double GetRateUSD()
         {
@@ -57,6 +38,24 @@ namespace CFAPDataModel.Models
                 double? query = (from rate in ctx.Rates
                             where rate.DateRate.Month == this.SummaryDate.Month && rate.DateRate.Year == this.SummaryDate.Year
                             select rate.RateUSD).FirstOrDefault();
+                if (query != null)
+                {
+                    result = (double)query;
+                }
+            }
+
+            return result;
+        }
+
+        private double GetEuroToDollarRate()
+        {
+            double result = 0;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                double? query = (from rate in ctx.Rates
+                                 where rate.DateRate.Month == this.SummaryDate.Month && rate.DateRate.Year == this.SummaryDate.Year
+                                 select rate.EuroToDollarRate).FirstOrDefault();
                 if (query != null)
                 {
                     result = (double)query;
@@ -302,7 +301,15 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [NotMapped]
+        public double CurrentEuroToDollarRate { get { return GetEuroToDollarRate(); } set { } }
+
+        [DataMember]
+        [NotMapped]
         public double SummaUSD{ get { return this.SummaUAH / this.CurrentRateUSD; } set { } } //При маршалинге выражение вычисляеться.
+
+        [DataMember]
+        [NotMapped]
+        public double SummaEuro { get { return this.SummaUAH / (this.CurrentRateUSD * this.CurrentEuroToDollarRate); } set { } } //При маршалинге выражение вычисляеться.
 
         [DataMember]
         public bool CashFlowType { get; set; }
