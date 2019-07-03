@@ -48,5 +48,7 @@ namespace CFAP
         public abstract void FiledDeletedExceptionHandler(FaultException<FiledDeletedException> fault);
 
         public abstract void AccountableUserHasNotAccountableRefferenceExceptionHandler(FaultException<AccountableUserHasNotAccountableRefferenceException> fault);
+
+        public abstract void PeriodIsLockedExceptionHandler(FaultException<PeriodIsLockedException> fault);
     }
 }

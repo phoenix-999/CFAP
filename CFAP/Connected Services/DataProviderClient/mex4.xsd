@@ -42,6 +42,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AccountableUserHasNotAccountableRefferenceException" nillable="true" type="tns:AccountableUserHasNotAccountableRefferenceException" />
+  <xs:complexType name="PeriodIsLockedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodIsLockedException" nillable="true" type="tns:PeriodIsLockedException" />
   <xs:complexType name="TryChangeReadOnlyFiledException">
     <xs:sequence>
       <xs:element minOccurs="0" name="FieldId" type="xs:int" />

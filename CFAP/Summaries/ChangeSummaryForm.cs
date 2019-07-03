@@ -50,6 +50,9 @@ namespace CFAP
             this.radCheckBox_CashFlowType.Checked = summary.CashFlowType;
             this.radDateTimePicker_SummaryDate.Value = summary.SummaryDate;
             this.radMaskedEditBox_SummaUAH.Value = summary.SummaUAH;
+            this.radMaskedEditBox_SummaUSD.Value = summary.SummaUSD;
+            this.radMaskedEditBox_SummaEuro.Value = summary.SummaEuro;
+
             if (summary.Description != null)
                 this.radTextBox_Description.Text = summary.Description;
 
@@ -121,11 +124,15 @@ namespace CFAP
             try
             {
                 double.Parse(this.radMaskedEditBox_SummaUAH.Value.ToString());
+                double.Parse(this.radMaskedEditBox_SummaUSD.Value.ToString());
+                double.Parse(this.radMaskedEditBox_SummaEuro.Value.ToString());
             }
             catch(Exception)
             { 
                 result = false;
                 this.radMaskedEditBox_SummaUAH.BackColor = Color.Red;
+                this.radMaskedEditBox_SummaUSD.BackColor = Color.Red;
+                this.radMaskedEditBox_SummaEuro.BackColor = Color.Red;
             }
 
             if (this.radDateTimePicker_SummaryDate.Value == null || this.radDateTimePicker_SummaryDate.Value == default(DateTime))
@@ -202,6 +209,9 @@ namespace CFAP
             
 
             summary.SummaUAH = double.Parse(this.radMaskedEditBox_SummaUAH.Value.ToString());
+            summary.SummaUSD = double.Parse(this.radMaskedEditBox_SummaUSD.Value.ToString());
+            summary.SummaEuro = double.Parse(this.radMaskedEditBox_SummaEuro.Value.ToString());
+
             if (this.radTextBox_Description.Text != null)
             {
                 summary.Description = this.radTextBox_Description.Text;
@@ -223,7 +233,7 @@ namespace CFAP
             ((RadDropDownList)sender).BackColor = Color.White;
         }
 
-        private void radMaskedEditBox_SummaUAH_Click(object sender, EventArgs e)
+        private void radMaskedEditBox_Click(object sender, EventArgs e)
         {
             ((RadMaskedEditBox)sender).BackColor = Color.White;
         }

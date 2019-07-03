@@ -60,6 +60,7 @@
       <xs:element minOccurs="0" name="SummaUAH" type="xs:double" />
       <xs:element minOccurs="0" name="SummaUSD" type="xs:double" />
       <xs:element minOccurs="0" name="SummaryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TotalSumma" type="xs:double" />
       <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
       <xs:element minOccurs="0" name="UserLastChanged" nillable="true" type="tns:User" />
     </xs:sequence>

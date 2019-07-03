@@ -296,6 +296,11 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
+            if (summary.CheckPeriodIsUnlocked() == false)
+            {
+                throw new FaultException<PeriodIsLockedException>(new PeriodIsLockedException(summary.SummaryDate));
+            }
+
             if (summary.UserGroups == null || summary.UserGroups.Count == 0)
             {
                 summary.UserGroups = user.UserGroups;
@@ -344,6 +349,11 @@ namespace CFAPService
 
 
             AuthenticateUser(user);
+
+            if (summary.CheckPeriodIsUnlocked() == false)
+            {
+                throw new FaultException<PeriodIsLockedException>(new PeriodIsLockedException(summary.SummaryDate));
+            }
 
             //Пользователь который изменил данные устанавливается по факту
             if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
@@ -473,6 +483,11 @@ namespace CFAPService
         public Summary RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             AuthenticateUser(user);
+
+            if (summary.CheckPeriodIsUnlocked() == false)
+            {
+                throw new FaultException<PeriodIsLockedException>(new PeriodIsLockedException(summary.SummaryDate));
+            }
 
             if (concurencyUpdateOption == DbConcurencyUpdateOptions.DatabasePriority)
             {
@@ -1190,8 +1205,6 @@ namespace CFAPService
 
             return result;
        }
-
-        
 
     }
 }

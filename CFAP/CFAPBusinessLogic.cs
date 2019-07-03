@@ -1128,6 +1128,10 @@ namespace CFAP
                     {
                         ExceptionsHandler.DataNotValidExceptionHandler(fault);
                     }
+                    catch (FaultException<PeriodIsLockedException> fault)
+                    {
+                        ExceptionsHandler.PeriodIsLockedExceptionHandler(fault);
+                    }
                     catch (FaultException fault)
                     {
                         ExceptionsHandler.FaultExceptionHandler(fault);
@@ -1201,6 +1205,10 @@ namespace CFAP
                 ExceptionsHandler.FiledDeletedExceptionHandler(fault);
                 CFAPBusinessLogic.Summaries.Remove(summaryToUpdate);
             }
+            catch (FaultException<PeriodIsLockedException> fault)
+            {
+                ExceptionsHandler.PeriodIsLockedExceptionHandler(fault);
+            }
             catch (FaultException fault)
             {
                 ExceptionsHandler.FaultExceptionHandler(fault);
@@ -1267,6 +1275,10 @@ namespace CFAP
             {
                 ExceptionsHandler.FiledDeletedExceptionHandler(fault);
                 CFAPBusinessLogic.Summaries.Remove(summaryToRemove);
+            }
+            catch (FaultException<PeriodIsLockedException> fault)
+            {
+                ExceptionsHandler.PeriodIsLockedExceptionHandler(fault);
             }
             catch (FaultException fault)
             {

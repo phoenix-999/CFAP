@@ -93,6 +93,7 @@ namespace CFAPService
         [FaultContract(typeof(AuthenticateFaultException))]
         [FaultContract(typeof(DbException))]
         [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(PeriodIsLockedException))]
         Summary AddSummary(Summary summary, User user);
 
         [OperationContract]
@@ -113,6 +114,7 @@ namespace CFAPService
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(FiledDeletedException))]
         [FaultContract(typeof(ConcurrencyException<Summary>))]
+        [FaultContract(typeof(PeriodIsLockedException))]
         Summary UpdateSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]
@@ -130,6 +132,7 @@ namespace CFAPService
         [FaultContract(typeof(ConcurrencyException<Summary>))]
         [FaultContract(typeof(FiledDeletedException))]
         [FaultContract(typeof(InvalidOperationException))]
+        [FaultContract(typeof(PeriodIsLockedException))]
         Summary RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOptions);
 
         [OperationContract]

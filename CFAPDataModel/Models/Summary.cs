@@ -226,6 +226,27 @@ namespace CFAPDataModel.Models
             if (!propertyValidationResult.IsValid) { validationResults.Add(propertyValidationResult); }
         }
 
+        public bool CheckPeriodIsUnlocked()
+        {
+
+            int month = SummaryDate.Month;
+            int year = SummaryDate.Year;
+
+            Period period;
+
+            using (CFAPContext ctx = new CFAPContext())
+            {
+                period = (from p in ctx.Periods where p.Month == month && p.Year == year select p).FirstOrDefault();
+            }
+
+            if (period == null)
+                return true;
+
+            if (period.IsLocked)
+                return false;
+
+            return true;
+        }
 
         public override int GetHashCode()
         {
@@ -285,7 +306,7 @@ namespace CFAPDataModel.Models
         [Column(TypeName = "datetime2")]
         public DateTime SummaryDate { get; set; }
 
-        public int? UserLastChangedId { get; set; }
+        public int UserLastChangedId { get; set; }
 
         [DataMember]
         [ForeignKey("UserLastChangedId")]
@@ -304,12 +325,14 @@ namespace CFAPDataModel.Models
         public double CurrentEuroToDollarRate { get { return GetEuroToDollarRate(); } set { } }
 
         [DataMember]
-        [NotMapped]
-        public double SummaUSD{ get { return this.SummaUAH / this.CurrentRateUSD; } set { } } //При маршалинге выражение вычисляеться.
+        public double SummaUSD { get; set; }
+
+        [DataMember]
+        public double SummaEuro { get; set; }
 
         [DataMember]
         [NotMapped]
-        public double SummaEuro { get { return this.SummaUAH / (this.CurrentRateUSD * this.CurrentEuroToDollarRate); } set { } } //При маршалинге выражение вычисляеться.
+        public double TotalSumma { get { return SummaUSD + SummaUAH / CurrentRateUSD + SummaEuro / CurrentEuroToDollarRate; } set { } } //При маршалинге выражение вычисляется
 
         [DataMember]
         public bool CashFlowType { get; set; }

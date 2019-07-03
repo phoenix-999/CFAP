@@ -745,6 +745,9 @@ namespace CFAP.DataProviderClient {
         private System.DateTime SummaryDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TotalSummaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -951,6 +954,19 @@ namespace CFAP.DataProviderClient {
                 if ((this.SummaryDateField.Equals(value) != true)) {
                     this.SummaryDateField = value;
                     this.RaisePropertyChanged("SummaryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TotalSumma {
+            get {
+                return this.TotalSummaField;
+            }
+            set {
+                if ((this.TotalSummaField.Equals(value) != true)) {
+                    this.TotalSummaField = value;
+                    this.RaisePropertyChanged("TotalSumma");
                 }
             }
         }
@@ -1195,6 +1211,51 @@ namespace CFAP.DataProviderClient {
                 if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
                     this.UserGroupsField = value;
                     this.RaisePropertyChanged("UserGroups");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class PeriodIsLockedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
                 }
             }
         }
@@ -2119,6 +2180,7 @@ namespace CFAP.DataProviderClient {
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/AddSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary AddSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user);
         
@@ -2151,6 +2213,7 @@ namespace CFAP.DataProviderClient {
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary UpdateSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
@@ -2178,6 +2241,7 @@ namespace CFAP.DataProviderClient {
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.InvalidOperationException), Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault", Name="InvalidOperationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         

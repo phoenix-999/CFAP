@@ -30,6 +30,11 @@
         {
             this.radPanel = new Telerik.WinControls.UI.RadPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radMaskedEditBox_SummaEuro = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radMaskedEditBox_SummaUSD = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radButton_Remove = new Telerik.WinControls.UI.RadButton();
             this.radDropDownList_Projects = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownList_Accountables = new Telerik.WinControls.UI.RadDropDownList();
@@ -51,6 +56,11 @@
             this.radPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox_SummaEuro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox_SummaUSD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Projects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Accountables)).BeginInit();
@@ -86,6 +96,11 @@
             // radGroupBox1
             // 
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.radMaskedEditBox_SummaEuro);
+            this.radGroupBox1.Controls.Add(this.radMaskedEditBox_SummaUSD);
+            this.radGroupBox1.Controls.Add(this.radLabel9);
+            this.radGroupBox1.Controls.Add(this.radLabel8);
+            this.radGroupBox1.Controls.Add(this.radLabel7);
             this.radGroupBox1.Controls.Add(this.radButton_Remove);
             this.radGroupBox1.Controls.Add(this.radDropDownList_Projects);
             this.radGroupBox1.Controls.Add(this.radDropDownList_Accountables);
@@ -107,6 +122,65 @@
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(463, 349);
             this.radGroupBox1.TabIndex = 20;
+            // 
+            // radMaskedEditBox_SummaEuro
+            // 
+            this.radMaskedEditBox_SummaEuro.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.radMaskedEditBox_SummaEuro.Location = new System.Drawing.Point(352, 199);
+            this.radMaskedEditBox_SummaEuro.Mask = "[0-9]+\\,[0-9]*";
+            this.radMaskedEditBox_SummaEuro.MaskType = Telerik.WinControls.UI.MaskType.Regex;
+            this.radMaskedEditBox_SummaEuro.Name = "radMaskedEditBox_SummaEuro";
+            this.radMaskedEditBox_SummaEuro.Size = new System.Drawing.Size(77, 20);
+            this.radMaskedEditBox_SummaEuro.TabIndex = 35;
+            this.radMaskedEditBox_SummaEuro.TabStop = false;
+            this.radMaskedEditBox_SummaEuro.Text = "_";
+            this.radMaskedEditBox_SummaEuro.Click += new System.EventHandler(this.radMaskedEditBox_Click);
+            // 
+            // radMaskedEditBox_SummaUSD
+            // 
+            this.radMaskedEditBox_SummaUSD.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.radMaskedEditBox_SummaUSD.Location = new System.Drawing.Point(248, 199);
+            this.radMaskedEditBox_SummaUSD.Mask = "[0-9]+\\,[0-9]*";
+            this.radMaskedEditBox_SummaUSD.MaskType = Telerik.WinControls.UI.MaskType.Regex;
+            this.radMaskedEditBox_SummaUSD.Name = "radMaskedEditBox_SummaUSD";
+            this.radMaskedEditBox_SummaUSD.Size = new System.Drawing.Size(77, 20);
+            this.radMaskedEditBox_SummaUSD.TabIndex = 34;
+            this.radMaskedEditBox_SummaUSD.TabStop = false;
+            this.radMaskedEditBox_SummaUSD.Text = "_";
+            this.radMaskedEditBox_SummaUSD.Click += new System.EventHandler(this.radMaskedEditBox_Click);
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.AutoSize = false;
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel9.Location = new System.Drawing.Point(352, 175);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(77, 18);
+            this.radLabel9.TabIndex = 33;
+            this.radLabel9.Text = "ЕВРО";
+            this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.AutoSize = false;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel8.Location = new System.Drawing.Point(248, 175);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(77, 18);
+            this.radLabel8.TabIndex = 32;
+            this.radLabel8.Text = "$";
+            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.AutoSize = false;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel7.Location = new System.Drawing.Point(145, 175);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(77, 18);
+            this.radLabel7.TabIndex = 31;
+            this.radLabel7.Text = "грн.";
+            this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radButton_Remove
             // 
@@ -162,7 +236,7 @@
             this.radMaskedEditBox_SummaUAH.TabIndex = 25;
             this.radMaskedEditBox_SummaUAH.TabStop = false;
             this.radMaskedEditBox_SummaUAH.Text = "_";
-            this.radMaskedEditBox_SummaUAH.Click += new System.EventHandler(this.radMaskedEditBox_SummaUAH_Click);
+            this.radMaskedEditBox_SummaUAH.Click += new System.EventHandler(this.radMaskedEditBox_Click);
             // 
             // radDateTimePicker_SummaryDate
             // 
@@ -215,9 +289,9 @@
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabel5.Location = new System.Drawing.Point(8, 201);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(71, 18);
+            this.radLabel5.Size = new System.Drawing.Size(43, 18);
             this.radLabel5.TabIndex = 18;
-            this.radLabel5.Text = "Сумма, грн.";
+            this.radLabel5.Text = "Сумма";
             // 
             // radLabel3
             // 
@@ -285,6 +359,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox_SummaEuro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMaskedEditBox_SummaUSD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Remove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Projects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList_Accountables)).EndInit();
@@ -328,5 +407,10 @@
         private Telerik.WinControls.UI.RadDropDownList radDropDownList_Accountables;
         private Telerik.WinControls.UI.RadDropDownList radDropDownList_BudgetItems;
         private Telerik.WinControls.UI.RadButton radButton_Remove;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadMaskedEditBox radMaskedEditBox_SummaEuro;
+        private Telerik.WinControls.UI.RadMaskedEditBox radMaskedEditBox_SummaUSD;
     }
 }

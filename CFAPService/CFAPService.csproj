@@ -69,6 +69,7 @@
     <Compile Include="Faults\ConcurrencyException.cs" />
     <Compile Include="Faults\DataNotValidException.cs" />
     <Compile Include="Faults\DbException.cs" />
+    <Compile Include="Faults\PeriodIsLockedException.cs" />
     <Compile Include="Faults\TryChangeReadOnlyFiledException.cs" />
     <Compile Include="Faults\UnexpectedException.cs" />
     <Compile Include="Faults\UserHasNotGroupsException.cs" />

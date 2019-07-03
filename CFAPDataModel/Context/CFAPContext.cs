@@ -36,6 +36,7 @@
         public virtual DbSet<Summary> Summaries { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
+        public virtual DbSet<Period> Periods { get; set; }
 
 
         //private void CalculateSummary()
@@ -44,7 +45,7 @@
 
         //    foreach (var summary in Summaries.Local)
         //    {
-              
+
         //        if (this.Entry<Summary>(summary).State == EntityState.Added
         //            || this.Entry<Summary>(summary).State == EntityState.Modified)
         //        {

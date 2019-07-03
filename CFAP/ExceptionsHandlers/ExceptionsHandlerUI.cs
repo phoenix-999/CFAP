@@ -168,6 +168,7 @@ namespace CFAP
             errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Расшифровка", fault.Detail.DatabaseValue.Description, fault.Detail.CurrentValue.Description));
             errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Сумма, грн.", fault.Detail.DatabaseValue.SummaUAH, fault.Detail.CurrentValue.SummaUAH));
             errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Сумма, $.", fault.Detail.DatabaseValue.SummaUSD, fault.Detail.CurrentValue.SummaUSD));
+            errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Сумма, ЕВРО.", fault.Detail.DatabaseValue.SummaUSD, fault.Detail.CurrentValue.SummaEuro));
             errorString.Append(string.Format("Поле: {0}, значение в БД: {1}, текущее значение: {2}\n\n", "Дата", fault.Detail.DatabaseValue.SummaryDate, fault.Detail.CurrentValue.SummaryDate));
 
             errorString.Append(string.Format("Изменение были внесены в {0}\n\n", fault.Detail.DatabaseValue.ActionDate));
@@ -197,6 +198,11 @@ namespace CFAP
         }
 
         public override void AccountableUserHasNotAccountableRefferenceExceptionHandler(FaultException<AccountableUserHasNotAccountableRefferenceException> fault)
+        {
+            MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public override void PeriodIsLockedExceptionHandler(FaultException<PeriodIsLockedException> fault)
         {
             MessageBox.Show(fault.Detail.Message, "Ошибка изменения данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
