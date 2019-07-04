@@ -13,7 +13,7 @@ namespace CFAPDataModel.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201907031016574_Add Periods"; }
+            get { return "201907031359052_Add Periods"; }
         }
         
         string IMigrationMetadata.Source

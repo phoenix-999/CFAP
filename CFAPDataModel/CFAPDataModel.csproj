@@ -61,6 +61,7 @@
     <Compile Include="Context\CFAPContext.cs" />
     <Compile Include="Context\NLogCommandInterceptor.cs" />
     <Compile Include="Context\DbConcurrencyUpdateOptions.cs" />
+    <Compile Include="CrudOperation.cs" />
     <Compile Include="Migrations\201905140758105_InitialCreate.cs" />
     <Compile Include="Migrations\201905140758105_InitialCreate.Designer.cs">
       <DependentUpon>201905140758105_InitialCreate.cs</DependentUpon>
@@ -153,14 +154,27 @@
     <Compile Include="Migrations\201907030930139_Update Summary.Designer.cs">
       <DependentUpon>201907030930139_Update Summary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907031016574_Add Periods.cs" />
-    <Compile Include="Migrations\201907031016574_Add Periods.Designer.cs">
-      <DependentUpon>201907031016574_Add Periods.cs</DependentUpon>
+    <Compile Include="Migrations\201907031359052_Add Periods.cs" />
+    <Compile Include="Migrations\201907031359052_Add Periods.Designer.cs">
+      <DependentUpon>201907031359052_Add Periods.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accountable.cs" />
     <Compile Include="Models\Balance.cs" />
     <Compile Include="Models\BudgetItem.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="Models\Exceptions\AccountableUserHasNotAccountableRefferenceException.cs" />
+    <Compile Include="Models\Exceptions\AutenticateFaultException.cs" />
+    <Compile Include="Models\Exceptions\ConcurrencyException.cs" />
+    <Compile Include="Models\Exceptions\DataNotValidException.cs" />
+    <Compile Include="Models\Exceptions\DbException.cs" />
+    <Compile Include="Models\Exceptions\FiledDeletedException.cs" />
+    <Compile Include="Models\Exceptions\NoRightsToChangeDataException.cs" />
+    <Compile Include="Models\Exceptions\PeriodIsLockedException.cs" />
+    <Compile Include="Models\Exceptions\TryChangeReadOnlyFiledException.cs" />
+    <Compile Include="Models\Exceptions\UnexpectedException.cs" />
+    <Compile Include="Models\Exceptions\UserHasNotGroupsException.cs" />
+    <Compile Include="Models\ICrudOperations.cs" />
     <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Rate.cs" />
@@ -249,8 +263,8 @@
     <EmbeddedResource Include="Migrations\201907030930139_Update Summary.resx">
       <DependentUpon>201907030930139_Update Summary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907031016574_Add Periods.resx">
-      <DependentUpon>201907031016574_Add Periods.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907031359052_Add Periods.resx">
+      <DependentUpon>201907031359052_Add Periods.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

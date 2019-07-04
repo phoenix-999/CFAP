@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CFAPService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CFAPService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CFAPDataModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
   <xs:complexType name="Filter">
     <xs:sequence>
@@ -11,4 +11,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Filter" nillable="true" type="tns:Filter" />
+  <xs:simpleType name="DbConcurencyUpdateOptions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="ClientPriority" />
+      <xs:enumeration value="DatabasePriority" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DbConcurencyUpdateOptions" nillable="true" type="tns:DbConcurencyUpdateOptions" />
+  <xs:simpleType name="CrudOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Select" />
+      <xs:enumeration value="Add" />
+      <xs:enumeration value="Update" />
+      <xs:enumeration value="Delete" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CrudOperation" nillable="true" type="tns:CrudOperation" />
 </xs:schema>

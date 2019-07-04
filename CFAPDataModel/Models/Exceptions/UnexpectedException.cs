@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
     class UnexpectedException

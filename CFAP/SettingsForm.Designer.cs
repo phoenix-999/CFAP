@@ -31,6 +31,7 @@
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.radPanel_ChangeReadOnly = new Telerik.WinControls.UI.RadPanel();
+            this.radButton_OpenLockedPeriodForm = new Telerik.WinControls.UI.RadButton();
             this.radCheckBox_ReadOnly = new Telerik.WinControls.UI.RadCheckBox();
             this.radButton_AcceptReadOnly = new Telerik.WinControls.UI.RadButton();
             this.radCheckedDropDownList_BudgetItems = new Telerik.WinControls.UI.RadCheckedDropDownList();
@@ -50,6 +51,7 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_ChangeReadOnly)).BeginInit();
             this.radPanel_ChangeReadOnly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_OpenLockedPeriodForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).BeginInit();
             this.radCheckBox_ReadOnly.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AcceptReadOnly)).BeginInit();
@@ -98,24 +100,34 @@
             this.radGroupBox2.HeaderText = "Настройки фильтра получения данных";
             this.radGroupBox2.Location = new System.Drawing.Point(10, 10);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(724, 153);
+            this.radGroupBox2.Size = new System.Drawing.Size(724, 193);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "Настройки фильтра получения данных";
             // 
             // radPanel_ChangeReadOnly
             // 
+            this.radPanel_ChangeReadOnly.Controls.Add(this.radButton_OpenLockedPeriodForm);
             this.radPanel_ChangeReadOnly.Controls.Add(this.radCheckBox_ReadOnly);
             this.radPanel_ChangeReadOnly.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel_ChangeReadOnly.Location = new System.Drawing.Point(2, 116);
+            this.radPanel_ChangeReadOnly.Location = new System.Drawing.Point(2, 120);
             this.radPanel_ChangeReadOnly.Name = "radPanel_ChangeReadOnly";
-            this.radPanel_ChangeReadOnly.Size = new System.Drawing.Size(720, 35);
+            this.radPanel_ChangeReadOnly.Size = new System.Drawing.Size(720, 71);
             this.radPanel_ChangeReadOnly.TabIndex = 10;
+            // 
+            // radButton_OpenLockedPeriodForm
+            // 
+            this.radButton_OpenLockedPeriodForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton_OpenLockedPeriodForm.Location = new System.Drawing.Point(461, 38);
+            this.radButton_OpenLockedPeriodForm.Name = "radButton_OpenLockedPeriodForm";
+            this.radButton_OpenLockedPeriodForm.Size = new System.Drawing.Size(259, 30);
+            this.radButton_OpenLockedPeriodForm.TabIndex = 2;
+            this.radButton_OpenLockedPeriodForm.Text = "Открыть форму блокировки периода";
+            this.radButton_OpenLockedPeriodForm.Click += new System.EventHandler(this.radButton_OpenLockedPeriodForm_Click);
             // 
             // radCheckBox_ReadOnly
             // 
             this.radCheckBox_ReadOnly.AutoSize = false;
             this.radCheckBox_ReadOnly.Controls.Add(this.radButton_AcceptReadOnly);
-            this.radCheckBox_ReadOnly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radCheckBox_ReadOnly.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radCheckBox_ReadOnly.Location = new System.Drawing.Point(0, 0);
             this.radCheckBox_ReadOnly.Name = "radCheckBox_ReadOnly";
@@ -125,7 +137,7 @@
             // 
             // radButton_AcceptReadOnly
             // 
-            this.radButton_AcceptReadOnly.Dock = System.Windows.Forms.DockStyle.Right;
+            this.radButton_AcceptReadOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radButton_AcceptReadOnly.Location = new System.Drawing.Point(461, 0);
             this.radButton_AcceptReadOnly.Name = "radButton_AcceptReadOnly";
             this.radButton_AcceptReadOnly.Size = new System.Drawing.Size(259, 35);
@@ -260,6 +272,7 @@
             this.radGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel_ChangeReadOnly)).EndInit();
             this.radPanel_ChangeReadOnly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton_OpenLockedPeriodForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_ReadOnly)).EndInit();
             this.radCheckBox_ReadOnly.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AcceptReadOnly)).EndInit();
@@ -299,5 +312,6 @@
         private Telerik.WinControls.UI.RadPanel radPanel_ChangeReadOnly;
         private Telerik.WinControls.UI.RadCheckBox radCheckBox_ReadOnly;
         private Telerik.WinControls.UI.RadButton radButton_AcceptReadOnly;
+        private Telerik.WinControls.UI.RadButton radButton_OpenLockedPeriodForm;
     }
 }

@@ -9,7 +9,7 @@ using CFAPDataModel.Models;
 using CFAPDataModel;
 using System.ServiceModel;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
     public class ConcurrencyException<T> where T: class

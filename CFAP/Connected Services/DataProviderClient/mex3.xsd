@@ -134,4 +134,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Rate" nillable="true" type="tns:Rate" />
+  <xs:complexType name="Period">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsLocked" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Month" type="xs:int" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Period" nillable="true" type="tns:Period" />
 </xs:schema>

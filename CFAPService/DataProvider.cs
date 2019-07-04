@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CFAPDataModel.Models;
 using CFAPDataModel;
 using System.ServiceModel;
-using CFAPService.Faults;
+using CFAPDataModel.Models.Exceptions;
 using NLog;
 using System.Transactions;
 using System.Data.Entity.Validation;
@@ -956,6 +956,39 @@ namespace CFAPService
             }
 
             return rateToUpdate;
+        }
+
+        [OperationBehavior(TransactionScopeRequired = true)]
+        public Transport MakeOperation(ICrudOperations entity, User user, DbConcurencyUpdateOptions concurencyUpdateOptions, CrudOperation operation, Filter filter)
+        {
+            AuthenticateUser(user);
+
+            return RunOperation(entity, user, concurencyUpdateOptions, operation, filter);
+        }
+
+        private Transport RunOperation(ICrudOperations entity, User user, DbConcurencyUpdateOptions concurencyUpdateOptions, CrudOperation operation, Filter filter)
+        {
+            Transport result = new Transport();
+
+            switch(operation)
+            {
+                case CrudOperation.Add:
+                    result.Single = entity.Add(concurencyUpdateOptions, user);
+                    break;
+                case CrudOperation.Update:
+                    result.Single = entity.Update(concurencyUpdateOptions, user);
+                    break;
+                case CrudOperation.Delete:
+                    result.Single = entity.Delete(concurencyUpdateOptions, user);
+                    break;
+                case CrudOperation.Select:
+                    Type type = entity.GetType();
+                    var ob = (ICrudOperations)Activator.CreateInstance(type);
+                    result.Collection = ob.Select(filter, user);
+                    break;   
+            }
+
+            return result;
         }
 
         #endregion

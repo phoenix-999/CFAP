@@ -96,10 +96,13 @@
     <None Include="Connected Services\DataProviderService\mex6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DataProviderService\mex72.xsd">
+    <None Include="Connected Services\DataProviderService\mex7.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Accountable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Balance.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.BudgetItem.datasource">
@@ -112,6 +115,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Summary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.Transport.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\DataProviderService\UnitTest.DataProviderService.User.datasource">

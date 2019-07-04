@@ -15,7 +15,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class DbException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -403,7 +403,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class AuthenticateFaultException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -448,7 +448,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class NoRightsToChangeDataException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -541,7 +541,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class DataNotValidException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -586,7 +586,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class UserHasNotGroupsException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -647,7 +647,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class AccountableUserHasNotAccountableRefferenceException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1227,7 +1227,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class PeriodIsLockedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1272,7 +1272,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
     [System.SerializableAttribute()]
     public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1456,7 +1456,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class TryChangeReadOnlyFiledException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1533,7 +1533,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class FiledDeletedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1578,7 +1578,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfSummarydxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1655,7 +1655,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfAccountabledxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1732,7 +1732,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfProjectdxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1809,7 +1809,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfBudgetItemdxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2011,7 +2011,7 @@ namespace CFAP.DataProviderClient {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
     [System.SerializableAttribute()]
     public partial class ConcurrencyExceptionOfRatedxjYbbDT : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2086,20 +2086,216 @@ namespace CFAP.DataProviderClient {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Transport", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Filter))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.DbConcurencyUpdateOptions))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.CrudOperation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.ArgumentNullException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.ArgumentException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.SystemException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Exception))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.InvalidOperationException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Accountable))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.UserGroup[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.UserGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.User[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Summary))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.BudgetItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Project))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Accountable[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.BudgetItem[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Project[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Summary[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Balance))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Rate[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Rate))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.Period))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.DbException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.DataNotValidException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.AccountableUserHasNotAccountableRefferenceException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfAccountabledxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfProjectdxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfBudgetItemdxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfRatedxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
+    public partial class Transport : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object[] CollectionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object SingleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object[] Collection {
+            get {
+                return this.CollectionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CollectionField, value) != true)) {
+                    this.CollectionField = value;
+                    this.RaisePropertyChanged("Collection");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Single {
+            get {
+                return this.SingleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SingleField, value) != true)) {
+                    this.SingleField = value;
+                    this.RaisePropertyChanged("Single");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CrudOperation", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
+    public enum CrudOperation : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Select = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Add = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Update = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Delete = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Period", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Period : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MonthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YearField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Month {
+            get {
+                return this.MonthField;
+            }
+            set {
+                if ((this.MonthField.Equals(value) != true)) {
+                    this.MonthField = value;
+                    this.RaisePropertyChanged("Month");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Year {
+            get {
+                return this.YearField;
+            }
+            set {
+                if ((this.YearField.Equals(value) != true)) {
+                    this.YearField = value;
+                    this.RaisePropertyChanged("Year");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderClient.IDataProvider")]
     public interface IDataProvider {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetLogins", ReplyAction="http://tempuri.org/IDataProvider/GetLoginsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetLoginsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetLoginsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         string[] GetLogins();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetLogins", ReplyAction="http://tempuri.org/IDataProvider/GetLoginsResponse")]
         System.Threading.Tasks.Task<string[]> GetLoginsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/Authenticate", ReplyAction="http://tempuri.org/IDataProvider/AuthenticateResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AuthenticateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AuthenticateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AuthenticateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ArgumentNullException), Action="http://tempuri.org/IDataProvider/AuthenticateArgumentNullExceptionFault", Name="ArgumentNullException", Namespace="http://schemas.datacontract.org/2004/07/System")]
         CFAP.DataProviderClient.User Authenticate(CFAP.DataProviderClient.User user);
         
@@ -2107,13 +2303,13 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.User> AuthenticateAsync(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUser", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AccountableUserHasNotAccountableRefferenceException), Action="http://tempuri.org/IDataProvider/AddNewUserAccountableUserHasNotAccountableReffer" +
-            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.User AddNewUser(CFAP.DataProviderClient.User newUser, CFAP.DataProviderClient.User owner);
         
@@ -2121,22 +2317,22 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.User> AddNewUserAsync(CFAP.DataProviderClient.User newUser, CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUsersAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetUsersDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUsersAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetUsersDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/GetUsersNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.User[] GetUsers(CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUsers", ReplyAction="http://tempuri.org/IDataProvider/GetUsersResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.User[]> GetUsersAsync(CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUser", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AccountableUserHasNotAccountableRefferenceException), Action="http://tempuri.org/IDataProvider/UpdateUserAccountableUserHasNotAccountableReffer" +
-            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.User UpdateUser(CFAP.DataProviderClient.User userForUpdate, CFAP.DataProviderClient.User owner);
         
@@ -2144,20 +2340,20 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.User> UpdateUserAsync(CFAP.DataProviderClient.User userForUpdate, CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUserGroups", ReplyAction="http://tempuri.org/IDataProvider/GetUserGroupsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUserGroupsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetUserGroupsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/GetUserGroupsNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetUserGroupsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetUserGroupsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/GetUserGroupsNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.UserGroup[] GetUserGroups(CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetUserGroups", ReplyAction="http://tempuri.org/IDataProvider/GetUserGroupsResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.UserGroup[]> GetUserGroupsAsync(CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddNewUserGroup", ReplyAction="http://tempuri.org/IDataProvider/AddNewUserGroupResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupNoRightsToChangeDataExceptionFaul" +
-            "t", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "t", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserGroupDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.UserGroup AddNewUserGroup(CFAP.DataProviderClient.UserGroup newUserGroup, CFAP.DataProviderClient.User owner);
         
@@ -2165,11 +2361,11 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.UserGroup> AddNewUserGroupAsync(CFAP.DataProviderClient.UserGroup newUserGroup, CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateUserGroup", ReplyAction="http://tempuri.org/IDataProvider/UpdateUserGroupResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupNoRightsToChangeDataExceptionFaul" +
-            "t", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "t", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserGroupDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.UserGroup UpdateUserGroup(CFAP.DataProviderClient.UserGroup userGroupForUpdate, CFAP.DataProviderClient.User owner);
         
@@ -2177,10 +2373,10 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.UserGroup> UpdateUserGroupAsync(CFAP.DataProviderClient.UserGroup userGroupForUpdate, CFAP.DataProviderClient.User owner);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddSummary", ReplyAction="http://tempuri.org/IDataProvider/AddSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/AddSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/AddSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary AddSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user);
         
@@ -2188,8 +2384,8 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary> AddSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.Summary[] GetSummary(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetSummary", ReplyAction="http://tempuri.org/IDataProvider/GetSummaryResponse")]
@@ -2197,23 +2393,23 @@ namespace CFAP.DataProviderClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodAuthenticateFaultExcept" +
-            "ionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "ionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.Balance GetBalanceBeginningPeriod(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Balance> GetBalanceBeginningPeriodAsync(CFAP.DataProviderClient.User user, CFAP.DataProviderClient.Filter filter);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateSummaryTryChangeReadOnlyFiledExceptionFaul" +
-            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
-            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary UpdateSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
@@ -2222,10 +2418,10 @@ namespace CFAP.DataProviderClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatus", ReplyAction="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusAuthenticateFaultExce" +
-            "ptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "ptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/ChangeSummaryReadOnlyStatusNoRightsToChangeDataE" +
-            "xceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "xceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         void ChangeSummaryReadOnlyStatus(bool onOff, CFAP.DataProviderClient.Filter filter, CFAP.DataProviderClient.User user);
         
@@ -2233,15 +2429,15 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task ChangeSummaryReadOnlyStatusAsync(bool onOff, CFAP.DataProviderClient.Filter filter, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/RemoveSummary", ReplyAction="http://tempuri.org/IDataProvider/RemoveSummaryResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/RemoveSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/RemoveSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/RemoveSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/RemoveSummaryTryChangeReadOnlyFiledExceptionFaul" +
-            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/RemoveSummaryConcurrencyExceptionOf_SummaryFault" +
-            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.InvalidOperationException), Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault", Name="InvalidOperationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Summary RemoveSummary(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
@@ -2249,19 +2445,19 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Summary> RemoveSummaryAsync(CFAP.DataProviderClient.Summary summary, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetAccountablesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetAccountablesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetAccountablesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetAccountablesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.Accountable[] GetAccountables(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetAccountables", ReplyAction="http://tempuri.org/IDataProvider/GetAccountablesResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Accountable[]> GetAccountablesAsync(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddAccountable", ReplyAction="http://tempuri.org/IDataProvider/AddAccountableResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddAccountableAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddAccountableAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddAccountableNoRightsToChangeDataExceptionFault" +
-            "", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Accountable AddAccountable(CFAP.DataProviderClient.Accountable newAccountable, CFAP.DataProviderClient.User user);
         
@@ -2270,15 +2466,15 @@ namespace CFAP.DataProviderClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateAccountable", ReplyAction="http://tempuri.org/IDataProvider/UpdateAccountableResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateAccountableAuthenticateFaultExceptionFault" +
-            "", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateAccountableDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateAccountableNoRightsToChangeDataExceptionFa" +
-            "ult", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "ult", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateAccountableTryChangeReadOnlyFiledException" +
-            "Fault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "Fault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfAccountabledxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateAccountableConcurrencyExceptionOf_Accounta" +
-            "bleFault", Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "bleFault", Name="ConcurrencyExceptionOfAccountabledxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Accountable UpdateAccountable(CFAP.DataProviderClient.Accountable accountableToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
@@ -2286,18 +2482,18 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Accountable> UpdateAccountableAsync(CFAP.DataProviderClient.Accountable accountableToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetProjects", ReplyAction="http://tempuri.org/IDataProvider/GetProjectsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetProjectsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetProjectsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetProjectsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetProjectsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.Project[] GetProjects(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetProjects", ReplyAction="http://tempuri.org/IDataProvider/GetProjectsResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Project[]> GetProjectsAsync(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddProject", ReplyAction="http://tempuri.org/IDataProvider/AddProjectResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Project AddProject(CFAP.DataProviderClient.Project newProject, CFAP.DataProviderClient.User user);
         
@@ -2305,14 +2501,14 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Project> AddProjectAsync(CFAP.DataProviderClient.Project newProject, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateProject", ReplyAction="http://tempuri.org/IDataProvider/UpdateProjectResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateProjectAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateProjectDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateProjectDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateProjectNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateProjectTryChangeReadOnlyFiledExceptionFaul" +
-            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "t", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfProjectdxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateProjectConcurrencyExceptionOf_ProjectFault" +
-            "", Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "", Name="ConcurrencyExceptionOfProjectdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Project UpdateProject(CFAP.DataProviderClient.Project projectToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
@@ -2320,18 +2516,18 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Project> UpdateProjectAsync(CFAP.DataProviderClient.Project projectToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBudgetItems", ReplyAction="http://tempuri.org/IDataProvider/GetBudgetItemsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetBudgetItemsDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.BudgetItem[] GetBudgetItems(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBudgetItems", ReplyAction="http://tempuri.org/IDataProvider/GetBudgetItemsResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.BudgetItem[]> GetBudgetItemsAsync(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/AddBudgetItemResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddBudgetItemNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddBudgetItemNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.BudgetItem AddBudgetItem(CFAP.DataProviderClient.BudgetItem newBudgetItem, CFAP.DataProviderClient.User user);
         
@@ -2339,15 +2535,15 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.BudgetItem> AddBudgetItemAsync(CFAP.DataProviderClient.BudgetItem newBudgetItem, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateBudgetItem", ReplyAction="http://tempuri.org/IDataProvider/UpdateBudgetItemResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemNoRightsToChangeDataExceptionFau" +
-            "lt", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "lt", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemTryChangeReadOnlyFiledExceptionF" +
-            "ault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "ault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfBudgetItemdxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateBudgetItemConcurrencyExceptionOf_BudgetIte" +
-            "mFault", Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+            "mFault", Name="ConcurrencyExceptionOfBudgetItemdxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.BudgetItem UpdateBudgetItem(CFAP.DataProviderClient.BudgetItem budgetItemToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
@@ -2355,18 +2551,18 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.BudgetItem> UpdateBudgetItemAsync(CFAP.DataProviderClient.BudgetItem budgetItemToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetRates", ReplyAction="http://tempuri.org/IDataProvider/GetRatesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetRatesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetRatesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetRatesAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/GetRatesDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         CFAP.DataProviderClient.Rate[] GetRates(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetRates", ReplyAction="http://tempuri.org/IDataProvider/GetRatesResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Rate[]> GetRatesAsync(CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/AddRate", ReplyAction="http://tempuri.org/IDataProvider/AddRateResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/AddRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Rate AddRate(CFAP.DataProviderClient.Rate newRate, CFAP.DataProviderClient.User user);
         
@@ -2374,17 +2570,70 @@ namespace CFAP.DataProviderClient {
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Rate> AddRateAsync(CFAP.DataProviderClient.Rate newRate, CFAP.DataProviderClient.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateRate", ReplyAction="http://tempuri.org/IDataProvider/UpdateRateResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateRateTryChangeReadOnlyFiledExceptionFault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfRatedxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateRateConcurrencyExceptionOf_RateFault", Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateRateAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/UpdateRateDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateRateDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateRateNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException), Action="http://tempuri.org/IDataProvider/UpdateRateTryChangeReadOnlyFiledExceptionFault", Name="TryChangeReadOnlyFiledException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfRatedxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateRateConcurrencyExceptionOf_RateFault", Name="ConcurrencyExceptionOfRatedxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         CFAP.DataProviderClient.Rate UpdateRate(CFAP.DataProviderClient.Rate rateToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateRate", ReplyAction="http://tempuri.org/IDataProvider/UpdateRateResponse")]
         System.Threading.Tasks.Task<CFAP.DataProviderClient.Rate> UpdateRateAsync(CFAP.DataProviderClient.Rate rateToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/MakeOperation", ReplyAction="http://tempuri.org/IDataProvider/MakeOperationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/MakeOperationAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DataNotValidException), Action="http://tempuri.org/IDataProvider/MakeOperationDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/MakeOperationNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.FaultContractAttribute(typeof(CFAP.DataProviderClient.DbException), Action="http://tempuri.org/IDataProvider/MakeOperationDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Transport))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Filter))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.DbConcurencyUpdateOptions))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.CrudOperation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.ArgumentNullException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.ArgumentException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.SystemException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Exception))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.InvalidOperationException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.User))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Accountable))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.UserGroup[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.UserGroup))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.User[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Summary))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.BudgetItem))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Project))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Accountable[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.BudgetItem[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Project[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Summary[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Balance))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Rate[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Rate))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.Period))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.DbException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.AuthenticateFaultException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.NoRightsToChangeDataException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.DataNotValidException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.UserHasNotGroupsException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.AccountableUserHasNotAccountableRefferenceException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.PeriodIsLockedException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.TryChangeReadOnlyFiledException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.FiledDeletedException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfSummarydxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfAccountabledxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfProjectdxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfBudgetItemdxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CFAP.DataProviderClient.ConcurrencyExceptionOfRatedxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, string>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        CFAP.DataProviderClient.Transport MakeOperation(object entity, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions, CFAP.DataProviderClient.CrudOperation operation, CFAP.DataProviderClient.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/MakeOperation", ReplyAction="http://tempuri.org/IDataProvider/MakeOperationResponse")]
+        System.Threading.Tasks.Task<CFAP.DataProviderClient.Transport> MakeOperationAsync(object entity, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions, CFAP.DataProviderClient.CrudOperation operation, CFAP.DataProviderClient.Filter filter);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2620,6 +2869,14 @@ namespace CFAP.DataProviderClient {
         
         public System.Threading.Tasks.Task<CFAP.DataProviderClient.Rate> UpdateRateAsync(CFAP.DataProviderClient.Rate rateToUpdate, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOption) {
             return base.Channel.UpdateRateAsync(rateToUpdate, user, concurencyUpdateOption);
+        }
+        
+        public CFAP.DataProviderClient.Transport MakeOperation(object entity, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions, CFAP.DataProviderClient.CrudOperation operation, CFAP.DataProviderClient.Filter filter) {
+            return base.Channel.MakeOperation(entity, user, concurencyUpdateOptions, operation, filter);
+        }
+        
+        public System.Threading.Tasks.Task<CFAP.DataProviderClient.Transport> MakeOperationAsync(object entity, CFAP.DataProviderClient.User user, CFAP.DataProviderClient.DbConcurencyUpdateOptions concurencyUpdateOptions, CFAP.DataProviderClient.CrudOperation operation, CFAP.DataProviderClient.Filter filter) {
+            return base.Channel.MakeOperationAsync(entity, user, concurencyUpdateOptions, operation, filter);
         }
     }
 }

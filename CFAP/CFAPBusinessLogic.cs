@@ -23,6 +23,7 @@ namespace CFAP
         public static List<Project> Projects { get; private set; }
         public static List<Rate> Rates { get; private set; }
         public static List<Summary> Summaries { get; set; }
+        public static List<Period> Periods { get; set; }
         public static Filter CurrentFilter { get; set; }
 
         public static Balance BalanceBeginningPeriod { get; set; }
@@ -1323,6 +1324,38 @@ namespace CFAP
             }
         }
 
+        public void LoadPeriods()
+        {
+            try
+            {
+                if (DataProviderProxy.State == CommunicationState.Faulted)
+                {
+                    DataProviderProxy = new DataProviderClient.DataProviderClient();
+                }
 
+                Transport transport = DataProviderProxy.MakeOperation(new Period(), CFAPBusinessLogic.User, DbConcurencyUpdateOptions.None, CrudOperation.Select, null);
+                CFAPBusinessLogic.Periods =  transport.Collection.Cast<Period>().ToList();
+            }
+            catch (FaultException<AuthenticateFaultException> fault)
+            {
+                ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+            }
+            catch (FaultException<DbException> fault)
+            {
+                ExceptionsHandler.DbExceptionHandler(fault);
+            }
+            catch (FaultException fault)
+            {
+                ExceptionsHandler.FaultExceptionHandler(fault);
+            }
+            catch (CommunicationException ex)
+            {
+                ExceptionsHandler.CommunicationExceptionHandler(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+            }
+        }
     }
 }

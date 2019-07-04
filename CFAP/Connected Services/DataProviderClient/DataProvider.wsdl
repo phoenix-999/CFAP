@@ -4863,16 +4863,203 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <oletx:OleTxAssertion wsp:Optional="true" wsp1:Optional="true" xmlns:oletx="http://schemas.microsoft.com/ws/2006/02/tx/oletx" xmlns:wsp1="http://schemas.xmlsoap.org/ws/2002/12/policy" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_AuthenticateFaultExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_DataNotValidExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_NoRightsToChangeDataExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataProvider_MakeOperation_DbExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="CoordinationContext" Namespace="http://schemas.xmlsoap.org/ws/2004/10/wscoor" />
+          <sp:Header Name="CoordinationContext" Namespace="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" />
+          <sp:Header Name="OleTxTransaction" Namespace="http://schemas.microsoft.com/ws/2006/02/tx/oletx" />
+          <sp:Header Name="IssuedTokens" Namespace="http://schemas.xmlsoap.org/ws/2005/02/trust" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
-      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
+      <xsd:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDataProvider_GetLogins_InputMessage">
@@ -4882,7 +5069,7 @@
     <wsdl:part name="parameters" element="tns:GetLoginsResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetLogins_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q1:DbException" />
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q1:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_InputMessage">
     <wsdl:part name="parameters" element="tns:Authenticate" />
@@ -4891,10 +5078,10 @@
     <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q2:AuthenticateFaultException" />
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q2:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q3:DbException" />
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q3:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_Authenticate_ArgumentNullExceptionFault_FaultMessage">
     <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ArgumentNullException" />
@@ -4906,22 +5093,22 @@
     <wsdl:part name="parameters" element="tns:AddNewUserResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q5:AuthenticateFaultException" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q5:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q6:DbException" />
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q6:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q7:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q7:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q8:DataNotValidException" />
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q8:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_UserHasNotGroupsExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q9:UserHasNotGroupsException" />
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q9:UserHasNotGroupsException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUser_AccountableUserHasNotAccountableRefferenceExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q10:AccountableUserHasNotAccountableRefferenceException" />
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q10:AccountableUserHasNotAccountableRefferenceException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUsers" />
@@ -4930,13 +5117,13 @@
     <wsdl:part name="parameters" element="tns:GetUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUsers_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q11:AuthenticateFaultException" />
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q11:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUsers_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q12:DbException" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q12:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUsers_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q13:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q13:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUser" />
@@ -4945,22 +5132,22 @@
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q14:AuthenticateFaultException" />
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q14:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q15:DbException" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q15:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q16:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q16:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q17:DataNotValidException" />
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q17:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_UserHasNotGroupsExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q18:UserHasNotGroupsException" />
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q18:UserHasNotGroupsException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUser_AccountableUserHasNotAccountableRefferenceExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q19:AccountableUserHasNotAccountableRefferenceException" />
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q19:AccountableUserHasNotAccountableRefferenceException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUserGroups_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserGroups" />
@@ -4969,13 +5156,13 @@
     <wsdl:part name="parameters" element="tns:GetUserGroupsResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUserGroups_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q20:AuthenticateFaultException" />
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q20:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUserGroups_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q21:DbException" />
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q21:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetUserGroups_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q22:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q22:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUserGroup_InputMessage">
     <wsdl:part name="parameters" element="tns:AddNewUserGroup" />
@@ -4984,16 +5171,16 @@
     <wsdl:part name="parameters" element="tns:AddNewUserGroupResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUserGroup_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q23:AuthenticateFaultException" />
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q23:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUserGroup_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q24:DbException" />
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q24:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUserGroup_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q25:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q25:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddNewUserGroup_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q26:DataNotValidException" />
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q26:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUserGroup_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserGroup" />
@@ -5002,16 +5189,16 @@
     <wsdl:part name="parameters" element="tns:UpdateUserGroupResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUserGroup_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q27:AuthenticateFaultException" />
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q27:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUserGroup_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q28:DbException" />
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q28:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUserGroup_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q29:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q29:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateUserGroup_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q30:DataNotValidException" />
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q30:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:AddSummary" />
@@ -5020,16 +5207,16 @@
     <wsdl:part name="parameters" element="tns:AddSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q31:AuthenticateFaultException" />
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q31:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q32:DbException" />
+    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q32:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q33:DataNotValidException" />
+    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q33:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddSummary_PeriodIsLockedExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q34:PeriodIsLockedException" />
+    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q34:PeriodIsLockedException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSummary" />
@@ -5038,10 +5225,10 @@
     <wsdl:part name="parameters" element="tns:GetSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q35:AuthenticateFaultException" />
+    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q35:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q36="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q36:DbException" />
+    <wsdl:part xmlns:q36="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q36:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBalanceBeginningPeriod_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBalanceBeginningPeriod" />
@@ -5050,10 +5237,10 @@
     <wsdl:part name="parameters" element="tns:GetBalanceBeginningPeriodResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBalanceBeginningPeriod_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q37="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q37:AuthenticateFaultException" />
+    <wsdl:part xmlns:q37="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q37:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBalanceBeginningPeriod_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q38="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q38:DbException" />
+    <wsdl:part xmlns:q38="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q38:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSummary" />
@@ -5062,25 +5249,25 @@
     <wsdl:part name="parameters" element="tns:UpdateSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q39="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q39:AuthenticateFaultException" />
+    <wsdl:part xmlns:q39="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q39:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q40="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q40:DbException" />
+    <wsdl:part xmlns:q40="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q40:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q41="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q41:DataNotValidException" />
+    <wsdl:part xmlns:q41="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q41:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q42="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q42:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q42="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q42:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_FiledDeletedExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q43="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q43:FiledDeletedException" />
+    <wsdl:part xmlns:q43="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q43:FiledDeletedException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
-    <wsdl:part xmlns:q44="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q44:ConcurrencyExceptionOfSummarydxjYbbDT" />
+    <wsdl:part xmlns:q44="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q44:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateSummary_PeriodIsLockedExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q45="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q45:PeriodIsLockedException" />
+    <wsdl:part xmlns:q45="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q45:PeriodIsLockedException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_ChangeSummaryReadOnlyStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeSummaryReadOnlyStatus" />
@@ -5089,13 +5276,13 @@
     <wsdl:part name="parameters" element="tns:ChangeSummaryReadOnlyStatusResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_ChangeSummaryReadOnlyStatus_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q46="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q46:AuthenticateFaultException" />
+    <wsdl:part xmlns:q46="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q46:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_ChangeSummaryReadOnlyStatus_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q47="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q47:DbException" />
+    <wsdl:part xmlns:q47="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q47:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_ChangeSummaryReadOnlyStatus_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q48="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q48:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q48="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q48:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveSummary" />
@@ -5104,25 +5291,25 @@
     <wsdl:part name="parameters" element="tns:RemoveSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q49="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q49:AuthenticateFaultException" />
+    <wsdl:part xmlns:q49="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q49:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q50="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q50:DbException" />
+    <wsdl:part xmlns:q50="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q50:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q51="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q51:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q51="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q51:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_ConcurrencyExceptionOf_SummaryFault_FaultMessage">
-    <wsdl:part xmlns:q52="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q52:ConcurrencyExceptionOfSummarydxjYbbDT" />
+    <wsdl:part xmlns:q52="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q52:ConcurrencyExceptionOfSummarydxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_FiledDeletedExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q53="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q53:FiledDeletedException" />
+    <wsdl:part xmlns:q53="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q53:FiledDeletedException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_InvalidOperationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q54="http://schemas.datacontract.org/2004/07/System" name="detail" element="q54:InvalidOperationException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_RemoveSummary_PeriodIsLockedExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q55="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q55:PeriodIsLockedException" />
+    <wsdl:part xmlns:q55="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q55:PeriodIsLockedException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetAccountables_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountables" />
@@ -5131,10 +5318,10 @@
     <wsdl:part name="parameters" element="tns:GetAccountablesResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetAccountables_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q56="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q56:AuthenticateFaultException" />
+    <wsdl:part xmlns:q56="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q56:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetAccountables_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q57="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q57:DbException" />
+    <wsdl:part xmlns:q57="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q57:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddAccountable_InputMessage">
     <wsdl:part name="parameters" element="tns:AddAccountable" />
@@ -5143,16 +5330,16 @@
     <wsdl:part name="parameters" element="tns:AddAccountableResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddAccountable_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q58="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q58:AuthenticateFaultException" />
+    <wsdl:part xmlns:q58="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q58:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddAccountable_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q59="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q59:DbException" />
+    <wsdl:part xmlns:q59="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q59:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddAccountable_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q60="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q60:DataNotValidException" />
+    <wsdl:part xmlns:q60="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q60:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddAccountable_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q61="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q61:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q61="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q61:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAccountable" />
@@ -5161,22 +5348,22 @@
     <wsdl:part name="parameters" element="tns:UpdateAccountableResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q62="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q62:AuthenticateFaultException" />
+    <wsdl:part xmlns:q62="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q62:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q63="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q63:DbException" />
+    <wsdl:part xmlns:q63="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q63:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q64="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q64:DataNotValidException" />
+    <wsdl:part xmlns:q64="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q64:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q65="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q65:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q65="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q65:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q66="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q66:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q66="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q66:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateAccountable_ConcurrencyExceptionOf_AccountableFault_FaultMessage">
-    <wsdl:part xmlns:q67="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q67:ConcurrencyExceptionOfAccountabledxjYbbDT" />
+    <wsdl:part xmlns:q67="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q67:ConcurrencyExceptionOfAccountabledxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetProjects_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProjects" />
@@ -5185,10 +5372,10 @@
     <wsdl:part name="parameters" element="tns:GetProjectsResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetProjects_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q68="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q68:AuthenticateFaultException" />
+    <wsdl:part xmlns:q68="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q68:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetProjects_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q69="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q69:DbException" />
+    <wsdl:part xmlns:q69="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q69:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddProject_InputMessage">
     <wsdl:part name="parameters" element="tns:AddProject" />
@@ -5197,16 +5384,16 @@
     <wsdl:part name="parameters" element="tns:AddProjectResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddProject_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q70="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q70:AuthenticateFaultException" />
+    <wsdl:part xmlns:q70="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q70:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddProject_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q71="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q71:DbException" />
+    <wsdl:part xmlns:q71="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q71:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddProject_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q72="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q72:DataNotValidException" />
+    <wsdl:part xmlns:q72="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q72:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddProject_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q73="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q73:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q73="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q73:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateProject" />
@@ -5215,22 +5402,22 @@
     <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q74="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q74:AuthenticateFaultException" />
+    <wsdl:part xmlns:q74="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q74:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q75="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q75:DbException" />
+    <wsdl:part xmlns:q75="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q75:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q76="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q76:DataNotValidException" />
+    <wsdl:part xmlns:q76="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q76:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q77="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q77:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q77="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q77:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q78="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q78:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q78="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q78:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateProject_ConcurrencyExceptionOf_ProjectFault_FaultMessage">
-    <wsdl:part xmlns:q79="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q79:ConcurrencyExceptionOfProjectdxjYbbDT" />
+    <wsdl:part xmlns:q79="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q79:ConcurrencyExceptionOfProjectdxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBudgetItems_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBudgetItems" />
@@ -5239,10 +5426,10 @@
     <wsdl:part name="parameters" element="tns:GetBudgetItemsResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBudgetItems_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q80="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q80:AuthenticateFaultException" />
+    <wsdl:part xmlns:q80="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q80:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetBudgetItems_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q81="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q81:DbException" />
+    <wsdl:part xmlns:q81="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q81:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddBudgetItem_InputMessage">
     <wsdl:part name="parameters" element="tns:AddBudgetItem" />
@@ -5251,16 +5438,16 @@
     <wsdl:part name="parameters" element="tns:AddBudgetItemResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddBudgetItem_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q82="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q82:AuthenticateFaultException" />
+    <wsdl:part xmlns:q82="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q82:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddBudgetItem_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q83="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q83:DbException" />
+    <wsdl:part xmlns:q83="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q83:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddBudgetItem_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q84="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q84:DataNotValidException" />
+    <wsdl:part xmlns:q84="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q84:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddBudgetItem_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q85="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q85:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q85="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q85:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateBudgetItem" />
@@ -5269,22 +5456,22 @@
     <wsdl:part name="parameters" element="tns:UpdateBudgetItemResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q86="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q86:AuthenticateFaultException" />
+    <wsdl:part xmlns:q86="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q86:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q87="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q87:DbException" />
+    <wsdl:part xmlns:q87="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q87:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q88="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q88:DataNotValidException" />
+    <wsdl:part xmlns:q88="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q88:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q89="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q89:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q89="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q89:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q90="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q90:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q90="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q90:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateBudgetItem_ConcurrencyExceptionOf_BudgetItemFault_FaultMessage">
-    <wsdl:part xmlns:q91="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q91:ConcurrencyExceptionOfBudgetItemdxjYbbDT" />
+    <wsdl:part xmlns:q91="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q91:ConcurrencyExceptionOfBudgetItemdxjYbbDT" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetRates_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRates" />
@@ -5293,10 +5480,10 @@
     <wsdl:part name="parameters" element="tns:GetRatesResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetRates_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q92="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q92:AuthenticateFaultException" />
+    <wsdl:part xmlns:q92="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q92:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_GetRates_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q93="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q93:DbException" />
+    <wsdl:part xmlns:q93="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q93:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddRate_InputMessage">
     <wsdl:part name="parameters" element="tns:AddRate" />
@@ -5305,16 +5492,16 @@
     <wsdl:part name="parameters" element="tns:AddRateResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddRate_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q94="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q94:AuthenticateFaultException" />
+    <wsdl:part xmlns:q94="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q94:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddRate_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q95="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q95:DbException" />
+    <wsdl:part xmlns:q95="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q95:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddRate_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q96="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q96:DataNotValidException" />
+    <wsdl:part xmlns:q96="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q96:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_AddRate_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q97="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q97:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q97="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q97:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateRate" />
@@ -5323,22 +5510,40 @@
     <wsdl:part name="parameters" element="tns:UpdateRateResponse" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_AuthenticateFaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q98="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q98:AuthenticateFaultException" />
+    <wsdl:part xmlns:q98="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q98:AuthenticateFaultException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_DbExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q99="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q99:DbException" />
+    <wsdl:part xmlns:q99="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q99:DbException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_DataNotValidExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q100="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q100:DataNotValidException" />
+    <wsdl:part xmlns:q100="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q100:DataNotValidException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_NoRightsToChangeDataExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q101="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q101:NoRightsToChangeDataException" />
+    <wsdl:part xmlns:q101="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q101:NoRightsToChangeDataException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_TryChangeReadOnlyFiledExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q102="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q102:TryChangeReadOnlyFiledException" />
+    <wsdl:part xmlns:q102="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q102:TryChangeReadOnlyFiledException" />
   </wsdl:message>
   <wsdl:message name="IDataProvider_UpdateRate_ConcurrencyExceptionOf_RateFault_FaultMessage">
-    <wsdl:part xmlns:q103="http://schemas.datacontract.org/2004/07/CFAPService.Faults" name="detail" element="q103:ConcurrencyExceptionOfRatedxjYbbDT" />
+    <wsdl:part xmlns:q103="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q103:ConcurrencyExceptionOfRatedxjYbbDT" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeOperation" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeOperationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_AuthenticateFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q104="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q104:AuthenticateFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_DataNotValidExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q105="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q105:DataNotValidException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_NoRightsToChangeDataExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q106="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q106:NoRightsToChangeDataException" />
+  </wsdl:message>
+  <wsdl:message name="IDataProvider_MakeOperation_DbExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q107="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models.Exceptions" name="detail" element="q107:DbException" />
   </wsdl:message>
   <wsdl:portType name="IDataProvider">
     <wsdl:operation name="GetLogins">
@@ -5547,6 +5752,14 @@
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateRateNoRightsToChangeDataExceptionFault" name="NoRightsToChangeDataExceptionFault" message="tns:IDataProvider_UpdateRate_NoRightsToChangeDataExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateRateTryChangeReadOnlyFiledExceptionFault" name="TryChangeReadOnlyFiledExceptionFault" message="tns:IDataProvider_UpdateRate_TryChangeReadOnlyFiledExceptionFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/UpdateRateConcurrencyExceptionOf_RateFault" name="ConcurrencyExceptionOf_RateFault" message="tns:IDataProvider_UpdateRate_ConcurrencyExceptionOf_RateFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeOperation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataProvider/MakeOperation" message="tns:IDataProvider_MakeOperation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataProvider/MakeOperationResponse" message="tns:IDataProvider_MakeOperation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/MakeOperationAuthenticateFaultExceptionFault" name="AuthenticateFaultExceptionFault" message="tns:IDataProvider_MakeOperation_AuthenticateFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/MakeOperationDataNotValidExceptionFault" name="DataNotValidExceptionFault" message="tns:IDataProvider_MakeOperation_DataNotValidExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/MakeOperationNoRightsToChangeDataExceptionFault" name="NoRightsToChangeDataExceptionFault" message="tns:IDataProvider_MakeOperation_NoRightsToChangeDataExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDataProvider/MakeOperationDbExceptionFault" name="DbExceptionFault" message="tns:IDataProvider_MakeOperation_DbExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDataProvider" type="tns:IDataProvider">
@@ -6264,6 +6477,34 @@
       <wsdl:fault name="ConcurrencyExceptionOf_RateFault">
         <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_UpdateRate_ConcurrencyExceptionOf_RateFault_Fault" />
         <soap12:fault use="literal" name="ConcurrencyExceptionOf_RateFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MakeOperation">
+      <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_policy" />
+      <soap12:operation soapAction="http://tempuri.org/IDataProvider/MakeOperation" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticateFaultExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_AuthenticateFaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="AuthenticateFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DataNotValidExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_DataNotValidExceptionFault_Fault" />
+        <soap12:fault use="literal" name="DataNotValidExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NoRightsToChangeDataExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_NoRightsToChangeDataExceptionFault_Fault" />
+        <soap12:fault use="literal" name="NoRightsToChangeDataExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DbExceptionFault">
+        <wsp:PolicyReference URI="#NetTcpBinding_IDataProvider_MakeOperation_DbExceptionFault_Fault" />
+        <soap12:fault use="literal" name="DbExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

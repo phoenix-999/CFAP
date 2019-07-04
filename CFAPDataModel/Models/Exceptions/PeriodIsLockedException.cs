@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using CFAPDataModel.Models;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
     public class PeriodIsLockedException

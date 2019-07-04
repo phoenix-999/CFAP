@@ -7,10 +7,10 @@ using System.Runtime.Serialization;
 using NLog;
 using System.Data.Entity.Validation;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
-    class DataNotValidException
+    public class DataNotValidException
     {
 
         //Логирование не производится умышленно по причине низкой важности информации исключения.

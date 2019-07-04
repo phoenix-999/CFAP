@@ -68,10 +68,16 @@ namespace UnitTest.DataProviderService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.Accountable AccountableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CanChangeUsersDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsAccountableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsAdminField;
@@ -92,6 +98,19 @@ namespace UnitTest.DataProviderService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.Accountable Accountable {
+            get {
+                return this.AccountableField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableField, value) != true)) {
+                    this.AccountableField = value;
+                    this.RaisePropertyChanged("Accountable");
+                }
             }
         }
         
@@ -117,6 +136,19 @@ namespace UnitTest.DataProviderService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsAccountable {
+            get {
+                return this.IsAccountableField;
+            }
+            set {
+                if ((this.IsAccountableField.Equals(value) != true)) {
+                    this.IsAccountableField = value;
+                    this.RaisePropertyChanged("IsAccountable");
                 }
             }
         }
@@ -169,6 +201,115 @@ namespace UnitTest.DataProviderService {
                 if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
                     this.UserNameField = value;
                     this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Accountable", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Accountable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AccountableNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ReadOnlyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UnitTest.DataProviderService.UserGroup[] UserGroupsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccountableName {
+            get {
+                return this.AccountableNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountableNameField, value) != true)) {
+                    this.AccountableNameField = value;
+                    this.RaisePropertyChanged("AccountableName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ReadOnly {
+            get {
+                return this.ReadOnlyField;
+            }
+            set {
+                if ((this.ReadOnlyField.Equals(value) != true)) {
+                    this.ReadOnlyField = value;
+                    this.RaisePropertyChanged("ReadOnly");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UnitTest.DataProviderService.UserGroup[] UserGroups {
+            get {
+                return this.UserGroupsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
+                    this.UserGroupsField = value;
+                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -506,6 +647,51 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class AccountableUserHasNotAccountableRefferenceException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Summary", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
     [System.SerializableAttribute()]
     public partial class Summary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -526,6 +712,9 @@ namespace UnitTest.DataProviderService {
         private bool CashFlowTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double CurrentEuroToDollarRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double CurrentRateUSDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -544,6 +733,9 @@ namespace UnitTest.DataProviderService {
         private byte[] RowVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SummaEuroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double SummaUAHField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -551,6 +743,9 @@ namespace UnitTest.DataProviderService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime SummaryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TotalSummaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private UnitTest.DataProviderService.UserGroup[] UserGroupsField;
@@ -616,6 +811,19 @@ namespace UnitTest.DataProviderService {
                 if ((this.CashFlowTypeField.Equals(value) != true)) {
                     this.CashFlowTypeField = value;
                     this.RaisePropertyChanged("CashFlowType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double CurrentEuroToDollarRate {
+            get {
+                return this.CurrentEuroToDollarRateField;
+            }
+            set {
+                if ((this.CurrentEuroToDollarRateField.Equals(value) != true)) {
+                    this.CurrentEuroToDollarRateField = value;
+                    this.RaisePropertyChanged("CurrentEuroToDollarRate");
                 }
             }
         }
@@ -699,6 +907,19 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double SummaEuro {
+            get {
+                return this.SummaEuroField;
+            }
+            set {
+                if ((this.SummaEuroField.Equals(value) != true)) {
+                    this.SummaEuroField = value;
+                    this.RaisePropertyChanged("SummaEuro");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public double SummaUAH {
             get {
                 return this.SummaUAHField;
@@ -738,6 +959,19 @@ namespace UnitTest.DataProviderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TotalSumma {
+            get {
+                return this.TotalSummaField;
+            }
+            set {
+                if ((this.TotalSummaField.Equals(value) != true)) {
+                    this.TotalSummaField = value;
+                    this.RaisePropertyChanged("TotalSumma");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public UnitTest.DataProviderService.UserGroup[] UserGroups {
             get {
                 return this.UserGroupsField;
@@ -759,115 +993,6 @@ namespace UnitTest.DataProviderService {
                 if ((object.ReferenceEquals(this.UserLastChangedField, value) != true)) {
                     this.UserLastChangedField = value;
                     this.RaisePropertyChanged("UserLastChanged");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Accountable", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
-    [System.SerializableAttribute()]
-    public partial class Accountable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AccountableNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ReadOnlyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] RowVersionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UnitTest.DataProviderService.UserGroup[] UserGroupsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AccountableName {
-            get {
-                return this.AccountableNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountableNameField, value) != true)) {
-                    this.AccountableNameField = value;
-                    this.RaisePropertyChanged("AccountableName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ReadOnly {
-            get {
-                return this.ReadOnlyField;
-            }
-            set {
-                if ((this.ReadOnlyField.Equals(value) != true)) {
-                    this.ReadOnlyField = value;
-                    this.RaisePropertyChanged("ReadOnly");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] RowVersion {
-            get {
-                return this.RowVersionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
-                    this.RowVersionField = value;
-                    this.RaisePropertyChanged("RowVersion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UnitTest.DataProviderService.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }
@@ -1102,7 +1227,52 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class PeriodIsLockedException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Filter", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
     [System.SerializableAttribute()]
     public partial class Filter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1195,6 +1365,67 @@ namespace UnitTest.DataProviderService {
                 if ((object.ReferenceEquals(this.ProjectsField, value) != true)) {
                     this.ProjectsField = value;
                     this.RaisePropertyChanged("Projects");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Balance", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Balance : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BalanceUAHField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double BalanceUSDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BalanceUAH {
+            get {
+                return this.BalanceUAHField;
+            }
+            set {
+                if ((this.BalanceUAHField.Equals(value) != true)) {
+                    this.BalanceUAHField = value;
+                    this.RaisePropertyChanged("BalanceUAH");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double BalanceUSD {
+            get {
+                return this.BalanceUSDField;
+            }
+            set {
+                if ((this.BalanceUSDField.Equals(value) != true)) {
+                    this.BalanceUSDField = value;
+                    this.RaisePropertyChanged("BalanceUSD");
                 }
             }
         }
@@ -1666,6 +1897,9 @@ namespace UnitTest.DataProviderService {
         private System.DateTime DateRateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double EuroToDollarRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1696,6 +1930,19 @@ namespace UnitTest.DataProviderService {
                 if ((this.DateRateField.Equals(value) != true)) {
                     this.DateRateField = value;
                     this.RaisePropertyChanged("DateRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double EuroToDollarRate {
+            get {
+                return this.EuroToDollarRateField;
+            }
+            set {
+                if ((this.EuroToDollarRateField.Equals(value) != true)) {
+                    this.EuroToDollarRateField = value;
+                    this.RaisePropertyChanged("EuroToDollarRate");
                 }
             }
         }
@@ -1839,6 +2086,202 @@ namespace UnitTest.DataProviderService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Transport", Namespace="http://schemas.datacontract.org/2004/07/CFAPService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Filter))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.DbConcurencyUpdateOptions))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.CrudOperation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.ArgumentNullException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.ArgumentException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.SystemException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Exception))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.InvalidOperationException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Accountable))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.UserGroup[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.UserGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.User[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Summary))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.BudgetItem))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Project))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Accountable[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.BudgetItem[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Project[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Summary[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Balance))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Rate[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Rate))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.Period))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.DbException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.DataNotValidException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.AccountableUserHasNotAccountableRefferenceException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.PeriodIsLockedException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfAccountabledxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfProjectdxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfBudgetItemdxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfRatedxjYbbDT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
+    public partial class Transport : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object[] CollectionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object SingleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object[] Collection {
+            get {
+                return this.CollectionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CollectionField, value) != true)) {
+                    this.CollectionField = value;
+                    this.RaisePropertyChanged("Collection");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Single {
+            get {
+                return this.SingleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SingleField, value) != true)) {
+                    this.SingleField = value;
+                    this.RaisePropertyChanged("Single");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CrudOperation", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel")]
+    public enum CrudOperation : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Select = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Add = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Update = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Delete = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Period", Namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models")]
+    [System.SerializableAttribute()]
+    public partial class Period : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MonthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YearField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Month {
+            get {
+                return this.MonthField;
+            }
+            set {
+                if ((this.MonthField.Equals(value) != true)) {
+                    this.MonthField = value;
+                    this.RaisePropertyChanged("Month");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Year {
+            get {
+                return this.YearField;
+            }
+            set {
+                if ((this.YearField.Equals(value) != true)) {
+                    this.YearField = value;
+                    this.RaisePropertyChanged("Year");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataProviderService.IDataProvider")]
     public interface IDataProvider {
@@ -1869,6 +2312,8 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/AddNewUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddNewUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/AddNewUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AccountableUserHasNotAccountableRefferenceException), Action="http://tempuri.org/IDataProvider/AddNewUserAccountableUserHasNotAccountableReffer" +
+            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.User AddNewUser(UnitTest.DataProviderService.User newUser, UnitTest.DataProviderService.User owner);
         
@@ -1894,6 +2339,8 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException), Action="http://tempuri.org/IDataProvider/UpdateUserNoRightsToChangeDataExceptionFault", Name="NoRightsToChangeDataException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/UpdateUserDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException), Action="http://tempuri.org/IDataProvider/UpdateUserUserHasNotGroupsExceptionFault", Name="UserHasNotGroupsException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AccountableUserHasNotAccountableRefferenceException), Action="http://tempuri.org/IDataProvider/UpdateUserAccountableUserHasNotAccountableReffer" +
+            "enceExceptionFault", Name="AccountableUserHasNotAccountableRefferenceException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.User UpdateUser(UnitTest.DataProviderService.User userForUpdate, UnitTest.DataProviderService.User owner);
         
@@ -1945,6 +2392,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/AddSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/AddSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DataNotValidException), Action="http://tempuri.org/IDataProvider/AddSummaryDataNotValidExceptionFault", Name="DataNotValidException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/AddSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary AddSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user);
         
@@ -1963,6 +2411,17 @@ namespace UnitTest.DataProviderService {
         
         UnitTest.DataProviderService.Summary[] EndGetSummary(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodAuthenticateFaultExcept" +
+            "ionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        UnitTest.DataProviderService.Balance GetBalanceBeginningPeriod(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriod", ReplyAction="http://tempuri.org/IDataProvider/GetBalanceBeginningPeriodResponse")]
+        System.IAsyncResult BeginGetBalanceBeginningPeriod(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Balance EndGetBalanceBeginningPeriod(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/UpdateSummary", ReplyAction="http://tempuri.org/IDataProvider/UpdateSummaryResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException), Action="http://tempuri.org/IDataProvider/UpdateSummaryAuthenticateFaultExceptionFault", Name="AuthenticateFaultException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.DbException), Action="http://tempuri.org/IDataProvider/UpdateSummaryDbExceptionFault", Name="DbException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
@@ -1972,6 +2431,7 @@ namespace UnitTest.DataProviderService {
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT), Action="http://tempuri.org/IDataProvider/UpdateSummaryConcurrencyExceptionOf_SummaryFault" +
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/UpdateSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
@@ -2003,6 +2463,7 @@ namespace UnitTest.DataProviderService {
             "", Name="ConcurrencyExceptionOfSummarydxjYbbDT", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryFiledDeletedExceptionFault", Name="FiledDeletedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.InvalidOperationException), Action="http://tempuri.org/IDataProvider/RemoveSummaryInvalidOperationExceptionFault", Name="InvalidOperationException", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.FaultContractAttribute(typeof(UnitTest.DataProviderService.PeriodIsLockedException), Action="http://tempuri.org/IDataProvider/RemoveSummaryPeriodIsLockedExceptionFault", Name="PeriodIsLockedException", Namespace="http://schemas.datacontract.org/2004/07/CFAPService.Faults")]
         [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
         UnitTest.DataProviderService.Summary RemoveSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions);
         
@@ -2172,6 +2633,57 @@ namespace UnitTest.DataProviderService {
         System.IAsyncResult BeginUpdateRate(UnitTest.DataProviderService.Rate rateToUpdate, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOption, System.AsyncCallback callback, object asyncState);
         
         UnitTest.DataProviderService.Rate EndUpdateRate(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataProvider/MakeOperation", ReplyAction="http://tempuri.org/IDataProvider/MakeOperationResponse")]
+        [System.ServiceModel.TransactionFlowAttribute(System.ServiceModel.TransactionFlowOption.Allowed)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Transport))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Filter))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.DbConcurencyUpdateOptions))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.CrudOperation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.ArgumentNullException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.ArgumentException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.SystemException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Exception))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.InvalidOperationException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.User))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Accountable))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.UserGroup[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.UserGroup))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.User[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Summary))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.BudgetItem))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Project))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Accountable[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.BudgetItem[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Project[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Summary[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Balance))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Rate[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Rate))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.Period))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.DbException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.AuthenticateFaultException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.NoRightsToChangeDataException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.DataNotValidException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.UserHasNotGroupsException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.AccountableUserHasNotAccountableRefferenceException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.PeriodIsLockedException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.TryChangeReadOnlyFiledException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.FiledDeletedException))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfSummarydxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfAccountabledxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfProjectdxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfBudgetItemdxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UnitTest.DataProviderService.ConcurrencyExceptionOfRatedxjYbbDT))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, string>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        UnitTest.DataProviderService.Transport MakeOperation(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDataProvider/MakeOperation", ReplyAction="http://tempuri.org/IDataProvider/MakeOperationResponse")]
+        System.IAsyncResult BeginMakeOperation(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState);
+        
+        UnitTest.DataProviderService.Transport EndMakeOperation(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2364,6 +2876,25 @@ namespace UnitTest.DataProviderService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((UnitTest.DataProviderService.Summary[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetBalanceBeginningPeriodCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetBalanceBeginningPeriodCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Balance Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Balance)(this.results[0]));
             }
         }
     }
@@ -2636,6 +3167,25 @@ namespace UnitTest.DataProviderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MakeOperationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public MakeOperationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public UnitTest.DataProviderService.Transport Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((UnitTest.DataProviderService.Transport)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DataProviderClient : System.ServiceModel.ClientBase<UnitTest.DataProviderService.IDataProvider>, UnitTest.DataProviderService.IDataProvider {
         
         private BeginOperationDelegate onBeginGetLoginsDelegate;
@@ -2697,6 +3247,12 @@ namespace UnitTest.DataProviderService {
         private EndOperationDelegate onEndGetSummaryDelegate;
         
         private System.Threading.SendOrPostCallback onGetSummaryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetBalanceBeginningPeriodDelegate;
+        
+        private EndOperationDelegate onEndGetBalanceBeginningPeriodDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetBalanceBeginningPeriodCompletedDelegate;
         
         private BeginOperationDelegate onBeginUpdateSummaryDelegate;
         
@@ -2788,6 +3344,12 @@ namespace UnitTest.DataProviderService {
         
         private System.Threading.SendOrPostCallback onUpdateRateCompletedDelegate;
         
+        private BeginOperationDelegate onBeginMakeOperationDelegate;
+        
+        private EndOperationDelegate onEndMakeOperationDelegate;
+        
+        private System.Threading.SendOrPostCallback onMakeOperationCompletedDelegate;
+        
         public DataProviderClient() {
         }
         
@@ -2827,6 +3389,8 @@ namespace UnitTest.DataProviderService {
         
         public event System.EventHandler<GetSummaryCompletedEventArgs> GetSummaryCompleted;
         
+        public event System.EventHandler<GetBalanceBeginningPeriodCompletedEventArgs> GetBalanceBeginningPeriodCompleted;
+        
         public event System.EventHandler<UpdateSummaryCompletedEventArgs> UpdateSummaryCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ChangeSummaryReadOnlyStatusCompleted;
@@ -2856,6 +3420,8 @@ namespace UnitTest.DataProviderService {
         public event System.EventHandler<AddRateCompletedEventArgs> AddRateCompleted;
         
         public event System.EventHandler<UpdateRateCompletedEventArgs> UpdateRateCompleted;
+        
+        public event System.EventHandler<MakeOperationCompletedEventArgs> MakeOperationCompleted;
         
         public string[] GetLogins() {
             return base.Channel.GetLogins();
@@ -3365,6 +3931,58 @@ namespace UnitTest.DataProviderService {
             base.InvokeAsync(this.onBeginGetSummaryDelegate, new object[] {
                         user,
                         filter}, this.onEndGetSummaryDelegate, this.onGetSummaryCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Balance GetBalanceBeginningPeriod(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            return base.Channel.GetBalanceBeginningPeriod(user, filter);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetBalanceBeginningPeriod(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBalanceBeginningPeriod(user, filter, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Balance EndGetBalanceBeginningPeriod(System.IAsyncResult result) {
+            return base.Channel.EndGetBalanceBeginningPeriod(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetBalanceBeginningPeriod(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[0]));
+            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[1]));
+            return this.BeginGetBalanceBeginningPeriod(user, filter, callback, asyncState);
+        }
+        
+        private object[] OnEndGetBalanceBeginningPeriod(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Balance retVal = this.EndGetBalanceBeginningPeriod(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetBalanceBeginningPeriodCompleted(object state) {
+            if ((this.GetBalanceBeginningPeriodCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetBalanceBeginningPeriodCompleted(this, new GetBalanceBeginningPeriodCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetBalanceBeginningPeriodAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter) {
+            this.GetBalanceBeginningPeriodAsync(user, filter, null);
+        }
+        
+        public void GetBalanceBeginningPeriodAsync(UnitTest.DataProviderService.User user, UnitTest.DataProviderService.Filter filter, object userState) {
+            if ((this.onBeginGetBalanceBeginningPeriodDelegate == null)) {
+                this.onBeginGetBalanceBeginningPeriodDelegate = new BeginOperationDelegate(this.OnBeginGetBalanceBeginningPeriod);
+            }
+            if ((this.onEndGetBalanceBeginningPeriodDelegate == null)) {
+                this.onEndGetBalanceBeginningPeriodDelegate = new EndOperationDelegate(this.OnEndGetBalanceBeginningPeriod);
+            }
+            if ((this.onGetBalanceBeginningPeriodCompletedDelegate == null)) {
+                this.onGetBalanceBeginningPeriodCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBalanceBeginningPeriodCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetBalanceBeginningPeriodDelegate, new object[] {
+                        user,
+                        filter}, this.onEndGetBalanceBeginningPeriodDelegate, this.onGetBalanceBeginningPeriodCompletedDelegate, userState);
         }
         
         public UnitTest.DataProviderService.Summary UpdateSummary(UnitTest.DataProviderService.Summary summary, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions) {
@@ -4150,6 +4768,64 @@ namespace UnitTest.DataProviderService {
                         rateToUpdate,
                         user,
                         concurencyUpdateOption}, this.onEndUpdateRateDelegate, this.onUpdateRateCompletedDelegate, userState);
+        }
+        
+        public UnitTest.DataProviderService.Transport MakeOperation(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter) {
+            return base.Channel.MakeOperation(entity, user, concurencyUpdateOptions, operation, filter);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginMakeOperation(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginMakeOperation(entity, user, concurencyUpdateOptions, operation, filter, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public UnitTest.DataProviderService.Transport EndMakeOperation(System.IAsyncResult result) {
+            return base.Channel.EndMakeOperation(result);
+        }
+        
+        private System.IAsyncResult OnBeginMakeOperation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            object entity = ((object)(inValues[0]));
+            UnitTest.DataProviderService.User user = ((UnitTest.DataProviderService.User)(inValues[1]));
+            UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions = ((UnitTest.DataProviderService.DbConcurencyUpdateOptions)(inValues[2]));
+            UnitTest.DataProviderService.CrudOperation operation = ((UnitTest.DataProviderService.CrudOperation)(inValues[3]));
+            UnitTest.DataProviderService.Filter filter = ((UnitTest.DataProviderService.Filter)(inValues[4]));
+            return this.BeginMakeOperation(entity, user, concurencyUpdateOptions, operation, filter, callback, asyncState);
+        }
+        
+        private object[] OnEndMakeOperation(System.IAsyncResult result) {
+            UnitTest.DataProviderService.Transport retVal = this.EndMakeOperation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnMakeOperationCompleted(object state) {
+            if ((this.MakeOperationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.MakeOperationCompleted(this, new MakeOperationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void MakeOperationAsync(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter) {
+            this.MakeOperationAsync(entity, user, concurencyUpdateOptions, operation, filter, null);
+        }
+        
+        public void MakeOperationAsync(object entity, UnitTest.DataProviderService.User user, UnitTest.DataProviderService.DbConcurencyUpdateOptions concurencyUpdateOptions, UnitTest.DataProviderService.CrudOperation operation, UnitTest.DataProviderService.Filter filter, object userState) {
+            if ((this.onBeginMakeOperationDelegate == null)) {
+                this.onBeginMakeOperationDelegate = new BeginOperationDelegate(this.OnBeginMakeOperation);
+            }
+            if ((this.onEndMakeOperationDelegate == null)) {
+                this.onEndMakeOperationDelegate = new EndOperationDelegate(this.OnEndMakeOperation);
+            }
+            if ((this.onMakeOperationCompletedDelegate == null)) {
+                this.onMakeOperationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMakeOperationCompleted);
+            }
+            base.InvokeAsync(this.onBeginMakeOperationDelegate, new object[] {
+                        entity,
+                        user,
+                        concurencyUpdateOptions,
+                        operation,
+                        filter}, this.onEndMakeOperationDelegate, this.onMakeOperationCompletedDelegate, userState);
         }
     }
 }

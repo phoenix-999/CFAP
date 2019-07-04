@@ -7,7 +7,6 @@ using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Channels;
 using NLog;
 using System.ServiceModel;
-using CFAPService.Faults;
 using System.ServiceModel.Description;
 using System.Collections.ObjectModel;
 

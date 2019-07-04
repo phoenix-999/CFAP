@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using CFAPDataModel.Models;
-using CFAPService.Faults;
+using CFAPDataModel.Models.Exceptions;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using CFAPDataModel;
@@ -227,5 +227,14 @@ namespace CFAPService
         [FaultContract(typeof(TryChangeReadOnlyFiledException))]
         [FaultContract(typeof(ConcurrencyException<Rate>))]
         Rate UpdateRate(Rate rateToUpdate, User user, DbConcurencyUpdateOptions concurencyUpdateOption);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
+        [FaultContract(typeof(AuthenticateFaultException))]
+        [FaultContract(typeof(DataNotValidException))]
+        [FaultContract(typeof(NoRightsToChangeDataException))]
+        [FaultContract(typeof(DbException))]
+        [ServiceKnownType(typeof(Period))]
+        Transport MakeOperation(ICrudOperations entity, User user, DbConcurencyUpdateOptions concurencyUpdateOptions, CrudOperation operation, Filter filter);
     }
 }

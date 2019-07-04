@@ -111,6 +111,12 @@
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RussianRadGridLocalizationProvider.cs" />
+    <Compile Include="SettingsForms\LockedPeriodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForms\LockedPeriodForm.Designer.cs">
+      <DependentUpon>LockedPeriodForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Summaries\ChangeSummaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     <EmbeddedResource Include="Projects\ChangeProjectForm.resx">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForms\LockedPeriodForm.resx">
+      <DependentUpon>LockedPeriodForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Summaries\ChangeSummaryForm.resx">
       <DependentUpon>ChangeSummaryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +268,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Summary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.Transport.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\DataProviderClient\CFAP.DataProviderClient.User.datasource">

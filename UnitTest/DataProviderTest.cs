@@ -5,6 +5,7 @@ using UnitTest.DataProviderService;
 using System.Collections.Generic;
 using System.Linq;
 using CFAPDataModel;
+using Filter = UnitTest.DataProviderService.Filter;
 
 namespace UnitTest
 {
@@ -20,7 +21,7 @@ namespace UnitTest
         DataProviderClient DataProviderProxy = new DataProviderClient();
         #region CONSTANTS
 
-        const string ADMIN_USER_NAME = "yurii";
+        const string ADMIN_USER_NAME = "Юрий Калиниченко";
         const string ADMIN_USER_PASSWORD = "1";
 
         const string USER_NOT_ADMIN_NAME = "Liubov";
@@ -2141,6 +2142,32 @@ namespace UnitTest
             }
         }
 
+        #endregion
+
+        #region MakeOperation
+        [TestMethod]
+        public void MakeOperation_Petiod_Select()
+        {
+            User user = new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD };
+            //user = DataProviderProxy.Authenticate(user);
+
+            Transport t = DataProviderProxy.MakeOperation(new Period(), user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority, DataProviderService.CrudOperation.Select, null);
+
+            Assert.AreNotEqual(null, t.Collection);
+        }
+
+        [TestMethod]
+        public void MakeOperation_Petiod_Add()
+        {
+            User user = new User() { UserName = ADMIN_USER_NAME, Password = ADMIN_USER_PASSWORD };
+            //user = DataProviderProxy.Authenticate(user);
+
+            Period p = new Period() { Month = 4, Year = 2019, IsLocked = false };
+
+            Transport t = DataProviderProxy.MakeOperation(p, user, DataProviderService.DbConcurencyUpdateOptions.ClientPriority, DataProviderService.CrudOperation.Add, null);
+
+            Assert.AreNotEqual(null, t.Single);
+        }
         #endregion
 
     }

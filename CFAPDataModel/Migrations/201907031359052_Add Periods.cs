@@ -11,12 +11,11 @@ namespace CFAPDataModel.Migrations
                 "dbo.Periods",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
                         Month = c.Int(nullable: false),
                         Year = c.Int(nullable: false),
                         IsLocked = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => new { t.Month, t.Year });
             
         }
         

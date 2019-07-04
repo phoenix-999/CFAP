@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using NLog;
 using CFAPDataModel.Models;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
     public class NoRightsToChangeDataException

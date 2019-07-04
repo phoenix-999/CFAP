@@ -4,31 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using CFAPDataModel.Models;
 using NLog;
 
-namespace CFAPService.Faults
+
+
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
-    class DbException
+    public class AuthenticateFaultException
     {
         protected static readonly Logger Log = LogManager.GetCurrentClassLogger();
-        private Exception exception;
-        public DbException() { }
-        public DbException(Exception ex)
+
+        public AuthenticateFaultException() { }
+        public AuthenticateFaultException(User user)
         {
-            exception = ex;
-            while(exception.InnerException != null)
-            {
-                exception = exception.InnerException;
-            }
-            Log.Error(ex.ToString());
+            Log.Error(string.Format("Ошибка аутентификации для пользователя {0}", user.UserName) );
         }
 
         [DataMember]
         public virtual string Message
         {
-            get { return "Ошибка в работе с базой данных. Обратитесь к администратору. \n" + exception.Message; }
+            get { return "Ошибка аутентификации. Пользователь не найден."; }
             set { } //Добавлено для возможности восстановления данных после при демарашлинге. Равносильно сеттеру свойства по уммолчанию
         }
+
     }
 }

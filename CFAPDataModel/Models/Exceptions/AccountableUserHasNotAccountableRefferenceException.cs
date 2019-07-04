@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using CFAPDataModel.Models;
 
-namespace CFAPService.Faults
+namespace CFAPDataModel.Models.Exceptions
 {
     [DataContract]
-    public class AccountableUserHasNotAccountableRefferenceException 
+    public class AccountableUserHasNotAccountableRefferenceException
     {
         User user;
 
+        public AccountableUserHasNotAccountableRefferenceException()
+        {
+
+        }
         public AccountableUserHasNotAccountableRefferenceException(User user)
         {
             this.user = user;

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using CFAPDataModel.Models;
 
-namespace CFAPService
-{
+namespace CFAPDataModel
+{ 
     [DataContract]
     public class Filter
     {

@@ -2,8 +2,8 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" />
-  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
-  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
+  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CFAPDataModel" />
+  <xs:import schemaLocation="http://localhost/CFAPService/mex?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CFAPService" />
   <xs:element name="GetLogins">
     <xs:complexType>
       <xs:sequence />
@@ -137,7 +137,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q23:User" />
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q24:Filter" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="filter" nillable="true" type="q24:Filter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -152,7 +152,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q26:User" />
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q27:Filter" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="filter" nillable="true" type="q27:Filter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -183,7 +183,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="onOff" type="xs:boolean" />
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="filter" nillable="true" type="q33:Filter" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="filter" nillable="true" type="q33:Filter" />
         <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q34:User" />
       </xs:sequence>
     </xs:complexType>
@@ -386,6 +386,24 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="UpdateRateResult" nillable="true" type="q74:Rate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MakeOperation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="entity" nillable="true" type="xs:anyType" />
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/CFAPDataModel.Models" minOccurs="0" name="user" nillable="true" type="q75:User" />
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="concurencyUpdateOptions" type="q76:DbConcurencyUpdateOptions" />
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="operation" type="q77:CrudOperation" />
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/CFAPDataModel" minOccurs="0" name="filter" nillable="true" type="q78:Filter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MakeOperationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/CFAPService" minOccurs="0" name="MakeOperationResult" nillable="true" type="q79:Transport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

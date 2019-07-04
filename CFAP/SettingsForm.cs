@@ -28,7 +28,9 @@ namespace CFAP
         void InitializeForm()
         {
             if (CFAPBusinessLogic.User.IsAdmin == false)
+            {
                 this.radPanel_ChangeReadOnly.Visible = false;
+            }
         }
 
         void InitializeData()
@@ -157,6 +159,11 @@ namespace CFAP
             businessLogic.ChangeReadOnlySummary(onOff, this.filter);
 
             MessageBox.Show("Изменения будут видны при следующей загрузке данных");
+        }
+
+        private void radButton_OpenLockedPeriodForm_Click(object sender, EventArgs e)
+        {
+            new LockedPeriodForm().ShowDialog();
         }
     }
 }
