@@ -52,16 +52,16 @@ namespace CFAP
 
         private void radButton_AddItem_Click(object sender, EventArgs e)
         {
-            //new ChangeProjectForm(new Project(), ChangeDataOptions.AddNew).ShowDialog();
+            new ChangeLockedPeriodForm(new Period(), ChangeDataOptions.AddNew).ShowDialog();
             this.Periods.ResetBindings();
         }
 
         private void radGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is Project)
+            if (e.Row.DataBoundItem is Period)
             {
                 Period periodToChange = (Period)e.Row.DataBoundItem;
-                //new ChangeProjectForm(periodToChange, ChangeDataOptions.ChangeData).ShowDialog();
+                new ChangeLockedPeriodForm(periodToChange, ChangeDataOptions.ChangeData).ShowDialog();
                 this.Periods.ResetBindings();
             }
         }

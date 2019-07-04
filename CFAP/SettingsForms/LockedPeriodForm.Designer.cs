@@ -58,6 +58,7 @@
             this.radButton_AddItem.Size = new System.Drawing.Size(110, 29);
             this.radButton_AddItem.TabIndex = 0;
             this.radButton_AddItem.Text = "Добавить";
+            this.radButton_AddItem.Click += new System.EventHandler(this.radButton_AddItem_Click);
             // 
             // radGridView
             // 
@@ -80,6 +81,7 @@
             this.radGridView.ShowChildViewCaptions = true;
             this.radGridView.Size = new System.Drawing.Size(694, 525);
             this.radGridView.TabIndex = 3;
+            this.radGridView.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView_CellDoubleClick);
             // 
             // LockedPeriodForm
             // 

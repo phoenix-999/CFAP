@@ -1357,5 +1357,105 @@ namespace CFAP
                 ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
             }
         }
+
+        public void AddPeriod(Period newPeriod)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        Period addedPeriod = (Period)DataProviderProxy.MakeOperation(newPeriod, User, DbConcurencyUpdateOptions.ClientPriority, CrudOperation.Add, null).Single;
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<NoRightsToChangeDataException> fault)
+                    {
+                        ExceptionsHandler.NoRightsToChangeDataExceptionHandler(fault);
+                    }
+                    catch (FaultException<DataNotValidException> fault)
+                    {
+                        ExceptionsHandler.DataNotValidExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+
+            //Перезагрузка периодов с БД
+            LoadPeriods(); 
+        }
+
+        public void UpdatePeriod(Period periodToUpdate)
+        {
+            try
+            {
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    try
+                    {
+                        Period updatedPeriod = (Period)DataProviderProxy.MakeOperation(periodToUpdate, User, DbConcurencyUpdateOptions.ClientPriority, CrudOperation.Update, null).Single;
+                        transaction.Complete();
+                    }
+                    catch (FaultException<AuthenticateFaultException> fault)
+                    {
+                        ExceptionsHandler.AuthenticateFaultExceptionHandler(fault);
+                    }
+                    catch (FaultException<DbException> fault)
+                    {
+                        ExceptionsHandler.DbExceptionHandler(fault);
+                    }
+                    catch (FaultException<NoRightsToChangeDataException> fault)
+                    {
+                        ExceptionsHandler.NoRightsToChangeDataExceptionHandler(fault);
+                    }
+                    catch (FaultException<DataNotValidException> fault)
+                    {
+                        ExceptionsHandler.DataNotValidExceptionHandler(fault);
+                    }
+                    catch (FaultException fault)
+                    {
+                        ExceptionsHandler.FaultExceptionHandler(fault);
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        ExceptionsHandler.CommunicationExceptionHandler(ex);
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        ExceptionsHandler.TimeOutExceptionExceptionHandler(ex);
+                    }
+                }
+            }
+            catch (TransactionAbortedException ex)
+            {
+                ExceptionsHandler.TransactionAbortedExceptionHandler(ex);
+            }
+
+            //Перезагрузка периодов с БД
+            LoadPeriods();
+        }
     }
 }

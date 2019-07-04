@@ -111,6 +111,12 @@
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RussianRadGridLocalizationProvider.cs" />
+    <Compile Include="SettingsForms\ChangeLockedPeriodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForms\ChangeLockedPeriodForm.Designer.cs">
+      <DependentUpon>ChangeLockedPeriodForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsForms\LockedPeriodForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Projects\ChangeProjectForm.resx">
       <DependentUpon>ChangeProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForms\ChangeLockedPeriodForm.resx">
+      <DependentUpon>ChangeLockedPeriodForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForms\LockedPeriodForm.resx">
       <DependentUpon>LockedPeriodForm.cs</DependentUpon>
