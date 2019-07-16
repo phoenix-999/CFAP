@@ -39,9 +39,13 @@ namespace CFAP
 
             if (filter.DateStart != default(DateTime) && filter.DateStart != null)
                 this.radDateTimePicker_DateStart.Value = (DateTime)filter.DateStart;
+            else
+                this.radDateTimePicker_DateStart.Value = DateTime.Today.AddDays((DateTime.Now.Day - 1) * -1);
 
             if (filter.DateEnd != default(DateTime) && filter.DateEnd != null)
                 this.radDateTimePicker_DateEnd.Value = (DateTime)filter.DateEnd;
+            else
+                this.radDateTimePicker_DateEnd.Value = this.radDateTimePicker_DateStart.Value;
         }
 
         void InitializeLists()

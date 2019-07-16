@@ -236,9 +236,6 @@ namespace CFAP.DataProviderClient {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] RowVersionField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -301,19 +298,6 @@ namespace CFAP.DataProviderClient {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderClient.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -334,7 +318,7 @@ namespace CFAP.DataProviderClient {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CanReadAllDataField;
+        private bool CanReadAccountablesSummaryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GroupNameField;
@@ -353,14 +337,14 @@ namespace CFAP.DataProviderClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CanReadAllData {
+        public bool CanReadAccountablesSummary {
             get {
-                return this.CanReadAllDataField;
+                return this.CanReadAccountablesSummaryField;
             }
             set {
-                if ((this.CanReadAllDataField.Equals(value) != true)) {
-                    this.CanReadAllDataField = value;
-                    this.RaisePropertyChanged("CanReadAllData");
+                if ((this.CanReadAccountablesSummaryField.Equals(value) != true)) {
+                    this.CanReadAccountablesSummaryField = value;
+                    this.RaisePropertyChanged("CanReadAccountablesSummary");
                 }
             }
         }
@@ -748,9 +732,6 @@ namespace CFAP.DataProviderClient {
         private double TotalSummaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private CFAP.DataProviderClient.User UserLastChangedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -972,19 +953,6 @@ namespace CFAP.DataProviderClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderClient.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public CFAP.DataProviderClient.User UserLastChanged {
             get {
                 return this.UserLastChangedField;
@@ -1027,9 +995,6 @@ namespace CFAP.DataProviderClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] RowVersionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1093,19 +1058,6 @@ namespace CFAP.DataProviderClient {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderClient.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1136,9 +1088,6 @@ namespace CFAP.DataProviderClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] RowVersionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CFAP.DataProviderClient.UserGroup[] UserGroupsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1198,19 +1147,6 @@ namespace CFAP.DataProviderClient {
                 if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
                     this.RowVersionField = value;
                     this.RaisePropertyChanged("RowVersion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CFAP.DataProviderClient.UserGroup[] UserGroups {
-            get {
-                return this.UserGroupsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserGroupsField, value) != true)) {
-                    this.UserGroupsField = value;
-                    this.RaisePropertyChanged("UserGroups");
                 }
             }
         }

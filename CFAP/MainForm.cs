@@ -116,8 +116,8 @@ namespace CFAP
             this.radGridView.Columns["ActionDate"].IsVisible = false;
             this.radGridView.Columns["CurrentRateUSD"].IsVisible = false;
             this.radGridView.Columns["CurrentEuroToDollarRate"].IsVisible = false;
-            this.radGridView.Columns["UserGroups"].IsVisible = false;
             this.radGridView.Columns["UserLastChanged"].IsVisible = false;
+            this.radGridView.Columns["ReadOnly"].IsVisible = false;
 
             //Упорядчивание столбцов
             this.radGridView.Columns.Move(this.radGridView.Columns["SummaryDate"].Index, 0);
@@ -130,7 +130,6 @@ namespace CFAP
             this.radGridView.Columns.Move(this.radGridView.Columns["SummaEuro"].Index, 7);
             this.radGridView.Columns.Move(this.radGridView.Columns["TotalSumma"].Index, 8);
             this.radGridView.Columns.Move(this.radGridView.Columns["Description"].Index, 9);
-            this.radGridView.Columns.Move(this.radGridView.Columns["ReadOnly"].Index, 10);
 
             //Настройка данных столбцов
             //Явное указание свойства привязки. Необходимо для корректной работы сортировки и группировки ассоциированных обьктов.

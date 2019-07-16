@@ -33,9 +33,9 @@ namespace CFAP
 
         void InitializeColumns()
         {
-            this.radGridView.Columns["Id"].ReadOnly = true;
+            this.radGridView.Columns["Id"].IsVisible = false;
 
-            this.radGridView.Columns["CanReadAllData"].HeaderText = "Доступ ко всем данным";
+            this.radGridView.Columns["CanReadAccountablesSummary"].HeaderText = "Доступ к данным подотчетников";
 
             this.radGridView.Columns["GroupName"].HeaderText = "Группа";
         }

@@ -14,6 +14,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace CFAPService
 {
@@ -296,15 +297,27 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
+            bool canReadSummary = false;
+            foreach (var g in user.UserGroups)
+            {
+                if (g.CanReadAccountablesSummary)
+                    canReadSummary = true;
+            }
+
+            if (!canReadSummary)
+            {
+                throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
+            }
+
             if (summary.CheckPeriodIsUnlocked() == false)
             {
                 throw new FaultException<PeriodIsLockedException>(new PeriodIsLockedException(summary.SummaryDate));
             }
 
-            if (summary.UserGroups == null || summary.UserGroups.Count == 0)
-            {
-                summary.UserGroups = user.UserGroups;
-            }
+            //if (summary.UserGroups == null || summary.UserGroups.Count == 0)
+            //{
+            //    summary.UserGroups = user.UserGroups;
+            //}
 
             if (summary.UserLastChanged == null || summary.UserLastChanged.Id != user.Id)
             {
@@ -349,6 +362,18 @@ namespace CFAPService
 
 
             AuthenticateUser(user);
+
+            bool canReadSummary = false;
+            foreach (var g in user.UserGroups)
+            {
+                if (g.CanReadAccountablesSummary)
+                    canReadSummary = true;
+            }
+
+            if (!canReadSummary)
+            {
+                throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
+            }
 
             if (summary.CheckPeriodIsUnlocked() == false)
             {
@@ -455,6 +480,18 @@ namespace CFAPService
         {
             AuthenticateUser(user);
 
+            bool canReadSummary = false;
+            foreach (var g in user.UserGroups)
+            {
+                if (g.CanReadAccountablesSummary)
+                    canReadSummary = true;
+            }
+
+            if (!canReadSummary)
+            {
+                throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
+            }
+
             this.ChechIsAdmin(user, typeof(Summary));
 
             List<Summary> summaries = this.GetSummary(user, filter).ToList();
@@ -483,6 +520,18 @@ namespace CFAPService
         public Summary RemoveSummary(Summary summary, User user, DbConcurencyUpdateOptions concurencyUpdateOption)
         {
             AuthenticateUser(user);
+
+            bool canReadSummary = false;
+            foreach (var g in user.UserGroups)
+            {
+                if (g.CanReadAccountablesSummary)
+                    canReadSummary = true;
+            }
+
+            if (!canReadSummary)
+            {
+                throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
+            }
 
             if (summary.CheckPeriodIsUnlocked() == false)
             {
@@ -535,7 +584,7 @@ namespace CFAPService
 
                     //Метод Load не загрузит ссылочные свойства без конкретного указания Id. 
                     //Свойство коллекции UserGroups является связью многие-ко-многим. Экземпляр сущности не содержит ключи этих связей в виде элементарных типов данных.
-                    dbSummary.UserGroups = result.UserGroups;
+                    //dbSummary.UserGroups = result.UserGroups;
 
                     dbSummary = LoadRelationshipsDbSummary(dbSummary);
 
@@ -1042,7 +1091,7 @@ namespace CFAPService
                     filter.Accountables = new Accountable[] { user.Accountable };
                 }
 
-                summaries = GetFilteredSummary(user, filter);
+                summaries = GetFilteredSummary(filter, false);
             }
             catch (Exception ex)
             {
@@ -1051,6 +1100,8 @@ namespace CFAPService
 
             result.BalanceUAH = 0;
             result.BalanceUSD = 0;
+
+
 
             foreach (var s in summaries)
             {
@@ -1072,6 +1123,19 @@ namespace CFAPService
         public HashSet<Summary> GetSummary(User user, Filter filter)
         {
             AuthenticateUser(user);
+
+            bool canReadSummary = false;
+            foreach (var g in user.UserGroups)
+            {
+                if (g.CanReadAccountablesSummary)
+                    canReadSummary = true;
+            }
+
+            if (!canReadSummary)
+            {
+                throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
+            }
+
             HashSet<Summary> result = new HashSet<Summary>();
 
             try
@@ -1084,7 +1148,7 @@ namespace CFAPService
                     filter.Accountables = new Accountable[] { user.Accountable };
                 }
 
-                result = GetFilteredSummary(user, filter);
+                result = GetFilteredSummary(filter);
             }
             catch (Exception ex)
             {
@@ -1129,7 +1193,7 @@ namespace CFAPService
                     var groups = resultQuery.UserGroup;
                     result.UserGroups = groups.ToList();
                 }
-                catch(InvalidOperationException ex) //На случай если query.Single(); ничего не вернет или врнет больше одного результата
+                catch(InvalidOperationException) //На случай если query.Single(); ничего не вернет или врнет больше одного результата
                 {
                     throw new FaultException<AuthenticateFaultException>(new AuthenticateFaultException(user));
                 }
@@ -1148,7 +1212,7 @@ namespace CFAPService
             return result;
         }
 
-        private HashSet<Summary> GetFilteredSummary(User user, Filter filter)
+        private HashSet<Summary> GetFilteredSummary(Filter filter, bool loadRelationships = true)
        {
             HashSet<Summary> result = new HashSet<Summary>();
 
@@ -1165,35 +1229,33 @@ namespace CFAPService
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
 
-                var userGroupsId = user.GetUserGroupsIdFromObject();
 
                 if (filter == null)
                 {
                     var query = (from s in ctx.Summaries
-                              from g in s.UserGroups
-                              where userGroupsId.Contains(g.Id)
-                              select  s).ToArray(); //Distinct() не подходит для удаления дубликатов по переопределенным GetHashCode и Equals
+                                 select s).ToArray(); //Distinct() не подходит для удаления дубликатов по переопределенным GetHashCode и Equals
 
                     result = new HashSet<Summary>(query);
-
-                    try
+                    if (loadRelationships)
                     {
-                        Summary.LoadRelationships(ctx);
-                    }
-                    catch(Exception ex)
-                    {
-                        throw new FaultException<DbException>(new DbException(ex));
+                        try
+                        {
+                            Summary.LoadRelationships(ctx);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new FaultException<DbException>(new DbException(ex));
+                        }
                     }
 
                     return result;
                 }
 
                 var summaries = from s in ctx.Summaries
-                                from g in s.UserGroups
                                 where
                                     s.SummaryDate >= dateStart && s.SummaryDate <= dateEnd
-                                    && userGroupsId.Contains(g.Id)
                                 select s;
+
                 result = new HashSet<Summary>(summaries.ToArray());
 
                 if (filter.Projects != null && filter.Projects.Count > 0)
@@ -1224,14 +1286,16 @@ namespace CFAPService
                 }
 
                 result = new HashSet<Summary>(summaries.ToArray());
-
-                try
+                if (loadRelationships)
                 {
-                    Summary.LoadRelationships(ctx);
-                }
-                catch (Exception ex)
-                {
-                    throw new FaultException<DbException>(new DbException(ex));
+                    try
+                    {
+                        Summary.LoadRelationships(ctx);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new FaultException<DbException>(new DbException(ex));
+                    }
                 }
 
             }

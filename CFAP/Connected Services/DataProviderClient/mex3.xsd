@@ -19,7 +19,6 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
       <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Accountable" nillable="true" type="tns:Accountable" />
@@ -31,7 +30,7 @@
   <xs:element name="ArrayOfUserGroup" nillable="true" type="tns:ArrayOfUserGroup" />
   <xs:complexType name="UserGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CanReadAllData" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CanReadAccountablesSummary" type="xs:boolean" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
     </xs:sequence>
@@ -61,7 +60,6 @@
       <xs:element minOccurs="0" name="SummaUSD" type="xs:double" />
       <xs:element minOccurs="0" name="SummaryDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TotalSumma" type="xs:double" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
       <xs:element minOccurs="0" name="UserLastChanged" nillable="true" type="tns:User" />
     </xs:sequence>
   </xs:complexType>
@@ -72,7 +70,6 @@
       <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
       <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BudgetItem" nillable="true" type="tns:BudgetItem" />
@@ -82,7 +79,6 @@
       <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
       <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="UserGroups" nillable="true" type="tns:ArrayOfUserGroup" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Project" nillable="true" type="tns:Project" />

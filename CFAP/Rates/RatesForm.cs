@@ -37,13 +37,13 @@ namespace CFAP
         {
             this.radGridView.Columns["RowVersion"].IsVisible = false;
 
-            this.radGridView.Columns["Id"].ReadOnly = true;
+            this.radGridView.Columns["Id"].IsVisible = false;
 
             this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтения";
             this.radGridView.Columns["ReadOnly"].ReadOnly = true;
 
             this.radGridView.Columns["RateUSD"].HeaderText = "Курс долара";
-            this.radGridView.Columns["EuroToDollarRate"].HeaderText = "Курс евро";
+            this.radGridView.Columns["EuroToDollarRate"].HeaderText = "Курс евро к долару";
 
             this.radGridView.Columns["DateRate"].HeaderText = "Месяц";
             this.radGridView.Columns["DateRate"].FormatString = "{0:MM/yyyy}";

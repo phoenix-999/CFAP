@@ -40,7 +40,7 @@ namespace CFAP
             this.radGridView.Columns["CanChangeUsersData"].HeaderText = "Может править данные других пользователей";
             this.radGridView.Columns["CanChangeUsersData"].WrapText = true;
 
-            this.radGridView.Columns["Id"].ReadOnly = true;
+            this.radGridView.Columns["Id"].IsVisible = false;
 
             this.radGridView.Columns["IsAdmin"].HeaderText = "Администратор";
 

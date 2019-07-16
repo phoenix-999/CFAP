@@ -14,7 +14,6 @@ namespace CFAPDataModel.Models
         public UserGroup()
         {
             this.Users = new List<User>();
-            this.Summaries = new List<Summary>();
         }
         [DataMember]
         public int Id { get; set; }
@@ -26,17 +25,10 @@ namespace CFAPDataModel.Models
         //Не сериализуеться для предотвращения возникновения цыклической сериализации
         public virtual ICollection<User> Users { get; set; }
 
-        public virtual ICollection<Accountable> Accountables { get; set; }
-
-        public virtual ICollection<Project> Projects { get; set; }
-
-        public virtual ICollection<BudgetItem> BudgetItems { get; set; }
 
         [DataMember]
-        public bool CanReadAllData { get; set; }
+        public bool CanReadAccountablesSummary { get; set; }
 
-        //Не сериализуеться для предотвращения возникновения цыклической сериализации
-        public virtual ICollection<Summary> Summaries { get; set; }
 
         public override string ToString()
         {

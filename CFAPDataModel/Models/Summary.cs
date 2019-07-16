@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +20,7 @@ namespace CFAPDataModel.Models
         
         public Summary()
         {
-            this.UserGroups = new HashSet<UserGroup>();  
+            //this.UserGroups = new HashSet<UserGroup>();  
         }
 
 
@@ -65,67 +66,67 @@ namespace CFAPDataModel.Models
             return result;
         }
 
-        public ICollection<int> GetUserGroupsId()
-        {
-            if (this.UserGroups == null || this.UserGroups.Count == 0)
-            {
-                throw new NullReferenceException("Группы пользователя не определены.");
-            }
+        //public ICollection<int> GetUserGroupsId()
+        //{
+        //    if (this.UserGroups == null || this.UserGroups.Count == 0)
+        //    {
+        //        throw new NullReferenceException("Группы пользователя не определены.");
+        //    }
 
-            var groupsId = (from g in this.UserGroups
-                            select g.Id).ToList();
+        //    var groupsId = (from g in this.UserGroups
+        //                    select g.Id).ToList();
 
-            return groupsId;
-        }
+        //    return groupsId;
+        //}
 
-        private void LoadUserGroups(CFAPContext ctx)
-        {
-            //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
-            ctx.Configuration.ProxyCreationEnabled = false;
+        //private void LoadUserGroups(CFAPContext ctx)
+        //{
+        //    //Для корректной загрузки данных нужен экземпляр контекста вызывающей строны
+        //    ctx.Configuration.ProxyCreationEnabled = false;
 
-            ICollection<int> goupsId = null;
-            try
-            {
-                goupsId = this.GetUserGroupsId();
-            }
-            catch(NullReferenceException)
-            {
-                DbValidationError validationError = new DbValidationError("Группы пользователя", "Значениие не определено");
-                DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError });
+        //    ICollection<int> goupsId = null;
+        //    try
+        //    {
+        //        goupsId = this.GetUserGroupsId();
+        //    }
+        //    catch(NullReferenceException)
+        //    {
+        //        DbValidationError validationError = new DbValidationError("Группы пользователя", "Значениие не определено");
+        //        DbEntityValidationResult dbEntityValidationResult = new DbEntityValidationResult(ctx.Entry(this), new DbValidationError[] { validationError });
 
-                throw new DbEntityValidationException("Ошибка при проверке данных групп пользователей. Группы не добавлены", new DbEntityValidationResult[] { dbEntityValidationResult });
-            }
+        //        throw new DbEntityValidationException("Ошибка при проверке данных групп пользователей. Группы не добавлены", new DbEntityValidationResult[] { dbEntityValidationResult });
+        //    }
 
-            //LINQ to Entities не умеет вызывать методы
-            var groups = (from g in ctx.UserGroups
-                          where goupsId.Contains(g.Id)
-                          select g).ToList();
-            this.UserGroups = groups;
+        //    //LINQ to Entities не умеет вызывать методы
+        //    var groups = (from g in ctx.UserGroups
+        //                  where goupsId.Contains(g.Id)
+        //                  select g).ToList();
+        //    this.UserGroups = groups;
 
-            var groupsCanUseAllData = (from g in ctx.UserGroups
-                                       where g.CanReadAllData == true
-                                       select g).ToList();
+        //    var groupsCanUseAllData = (from g in ctx.UserGroups
+        //                               where g.CanReadAllData == true
+        //                               select g).ToList();
 
-            foreach (var currentGroup in this.UserGroups)
-            {
-                for (int groupIndex = 0; groupIndex < groupsCanUseAllData.Count; groupIndex++)
-                {
-                    if (groupsCanUseAllData[groupIndex].Id == currentGroup.Id)
-                    {
-                        groupsCanUseAllData.RemoveAt(groupIndex);
-                    }
-                }
-            }
+        //    foreach (var currentGroup in this.UserGroups)
+        //    {
+        //        for (int groupIndex = 0; groupIndex < groupsCanUseAllData.Count; groupIndex++)
+        //        {
+        //            if (groupsCanUseAllData[groupIndex].Id == currentGroup.Id)
+        //            {
+        //                groupsCanUseAllData.RemoveAt(groupIndex);
+        //            }
+        //        }
+        //    }
 
-            if (groupsCanUseAllData.Count > 0)
-            {
-                foreach (var group in groupsCanUseAllData)
-                {
-                    this.UserGroups.Add(group);
-                }
-            }
+        //    if (groupsCanUseAllData.Count > 0)
+        //    {
+        //        foreach (var group in groupsCanUseAllData)
+        //        {
+        //            this.UserGroups.Add(group);
+        //        }
+        //    }
 
-        }
+        //}
 
         public void SetRelationships(CFAPContext ctx)
         {
@@ -161,31 +162,45 @@ namespace CFAPDataModel.Models
             this.UserLastChanged = (from u in ctx.Users where u.Id == this.UserLastChanged.Id select u).First();
             this.UserLastChangedId = UserLastChanged.Id;
 
-            this.LoadUserGroups(ctx);
+            //this.LoadUserGroups(ctx);
         }
 
         public static void LoadRelationships(CFAPContext ctx)
         {
             var oldCofigurationProxy = ctx.Configuration.ProxyCreationEnabled;
             ctx.Configuration.ProxyCreationEnabled = false;
-            
-            foreach (var s in ctx.Summaries.Local)
-            {
-                //Исключения могут выпадать только при нарушении целостности данных в БД
-                //s.Accountable = (from a in ctx.Accountables where a.Id == s.Accountable_Id select a).Single();
-                //s.Project = (from p in ctx.Projects where p.Id == s.Project_Id select p).Single();
-                //s.BudgetItem = (from b in ctx.BudgetItems where b.Id == s.BudgetItem_Id select b).Single();
-                //s.UserLastChanged = (from u in ctx.Users where u.Id == s.UserLastChangedId select u).Single();
-                //ctx.Entry(s).Collection("UserGroups").Load();
 
-                //Все связанные сущности существуют в одном экземпляре
-                //В случае отсутствия данных метод Find вернет null
-                s.Accountable = ctx.Accountables.Find(s.Accountable_Id);
-                s.Project = ctx.Projects.Find(s.Project_Id);
-                s.BudgetItem = ctx.BudgetItems.Find(s.BudgetItem_Id);
-                s.UserLastChanged = ctx.Users.Find(s.UserLastChangedId);
-                ctx.Entry(s).Collection("UserGroups").Load(); //Не сработает, если коллекция уже содержит элементы
-            }
+            ctx.Accountables.Load();
+            var accountables = ctx.Accountables.ToList();
+            ctx.BudgetItems.Load();
+            var budgetItems = ctx.BudgetItems.ToList();
+            ctx.Projects.Load();
+            var projects  = ctx.Projects.ToList();
+            ctx.Users.Load();
+            var users = ctx.Users.ToList();
+
+            Parallel.ForEach<Summary>(ctx.Summaries.Local, (s) =>
+                {
+                    //Все связанные сущности существуют в одном экземпляре
+                    //В случае отсутствия данных метод Find вернет null
+                    s.Accountable = accountables.Find(a => a.Id == s.Accountable_Id);
+                    s.Project = projects.Find(p => p.Id == s.Project_Id);
+                    s.BudgetItem = budgetItems.Find(b => b.Id == s.BudgetItem_Id);
+                    s.UserLastChanged = users.Find(u => u.Id == s.UserLastChangedId);
+                }
+            );
+
+            
+            //foreach (var s in ctx.Summaries.Local)
+            //{
+            //    //Все связанные сущности существуют в одном экземпляре
+            //    //В случае отсутствия данных метод Find вернет null
+            //    s.Accountable = ctx.Accountables.Find(s.Accountable_Id);
+            //    s.Project = ctx.Projects.Find(s.Project_Id);
+            //    s.BudgetItem = ctx.BudgetItems.Find(s.BudgetItem_Id);
+            //    s.UserLastChanged = ctx.Users.Find(s.UserLastChangedId);
+            //    //ctx.Entry(s).Collection("UserGroups").Load(); //Не сработает, если коллекция уже содержит элементы
+            //}
 
             ctx.Configuration.ProxyCreationEnabled = oldCofigurationProxy;
         }
@@ -289,7 +304,7 @@ namespace CFAPDataModel.Models
             }
 
 
-            clonedSummary.UserGroups = this.UserGroups.ToList();
+            //clonedSummary.UserGroups = this.UserGroups.ToList();
 
             return clonedSummary;
         }
@@ -332,7 +347,14 @@ namespace CFAPDataModel.Models
 
         [DataMember]
         [NotMapped]
-        public double TotalSumma { get { return SummaUSD + SummaUAH / CurrentRateUSD + SummaEuro / CurrentEuroToDollarRate; } set { } } //При маршалинге выражение вычисляется
+        public double TotalSumma
+        {
+            get
+            {
+                return SummaUSD + SummaUAH / CurrentRateUSD + SummaEuro / CurrentEuroToDollarRate;
+            }
+            set { }
+        } //При маршалинге выражение вычисляется
 
         [DataMember]
         public bool CashFlowType { get; set; }
@@ -368,8 +390,8 @@ namespace CFAPDataModel.Models
         [Required]
         public virtual Accountable Accountable { get; set; }
 
-        [DataMember]
-        public virtual ICollection<UserGroup> UserGroups { get; set; }
+        //[DataMember]
+        //public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         #endregion
     }

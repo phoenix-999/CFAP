@@ -33,7 +33,7 @@
             this.radButton_Cancel = new Telerik.WinControls.UI.RadButton();
             this.radButton_AddAccountable = new Telerik.WinControls.UI.RadButton();
             this.radTextBox_GroupName = new Telerik.WinControls.UI.RadTextBox();
-            this.radCheckBox_CanReadAllData = new Telerik.WinControls.UI.RadCheckBox();
+            this.radCheckBox_CanReadAccountablesSummary = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel)).BeginInit();
             this.radPanel.SuspendLayout();
@@ -41,7 +41,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_GroupName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_CanReadAllData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_CanReadAccountablesSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             this.radPanel.Controls.Add(this.radButton_Cancel);
             this.radPanel.Controls.Add(this.radButton_AddAccountable);
             this.radPanel.Controls.Add(this.radTextBox_GroupName);
-            this.radPanel.Controls.Add(this.radCheckBox_CanReadAllData);
+            this.radPanel.Controls.Add(this.radCheckBox_CanReadAccountablesSummary);
             this.radPanel.Controls.Add(this.radLabel1);
             this.radPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel.Location = new System.Drawing.Point(0, 0);
@@ -98,15 +98,15 @@
             this.radTextBox_GroupName.TabIndex = 7;
             this.radTextBox_GroupName.Click += new System.EventHandler(this.radTextBox_Click);
             // 
-            // radCheckBox_CanReadAllData
+            // radCheckBox_CanReadAccountablesSummary
             // 
-            this.radCheckBox_CanReadAllData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radCheckBox_CanReadAllData.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.radCheckBox_CanReadAllData.Location = new System.Drawing.Point(15, 80);
-            this.radCheckBox_CanReadAllData.Name = "radCheckBox_CanReadAllData";
-            this.radCheckBox_CanReadAllData.Size = new System.Drawing.Size(322, 18);
-            this.radCheckBox_CanReadAllData.TabIndex = 5;
-            this.radCheckBox_CanReadAllData.Text = "Доступ ко всем данным (с момента создания группы)";
+            this.radCheckBox_CanReadAccountablesSummary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radCheckBox_CanReadAccountablesSummary.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radCheckBox_CanReadAccountablesSummary.Location = new System.Drawing.Point(15, 80);
+            this.radCheckBox_CanReadAccountablesSummary.Name = "radCheckBox_CanReadAccountablesSummary";
+            this.radCheckBox_CanReadAccountablesSummary.Size = new System.Drawing.Size(205, 18);
+            this.radCheckBox_CanReadAccountablesSummary.TabIndex = 5;
+            this.radCheckBox_CanReadAccountablesSummary.Text = "Доступ к данным подотчетников";
             // 
             // radLabel1
             // 
@@ -138,7 +138,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton_Cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton_AddAccountable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox_GroupName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_CanReadAllData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox_CanReadAccountablesSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -153,6 +153,6 @@
         private Telerik.WinControls.UI.RadButton radButton_Cancel;
         private Telerik.WinControls.UI.RadButton radButton_AddAccountable;
         private Telerik.WinControls.UI.RadButton radButton_UpdateAccountable;
-        private Telerik.WinControls.UI.RadCheckBox radCheckBox_CanReadAllData;
+        private Telerik.WinControls.UI.RadCheckBox radCheckBox_CanReadAccountablesSummary;
     }
 }

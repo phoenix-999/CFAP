@@ -15,7 +15,6 @@ namespace CFAPDataModel.Models
 
         public Accountable()
         {
-            this.UserGroups = new HashSet<UserGroup>();
             this.Summaries = new List<Summary>();
         }
 
@@ -34,8 +33,6 @@ namespace CFAPDataModel.Models
         [DataMember]
         public bool ReadOnly { get; set; }
 
-        [DataMember]
-        public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         //Не сериализуеться для предотвращения возникновения циклической сериализации
         public virtual ICollection<Summary> Summaries { get; set; }

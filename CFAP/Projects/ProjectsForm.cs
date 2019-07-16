@@ -33,10 +33,9 @@ namespace CFAP
 
         void InitializeColumns()
         {
-            this.radGridView.Columns["UserGroups"].IsVisible = false;
             this.radGridView.Columns["RowVersion"].IsVisible = false;
 
-            this.radGridView.Columns["Id"].ReadOnly = true;
+            this.radGridView.Columns["Id"].IsVisible = false;
 
             this.radGridView.Columns["ReadOnly"].HeaderText = "Только чтения";
             this.radGridView.Columns["ReadOnly"].ReadOnly = true;

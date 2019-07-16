@@ -174,8 +174,8 @@
             this.radDateTimePicker_DateEnd.Size = new System.Drawing.Size(164, 20);
             this.radDateTimePicker_DateEnd.TabIndex = 6;
             this.radDateTimePicker_DateEnd.TabStop = false;
-            this.radDateTimePicker_DateEnd.Text = "06.06.2019";
-            this.radDateTimePicker_DateEnd.Value = new System.DateTime(2019, 6, 6, 17, 34, 45, 930);
+            this.radDateTimePicker_DateEnd.Text = "01.01.1900";
+            this.radDateTimePicker_DateEnd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // radDateTimePicker_DateStart
             // 
@@ -185,8 +185,8 @@
             this.radDateTimePicker_DateStart.Size = new System.Drawing.Size(164, 20);
             this.radDateTimePicker_DateStart.TabIndex = 5;
             this.radDateTimePicker_DateStart.TabStop = false;
-            this.radDateTimePicker_DateStart.Text = "06.06.2019";
-            this.radDateTimePicker_DateStart.Value = new System.DateTime(2019, 6, 6, 17, 34, 45, 930);
+            this.radDateTimePicker_DateStart.Text = "01.01.1900";
+            this.radDateTimePicker_DateStart.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // radLabel5
             // 

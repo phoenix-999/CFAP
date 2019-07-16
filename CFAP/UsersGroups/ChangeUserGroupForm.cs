@@ -48,7 +48,7 @@ namespace CFAP
             if (userGroup.GroupName != null)
                 this.radTextBox_GroupName.Text = userGroup.GroupName;
 
-            this.radCheckBox_CanReadAllData.Checked = userGroup.CanReadAllData;
+            this.radCheckBox_CanReadAccountablesSummary.Checked = userGroup.CanReadAccountablesSummary;
         }
 
         bool ValidateFormData()
@@ -72,6 +72,7 @@ namespace CFAP
 
             businessLogic.AddUserGroup(userGroup);
 
+            MessageBox.Show("Изменения вступят в силу после следующего входа в систему", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 
@@ -84,13 +85,14 @@ namespace CFAP
 
             businessLogic.UpdateUserGroup(userGroup);
 
+            MessageBox.Show("Изменения вступят в силу после следующего входа в систему", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 
         void SetData()
         {
             userGroup.GroupName = this.radTextBox_GroupName.Text;
-            userGroup.CanReadAllData = this.radCheckBox_CanReadAllData.Checked;
+            userGroup.CanReadAccountablesSummary = this.radCheckBox_CanReadAccountablesSummary.Checked;
         }
 
         private void radTextBox_Click(object sender, EventArgs e)
